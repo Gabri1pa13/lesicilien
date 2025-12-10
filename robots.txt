@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lesicilien.it/sitemap.xml
+
+Disallow: /private/
+Disallow: /admin/
+Disallow: /tmp/
