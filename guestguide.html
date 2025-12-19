@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Le Sicilien | Guest Guide</title>
+  <style>
+    :root{
+      --bg: #f6f5f2;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #7a7a7a;
+      --accent: #7f9c8b;
+      --border: #e6e4e0;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Poppins, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header{
+      padding:28px 20px 18px;
+      text-align:center;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(180deg,#faf9f7, #f6f5f2);
+    }
+
+    header h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:0.12em;
+      font-weight:500;
+    }
+
+    header p{
+      margin:6px 0 0;
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:0.04em;
+    }
+
+    .container{
+      padding:18px;
+      max-width:720px;
+      margin:0 auto;
+    }
+
+    .search{
+      margin-bottom:14px;
+    }
+
+    .search input{
+      width:100%;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:14px;
+      outline:none;
+    }
+
+    .filters{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding-bottom:6px;
+      margin-bottom:18px;
+    }
+
+    .filter{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      cursor:pointer;
+      transition:all .2s ease;
+    }
+
+    .filter.active{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
+    }
+
+    .section{
+      margin-bottom:28px;
+    }
+
+    .section h2{
+      font-size:13px;
+      font-weight:500;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    .card .title{
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .card .meta{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    .badge{
+      font-size:10px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    .badge.concierge{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+
+    .hidden{display:none}
+
+    footer{
+      padding:20px;
+      text-align:center;
+      font-size:11px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>LE SICILIEN</h1>
+  <p>Guest Guide</p>
+</header>
+
+<div class="container">
+
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="Cerca ristorante, farmacia, yacht…" />
+  </div>
+
+  <div class="filters" id="filters">
+    <div class="filter active" data-filter="all">Tutti</div>
+    <div class="filter" data-filter="ristoranti">Ristoranti</div>
+    <div class="filter" data-filter="supermercati">Supermercati</div>
+    <div class="filter" data-filter="farmacie">Farmacie</div>
+    <div class="filter" data-filter="parcheggi">Parcheggi</div>
+    <div class="filter" data-filter="trasporti">Trasporti</div>
+    <div class="filter" data-filter="servizi">Servizi esclusivi</div>
+  </div>
+
+  <!-- RISTORANTI -->
+  <div class="section" data-category="ristoranti">
+    <h2>Ristoranti</h2>
+
+    <div class="card" data-name="Isgrò" onclick="openMaps('Isgrò Palermo')">
+      <div>
+        <div class="title">Isgrò</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Dadalia" onclick="openMaps('Dadalia Palermo')">
+      <div>
+        <div class="title">Dadalia</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Osteria Nonna Dora" onclick="openMaps('Osteria Nonna Dora Palermo')">
+      <div>
+        <div class="title">Osteria Nonna Dora</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+  </div>
+
+  <!-- SUPERMERCATI -->
+  <div class="section" data-category="supermercati">
+    <h2>Supermercati</h2>
+
+    <div class="card" data-name="Fresko Via Roma" onclick="openMaps('Fresko Via Roma Palermo')">
+      <div>
+        <div class="title">Fresko – Via Roma</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Supermercato" onclick="window.open('https://share.google/zkW4DzlPkAxBqhS8N','_blank')">
+      <div>
+        <div class="title">Supermercato</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+  </div>
+
+  <!-- FARMACIE -->
+  <div class="section" data-category="farmacie">
+    <h2>Farmacie</h2>
+
+    <div class="card" data-name="Farmacia del Centro" onclick="openMaps('Farmacia del Centro Palermo')">
+      <div>
+        <div class="title">Farmacia del Centro</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Antica Farmacia Cavour" onclick="openMaps('Antica Farmacia Cavour Palermo')">
+      <div>
+        <div class="title">Antica Farmacia Cavour</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+  </div>
+
+  <!-- PARCHEGGI -->
+  <div class="section" data-category="parcheggi">
+    <h2>Parcheggi</h2>
+
+    <div class="card" data-name="Parcheggio Venezia" onclick="openMaps('Parcheggio Venezia Palermo')">
+      <div>
+        <div class="title">Parcheggio Venezia</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Parcheggio Pagano" onclick="openMaps('Parcheggio Pagano Palermo')">
+      <div>
+        <div class="title">Parcheggio Pagano</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+  </div>
+
+  <!-- TRASPORTI -->
+  <div class="section" data-category="trasporti">
+    <h2>Trasporti</h2>
+
+    <div class="card" data-name="Taxi Palermo" onclick="openMaps('Taxi Palermo')">
+      <div>
+        <div class="title">Taxi Palermo</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+
+    <div class="card" data-name="Fermate bus Via Roma Maqueda" onclick="openMaps('Fermate bus Via Roma Maqueda Palermo')">
+      <div>
+        <div class="title">Fermate bus Via Roma / Maqueda</div>
+      </div>
+      <div class="badge">Luogo</div>
+    </div>
+  </div>
+
+  <!-- SERVIZI ESCLUSIVI -->
+  <div class="section" data-category="servizi">
+    <h2>Servizi esclusivi</h2>
+
+    <div class="card" data-name="Giro in yacht privato" onclick="openWhatsApp('Buongiorno, vorrei organizzare un giro in yacht privato a Palermo')">
+      <div>
+        <div class="title">Giro in yacht privato</div>
+        <div class="meta">Servizio concierge</div>
+      </div>
+      <div class="badge concierge">Concierge</div>
+    </div>
+
+    <div class="card" data-name="Cena privata su yacht" onclick="openWhatsApp('Buongiorno, vorrei organizzare una cena privata su yacht a Palermo')">
+      <div>
+        <div class="title">Cena privata su yacht</div>
+        <div class="meta">Servizio concierge</div>
+      </div>
+      <div class="badge concierge">Concierge</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Le Sicilien · Luxury Private Estates
+</footer>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const filters = document.querySelectorAll('.filter');
+  const sections = document.querySelectorAll('.section');
+
+  function openMaps(query){
+    const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+    window.open(url, '_blank');
+  }
+
+  function openWhatsApp(message){
+    const url = 'https://wa.me/393888005083?text=' + encodeURIComponent(message);
+    window.open(url, '_blank');
+  }
+
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
+    sections.forEach(section => {
+      let visible = false;
+      section.querySelectorAll('.card').forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const match = name.includes(term);
+        card.classList.toggle('hidden', !match);
+        if(match) visible = true;
+      });
+      section.classList.toggle('hidden', !visible);
+    });
+  });
+
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      filters.forEach(f => f.classList.remove('active'));
+      filter.classList.add('active');
+      const category = filter.dataset.filter;
+
+      sections.forEach(section => {
+        if(category === 'all'){
+          section.classList.remove('hidden');
+        } else {
+          section.classList.toggle('hidden', section.dataset.category !== category);
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
