@@ -24,13 +24,13 @@
       --border: rgba(30, 30, 30, 0.10);
       --border-2: rgba(30, 30, 30, 0.06);
       --shadow-1: 0 12px 34px rgba(0, 0, 0, 0.08);
-      --shadow-2: 0 18px 60px rgba(0, 0, 0, 0.12);
 
       --accent: #7f9c8b;
       --accent-2: #6b8577;
       --accent-4: rgba(127, 156, 139, 0.10);
 
-      --gold: #bfa05a;
+      --gold: #bfa05a; /* Gold for highlights */
+      --danger: #d46a6a; /* For important warnings */
       
       --radius-1: 14px;
       --radius-2: 18px;
@@ -94,59 +94,24 @@
       gap: 12px;
     }
 
-    .brand {
-      display: grid;
-      gap: 6px;
-      text-align: center;
-    }
+    .brand { display: grid; gap: 6px; text-align: center; }
+    .brand-title { font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 520; }
+    .brand-subtitle { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); margin-top: -2px; }
 
-    .brand-title {
-      font-size: 16px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 520;
-    }
-
-    .brand-subtitle {
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      margin-top: -2px;
-    }
-
-    .topbar-row {
-      display: grid;
-      gap: 10px;
-      align-items: center;
-    }
+    .topbar-row { display: grid; gap: 10px; align-items: center; }
 
     /* Language Switcher */
     .langbar {
-      display: inline-flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-      margin: 0 auto;
-      width: fit-content;
+      display: inline-flex; justify-content: center; gap: 8px; padding: 8px 10px;
+      border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.78); margin: 0 auto; width: fit-content;
     }
-
     .langbtn {
-      border: 0;
-      background: transparent;
-      padding: 8px 10px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      cursor: pointer;
+      border: 0; background: transparent; padding: 8px 10px;
+      border-radius: var(--radius-pill); font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted); cursor: pointer;
       transition: background var(--t-fast), color var(--t-fast);
     }
-
     .langbtn:hover { background: var(--accent-4); color: var(--text); }
     .langbtn.active { background: var(--accent); color: #ffffff; }
 
@@ -155,58 +120,29 @@
     .search { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
     
     .search input {
-      width: 100%;
-      padding: 14px 14px 14px 44px;
-      border-radius: var(--radius-2);
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.86);
-      font-size: 14px;
-      outline: none;
-      transition: all var(--t-fast);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+      width: 100%; padding: 14px 14px 14px 44px;
+      border-radius: var(--radius-2); border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.86); font-size: 14px; outline: none;
+      transition: all var(--t-fast); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
     }
-    .search input:focus {
-      border-color: rgba(127, 156, 139, 0.42);
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
-    }
+    .search input:focus { border-color: rgba(127, 156, 139, 0.42); background: rgba(255, 255, 255, 0.96); }
 
-    .search-icon {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      width: 18px; height: 18px; opacity: 0.72; pointer-events: none;
-    }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; opacity: 0.72; pointer-events: none; }
 
     .btn-ghost {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.84);
-      color: var(--text);
-      padding: 12px 14px;
-      border-radius: var(--radius-2);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all var(--t-fast);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.84); color: var(--text);
+      padding: 12px 14px; border-radius: var(--radius-2); font-size: 12px; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; transition: all var(--t-fast);
     }
     .btn-ghost:hover { transform: translateY(-1px); background: #fff; }
 
-    .pills {
-      display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; margin: 0;
-      scrollbar-width: none;
-    }
+    .pills { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; margin: 0; scrollbar-width: none; }
     .pills::-webkit-scrollbar { display: none; }
 
     .pill {
-      flex: 0 0 auto;
-      padding: 9px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.86);
-      font-size: 12px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all var(--t-fast);
+      flex: 0 0 auto; padding: 9px 14px; border-radius: var(--radius-pill);
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
+      font-size: 12px; color: var(--muted); cursor: pointer; transition: all var(--t-fast);
       user-select: none; white-space: nowrap;
     }
     .pill:hover { transform: translateY(-1px); color: var(--text); background: #fff; }
@@ -217,60 +153,27 @@
        ========================================================== */
 
     .section { margin-top: 16px; }
-
-    .section-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      gap: 12px; margin: 14px 2px 10px;
-    }
-
-    .section-title {
-      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
-    }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin: 14px 2px 10px; }
+    .section-title { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
     .section-count { font-size: 11px; letter-spacing: 0.06em; color: var(--muted-2); }
-
     .list { display: grid; gap: 10px; }
 
     .card {
-      border-radius: var(--radius-3);
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border);
-      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
-      padding: 14px 14px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      transition: all var(--t-fast);
-      position: relative;
-      overflow: hidden;
+      border-radius: var(--radius-3); background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border); box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
+      padding: 14px 14px; display: grid; grid-template-columns: 1fr auto; align-items: center;
+      gap: 12px; cursor: pointer; transition: all var(--t-fast); position: relative; overflow: hidden;
     }
-    
-    .card:hover {
-      transform: translateY(-1px);
-      border-color: rgba(127, 156, 139, 0.34);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
-      background: #fff;
-    }
+    .card:hover { transform: translateY(-1px); border-color: rgba(127, 156, 139, 0.34); background: #fff; }
 
     .card-left { display: grid; gap: 6px; min-width: 0; }
-
-    .card-title {
-      font-size: 14px; font-weight: 540; letter-spacing: 0.01em; line-height: 1.2;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-
-    .card-sub {
-      font-size: 11px; color: var(--muted); line-height: 1.35;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-
+    .card-title { font-size: 14px; font-weight: 540; letter-spacing: 0.01em; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-sub { font-size: 11px; color: var(--muted); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
 
     .tag {
       font-size: 10px; padding: 6px 10px; border-radius: var(--radius-pill);
-      border: 1px solid var(--border); color: var(--muted); background: rgba(255, 255, 255, 0.75);
-      white-space: nowrap;
+      border: 1px solid var(--border); color: var(--muted); background: rgba(255, 255, 255, 0.75); white-space: nowrap;
     }
     .tag.concierge { border-color: rgba(127, 156, 139, 0.34); color: var(--accent-2); background: rgba(127, 156, 139, 0.10); }
     .tag.essential { border-color: rgba(191, 160, 90, 0.34); color: rgba(120, 96, 42, 0.92); background: rgba(191, 160, 90, 0.10); }
@@ -280,13 +183,10 @@
     .icon-btn {
       width: 40px; height: 40px; border-radius: 999px;
       border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
-      display: grid; place-items: center; cursor: pointer;
-      transition: all var(--t-fast);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+      display: grid; place-items: center; cursor: pointer; transition: all var(--t-fast);
     }
     .icon-btn:hover { transform: translateY(-1px); background: #fff; border-color: rgba(127, 156, 139, 0.34); }
     .icon { width: 18px; height: 18px; opacity: 0.80; }
-    
     .fav.active { background: rgba(191, 160, 90, 0.14); border-color: rgba(191, 160, 90, 0.42); }
 
     /* ==========================================================
@@ -303,20 +203,17 @@
 
     .modal {
       width: 100%; max-width: var(--maxw);
-      border-radius: 26px;
-      background: rgba(255, 255, 255, 0.96);
+      border-radius: 26px; background: rgba(255, 255, 255, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.48);
-      box-shadow: 0 28px 120px rgba(0, 0, 0, 0.28);
-      overflow: hidden;
-      transform: translateY(12px); opacity: 0;
-      transition: transform var(--t-mid), opacity var(--t-mid);
+      box-shadow: 0 28px 120px rgba(0, 0, 0, 0.28); overflow: hidden;
+      transform: translateY(12px); opacity: 0; transition: transform var(--t-mid), opacity var(--t-mid);
+      max-height: 85vh; display: flex; flex-direction: column;
     }
     .modal-overlay.open .modal { transform: translateY(0); opacity: 1; }
 
     .modal-head {
-      padding: 16px 16px 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
-      border-bottom: 1px solid var(--border-2);
+      padding: 16px 16px 12px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+      border-bottom: 1px solid var(--border-2); flex-shrink: 0;
     }
 
     .modal-topline { display: flex; justify-content: space-between; align-items: center; }
@@ -325,16 +222,16 @@
     .modal-close {
       width: 40px; height: 40px; border-radius: 999px;
       border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
-      cursor: pointer; display: grid; place-items: center;
-      transition: all var(--t-fast);
+      cursor: pointer; display: grid; place-items: center; transition: all var(--t-fast);
     }
     .modal-close:hover { transform: translateY(-1px); background: #fff; }
 
     .modal-title { margin: 10px 0 0; font-size: 16px; letter-spacing: 0.01em; font-weight: 560; line-height: 1.2; }
-    .modal-body { padding: 14px 16px 18px; display: grid; gap: 12px; }
+    
+    .modal-body { padding: 14px 16px 18px; overflow-y: auto; }
     .modal-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
     
-    .modal-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 6px; }
+    .modal-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; flex-shrink: 0; }
 
     .btn-primary {
       width: 100%; border: 0; border-radius: var(--radius-2);
@@ -354,7 +251,7 @@
     }
     .btn-secondary:hover { transform: translateY(-1px); background: #fff; }
 
-    .modal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 2px; }
+    .modal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
     .meta-box {
       border: 1px solid var(--border); border-radius: var(--radius-2);
       padding: 12px 12px; background: rgba(255, 255, 255, 0.86);
@@ -363,6 +260,30 @@
     .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; }
     .meta-value { font-size: 12px; color: var(--text); line-height: 1.35; font-weight: 520; word-break: break-word; }
 
+    /* --- SPECIFIC STYLES FOR WASTE SCHEDULE --- */
+    .waste-schedule {
+      display: grid; gap: 0; 
+      border: 1px solid var(--border); border-radius: var(--radius-2);
+      background: #fafafa; overflow: hidden; margin-top: 10px;
+    }
+    .waste-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 12px;
+    }
+    .waste-row:last-child { border-bottom: none; }
+    .waste-day { font-weight: 600; color: var(--text); width: 30%; }
+    .waste-type { text-align: right; color: var(--muted); width: 70%; line-height: 1.3; }
+    .waste-row.highlight { background: rgba(191, 160, 90, 0.08); }
+    .waste-row.highlight .waste-type { color: var(--gold); font-weight: 600; }
+    
+    .waste-warning {
+      background: rgba(212, 106, 106, 0.10); border: 1px solid rgba(212, 106, 106, 0.20);
+      color: #b94a48; padding: 12px; border-radius: var(--radius-2);
+      font-size: 12px; line-height: 1.5; margin-bottom: 12px;
+      display: flex; gap: 8px; align-items: start;
+    }
+    
     /* ==========================================================
        Floating Buttons
        ========================================================== */
@@ -399,7 +320,6 @@
       .brand-title { font-size: 18px; }
       .search-wrap { gap: 12px; }
       .modal-actions { grid-template-columns: 1fr 1fr; }
-      .modal-body { padding: 16px 18px 20px; }
       .container { padding: 14px 18px 44px; }
     }
   </style>
@@ -435,6 +355,7 @@
 
           <div class="pills" id="pillRow">
             <div class="pill active" data-filter="all">All</div>
+            <div class="pill" data-filter="essentials">Essentials</div>
             <div class="pill" data-filter="sightseeing">Things to See</div>
             <div class="pill" data-filter="itineraries">Itineraries</div>
             <div class="pill" data-filter="restaurants">Restaurants</div>
@@ -444,7 +365,6 @@
             <div class="pill" data-filter="supermarkets">Supermarkets</div>
             <div class="pill" data-filter="pharmacies">Pharmacies</div>
             <div class="pill" data-filter="parking">Parking</div>
-            <div class="pill" data-filter="essentials">Essentials</div>
           </div>
         </div>
       </div>
@@ -452,7 +372,6 @@
   </div>
 
   <div class="container">
-    
     <div id="sectionsMount"></div>
 
     <footer class="notranslate" style="padding: 30px 6px 10px; text-align:center; color: rgba(30,30,30,0.50); font-size: 11px; letter-spacing: 0.04em;">
@@ -485,8 +404,10 @@
         <div class="modal-title" id="modalTitle">—</div>
       </div>
       <div class="modal-body">
-        <div class="modal-desc" id="modalDesc"></div>
-        <div class="modal-meta" id="modalMeta"></div>
+        <div id="modalContent">
+          <div class="modal-desc" id="modalDesc"></div>
+          <div class="modal-meta" id="modalMeta"></div>
+        </div>
         <div class="modal-actions">
           <button class="btn-primary" id="modalPrimary" type="button">Open</button>
           <button class="btn-secondary" id="modalSecondary" type="button">Copy link</button>
@@ -503,16 +424,16 @@
     const WHATSAPP_NUMBER = "393888005083";
 
     const categories = [
+      { key: "essentials",    icon: "✨" },
       { key: "sightseeing",   icon: "🏛️" },
       { key: "itineraries",   icon: "🗺️" },
       { key: "restaurants",   icon: "🍽️" },
       { key: "wellness",      icon: "🧖‍♀️" },
+      { key: "exclusive",     icon: "🛥️" },
       { key: "supermarkets",  icon: "🛒" },
       { key: "pharmacies",    icon: "💊" },
       { key: "parking",       icon: "🚗" },
-      { key: "transport",     icon: "🚕" },
-      { key: "exclusive",     icon: "🛥️" },
-      { key: "essentials",    icon: "✨" }
+      { key: "transport",     icon: "🚕" }
     ];
 
     const i18n = {
@@ -548,7 +469,6 @@
         typePlace: "Place",
         typeConcierge: "Concierge",
         typeInfo: "Info",
-        tagEssential: "Essential",
         modal: {
           kicker: "Details",
           typeLabel: "Type",
@@ -559,16 +479,29 @@
           copy: "Copy link",
           copied: "Link copied",
           openMaps: "Open in Maps",
-          openWhatsApp: "Book via WhatsApp"
+          openWhatsApp: "Book via WhatsApp",
+          close: "Close"
         },
         toasts: {
           cleared: "Search cleared.",
           favoritesOn: "Saved to favorites.",
           favoritesOff: "Removed from favorites."
+        },
+        waste: {
+          warning: "⚠️ Guests are responsible for waste disposal. Please drop off bags in front of the building entrance between 19:00 and 22:00.",
+          schedule: {
+            mon: { day: "Monday", type: "Non-recyclable (Residuo)" },
+            tue: { day: "Tuesday", type: "Paper & Cardboard" },
+            wed: { day: "Wednesday", type: "Organic (Food waste)" },
+            thu: { day: "Thursday", type: "Non-recyclable (Residuo)" },
+            fri: { day: "Friday", type: "Organic (Food waste)" },
+            sat: { day: "Saturday", type: "No Collection" },
+            sun: { day: "Sunday", type: "Glass, Organic, Plastic & Metal" }
+          }
         }
       },
       it: {
-        subtitle: "Guest Guide",
+        subtitle: "Guida per gli Ospiti",
         searchPlaceholder: "Cerca ristorante, cultura...",
         clear: "Pulisci",
         pills: {
@@ -599,7 +532,6 @@
         typePlace: "Luogo",
         typeConcierge: "Concierge",
         typeInfo: "Info",
-        tagEssential: "Essenziale",
         modal: {
           kicker: "Dettagli",
           typeLabel: "Tipo",
@@ -610,12 +542,25 @@
           copy: "Copia link",
           copied: "Link copiato",
           openMaps: "Apri in Maps",
-          openWhatsApp: "Prenota su WhatsApp"
+          openWhatsApp: "Prenota su WhatsApp",
+          close: "Chiudi"
         },
         toasts: {
           cleared: "Ricerca pulita.",
           favoritesOn: "Salvato nei preferiti.",
           favoritesOff: "Rimosso dai preferiti."
+        },
+        waste: {
+          warning: "⚠️ Gli ospiti sono responsabili del conferimento dei rifiuti. I sacchi vanno esposti davanti al portone dalle 19:00 alle 22:00.",
+          schedule: {
+            mon: { day: "Lunedì", type: "Residuo Non Riciclabile" },
+            tue: { day: "Martedì", type: "Carta, Cartoncino, Cartone" },
+            wed: { day: "Mercoledì", type: "Organico" },
+            thu: { day: "Giovedì", type: "Residuo Non Riciclabile" },
+            fri: { day: "Venerdì", type: "Organico" },
+            sat: { day: "Sabato", type: "Nessuna raccolta" },
+            sun: { day: "Domenica", type: "Vetro, Organico, Plastica, Metallo" }
+          }
         }
       },
       es: {
@@ -650,7 +595,6 @@
         typePlace: "Lugar",
         typeConcierge: "Conserjería",
         typeInfo: "Info",
-        tagEssential: "Esencial",
         modal: {
           kicker: "Detalles",
           typeLabel: "Tipo",
@@ -661,12 +605,25 @@
           copy: "Copiar enlace",
           copied: "Enlace copiado",
           openMaps: "Abrir en Maps",
-          openWhatsApp: "Reservar por WhatsApp"
+          openWhatsApp: "Reservar por WhatsApp",
+          close: "Cerrar"
         },
         toasts: {
           cleared: "Búsqueda borrada.",
           favoritesOn: "Guardado en favoritos.",
           favoritesOff: "Quitado de favoritos."
+        },
+        waste: {
+          warning: "⚠️ Los huéspedes son responsables de tirar la basura. Dejar bolsas frente al edificio entre las 19:00 y las 22:00.",
+          schedule: {
+            mon: { day: "Lunes", type: "Residuos no reciclables" },
+            tue: { day: "Martes", type: "Papel y cartón" },
+            wed: { day: "Miércoles", type: "Orgánico" },
+            thu: { day: "Jueves", type: "Residuos no reciclables" },
+            fri: { day: "Viernes", type: "Orgánico" },
+            sat: { day: "Sábado", type: "Sin recogida" },
+            sun: { day: "Domingo", type: "Vidrio, Orgánico, Plástico y Metal" }
+          }
         }
       },
       fr: {
@@ -701,7 +658,6 @@
         typePlace: "Lieu",
         typeConcierge: "Conciergerie",
         typeInfo: "Info",
-        tagEssential: "Essentiel",
         modal: {
           kicker: "Détails",
           typeLabel: "Type",
@@ -712,12 +668,25 @@
           copy: "Copier le lien",
           copied: "Lien copié",
           openMaps: "Ouvrir dans Maps",
-          openWhatsApp: "Réserver sur WhatsApp"
+          openWhatsApp: "Réserver sur WhatsApp",
+          close: "Fermer"
         },
         toasts: {
           cleared: "Recherche effacée.",
           favoritesOn: "Ajouté aux favoris.",
           favoritesOff: "Retiré des favoris."
+        },
+        waste: {
+          warning: "⚠️ Les invités doivent sortir les poubelles eux-mêmes. Déposez les sacs devant l'immeuble entre 19h00 et 22h00.",
+          schedule: {
+            mon: { day: "Lundi", type: "Déchets non recyclables" },
+            tue: { day: "Mardi", type: "Papier et carton" },
+            wed: { day: "Mercredi", type: "Organique" },
+            thu: { day: "Jeudi", type: "Déchets non recyclables" },
+            fri: { day: "Vendredi", type: "Organique" },
+            sat: { day: "Samedi", type: "Pas de collecte" },
+            sun: { day: "Dimanche", type: "Verre, Organique, Plastique, Métal" }
+          }
         }
       },
       de: {
@@ -752,7 +721,6 @@
         typePlace: "Ort",
         typeConcierge: "Concierge",
         typeInfo: "Info",
-        tagEssential: "Essential",
         modal: {
           kicker: "Details",
           typeLabel: "Typ",
@@ -763,17 +731,44 @@
           copy: "Link kopieren",
           copied: "Link kopiert",
           openMaps: "In Maps öffnen",
-          openWhatsApp: "Per WhatsApp buchen"
+          openWhatsApp: "Per WhatsApp buchen",
+          close: "Schließen"
         },
         toasts: {
           cleared: "Suche gelöscht.",
           favoritesOn: "Zu Favoriten hinzugefügt.",
           favoritesOff: "Aus Favoriten entfernt."
+        },
+        waste: {
+          warning: "⚠️ Gäste müssen den Müll selbst rausbringen. Bitte legen Sie die Säcke zwischen 19:00 und 22:00 Uhr vor den Eingang.",
+          schedule: {
+            mon: { day: "Montag", type: "Restmüll" },
+            tue: { day: "Dienstag", type: "Papier & Pappe" },
+            wed: { day: "Mittwoch", type: "Biomüll" },
+            thu: { day: "Donnerstag", type: "Restmüll" },
+            fri: { day: "Freitag", type: "Biomüll" },
+            sat: { day: "Samstag", type: "Keine Abholung" },
+            sun: { day: "Sonntag", type: "Glas, Biomüll, Plastik & Metall" }
+          }
         }
       }
     };
 
     const items = [
+      /* --- ESSENTIALS (Included Waste Collection) --- */
+      {
+        id: "ess-waste", category: "essentials", kind: "info", essential: true,
+        name: { en: "Waste Collection Schedule", it: "Calendario Raccolta Rifiuti", es: "Calendario de Basura", fr: "Calendrier des Déchets", de: "Müllkalender" },
+        desc: { en: "Important: Daily schedule for waste disposal (19:00–22:00).", it: "Importante: Calendario giornaliero per i rifiuti (19:00–22:00).", es: "Importante: Horario diario de basura (19:00–22:00).", fr: "Important: Horaire des déchets (19h00–22h00).", de: "Wichtig: Täglicher Müllplan (19:00–22:00)." },
+        tags: { en: ["Essential", "Schedule"], it: ["Essenziale", "Orari"], es: ["Esencial", "Horario"], fr: ["Essentiel", "Horaire"], de: ["Essential", "Plan"] }
+      },
+      {
+        id: "ess-wifi", category: "essentials", kind: "info", essential: true,
+        name: { en: "Wi-Fi Password", it: "Password Wi-Fi", es: "Contraseña Wi-Fi", fr: "Mot de passe Wi-Fi", de: "WLAN-Passwort" },
+        desc: { en: "Network: Moncada-De-Luna | Pass: Deluna2025!", it: "Rete: Moncada-De-Luna | Pass: Deluna2025!", es: "Red: Moncada-De-Luna | Pass: Deluna2025!", fr: "Réseau: Moncada-De-Luna | Pass: Deluna2025!", de: "Netz: Moncada-De-Luna | Pass: Deluna2025!" },
+        tags: { en: ["Info"], it: ["Info"], es: ["Info"], fr: ["Info"], de: ["Info"] }
+      },
+
       /* --- Sightseeing --- */
       {
         id: "see-cathedral", category: "sightseeing", kind: "place", essential: true, mapsQuery: "Cattedrale di Palermo",
@@ -910,7 +905,7 @@
         tags: { en: ["Essential"], it: ["Essenziale"], es: ["Esencial"], fr: ["Essentiel"], de: ["Essential"] }
       },
 
-      /* --- EXCLUSIVE SERVICES (WhatsApp Allowed) --- */
+      /* --- EXCLUSIVE SERVICES --- */
       {
         id: "ex-yacht-tour", category: "exclusive", kind: "concierge", essential: true, whatsappMessage: "Buongiorno, vorrei organizzare un giro in yacht privato a Palermo",
         name: { en: "Private yacht tour", it: "Giro in yacht privato", es: "Tour privado en yate", fr: "Tour privé en yacht", de: "Private Yacht Tour" },
@@ -924,22 +919,10 @@
         tags: { en: ["Dinner"], it: ["Cena"], es: ["Cena"], fr: ["Dîner"], de: ["Dinner"] }
       },
       {
-        id: "ex-airport-transfer", category: "exclusive", kind: "place", essential: true, mapsQuery: "NCC Palermo",
-        /* Changed to "place" so it just searches NCC/Taxi, or revert to concierge if you sell this service directly. 
-           Assuming you want to sell it, kept as concierge below but comment says 'only yacht' */
-        kind: "concierge", whatsappMessage: "Buongiorno, vorrei prenotare un transfer privato.",
+        id: "ex-airport-transfer", category: "exclusive", kind: "concierge", whatsappMessage: "Buongiorno, vorrei prenotare un transfer privato.",
         name: { en: "Airport transfer (Private Driver)", it: "Transfer aeroportuale (Autista)", es: "Traslado aeropuerto", fr: "Transfert aéroport", de: "Flughafen-Transfer" },
         desc: { en: "Book a private driver for arrival/departure.", it: "Prenota un autista privato.", es: "Reserva conductor privado.", fr: "Réservez un chauffeur privé.", de: "Privatfahrer buchen." },
         tags: { en: ["Driver"], it: ["Autista"], es: ["Conductor"], fr: ["Chauffeur"], de: ["Fahrer"] }
-      },
-
-      /* --- ESSENTIALS (Autonomy: No WhatsApp, just info) --- */
-      {
-        id: "ess-wifi", category: "essentials", kind: "info", essential: true,
-        /* Replace with actual password logic below in buildCard/modal */
-        name: { en: "Wi-Fi Password", it: "Password Wi-Fi", es: "Contraseña Wi-Fi", fr: "Mot de passe Wi-Fi", de: "WLAN-Passwort" },
-        desc: { en: "Network: Moncada-De-Luna | Pass: Deluna2025!", it: "Rete: Moncada-De-Luna | Pass: Deluna2025!", es: "Red: Moncada-De-Luna | Pass: Deluna2025!", fr: "Réseau: Moncada-De-Luna | Pass: Deluna2025!", de: "Netz: Moncada-De-Luna | Pass: Deluna2025!" },
-        tags: { en: ["Info"], it: ["Info"], es: ["Info"], fr: ["Info"], de: ["Info"] }
       }
     ];
 
@@ -989,13 +972,13 @@
 
     function getPrimaryAction(item) {
       if (item.kind === "concierge") return () => openWhatsApp(item.whatsappMessage || "");
-      if (item.kind === "info") return () => {}; /* No action, just read */
+      if (item.kind === "info") return () => closeModal(); /* Just close if just info */
       return () => openMapsByQuery(item.mapsQuery || item.name?.en || "");
     }
 
     function getPrimaryActionLabel(item) {
       if (item.kind === "concierge") return t("modal.openWhatsApp");
-      if (item.kind === "info") return ""; /* Hide button if just info */
+      if (item.kind === "info") return t("modal.close");
       return t("modal.openMaps");
     }
 
@@ -1030,7 +1013,7 @@
 
       const openBtn = document.createElement("button"); openBtn.className = "icon-btn";
       openBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 3 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 6H6a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-4" stroke="currentColor" stroke-width="2" opacity="0.85"/></svg>`;
-      openBtn.addEventListener("click", (e) => { e.stopPropagation(); if(item.kind!=="info") getPrimaryAction(item)(); else openModal(item.id); });
+      openBtn.addEventListener("click", (e) => { e.stopPropagation(); openModal(item.id); });
 
       right.append(favBtn, openBtn);
       card.append(left, right);
@@ -1051,13 +1034,14 @@
       const grouped = {};
       filtered.forEach(it => { grouped[it.category] = grouped[it.category] || []; grouped[it.category].push(it); });
 
+      // Explicit order for sections
       const order = [
+        "essentials", // Essentials first for visibility
         "sightseeing",
         "itineraries",
         "restaurants",
         "wellness",
         "exclusive",
-        "essentials",
         "supermarkets",
         "pharmacies",
         "parking",
@@ -1080,40 +1064,74 @@
        MODAL & LOGIC
        ========================================================== */
 
+    function getWasteScheduleHTML(langCode) {
+      const w = i18n[langCode].waste;
+      if (!w) return "";
+      
+      const row = (d, t, highlight) => 
+        `<div class="waste-row ${highlight?'highlight':''}">
+           <div class="waste-day">${d}</div>
+           <div class="waste-type">${t}</div>
+         </div>`;
+         
+      return `
+        <div class="waste-warning">${w.warning}</div>
+        <div class="waste-schedule">
+          ${row(w.schedule.mon.day, w.schedule.mon.type)}
+          ${row(w.schedule.tue.day, w.schedule.tue.type)}
+          ${row(w.schedule.wed.day, w.schedule.wed.type)}
+          ${row(w.schedule.thu.day, w.schedule.thu.type)}
+          ${row(w.schedule.fri.day, w.schedule.fri.type)}
+          ${row(w.schedule.sat.day, w.schedule.sat.type)}
+          ${row(w.schedule.sun.day, w.schedule.sun.type, true)}
+        </div>
+      `;
+    }
+
     function openModal(itemId) {
       const item = items.find(x => x.id === itemId); if (!item) return;
       const L = state.lang;
       
       document.getElementById("modalKicker").textContent = t("modal.kicker");
       document.getElementById("modalTitle").textContent = item.name?.[L] || item.name?.en;
-      document.getElementById("modalDesc").textContent = item.desc?.[L] || item.desc?.en;
-
-      const meta = document.getElementById("modalMeta"); meta.innerHTML = "";
-      const addMeta = (l, v) => {
-         if(!v) return;
-         meta.innerHTML += `<div class="meta-box"><div class="meta-label">${l}</div><div class="meta-value">${v}</div></div>`;
-      };
-
-      addMeta(t("modal.typeLabel"), getKindLabel(item.kind));
-      addMeta(t("modal.categoryLabel"), categoryLabel(item.category));
-      addMeta(t("modal.phone"), item.phone);
-      addMeta(t("modal.hours"), item.openingHours);
-
-      const btn = document.getElementById("modalPrimary");
-      const label = getPrimaryActionLabel(item);
-      if (!label) {
-        btn.style.display = "none"; 
-      } else {
-        btn.style.display = "block";
-        btn.textContent = label;
-        btn.onclick = getPrimaryAction(item);
-      }
       
-      document.getElementById("modalSecondary").onclick = () => {
-        /* Generic copy logic */
-        const txt = item.mapsQuery || item.name?.en || "";
-        navigator.clipboard.writeText(txt).then(() => showToast(t("modal.copied")));
-      };
+      const descEl = document.getElementById("modalDesc");
+      const meta = document.getElementById("modalMeta"); 
+      meta.innerHTML = "";
+      
+      /* Special Logic for Waste Schedule */
+      if (itemId === "ess-waste") {
+        descEl.innerHTML = getWasteScheduleHTML(L);
+        // Hide standard meta for waste as it's self-contained
+      } else {
+        descEl.textContent = item.desc?.[L] || item.desc?.en;
+
+        const addMeta = (l, v) => {
+           if(!v) return;
+           meta.innerHTML += `<div class="meta-box"><div class="meta-label">${l}</div><div class="meta-value">${v}</div></div>`;
+        };
+
+        addMeta(t("modal.typeLabel"), getKindLabel(item.kind));
+        addMeta(t("modal.categoryLabel"), categoryLabel(item.category));
+        addMeta(t("modal.phone"), item.phone);
+        addMeta(t("modal.hours"), item.openingHours);
+      }
+
+      const btnPrimary = document.getElementById("modalPrimary");
+      const label = getPrimaryActionLabel(item);
+      btnPrimary.textContent = label;
+      btnPrimary.onclick = getPrimaryAction(item);
+      
+      const btnSecondary = document.getElementById("modalSecondary");
+      if (item.kind === "info" && itemId !== "ess-wifi" && itemId !== "ess-waste") {
+         btnSecondary.style.display = "none";
+      } else {
+         btnSecondary.style.display = "block";
+         btnSecondary.onclick = () => {
+            const txt = item.mapsQuery || item.name?.en || "";
+            navigator.clipboard.writeText(txt).then(() => showToast(t("modal.copied")));
+         };
+      }
 
       document.getElementById("modalOverlay").classList.add("open");
       document.getElementById("modalOverlay").setAttribute("aria-hidden", "false");
