@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Le Sicilien | Guest Guide</title>
+
   <style>
     :root{
       --bg: #f6f5f2;
@@ -24,10 +25,13 @@
     }
 
     header{
-      padding:28px 20px 18px;
+      padding:22px 20px 16px;
       text-align:center;
       border-bottom:1px solid var(--border);
       background: linear-gradient(180deg,#faf9f7, #f6f5f2);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
     header h1{
@@ -42,6 +46,40 @@
       font-size:12px;
       color:var(--muted);
       letter-spacing:0.04em;
+    }
+
+    /* --- Language switcher (compact, luxury) --- */
+    .langbar{
+      margin: 12px auto 0;
+      display: inline-flex;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .langbtn{
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .18s ease;
+      user-select: none;
+    }
+    .langbtn:hover{
+      background: rgba(127,156,139,0.10);
+      color: var(--text);
+    }
+    .langbtn.active{
+      background: var(--accent);
+      color: #fff;
     }
 
     .container{
@@ -82,6 +120,7 @@
       white-space:nowrap;
       cursor:pointer;
       transition:all .2s ease;
+      user-select: none;
     }
 
     .filter.active{
@@ -138,6 +177,7 @@
       border-radius:999px;
       border:1px solid var(--border);
       color:var(--muted);
+      white-space: nowrap;
     }
 
     .badge.concierge{
@@ -153,14 +193,101 @@
       font-size:11px;
       color:var(--muted);
     }
+
+    /* --- Hide Google Translate UI artifacts if injected --- */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0 !important; }
+    .goog-logo-link, .goog-te-gadget { display:none !important; }
+    .goog-te-combo { display:none !important; }
+
+    /* Prevent translating brand name */
+    .notranslate { translate: no; }
   </style>
+
+  <!-- Google Translate (auto-translation) + custom buttons -->
+  <script>
+    // Original language of this page:
+    const PAGE_LANGUAGE = 'it';
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: PAGE_LANGUAGE,
+          includedLanguages: 'en,it,es,fr,de',
+          autoDisplay: false
+        },
+        'google_translate_element'
+      );
+    }
+
+    function applyLangUI(lang){
+      document.querySelectorAll('.langbtn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      // Set HTML lang attribute to the currently selected language
+      document.documentElement.setAttribute('lang', lang);
+    }
+
+    function changeLanguage(lang){
+      const select = document.querySelector('select.goog-te-combo');
+      if (!select) return;
+
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+
+      try { localStorage.setItem('ls_guestguide_lang', lang); } catch(e){}
+      applyLangUI(lang);
+    }
+
+    function getSavedLang(){
+      try {
+        return (localStorage.getItem('ls_guestguide_lang') || 'en').toLowerCase();
+      } catch(e){
+        return 'en';
+      }
+    }
+
+    // Default language: EN (on first load)
+    document.addEventListener('DOMContentLoaded', () => {
+      const preferred = getSavedLang();
+
+      // Wait for Google Translate combo to appear, then apply
+      const start = Date.now();
+      const timer = setInterval(() => {
+        const select = document.querySelector('select.goog-te-combo');
+        if (select) {
+          clearInterval(timer);
+          changeLanguage(preferred);
+        } else if (Date.now() - start > 8000) {
+          clearInterval(timer);
+          applyLangUI(preferred);
+        }
+      }, 200);
+
+      applyLangUI(preferred);
+    });
+  </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
+
 <body>
 
-<header>
+<header class="notranslate">
   <h1>LE SICILIEN</h1>
   <p>Guest Guide</p>
+
+  <div class="langbar" aria-label="Language selector">
+    <button class="langbtn" type="button" data-lang="en" onclick="changeLanguage('en')" aria-label="English">EN</button>
+    <button class="langbtn" type="button" data-lang="it" onclick="changeLanguage('it')" aria-label="Italiano">IT</button>
+    <button class="langbtn" type="button" data-lang="es" onclick="changeLanguage('es')" aria-label="Español">ES</button>
+    <button class="langbtn" type="button" data-lang="fr" onclick="changeLanguage('fr')" aria-label="Français">FR</button>
+    <button class="langbtn" type="button" data-lang="de" onclick="changeLanguage('de')" aria-label="Deutsch">DE</button>
+  </div>
 </header>
+
+<!-- Hidden Google Translate mount point -->
+<div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
 
 <div class="container">
 
@@ -303,7 +430,7 @@
 
 </div>
 
-<footer>
+<footer class="notranslate">
   Le Sicilien · Luxury Private Estates
 </footer>
 
