@@ -1457,8 +1457,8 @@
         }
     </script>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+       <!-- Floating WhatsApp Button -->
+       <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
        class="whatsapp-float"
        target="_blank"
        rel="noopener"
@@ -1466,7 +1466,15 @@
        <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Floating Guest Guide Button -->
+    <a href="/guest-guide/"
+       class="guest-guide-float"
+       aria-label="Apri Guest Guide">
+       Guest Guide
+    </a>
+
     <style>
+    /* WhatsApp floating button */
     .whatsapp-float {
         position: fixed;
         bottom: 26px;
@@ -1484,7 +1492,34 @@
         z-index: 3000;
         transition: transform 0.25s ease;
     }
+
     .whatsapp-float:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Guest Guide floating button */
+    .guest-guide-float {
+        position: fixed;
+        bottom: 26px;
+        left: 26px;
+        padding: 14px 22px;
+        background: rgba(17,17,17,0.92);
+        color: #ffffff;
+        border-radius: 999px;
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        box-shadow: 0 14px 32px rgba(0,0,0,0.25);
+        z-index: 3000;
+        transition: all 0.25s ease;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+
+    .guest-guide-float:hover {
+        background: #ffffff;
+        color: #111111;
         transform: translateY(-2px);
     }
     </style>
