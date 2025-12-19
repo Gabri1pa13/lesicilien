@@ -1498,40 +1498,51 @@
     }
 
        <!-- Floating Guest Guide Button -->
-    <a href="/guestguide.html"
-       class="guest-guide-float"
-       aria-label="Apri Guest Guide">
-       Guest Guide
-    </a>
+<a href="/guestguide.html"
+   class="guest-guide-float"
+   aria-label="Apri Guest Guide">
+   Guest Guide
+</a>
 
-    <style>
-    /* Guest Guide floating button */
-    .guest-guide-float {
-        position: fixed;
-        bottom: 26px;
-        left: 26px;
-        padding: 14px 22px;
-        background: rgba(17,17,17,0.92);
-        color: #ffffff;
-        border-radius: 999px;
-        font-family: 'Cinzel', serif;
-        font-size: 0.72rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        box-shadow: 0 14px 32px rgba(0,0,0,0.25);
-        z-index: 3000;
-        transition: all 0.25s ease;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        text-decoration: none;
-    }
+<style>
+/* Guest Guide floating button – FORCE VISIBILITY */
+.guest-guide-float {
+    position: fixed;
+    bottom: 28px;
+    left: 28px;
 
-    .guest-guide-float:hover {
-        background: #ffffff;
-        color: #111111;
-        transform: translateY(-2px);
-    }
-    </style>
+    padding: 14px 24px;
+
+    background: #111111;
+    color: #ffffff;
+
+    border-radius: 999px;
+
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+
+    z-index: 10000; /* 👈 PIÙ ALTO DI QUALSIASI OVERLAY */
+
+    display: inline-flex;      /* 👈 FORZATO */
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: auto;      /* 👈 FORZATO */
+    opacity: 1;                /* 👈 FORZATO */
+
+    text-decoration: none;
+}
+
+.guest-guide-float:hover {
+    background: #ffffff;
+    color: #111111;
+    transform: translateY(-2px);
+}
+</style>
 
 </body>
 </html>
