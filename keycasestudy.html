@@ -471,7 +471,166 @@
         padding-bottom: 12px;
       }
     }
-  </style>
+  
+/* --- MOBILE OPTIMIZATION PATCH (v1) --- */
+:root{
+  --max-w: 1100px;
+}
+
+/* Layout */
+.main-wrap{max-width: var(--max-w); margin: 0 auto; padding: 0 22px;}
+@media (max-width: 640px){
+  .main-wrap{padding: 0 14px;}
+}
+
+/* Header */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+@media (max-width: 640px){
+  .topbar .bar{
+    padding: 12px 14px;
+  }
+  .topbar .brand{
+    font-size: 0.92rem;
+    letter-spacing: .18em;
+  }
+  .topbar .tag{
+    display:none;
+  }
+}
+
+/* Typography scale */
+h1{font-size: clamp(1.55rem, 4.8vw, 2.4rem);}
+h2{font-size: clamp(1.25rem, 4.2vw, 1.9rem);}
+h3{font-size: clamp(1.05rem, 3.6vw, 1.35rem);}
+p,li{font-size: 0.98rem;}
+@media (max-width: 640px){
+  p,li{font-size: 0.95rem; line-height: 1.7;}
+}
+
+/* KPI grid */
+.kpi-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+@media (max-width: 900px){
+  .kpi-grid{grid-template-columns: 1fr; gap: 12px;}
+}
+
+/* Tables -> scroll + card fallback */
+.table-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table{
+  width:100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+.table th,.table td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  vertical-align: top;
+}
+.table th{
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.58);
+  font-weight: 600;
+  background: rgba(0,0,0,.02);
+  position: sticky;
+  top: 56px; /* below sticky header */
+  z-index: 1;
+}
+@media (max-width: 640px){
+  .table{min-width: 0;}
+  .table thead{display:none;}
+  .table, .table tbody, .table tr, .table td{display:block; width:100%;}
+  .table tr{
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 16px;
+    margin: 0 0 12px 0;
+    overflow:hidden;
+    box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  }
+  .table td{
+    border:none;
+    padding: 12px 14px;
+    display:flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .table td::before{
+    content: attr(data-label);
+    font-size: .70rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.55);
+    font-weight: 600;
+    max-width: 45%;
+  }
+  .table td .cell{
+    text-align:right;
+    max-width: 55%;
+  }
+}
+
+/* Reviews list */
+.reviews-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 900px){
+  .reviews-grid{grid-template-columns: 1fr; gap: 12px;}
+}
+.review-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.06);
+}
+@media (max-width: 640px){
+  .review-card{padding: 14px;}
+}
+
+/* Booking-like score badge */
+.score-badge{
+  background: #003580; /* booking blue */
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 6px 10px;
+  line-height: 1;
+  font-size: .95rem;
+}
+@media (max-width: 640px){
+  .score-badge{font-size:.9rem; padding: 6px 9px;}
+}
+
+/* CTA */
+.cta{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 900px){
+  .cta{flex-direction: column; align-items: stretch;}
+  .cta .btn{width:100%; text-align:center;}
+}
+
+</style>
 </head>
 
 <body>
@@ -516,7 +675,7 @@
         <div class="section-head">
           <div class="section-bar"></div>
           <div class="section-title">
-            <h2 id="cs1">Case Study 1 — Villa Exclusive</h2>
+            <h2 id="cs1">Case Study 1 — Villa Esclusiva con Piscina</h2>
             <p>Strategia: massimizzazione tariffaria in alta stagione (segmento high-ticket).</p>
           </div>
         </div>
@@ -578,7 +737,7 @@
                   <td class="right">€ 701,43/notte</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
           <div class="footnote">* Estratto da registri di gestione interna (valori lordi).</div>
         </div>
@@ -591,7 +750,7 @@
         <div class="section-head">
           <div class="section-bar" style="background:#111;"></div>
           <div class="section-title">
-            <h2 id="cs2">Case Study 2 — Appartamenti Deluxe</h2>
+            <h2 id="cs2">Case Study 2 — Appartamento In Palazzo Nobiliare</h2>
             <p>Strategia: ADR sostenuto in bassa stagione (coppie, business, long weekend).</p>
           </div>
         </div>
@@ -667,7 +826,7 @@
                   <td class="right"><span class="badge"><strong>€ 263,77</strong>/notte</span></td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
           <div class="footnote">* Estratto da registri di gestione interna (valori lordi).</div>
         </div>
@@ -690,7 +849,7 @@
         <div class="section-head">
           <div class="section-bar"></div>
           <div class="section-title">
-            <h2 id="rev">Recensioni delle Strutture</h2>
+            <h2 id="rev">Recensioni delle nostre strutture</h2>            
           </div>
         </div>
 
