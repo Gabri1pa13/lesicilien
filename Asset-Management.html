@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation-Only | Le Sicilien — Luxury Asset & Hospitality Management</title>
+  <meta name="description" content="Gestione selettiva e representation per asset premium: posizionamento, standard operativi, controllo della domanda e tutela dell’immagine. Ville, residenze & yacht — su invito." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Le Sicilien — Luxury Asset & Hospitality Management (Invitation-Only)">
+  <meta property="og:description" content="Standard, governance e reputazione. Gestiamo pochi asset, con controllo reale.">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Max 2 famiglie -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root{
+      --ink:#0c1220;
+      --primary:#0f2133;
+      --muted:#5b6472;
+      --muted2:#808895;
+
+      --accent:#d4af37;
+      --accent2:#b88f2b;
+
+      --bg:#ffffff;
+      --bg-soft:#f6f5f2;
+      --bg-ink:#0b1422;
+
+      --line: rgba(15,33,51,.10);
+      --line2: rgba(255,255,255,.14);
+
+      --shadow: 0 18px 70px rgba(9, 15, 24, .10);
+      --shadow-soft: 0 14px 46px rgba(9, 15, 24, .08);
+
+      --radius: 18px;
+      --radius2: 22px;
+
+      --maxw: 1180px;
+
+      --hero-overlay-a: rgba(0,0,0,.66);
+      --hero-overlay-b: rgba(0,0,0,.34);
+
+      --serif: "Cormorant Garamond", serif;
+      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: var(--sans);
+      line-height:1.7;
+      color:var(--ink);
+      background:var(--bg);
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1,h2,h3{
+      font-family: var(--serif);
+      color: var(--primary);
+      letter-spacing: .2px;
+    }
+    h1{ letter-spacing: .1px; }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* Subtle editorial grain */
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.04;
+      mix-blend-mode:multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+      background-size: 320px 320px;
+      z-index: 0;
+    }
+
+    /* Media */
+    .img-frame{
+      border-radius: 16px;
+      overflow:hidden;
+      background:#0b0b0b;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow-soft);
+      position:relative;
+    }
+    .img-frame::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
+      pointer-events:none;
+    }
+    .img-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: translateZ(0);
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    /* NAV */
+    .nav{
+      position:fixed; top:0; left:0; right:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,.78);
+      border-bottom:1px solid rgba(15,33,51,.08);
+    }
+    .nav-inner{
+      width:min(var(--maxw), 100%);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 18px;
+      gap:14px;
+    }
+    .brandwrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 280px;
+    }
+    .logo{
+      width:40px;
+      height:40px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.22);
+      box-shadow: 0 10px 28px rgba(9,15,24,.06);
+      flex:0 0 auto;
+    }
+    .logo svg{ width:22px; height:22px; display:block; opacity:.92; }
+    .logo svg path{ fill: var(--primary); }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      gap:2px;
+    }
+    .brand strong{
+      font-family: var(--serif);
+      font-size:1.12rem;
+      color:var(--primary);
+      letter-spacing:.3px;
+      font-weight:700;
+    }
+    .brand span{
+      font-size:.78rem;
+      color:var(--muted);
+      font-weight:650;
+      letter-spacing:.12px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      font-size:.90rem;
+      color:var(--primary);
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav-links a{
+      text-decoration:none;
+      opacity:.84;
+      position:relative;
+      padding:6px 2px;
+      font-weight:650;
+      letter-spacing:.12px;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:2px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.85), transparent);
+      transform: scaleX(0);
+      transform-origin:center;
+      transition:.25s;
+      opacity:.9;
+    }
+    .nav-links a:hover{ opacity:1; }
+    .nav-links a:hover::after{ transform: scaleX(1); }
+
+    .nav-actions{display:flex; align-items:center; gap:10px;}
+
+    .nav-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.12px;
+      white-space:nowrap;
+      color:var(--primary);
+      background: rgba(15,33,51,.04);
+      border:1px solid rgba(15,33,51,.10);
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-pill:hover{
+      transform: translateY(-1px);
+      background: rgba(15,33,51,.06);
+      border-color: rgba(15,33,51,.14);
+    }
+
+    .nav-cta{
+      padding:10px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.12px;
+      white-space:nowrap;
+      color:var(--primary);
+      background: rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.45);
+      box-shadow: 0 12px 30px rgba(9,15,24,.06);
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-cta i{ color:var(--accent2); }
+    .nav-cta:hover{
+      transform: translateY(-1px);
+      background: rgba(212,175,55,.14);
+      border-color: rgba(212,175,55,.55);
+    }
+
+    .nav-wa{
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.12px;
+      white-space:nowrap;
+      color:#0b1a12;
+      background: rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.30);
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-wa i{ color: rgba(34,197,94,.92); }
+    .nav-wa:hover{ transform: translateY(-1px); background: rgba(34,197,94,.16); border-color: rgba(34,197,94,.38); }
+
+    .burger{
+      display:none;
+      width:44px; height:44px;
+      border-radius: 999px;
+      border:1px solid rgba(15,33,51,.10);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 12px 30px rgba(9,15,24,.06);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      color: var(--primary);
+    }
+    .mobile-panel{
+      display:none;
+      border-top:1px solid rgba(15,33,51,.08);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+    }
+    .mobile-panel.open{ display:block; }
+    .mobile-inner{
+      width:min(var(--maxw), 100%);
+      margin:0 auto;
+      padding:12px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .mobile-inner a{
+      text-decoration:none;
+      font-weight:750;
+      color: var(--primary);
+      padding:11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,33,51,.08);
+      background:#fff;
+      box-shadow: 0 10px 30px rgba(9,15,24,.05);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:112px 18px 64px;
+      color:#fff;
+      position:relative;
+      background:
+        radial-gradient(1200px 520px at 18% 18%, rgba(212,175,55,.18), transparent 58%),
+        radial-gradient(900px 520px at 82% 22%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(110deg, var(--hero-overlay-a), var(--hero-overlay-b)),
+        url('tildesunsetbay.jpg');
+      background-size:cover;
+      background-position:center;
+      overflow:hidden;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.52));
+      pointer-events:none;
+    }
+    .hero-inner{
+      width:min(1120px,100%);
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:30px;
+      align-items:end;
+      position:relative;
+      z-index:1;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      font-size:.78rem;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.92);
+      margin-bottom:14px;
+      font-weight:700;
+    }
+    .kicker i{ color: rgba(212,175,55,.95); }
+
+    .hero-copy{ animation: fadeUp .9s ease both; }
+
+    .hero h1{
+      color:#fff;
+      font-family: var(--serif);
+      font-weight:700;
+      font-size: clamp(2.35rem, 4.8vw, 3.35rem);
+      line-height:1.02;
+      text-shadow: 0 10px 35px rgba(0,0,0,.38);
+      margin-bottom:14px;
+    }
+    .hero p{
+      color:rgba(255,255,255,.90);
+      font-size: clamp(1.02rem, 1.35vw, 1.12rem);
+      max-width: 780px;
+      font-weight:450;
+      margin-bottom:18px;
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:22px;
+    }
+    .badge{
+      border:1px solid rgba(255,255,255,.20);
+      color:rgba(255,255,255,.92);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.80rem;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,.08);
+      font-weight:650;
+      letter-spacing:.14px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:6px;
+    }
+
+    .btn{
+      padding:14px 26px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      color:#101013;
+      text-transform:uppercase;
+      letter-spacing:1.05px;
+      text-decoration:none;
+      font-weight:850;
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:.25s;
+      box-shadow: 0 20px 55px rgba(0,0,0,.22);
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(.98); }
+
+    .btn-ghost-hero{
+      padding:14px 22px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.20);
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      transition:.25s;
+      backdrop-filter: blur(10px);
+      letter-spacing:.14px;
+    }
+    .btn-ghost-hero:hover{ background: rgba(255,255,255,.14); transform: translateY(-1px); }
+
+    .hero-card{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius2);
+      padding:16px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 26px 90px rgba(0,0,0,.30);
+      animation: fadeUp 1.05s ease both;
+    }
+    .hero-card .img-frame{ height: 330px; border-radius: 16px; }
+    .hero-card .small{
+      font-size: .95rem;
+      color:rgba(255,255,255,.90);
+      line-height:1.55;
+      margin-top:12px;
+      font-weight:520;
+      letter-spacing:.08px;
+    }
+    .hero-card .small strong{ color:#fff; font-weight:750; }
+
+    .seal{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color: rgba(255,255,255,.86);
+      font-size:.84rem;
+    }
+    .seal span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      backdrop-filter: blur(10px);
+      font-weight:700;
+      letter-spacing:.10px;
+    }
+    .seal i{ color: rgba(212,175,55,.95); }
+
+    /* Sections */
+    main{ position:relative; z-index:1; }
+    section{
+      padding:92px 18px;
+      max-width:var(--maxw);
+      margin:0 auto;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:54px;
+    }
+    .label{
+      display:inline-block;
+      font-size:.78rem;
+      letter-spacing:1.25px;
+      text-transform:uppercase;
+      color: var(--muted2);
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .section-title h2{
+      font-size: clamp(2.05rem, 3.2vw, 2.55rem);
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .line{
+      width:110px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.85), transparent);
+      margin:10px auto 0;
+      border-radius:2px;
+    }
+    .section-title p{
+      max-width: 960px;
+      margin: 14px auto 0;
+      color:var(--muted);
+      font-size:1.02rem;
+      font-weight:450;
+      letter-spacing:.06px;
+    }
+
+    .editorial-wrap{
+      position:relative;
+      padding-top: 10px;
+    }
+    .divider{
+      width:min(var(--maxw), 100%);
+      margin:0 auto;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(15,33,51,.10), transparent);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .card{
+      background:#fff;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:36px;
+      border: 1px solid rgba(15,33,51,.06);
+    }
+
+    .card h3{
+      margin-bottom:10px;
+      font-size: 1.55rem;
+      font-weight:700;
+    }
+    .card p{
+      margin-bottom:14px;
+      font-size:1.02rem;
+      font-weight:450;
+      letter-spacing:.06px;
+      color: rgba(12, 18, 32, .92);
+    }
+
+    .quote{
+      border-left:2px solid rgba(212,175,55,.85);
+      padding:18px 0 18px 22px;
+      border-radius: 0 18px 18px 0;
+      background: linear-gradient(90deg, rgba(212,175,55,.08), transparent 68%);
+      font-family: var(--serif);
+      font-size:1.32rem;
+      color:var(--primary);
+      line-height:1.25;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    .mini-photos{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .mini-photos .img-frame{
+      height: 178px;
+      border:1px solid rgba(15,33,51,.08);
+      box-shadow: 0 16px 44px rgba(9,15,24,.09);
+    }
+    .mini-photos .img-frame::after{
+      background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.18));
+    }
+
+    .invite-note{ display:flex; justify-content:center; margin-top:18px; }
+    .invite-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(212,175,55,.08);
+      border:1px solid rgba(212,175,55,.26);
+      color: var(--primary);
+      font-weight:750;
+      font-size:.90rem;
+      letter-spacing:.12px;
+      box-shadow: 0 14px 40px rgba(9,15,24,.06);
+    }
+    .invite-pill i{ color: var(--accent2); }
+
+    /* Methods block */
+    .methods-wrap{
+      background: linear-gradient(180deg, var(--bg-soft), #ffffff);
+      width:100%;
+      max-width:100%;
+      border-top:1px solid rgba(15,33,51,.08);
+      border-bottom:1px solid rgba(15,33,51,.08);
+    }
+    .methods{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:92px 18px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+      gap:22px;
+    }
+    .method{
+      background:#fff;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      border: 1px solid rgba(15,33,51,.06);
+      position:relative;
+    }
+    .method::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      box-shadow: inset 0 0 0 1px rgba(212,175,55,.10);
+      border-radius: var(--radius2);
+      opacity:.9;
+    }
+    .method .top{
+      padding:28px 28px 16px;
+      border-bottom:1px solid rgba(15,33,51,.08);
+      background: linear-gradient(180deg, rgba(212,175,55,.06), transparent);
+    }
+    .method h3{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+      font-size:1.45rem;
+      font-weight:700;
+    }
+    .method h3 i{ color: var(--accent2); }
+    .method .sub{
+      color:var(--muted);
+      font-weight:650;
+      margin-bottom:0;
+      font-size:.95rem;
+      letter-spacing:.06px;
+    }
+    .method ul{ list-style:none; padding:18px 28px 18px; }
+    .method li{
+      margin-bottom:10px;
+      padding-left:18px;
+      position:relative;
+      color: rgba(12,18,32,.92);
+      font-size: .98rem;
+      font-weight:450;
+      letter-spacing:.06px;
+    }
+    .method li strong{ font-weight:700; }
+    .method li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+    .method .foot{
+      padding:16px 28px 22px;
+      color:var(--muted);
+      font-size:.92rem;
+      border-top:1px solid rgba(15,33,51,.08);
+      background: rgba(212,175,55,.04);
+      font-weight:520;
+      letter-spacing:.06px;
+    }
+
+    .method-media{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      padding:0 28px 18px;
+    }
+    .method-media .img-frame{
+      height: 165px;
+      border:1px solid rgba(15,33,51,.08);
+      box-shadow: 0 16px 44px rgba(9,15,24,.08);
+      background:#111;
+    }
+    .method-media .img-frame::after{
+      background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.22));
+    }
+
+    /* Proof */
+    .proof-wrap{
+      background: linear-gradient(180deg, #ffffff, #fbfbfb);
+      border-bottom:1px solid rgba(15,33,51,.08);
+    }
+    .proof{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:92px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .proof .card{ height:100%; }
+    .proof p{ color:var(--muted); margin-bottom:14px; font-weight:450; }
+
+    .proof-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .proof-shot{
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(15,33,51,.10);
+      box-shadow: 0 18px 55px rgba(9,15,24,.10);
+      background:#fff;
+      cursor:pointer;
+      position:relative;
+      isolation:isolate;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .proof-shot:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 24px 70px rgba(9,15,24,.14);
+    }
+    .proof-shot .img-frame{
+      height: 260px;
+      border-radius: 0;
+      border:0;
+      box-shadow:none;
+    }
+    .proof-shot .img-frame::after{
+      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.34));
+    }
+    .proof-cap{
+      position:absolute;
+      left:10px; right:10px; bottom:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      color:#fff;
+      font-weight:800;
+      font-size:.86rem;
+      letter-spacing:.14px;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.80));
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.12);
+      z-index:2;
+    }
+    .fineprint{
+      margin-top:14px;
+      font-size:.88rem;
+      color:var(--muted);
+      font-weight:450;
+      letter-spacing:.06px;
+    }
+    .fineprint i{ color: var(--accent2); margin-right:8px; }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap:14px;
+    }
+    .g-item{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+      cursor:pointer;
+      border: 1px solid rgba(15,33,51,.06);
+      background:#fff;
+      isolation:isolate;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .g-item:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 26px 80px rgba(9,15,24,.14);
+    }
+    .g-media{
+      height: 270px;
+      width:100%;
+      position:relative;
+    }
+    .g-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform .45s ease;
+      filter: saturate(1.02) contrast(1.03);
+    }
+    .g-item:hover .g-media img{ transform: scale(1.05); }
+    .g-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.56));
+      pointer-events:none;
+    }
+    .g-cap{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding:12px 14px;
+      color:#fff;
+      font-size:.92rem;
+      letter-spacing:.14px;
+      font-weight:800;
+      z-index:2;
+      text-shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+
+    /* Pillars */
+    .pillars{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap:18px;
+      text-align:left;
+    }
+    .pillar{
+      background:#fff;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:26px 22px;
+      border: 1px solid rgba(15,33,51,.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .pillar::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(520px 240px at 0% 0%, rgba(212,175,55,.12), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .pillar .pi{
+      width:46px; height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.22);
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
+    }
+    .pillar i{ font-size:1.35rem; color:var(--accent2); }
+    .pillar h3{ margin-bottom:6px; position:relative; z-index:1; font-size:1.45rem; }
+    .pillar p{ color:var(--muted); font-size:.98rem; font-weight:450; letter-spacing:.06px; position:relative; z-index:1; }
+
+    /* Steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    .step{
+      background:#fff;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,33,51,.06);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .step::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(520px 240px at 10% 0%, rgba(212,175,55,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .step .num{
+      width:42px; height:42px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.22);
+      font-weight:850;
+      color: var(--primary);
+      margin-bottom:12px;
+      position:relative;
+      z-index:1;
+    }
+    .step h3{ margin-bottom:6px; position:relative; z-index:1; font-size:1.42rem; }
+    .step p{ color:var(--muted); font-weight:450; position:relative; z-index:1; margin-bottom:0; letter-spacing:.06px; }
+
+    /* Fit */
+    .fit{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      margin-top:18px;
+    }
+    .fitbox{
+      background:#fff;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,33,51,.06);
+      padding:24px;
+    }
+    .fitbox h3{ margin-bottom:10px; font-size:1.45rem; }
+    .fitbox ul{ list-style:none; padding-left:0; }
+    .fitbox li{
+      margin-bottom:10px;
+      padding-left:18px;
+      position:relative;
+      color: rgba(12,18,32,.92);
+      font-weight:450;
+      letter-spacing:.06px;
+    }
+    .fitbox li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    /* Footer */
+    footer{
+      background:
+        radial-gradient(900px 420px at 20% 0%, rgba(212,175,55,.16), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(255,255,255,.06), transparent 60%),
+        var(--primary);
+      color:#fff;
+      text-align:center;
+      padding:84px 18px;
+      position:relative;
+      overflow:hidden;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    footer h2{
+      color:#fff;
+      margin-bottom:10px;
+      font-family: var(--serif);
+      font-size: clamp(2.05rem, 3.2vw, 2.55rem);
+      font-weight:700;
+    }
+    footer p{ color: rgba(255,255,255,.86); font-weight:450; letter-spacing:.06px; }
+
+    .footer-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+    .btn-light{
+      padding:13px 22px;
+      border-radius:999px;
+      background: linear-gradient(180deg, #ffffff, #f2f2f2);
+      color:var(--primary);
+      font-weight:850;
+      border:none;
+      cursor:pointer;
+      transition:.25s;
+      letter-spacing:.12px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.18);
+    }
+    .btn-light:hover{ transform: translateY(-1px); opacity:.98; }
+
+    .btn-ghost{
+      padding:13px 22px;
+      border-radius:999px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,.34);
+      color:#fff;
+      font-weight:850;
+      cursor:pointer;
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:.12px;
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
+
+    .btn-wa-foot{
+      padding:13px 22px;
+      border-radius:999px;
+      background: rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.34);
+      color:#eafff2;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:.12px;
+    }
+    .btn-wa-foot i{ color: rgba(34,197,94,.95); }
+    .btn-wa-foot:hover{ background: rgba(34,197,94,.18); transform: translateY(-1px); }
+
+    .note{
+      max-width: 980px;
+      margin:18px auto 0;
+      font-size:.92rem;
+      color: rgba(255,255,255,.74);
+      font-weight:450;
+      letter-spacing:.06px;
+    }
+    .copy{ margin-top:34px; font-size:.82rem; opacity:.58; letter-spacing:.14px; }
+
+    /* Floating WhatsApp (optional, refined) */
+    .float-actions{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .float-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight:850;
+      letter-spacing:.12px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.18);
+      color:#fff;
+      background: rgba(11, 20, 34, .62);
+      transition: transform .22s ease, background .22s ease;
+      white-space:nowrap;
+    }
+    .float-btn:hover{ transform: translateY(-2px); background: rgba(11, 20, 34, .70); }
+    .float-btn.wa{
+      background: rgba(34,197,94,.18);
+      border-color: rgba(34,197,94,.30);
+      color:#eafff2;
+    }
+    .float-btn.wa i{ color: rgba(34,197,94,.95); }
+    .float-btn.top i{ color: rgba(212,175,55,.92); }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.90);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:100;
+      padding:22px;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox figure{
+      width: min(1100px, 96vw);
+      margin:0;
+      position:relative;
+    }
+    .lightbox img{
+      width:100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 26px 90px rgba(0,0,0,.55);
+      background:#0b0b0b;
+    }
+    .lightbox .lb-cap{
+      margin-top:10px;
+      color: rgba(255,255,255,.86);
+      font-weight:600;
+      font-size:.95rem;
+      text-align:center;
+      letter-spacing:.06px;
+    }
+    .lb-close{
+      position:absolute;
+      top:-10px;
+      right:-10px;
+      width:44px; height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.35);
+      color:#fff;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
+    .lb-close:hover{ background: rgba(0,0,0,.50); }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform: translateY(10px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+
+    @media (max-width: 1060px){
+      .nav-links{ display:none; }
+      .burger{ display:inline-flex; }
+      .brandwrap{ min-width:auto; }
+    }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .proof{ grid-template-columns: 1fr; }
+      .hero-card .img-frame{ height: 300px; }
+      .fit{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .hero{ min-height:auto; padding:124px 16px 70px; }
+      section{ padding:74px 16px; }
+      .methods{ padding:74px 16px; }
+      .method-media .img-frame{ height: 145px; }
+      .mini-photos .img-frame{ height: 155px; }
+      .proof-grid{ grid-template-columns: 1fr; }
+      .proof-shot .img-frame{ height: 280px; }
+      .nav-cta{ display:none; }
+      .nav-wa{ display:none; }
+      .nav-pill{ display:none; }
+      .lb-close{ top:10px; right:10px; }
+      .float-actions{ right: 12px; bottom: 12px; }
+      .float-btn span{ display:none; }
+      .float-btn{ padding:12px 12px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Le Sicilien — Luxury Asset & Hospitality Management",
+    "description":"Gestione selettiva e representation per asset premium: posizionamento, standard operativi, controllo della domanda e tutela dell’immagine. Ville, residenze e yacht — su invito.",
+    "email":"info@costanzoacquisizioni.it",
+    "url":"https://www.lesicilien.it"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brandwrap">
+        <div class="logo" aria-label="Le Sicilien logo">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024" aria-hidden="true">
+            <path d="M 221.42 578.89 C 231.34 578.16 243.47 579.33 253.65 579.91 C 256.80 580.09 259.48 580.34 261.71 580.66 C 265.06 581.15 268.53 581.00 272.41 581.60 C 274.06 581.86 277.63 582.25 283.13 582.77 C 287.10 583.15 290.67 583.56 293.83 584.01 C 299.98 584.90 306.37 585.76 313.00 586.60 C 323.35 587.91 333.69 588.96 343.92 590.24 C 346.96 590.62 350.53 591.00 354.62 591.38 C 356.19 591.53 359.75 591.93 365.32 592.60 C 369.90 593.14 377.71 593.75 388.75 594.44 C 400.33 595.16 411.91 594.92 423.50 593.71 C 425.95 593.46 429.79 592.71 435.01 591.46 C 442.35 589.71 449.44 586.47 456.28 581.76 C 458.39 580.31 459.99 578.16 461.41 577.10 C 462.55 576.18 464.20 576.25 465.25 577.27 L 466.14 578.14 C 467.07 579.05 467.06 580.54 466.12 581.43 C 458.13 589.03 449.09 594.19 438.98 596.92 C 434.27 598.19 429.18 599.24 423.73 600.05 C 419.14 600.74 413.98 601.08 408.23 601.09 C 402.70 601.10 396.52 601.07 389.71 600.98 C 385.87 600.93 382.92 600.75 380.85 600.46 C 376.95 599.91 373.22 600.04 369.07 599.66 C 350.31 597.92 335.54 596.33 324.77 594.89 C 320.04 594.26 316.81 593.82 315.06 593.59 C 284.67 589.54 258.16 586.78 235.53 585.32 C 233.18 585.17 227.50 585.10 218.49 585.13 C 218.08 585.13 217.68 585.29 217.38 585.57 C 216.76 586.15 216.28 586.93 215.93 587.91 C 215.88 588.04 215.82 588.17 215.75 588.29 C 209.23 599.08 205.42 605.34 204.32 607.09 C 194.41 622.84 184.15 637.56 173.52 651.26 C 169.50 656.44 164.70 661.89 159.13 667.61 C 154.98 671.86 150.94 675.31 147.01 677.95 C 144.29 679.77 141.09 681.03 137.42 681.74 C 137.02 681.82 136.61 681.83 136.21 681.77 C 129.98 680.90 126.38 677.45 125.41 671.41 C 124.03 662.90 126.36 653.14 129.53 644.80 C 135.61 628.84 144.57 614.81 156.42 602.71 C 166.05 592.86 177.32 586.13 190.22 582.50 C 195.30 581.07 202.24 579.92 211.03 579.06 C 212.28 578.94 213.35 577.98 214.24 576.17 C 214.56 575.52 217.26 570.26 222.34 560.40 C 230.53 544.49 238.98 528.26 247.69 511.70 C 250.98 505.43 262.46 484.39 282.13 448.58 C 286.32 440.96 290.30 433.94 294.07 427.51 C 299.18 418.79 304.29 409.13 309.86 399.37 C 325.82 371.40 339.05 348.24 349.56 329.91 C 354.88 320.63 360.38 311.94 366.23 301.99 C 367.16 300.40 368.21 299.11 369.38 298.12 C 370.41 297.24 371.83 297.11 372.83 297.80 C 373.71 298.41 374.43 299.13 374.99 299.97 C 375.55 300.81 375.58 301.89 375.07 302.76 C 357.30 333.03 347.56 349.58 345.87 352.42 C 336.56 368.10 326.94 384.72 316.99 402.28 C 299.70 432.81 287.95 453.62 281.72 464.71 C 266.13 492.46 252.42 517.83 240.59 540.82 C 233.80 554.01 228.51 564.15 224.72 571.22 C 223.13 574.19 221.92 576.60 221.10 578.43 C 221.00 578.65 221.17 578.91 221.42 578.89 Z"/>
+            <path d="M 662.33 516.22 C 662.46 515.70 661.86 515.32 661.44 515.64 C 659.85 516.87 656.21 519.59 650.51 523.79 C 646.44 526.80 641.50 529.23 638.21 530.93 C 635.07 532.56 632.00 533.73 629.00 534.46 C 625.63 535.27 621.28 535.24 618.41 532.93 C 616.01 531.00 614.60 528.88 614.19 526.57 C 613.24 521.26 614.25 516.81 615.18 509.69 C 615.22 509.41 614.89 509.24 614.68 509.42 C 608.06 515.03 600.88 520.43 593.15 525.63 C 588.85 528.52 584.78 530.88 580.95 532.69 C 577.42 534.36 574.52 535.46 572.25 535.98 C 571.56 536.14 569.51 536.13 566.10 535.94 C 565.75 535.92 565.42 535.81 565.13 535.63 C 560.38 532.58 558.35 528.06 559.06 522.05 C 559.38 519.36 560.07 516.59 561.13 513.74 C 561.29 513.32 560.85 512.93 560.45 513.13 C 557.57 514.61 554.88 516.96 552.06 518.47 C 542.01 523.84 535.59 527.02 532.78 528.02 C 526.91 530.11 521.40 531.08 516.24 530.92 C 510.20 530.73 506.32 527.63 504.61 521.62 C 504.37 520.77 504.41 520.03 504.74 519.42 C 505.22 518.52 504.13 517.59 503.32 518.22 C 496.18 523.75 488.51 528.72 480.31 533.15 C 475.27 535.87 469.48 537.54 463.51 535.36 C 463.18 535.23 462.88 535.04 462.62 534.80 C 457.01 529.40 458.73 522.33 460.82 515.58 C 460.97 515.10 460.42 514.70 460.01 515.00 L 436.70 532.12 C 436.03 532.61 435.70 533.44 435.86 534.26 C 437.32 541.90 435.56 550.42 428.42 554.51 C 423.85 557.12 418.39 555.25 415.35 551.52 C 415.08 551.18 414.73 550.24 414.30 548.71 C 412.34 541.73 422.63 534.17 427.35 531.03 C 427.90 530.67 428.21 530.04 428.17 529.38 C 427.93 525.73 427.67 522.63 427.39 520.09 C 426.99 516.55 427.50 513.82 428.08 509.77 C 429.02 503.27 433.50 497.24 440.61 497.15 C 441.03 497.14 441.43 497.26 441.78 497.49 C 442.80 498.16 443.55 499.21 444.02 500.66 C 444.31 501.56 443.73 502.58 442.70 502.98 C 437.23 505.15 435.77 509.18 434.21 514.52 C 434.13 514.80 434.09 515.08 434.10 515.37 L 434.44 525.73 C 434.45 526.06 434.82 526.25 435.10 526.07 C 446.11 518.89 458.07 509.98 468.31 500.27 C 471.00 497.72 473.35 498.00 475.38 501.11 C 475.55 501.37 475.58 501.70 475.45 501.99 C 474.09 505.04 473.31 506.74 473.10 507.08 C 469.75 512.62 467.77 516.30 467.14 518.11 C 465.81 521.94 465.21 524.57 465.33 525.98 C 465.83 532.19 471.77 530.45 475.83 528.81 C 479.91 527.15 485.38 523.96 492.24 519.23 C 498.97 514.60 505.79 509.18 512.70 502.97 C 514.41 501.44 518.28 499.45 524.30 497.02 C 524.69 496.87 525.11 496.82 525.52 496.89 C 526.59 497.06 527.39 497.01 527.92 496.73 C 528.25 496.56 528.63 496.53 528.98 496.65 C 532.36 497.75 535.54 499.81 535.25 503.61 C 535.10 505.67 533.68 507.05 531.01 507.75 C 530.29 507.94 529.50 507.38 529.26 506.48 C 528.85 504.99 527.93 503.90 526.50 503.22 C 526.19 503.08 525.82 503.09 525.53 503.26 C 519.31 506.86 513.41 510.60 511.76 517.18 C 510.81 520.97 511.91 523.43 515.06 524.56 C 516.86 525.21 518.63 524.79 520.52 524.87 C 520.85 524.88 521.18 524.85 521.51 524.77 C 522.16 524.62 524.41 524.12 528.26 523.27 C 530.05 522.88 532.05 522.21 534.27 521.26 C 547.02 515.81 558.67 508.32 569.24 498.81 C 569.98 498.14 571.05 498.02 571.93 498.49 C 572.58 498.85 573.47 499.72 574.59 501.11 C 574.94 501.55 574.99 502.15 574.72 502.64 C 571.69 508.15 569.22 513.02 567.31 517.27 C 566.33 519.44 565.89 522.60 565.99 526.74 C 566.00 527.06 566.08 527.36 566.23 527.64 C 567.50 529.89 569.54 530.56 572.34 529.65 C 575.69 528.56 578.43 527.45 580.55 526.32 C 594.00 519.19 605.86 510.30 616.13 499.64 C 617.80 497.91 619.17 495.78 620.23 493.27 C 622.86 487.06 624.68 482.76 625.70 480.37 C 641.03 444.56 658.80 407.44 679.03 369.01 C 682.06 363.25 686.15 356.19 691.31 347.84 C 692.49 345.93 694.95 345.28 696.92 346.35 L 697.08 346.44 C 699.00 347.48 699.69 349.90 698.60 351.80 C 676.49 390.63 656.88 429.12 639.79 467.29 C 633.70 480.86 629.17 491.65 626.19 499.65 C 623.92 505.75 622.27 511.53 621.26 516.99 C 620.61 520.55 620.83 523.84 621.92 526.87 C 622.04 527.19 622.26 527.46 622.56 527.62 C 626.67 529.90 634.37 526.38 638.09 524.34 C 650.65 517.45 661.74 509.11 671.36 499.30 C 673.42 497.19 676.43 499.42 677.09 501.77 C 677.16 502.02 677.15 502.29 677.05 502.53 C 674.23 509.56 668.36 516.34 667.11 524.37 C 666.96 525.38 667.18 526.87 667.79 528.82 C 667.90 529.18 668.16 529.47 668.51 529.61 C 671.83 530.97 674.88 529.52 678.21 527.94 C 680.78 526.72 685.10 524.13 691.15 520.16 C 692.07 519.55 695.25 517.19 700.68 513.06 C 702.53 511.65 705.25 509.42 708.82 506.36 C 712.65 503.07 716.40 500.30 720.08 498.07 C 724.30 495.50 731.45 492.80 735.23 496.56 C 740.13 501.44 733.60 509.14 729.15 511.40 C 724.00 514.02 718.49 515.67 712.60 516.34 C 711.53 516.46 710.58 517.12 710.09 518.08 C 707.90 522.38 708.26 528.38 713.75 530.07 C 713.92 530.12 714.10 530.15 714.28 530.15 L 719.59 530.05 C 719.90 530.04 720.21 529.98 720.49 529.85 C 721.41 529.44 722.67 529.18 724.27 529.07 C 724.40 529.06 724.54 529.04 724.67 529.00 L 732.29 526.87 C 747.83 520.16 761.87 511.03 774.48 499.46 C 776.46 497.65 778.43 497.61 780.39 499.34 C 781.16 500.02 781.42 501.11 781.04 502.06 L 777.08 512.13 C 776.86 512.67 777.36 513.23 777.92 513.07 C 778.17 513.00 778.42 512.68 778.69 512.11 C 778.83 511.82 779.03 511.56 779.27 511.35 C 782.58 508.52 785.29 506.22 787.41 504.43 C 791.57 500.92 796.08 498.51 800.95 497.21 C 801.22 497.14 801.48 497.10 801.75 497.09 C 808.78 496.82 810.88 501.59 811.31 507.65 C 811.52 510.60 811.69 513.26 811.84 515.63 C 811.88 516.28 812.47 516.75 813.11 516.65 C 818.06 515.88 820.95 514.02 826.03 511.13 C 831.13 508.23 835.24 504.91 840.03 501.49 C 840.97 500.82 842.27 501.02 842.95 501.95 L 843.36 502.50 C 844.18 503.62 844.00 505.19 842.94 506.09 C 835.65 512.28 827.96 517.37 819.89 521.38 C 817.60 522.51 815.12 523.38 812.43 523.98 C 812.29 524.01 812.13 523.99 811.99 523.94 L 807.56 522.20 C 807.41 522.13 807.28 522.03 807.19 521.89 C 806.24 520.47 805.71 519.21 805.60 518.12 C 805.23 514.43 805.00 511.65 804.89 509.77 C 804.77 507.71 804.41 505.92 803.82 504.39 C 803.56 503.74 802.86 503.37 802.18 503.53 L 798.75 504.34 C 798.61 504.37 798.48 504.43 798.35 504.50 C 788.76 510.02 780.47 517.59 773.49 527.20 C 772.85 528.07 771.83 528.45 771.01 528.13 C 769.50 527.53 768.45 526.58 767.86 525.28 C 767.69 524.92 767.61 524.52 767.62 524.13 C 767.72 519.74 768.39 515.85 769.63 512.44 C 769.74 512.14 769.52 511.83 769.20 511.84 C 768.60 511.85 767.79 512.24 766.76 513.01 C 759.01 518.76 750.86 523.84 742.29 528.25 C 735.14 531.93 727.88 534.49 720.49 535.92 C 719.39 536.13 717.46 536.22 714.69 536.17 C 708.62 536.08 704.27 532.84 702.05 527.06 C 701.96 526.84 701.92 526.61 701.93 526.38 L 702.08 520.66 C 702.09 520.30 701.75 520.03 701.40 520.12 C 699.38 520.66 698.29 522.02 696.59 523.25 C 693.46 525.50 690.70 527.43 688.29 529.05 C 683.45 532.30 678.60 534.61 673.75 535.96 C 672.43 536.33 670.33 536.36 667.46 536.07 C 667.10 536.04 666.75 535.93 666.44 535.75 C 660.99 532.71 659.72 527.54 661.00 521.73 C 661.09 521.30 661.54 519.47 662.33 516.22 Z"/>
+          </svg>
+        </div>
+        <div class="brand">
+          <strong>Le Sicilien</strong>
+          <span>Luxury Asset & Hospitality Management · invitation-only</span>
+        </div>
+      </div>
+
+      <div class="nav-links" aria-label="Navigazione">
+        <a href="#philosophy">Filosofia</a>
+        <a href="#approach">Ambiti</a>
+        <a href="#proof">Report</a>
+        <a href="#gallery">Curation</a>
+        <a href="#yacht">Yacht</a>
+        <a href="#pillars">Standard</a>
+        <a href="#process">Accesso</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="nav-pill" href="index.html" aria-label="Torna al sito principale">
+          <i class="fa-solid fa-arrow-left"></i> Torna al sito
+        </a>
+        <a class="nav-wa" href="https://wa.me/393888005083?text=Buongiorno%2C%20vorrei%20chiedere%20informazioni%20su%20Le%20Sicilien%20(Asset%20Management).%20Possiamo%20sentirci%3F" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <button class="burger" id="burger" aria-expanded="false" aria-controls="mobilePanel" aria-label="Apri menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a class="nav-cta" href="#contact"><i class="fa-solid fa-lock"></i> Richiedi valutazione</a>
+      </div>
+    </div>
+
+    <div class="mobile-panel" id="mobilePanel" aria-label="Menu mobile">
+      <div class="mobile-inner">
+        <a href="index.html"><i class="fa-solid fa-arrow-left" style="margin-right:8px;"></i>Torna al sito</a>
+        <a href="#philosophy">Filosofia</a>
+        <a href="#approach">Ambiti</a>
+        <a href="#proof">Report</a>
+        <a href="#gallery">Curation</a>
+        <a href="#yacht">Yacht</a>
+        <a href="#pillars">Standard</a>
+        <a href="#process">Accesso</a>
+        <a href="#contact">Richiedi valutazione</a>
+        <a href="https://wa.me/393888005083?text=Buongiorno%2C%20vorrei%20chiedere%20informazioni%20su%20Le%20Sicilien%20(Asset%20Management).%20Possiamo%20sentirci%3F" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Scrivi su WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="kicker"><i class="fa-solid fa-crown"></i> Incarichi limitati · accesso riservato</div>
+
+        <h1>Asset hospitality,<br>con disciplina da gestione patrimoniale.</h1>
+
+        <p>
+          In fascia alta non si “riempie” un calendario: si governa l’asset. Lavoriamo su posizionamento, controllo della distribuzione,
+          standard operativi e demand shaping per proteggere valore, reputazione e usura nel tempo.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">Positioning & Distribution</span>
+          <span class="badge">Operational Standards</span>
+          <span class="badge">Demand Shaping</span>
+          <span class="badge">Owner Reporting Cadence</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn"><i class="fa-solid fa-key"></i> Richiedi accesso</a>
+          <a href="#philosophy" class="btn-ghost-hero"><i class="fa-solid fa-arrow-down"></i> Leggi il metodo</a>
+        </div>
+
+        <div class="seal" aria-label="Indicatori di governance">
+          <span><i class="fa-solid fa-user-shield"></i> Riservatezza</span>
+          <span><i class="fa-solid fa-layer-group"></i> Incarichi selettivi</span>
+          <span><i class="fa-solid fa-circle-check"></i> Standard verificabili</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="img-frame" aria-label="Esterno villa">
+          <img
+            data-src-candidates="villa harmony.JPG|villa%20harmony.JPG|villa%20harmony.jpg|villa%20harmony.jpeg|villa%20harmony.png|villa-harmony.jpg|villa-harmony.jpeg"
+            src="villa harmony.JPG"
+            alt="Esterno di una villa"
+            loading="eager"
+            decoding="async"
+            width="1200"
+            height="900">
+        </div>
+        <div class="small">
+          <strong>Principio operativo:</strong> poche proprietà, controllo quotidiano, decisioni tracciabili.<br>
+          <strong>Focus:</strong> difendere prezzo e percezione, ridurre attriti e wear &amp; tear.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <main>
+    <!-- FILOSOFIA -->
+    <section id="philosophy">
+      <div class="section-title">
+        <span class="label">Filosofia</span>
+        <h2>Un asset premium merita governo, non gestione reattiva.</h2>
+        <div class="line"></div>
+        <p>
+          Nel luxury la performance è una conseguenza. La causa è la disciplina: standard misurabili, controllo dei canali,
+          selezione della domanda e una regia che protegge reputazione e valore nel tempo.
+        </p>
+        <div class="invite-note">
+          <div class="invite-pill"><i class="fa-solid fa-star"></i> Mandati riservati · selezione rigorosa</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Da proprietà a “signature”</h3>
+          <p>
+            Un immobile di fascia alta non compete sul volume: compete sulla coerenza. La coerenza richiede una struttura decisionale chiara:
+            chi approva, chi controlla, chi risponde. E soprattutto: che cosa non si fa, anche quando sembra conveniente.
+          </p>
+          <p>
+            La nostra gestione è costruita su quattro leve: <strong>posizionamento</strong>, <strong>standard di servizio</strong>,
+            <strong>controllo operativo</strong> e <strong>governance della domanda</strong>. È ciò che difende il prezzo e riduce l’usura
+            (materiale e reputazionale).
+          </p>
+
+          <div class="mini-photos">
+            <div class="img-frame">
+              <img data-src-candidates="champagne.jpg|champagne.jpeg|champagne.png|champagne.webp"
+                   src="champagne.jpg" alt="Dettaglio di accoglienza curata" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+            <div class="img-frame">
+              <img data-src-candidates="fotostanzacontelevisione.JPG|fotostanzacontelevisione.jpg|foto-stanza-con-televisione.jpg"
+                   src="fotostanzacontelevisione.JPG" alt="Interno residenziale con finiture curate" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="quote">
+            “Il lusso è prevedibilità impeccabile: ciò che prometti, ciò che consegni, ciò che resta dopo.”
+          </div>
+
+          <div style="margin-top:18px; color:var(--muted); font-size:1.01rem; font-weight:450; letter-spacing:.06px;">
+            <strong style="color:var(--primary); font-weight:750;">Cosa facciamo:</strong> proteggiamo la marca dell’asset, governiamo la domanda,
+            standardizziamo l’operatività e rendiamo leggibile la performance al proprietario.<br><br>
+            <strong style="color:var(--primary); font-weight:750;">Cosa non facciamo:</strong> sconti strutturali, over-distribution,
+            promesse incompatibili con lo standard, “soluzioni” che aumentano rumore e rischio.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIZI / AMBITI -->
+    <div id="approach" class="methods-wrap">
+      <div class="methods">
+
+        <!-- VILLE -->
+        <div class="method">
+          <div class="top">
+            <h3><i class="fa-solid fa-house-chimney-window"></i> Ville</h3>
+            <div class="sub">Mandato completo · standard minimi · controllo della distribuzione</div>
+          </div>
+
+          <ul>
+            <li><strong>Posizionamento &amp; pricing:</strong> strategia stagionale, minimi difendibili, regole per durata e anticipo, gestione dei picchi senza comprimere il brand.</li>
+            <li><strong>Operations &amp; quality assurance:</strong> checklist, ispezioni, responsabilità, escalation; manutenzione ordinaria e prevenzione dell’usura.</li>
+            <li><strong>Demand shaping:</strong> filtri, regole e pre-qualifica per ridurre rischi, incidenti e attriti (incluso comportamento e compatibilità).</li>
+            <li><strong>Guest experience:</strong> comunicazione, arrivi, servizi e standard di consegna coerenti: l’esperienza deve essere replicabile, non casuale.</li>
+          </ul>
+
+          <div class="method-media">
+            <div class="img-frame">
+              <img data-src-candidates="villa harmony.JPG|villa%20harmony.JPG|villa-harmony.jpg"
+                   src="villa harmony.JPG" alt="Villa, vista esterna" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+            <div class="img-frame">
+              <img data-src-candidates="villasulamre.jpg|villasulamre.jpeg|villasulamre.png|villa-sul-mare.jpg"
+                   src="villasulamre.jpg" alt="Contesto premium sul mare" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+          </div>
+
+          <div class="foot">
+            Obiettivo: difendere prezzo e percezione, ridurre wear &amp; tear e stabilizzare la qualità degli ospiti nel tempo.
+          </div>
+        </div>
+
+        <!-- RESIDENZE -->
+        <div class="method">
+          <div class="top">
+            <h3><i class="fa-solid fa-city"></i> Residenze</h3>
+            <div class="sub">Precisione operativa · continuità · standard che non oscillano</div>
+          </div>
+
+          <ul>
+            <li><strong>Calendario &amp; regole:</strong> minimo soggiorno, lead time, buffer operativi e riduzione dei buchi senza abbassare il posizionamento.</li>
+            <li><strong>Operations:</strong> pulizie, controlli, piccole manutenzioni e standardizzazione dei passaggi; riduzione del rischio operativo.</li>
+            <li><strong>Comunicazione:</strong> regole chiare, tono professionale, tempi rapidi; prevenzione di frizioni e richieste fuori standard.</li>
+            <li><strong>Owner reporting:</strong> report periodici, note operative, decisioni motivate: ciò che accade è leggibile e verificabile.</li>
+          </ul>
+
+          <div class="method-media">
+            <div class="img-frame">
+              <img data-src-candidates="camerapalazzomoncada.jpg|camerapalazzomoncada.jpeg|camera-palazzo-moncada.jpg"
+                   src="camerapalazzomoncada.jpg" alt="Camera di una residenza di lusso" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+            <div class="img-frame">
+              <img data-src-candidates="fotoappartamentoconterrazzo.jpeg|fotoappartamentoconterrazzo.jpg|foto-appartamento-terrazzo.jpg"
+                   src="fotoappartamentoconterrazzo.jpeg" alt="Terrazza e affacci esterni" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+          </div>
+
+          <div class="foot">
+            Risultato atteso: continuità di rendimento, meno incidenti, reputazione più stabile e minore carico gestionale per il proprietario.
+          </div>
+        </div>
+
+        <!-- YACHT -->
+        <div class="method">
+          <div class="top">
+            <h3><i class="fa-solid fa-ship"></i> Yacht</h3>
+            <div class="sub">Servizi privati · su richiesta · coerenti con lo standard dell’asset</div>
+          </div>
+
+          <ul>
+            <li><strong>Non è un catalogo:</strong> viene proposto solo quando rafforza posizionamento e qualità della domanda.</li>
+            <li><strong>Esecuzione discreta:</strong> coordinamento, timing, standard di servizio, supervisione e controllo qualità.</li>
+            <li><strong>Clientela selezionata:</strong> compatibilità e comportamento contano quanto la spesa; regole chiare.</li>
+            <li><strong>Obiettivo:</strong> elevare memorabilità e percezione, senza introdurre rumore operativo.</li>
+          </ul>
+
+          <div class="method-media">
+            <div class="img-frame">
+              <img data-src-candidates="exclusive yacht dinner.png|exclusive%20yacht%20dinner.png|exclusive-yacht-dinner.png|exclusive-yacht-dinner.jpg"
+                   src="exclusive yacht dinner.png" alt="Cena privata a bordo di uno yacht" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+            <div class="img-frame">
+              <img data-src-candidates="cenaabordoyacht.png|cenaabordoyacht.jpg|cena-a-bordo-yacht.png"
+                   src="cenaabordoyacht.png" alt="Allestimento cena a bordo" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+          </div>
+
+          <div class="foot">
+            Se coerente con asset e ospite, lo yacht diventa un moltiplicatore di percezione — non una complicazione.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- REPORT / TRASPARENZA -->
+    <div id="proof" class="proof-wrap">
+      <div class="proof">
+        <div class="card">
+          <h3>Reportistica &amp; trasparenza</h3>
+          <p>
+            Il proprietario non deve “sentire” che tutto va bene: deve poterlo verificare.
+            Impostiamo una cadenza di rendicontazione, con indicatori chiari e note operative.
+          </p>
+
+          <p style="margin-top:10px; color:rgba(12,18,32,.92);">
+            <strong style="color:var(--primary); font-weight:750;">Compensi &amp; trasparenza:</strong> condizioni definite a mandato, perimetro operativo chiaro,
+            costi tracciabili e processi di approvazione per interventi e acquisti. Nessuna sorpresa a consuntivo.
+          </p>
+
+          <div class="proof-grid">
+            <div class="proof-shot g-item" data-src="prenotazione.jpeg" data-cap="Estratto rendicontazione (riservato)" role="button" aria-label="Apri estratto rendicontazione 1" tabindex="0">
+              <div class="img-frame">
+                <img data-src-candidates="prenotazione.jpeg|prenotazione.jpg|prenotazione.png|prenotazione.webp"
+                     src="prenotazione.jpeg" alt="Estratto di rendicontazione, esempio 1" loading="lazy" decoding="async"
+                     width="900" height="900">
+              </div>
+              <div class="proof-cap"><i class="fa-solid fa-lock"></i> Estratto (riservato)</div>
+            </div>
+
+            <div class="proof-shot g-item" data-src="l'ospitehapagato.jpg" data-cap="Estratto rendicontazione (riservato)" role="button" aria-label="Apri estratto rendicontazione 2" tabindex="0">
+              <div class="img-frame">
+                <img data-src-candidates="l'ospitehapagato.jpg|l%27ospitehapagato.jpg|ospite-ha-pagato.jpg|ospite-ha-pagato.jpeg"
+                     src="l'ospitehapagato.jpg" alt="Estratto di rendicontazione, esempio 2" loading="lazy" decoding="async"
+                     width="900" height="900">
+              </div>
+              <div class="proof-cap"><i class="fa-solid fa-lock"></i> Estratto (riservato)</div>
+            </div>
+          </div>
+
+          <div class="fineprint">
+            <i class="fa-solid fa-circle-info"></i>
+            Esempi dimostrativi: performance e numeri dipendono da standard, stagione, regole operative e perimetro di controllo concordato.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="quote">
+            “Se non possiamo garantire standard e controllo, preferiamo non accettare il mandato.”
+          </div>
+
+          <div style="margin-top:18px; color:var(--muted); font-size:1.01rem; font-weight:450; letter-spacing:.06px;">
+            La selezione non è marketing: è una misura di tutela. Senza controllo della distribuzione e disciplina operativa,
+            il rischio (reputazionale e materiale) ricade sul proprietario.
+          </div>
+
+          <div class="invite-note" style="justify-content:flex-start; margin-top:18px;">
+            <div class="invite-pill"><i class="fa-solid fa-user-check"></i> Governance reale · mandati limitati</div>
+          </div>
+
+          <div style="margin-top:18px; padding-top:18px; border-top:1px solid rgba(15,33,51,.10); color:rgba(12,18,32,.92);">
+            <div class="label" style="margin-bottom:8px;">Standard minimi</div>
+            <p style="margin-bottom:10px;">
+              Accettiamo incarichi solo se i requisiti sono raggiungibili e mantenibili: qualità della consegna,
+              processi, manutenzione, regole e possibilità di controllo operativo.
+            </p>
+            <p style="margin-bottom:0; color:var(--muted);">
+              Se mancano condizioni essenziali, proponiamo una roadmap di adeguamento — oppure decliniamo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURATION / SELEZIONE -->
+    <section id="gallery">
+      <div class="section-title">
+        <span class="label">Curation</span>
+        <h2>Percezione, dettagli, coerenza editoriale.</h2>
+        <div class="line"></div>
+        <p>
+          La presentazione non è cosmetica: è controllo della domanda. Fotografia, staging e copy definiscono aspettativa.
+          Se l’aspettativa è corretta, l’esperienza scorre; se è sbagliata, nasce attrito.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="g-item" data-src="cucinappartamentodilusso.jpg" data-cap="Interior · luce, ordine, proporzioni" role="button" aria-label="Apri immagine cucina" tabindex="0">
+          <div class="g-media">
+            <img data-src-candidates="cucinappartamentodilusso.jpg|cucinappartamentodilusso.jpeg|cucina-appartamento-luxury.jpg"
+                 src="cucinappartamentodilusso.jpg" alt="Cucina, interior curato" loading="lazy" decoding="async"
+                 width="1200" height="900">
+          </div>
+          <div class="g-cap">Interior · luce, ordine, proporzioni</div>
+        </div>
+
+        <div class="g-item" data-src="palazzo moncada.jpeg" data-cap="Contesto · identità e racconto" role="button" aria-label="Apri immagine contesto" tabindex="0">
+          <div class="g-media">
+            <img data-src-candidates="palazzo moncada.jpeg|palazzo%20moncada.jpeg|palazzo-moncada.jpeg|palazzo-moncada.jpg"
+                 src="palazzo moncada.jpeg" alt="Contesto architettonico" loading="lazy" decoding="async"
+                 width="1200" height="900">
+          </div>
+          <div class="g-cap">Contesto · identità e racconto</div>
+        </div>
+
+        <div class="g-item" data-src="fotosaloneapparta,mento.JPG" data-cap="Accoglienza · ciò che sostiene reputazione" role="button" aria-label="Apri immagine salone" tabindex="0">
+          <div class="g-media">
+            <img data-src-candidates="fotosaloneapparta,mento.JPG|fotosaloneapparta%2Cmento.JPG|fotosaloneapparta,mento.jpg|salone-appartamento.jpg|salone-appartamento.jpeg"
+                 src="fotosaloneapparta,mento.JPG" alt="Salone, area living" loading="lazy" decoding="async"
+                 width="1200" height="900">
+          </div>
+          <div class="g-cap">Accoglienza · ciò che sostiene reputazione</div>
+        </div>
+
+        <div class="g-item" data-src="exclusive yacht dinner.png" data-cap="Servizi privati · con regia e discrezione" role="button" aria-label="Apri immagine yacht dinner" tabindex="0">
+          <div class="g-media">
+            <img data-src-candidates="exclusive yacht dinner.png|exclusive%20yacht%20dinner.png|exclusive-yacht-dinner.png|exclusive-yacht-dinner.jpg"
+                 src="exclusive yacht dinner.png" alt="Cena privata a bordo" loading="lazy" decoding="async"
+                 width="1200" height="900">
+          </div>
+          <div class="g-cap">Servizi privati · con regia e discrezione</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YACHT -->
+    <section id="yacht">
+      <div class="section-title">
+        <span class="label">Yacht</span>
+        <h2>Servizi privati, quando aggiungono valore.</h2>
+        <div class="line"></div>
+        <p>
+          L’extra non è lusso, se crea instabilità. Le esperienze a bordo vengono offerte solo su richiesta e solo quando
+          sono coerenti con asset, timing e profilo dell’ospite.
+        </p>
+        <div class="invite-note">
+          <div class="invite-pill"><i class="fa-solid fa-lock"></i> Su richiesta · con selezione</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Coerenza prima dell’effetto</h3>
+          <p>
+            In fascia alta, ciò che conta è la qualità dell’esecuzione: puntualità, discrezione, standard di servizio e controllo.
+            Se una variabile non è controllabile, non la introduciamo.
+          </p>
+          <p>
+            I servizi privati vengono proposti con <strong>regia</strong>, <strong>supervisione</strong> e <strong>criteri di compatibilità</strong>.
+            L’obiettivo è elevare la percezione senza aumentare rischio e rumore operativo.
+          </p>
+
+          <div class="mini-photos">
+            <div class="img-frame">
+              <img data-src-candidates="exclusive yacht dinner.png|exclusive%20yacht%20dinner.png|exclusive-yacht-dinner.png"
+                   src="exclusive yacht dinner.png" alt="Cena privata su yacht" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+            <div class="img-frame">
+              <img data-src-candidates="tildesunsetbay.jpg|tildesunsetbay.jpeg|tildesunsetbay.png|tilde-sunset-bay.jpg"
+                   src="tildesunsetbay.jpg" alt="Tramonto sul mare" loading="lazy" decoding="async"
+                   width="900" height="700">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="quote">
+            “La qualità si vede da ciò che non succede: nessuna improvvisazione, nessuna frizione, nessun eccesso.”
+          </div>
+
+          <div style="margin-top:18px;">
+            <div class="label" style="margin-bottom:8px;">Come lo gestiamo</div>
+            <p style="color:var(--muted); margin-bottom:12px; font-weight:450; letter-spacing:.06px;">
+              Coordinamento e controllo qualità end-to-end.
+            </p>
+
+            <ul style="list-style:none; padding-left:0; color:rgba(12,18,32,.92);">
+              <li style="margin-bottom:10px; padding-left:18px; position:relative; font-weight:450; letter-spacing:.06px;">
+                <span style="position:absolute; left:0; color:var(--accent2); font-weight:900;">•</span>
+                Proposta solo a ospiti compatibili con lo standard
+              </li>
+              <li style="margin-bottom:10px; padding-left:18px; position:relative; font-weight:450; letter-spacing:.06px;">
+                <span style="position:absolute; left:0; color:var(--accent2); font-weight:900;">•</span>
+                Comunicazione discreta e gestione del timing
+              </li>
+              <li style="margin-bottom:10px; padding-left:18px; position:relative; font-weight:450; letter-spacing:.06px;">
+                <span style="position:absolute; left:0; color:var(--accent2); font-weight:900;">•</span>
+                Standard di servizio, briefing e supervisione
+              </li>
+              <li style="margin-bottom:0; padding-left:18px; position:relative; font-weight:450; letter-spacing:.06px;">
+                <span style="position:absolute; left:0; color:var(--accent2); font-weight:900;">•</span>
+                Obiettivo: elevare percezione e continuità del posizionamento
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STANDARD -->
+    <section id="pillars">
+      <div class="section-title">
+        <span class="label">Standard</span>
+        <h2>Standard e governance, in quattro pilastri.</h2>
+        <div class="line"></div>
+        <p>
+          La differenza tra “gestione” e asset management è semplice: disciplina, controllo e rendicontazione.
+        </p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pi"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Posizionamento &amp; distribuzione</h3>
+          <p>Regole di canale, narrative e pricing: difendere il prezzo significa difendere la percezione, prima ancora dell’occupazione.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pi"><i class="fa-solid fa-users-viewfinder"></i></div>
+          <h3>Governance della domanda</h3>
+          <p>Filtri, criteri e policy: selezionare chi entra riduce rischi, incidenti e usura. È una scelta di tutela.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pi"><i class="fa-solid fa-star"></i></div>
+          <h3>Operations &amp; quality assurance</h3>
+          <p>Checklist, ispezioni, responsabilità e manutenzione: l’esperienza deve restare stabile, non dipendere dalla fortuna.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pi"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <h3>Reporting &amp; decisioni tracciabili</h3>
+          <p>Cadenza di report, note operative e costi leggibili: il proprietario vede cosa succede, e perché.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCESSO -->
+    <section id="process">
+      <div class="section-title">
+        <span class="label">Accesso</span>
+        <h2>Processo di selezione (riservato).</h2>
+        <div class="line"></div>
+        <p>
+          Valutiamo compatibilità prima di accettare: standard dell’asset, potenziale di posizionamento, e soprattutto
+          possibilità di controllo operativo. Senza queste condizioni, non c’è servizio premium.
+        </p>
+        <div class="invite-note">
+          <div class="invite-pill"><i class="fa-solid fa-user-shield"></i> Valutazione riservata · risposta rapida</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Richiesta &amp; pre-screening</h3>
+          <p>Analisi preliminare dell’asset e degli obiettivi. Se non c’è compatibilità, lo comunichiamo in modo diretto.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Audit operativo</h3>
+          <p>Verifica di standard, processi, rischi, canali e requisiti: ciò che è necessario per gestire senza compromessi.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Mandato &amp; governance</h3>
+          <p>Definizione di regole, standard minimi, ruoli e rendicontazione. Prima la struttura, poi la distribuzione.</p>
+        </div>
+      </div>
+
+      <div class="fit">
+        <div class="fitbox">
+          <h3><i class="fa-solid fa-check" style="color:var(--accent2); margin-right:8px;"></i>Compatibile se</h3>
+          <ul>
+            <li>Vuoi proteggere reputazione e valore, non inseguire volume</li>
+            <li>Accetti standard minimi e controlli qualità periodici</li>
+            <li>Vuoi governance su pricing, domanda, operations e canali</li>
+            <li>Preferisci reportistica chiara e decisioni tracciabili</li>
+          </ul>
+        </div>
+        <div class="fitbox">
+          <h3><i class="fa-solid fa-xmark" style="color:rgba(239,68,68,.95); margin-right:8px;"></i>Non è compatibile se</h3>
+          <ul>
+            <li>Cerchi massimizzazione dell’occupazione “a qualsiasi costo”</li>
+            <li>Non vuoi policy, regole, audit o standard minimi</li>
+            <li>Vuoi delegare senza trasparenza e senza controllo</li>
+            <li>Il focus è lo sconto, non il posizionamento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <h2>Richiedi informazioni o una valutazione riservata</h2>
+    <p style="max-width: 980px; margin: 0 auto;">
+      Se l’asset è compatibile, impostiamo perimetro, governance e standard con chiarezza: distribuzione, operatività e reporting.
+      Se non lo è, lo diciamo subito — per rispetto del proprietario e del brand.
+    </p>
+
+    <div class="footer-actions">
+      <button class="btn-light" onclick="window.location.href='mailto:info@costanzoacquisizioni.it?subject=Richiesta%20valutazione%20-%20Le%20Sicilien%20(Asset%20Management)'">
+        <i class="fa-solid fa-envelope"></i> Scrivi via email
+      </button>
+
+      <button class="btn-wa-foot" onclick="window.open('https://wa.me/393888005083?text=Buongiorno%2C%20vorrei%20chiedere%20informazioni%20su%20Le%20Sicilien%20(Asset%20Management).%20Possiamo%20sentirci%3F','_blank','noopener')">
+        <i class="fa-brands fa-whatsapp"></i> Scrivi su WhatsApp
+      </button>
+
+      <button class="btn-ghost" onclick="window.location.href='index.html'">
+        <i class="fa-solid fa-arrow-left"></i> Torna al sito
+      </button>
+
+      <button class="btn-ghost" onclick="document.getElementById('philosophy').scrollIntoView({behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Rivedi il metodo
+      </button>
+    </div>
+
+    <div class="note">
+      Le Sicilien opera con mandati selettivi per garantire riservatezza, controllo e standard verificabili. La limitazione degli incarichi è una scelta operativa.
+    </div>
+
+    <div class="copy">Le Sicilien © 2025</div>
+  </footer>
+
+  <!-- Floating actions -->
+  <div class="float-actions" aria-label="Azioni rapide">
+    <a class="float-btn wa" href="https://wa.me/393888005083?text=Buongiorno%2C%20vorrei%20chiedere%20informazioni%20su%20Le%20Sicilien%20(Asset%20Management).%20Possiamo%20sentirci%3F" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+    </a>
+    <a class="float-btn top" href="#top" aria-label="Torna in alto">
+      <i class="fa-solid fa-arrow-up"></i><span>In alto</span>
+    </a>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-label="Anteprima immagine" aria-hidden="true" role="dialog" aria-modal="true">
+    <figure>
+      <button class="lb-close" id="lbClose" aria-label="Chiudi anteprima">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="lightboxImg" alt="Anteprima immagine" />
+      <figcaption class="lb-cap" id="lightboxCap"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    function closeMobile(){
+      if(!mobilePanel) return;
+      mobilePanel.classList.remove('open');
+      if(burger) burger.setAttribute('aria-expanded', 'false');
+    }
+
+    if(burger && mobilePanel){
+      burger.addEventListener('click', () => {
+        const isOpen = mobilePanel.classList.toggle('open');
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      mobilePanel.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', closeMobile);
+      });
+    }
+
+    // Robust images fallback
+    function tryCandidates(img, candidates, idx=0){
+      if(!candidates || !candidates.length) return;
+      if(idx >= candidates.length) return;
+      const nextSrc = candidates[idx].trim();
+      if(!nextSrc) return tryCandidates(img, candidates, idx+1);
+      if(img.dataset._trying === nextSrc) return tryCandidates(img, candidates, idx+1);
+      img.dataset._trying = nextSrc;
+      img.src = nextSrc;
+      img.onerror = () => tryCandidates(img, candidates, idx+1);
+    }
+
+    document.querySelectorAll('img[data-src-candidates]').forEach(img => {
+      const raw = img.getAttribute('data-src-candidates') || '';
+      const candidates = raw.split('|').map(s => s.trim()).filter(Boolean);
+      const current = img.getAttribute('src') || '';
+      const encoded = current ? encodeURI(current) : '';
+      const list = [];
+      if(current) list.push(current);
+      if(encoded && encoded !== current) list.push(encoded);
+      candidates.forEach(c => { if(!list.includes(c)) list.push(c); });
+      img.addEventListener('error', () => tryCandidates(img, list, 0), { once:true });
+      if(img.complete && img.naturalWidth === 0){
+        tryCandidates(img, list, 0);
+      }
+    });
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCap = document.getElementById('lightboxCap');
+    const lbClose = document.getElementById('lbClose');
+    let lastFocus = null;
+
+    function openLightbox(src, cap){
+      if(!src) return;
+      lastFocus = document.activeElement;
+      lbImg.src = src;
+      lbCap.textContent = cap || '';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => lbClose.focus(), 0);
+    }
+    function closeLightbox(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+      lbCap.textContent = '';
+      document.body.style.overflow = '';
+      if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+    function openFromEl(el){
+      const src = el.getAttribute('data-src');
+      const cap = el.getAttribute('data-cap') || el.querySelector('.g-cap')?.textContent || '';
+      openLightbox(src, cap);
+    }
+    document.querySelectorAll('.g-item').forEach(el => {
+      el.addEventListener('click', () => openFromEl(el));
+      el.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromEl(el); }
+      });
+    });
+    lb.addEventListener('click', (e) => { if(e.target === lb) closeLightbox(); });
+    lbClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') { closeLightbox(); closeMobile(); }
+    });
+    lb.addEventListener('keydown', (e) => {
+      if(!lb.classList.contains('open')) return;
+      if(e.key !== 'Tab') return;
+      const focusables = [lbClose].filter(Boolean);
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+  </script>
+
+</body>
+</html>
