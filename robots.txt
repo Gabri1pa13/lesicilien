@@ -6,3 +6,4 @@ Sitemap: https://www.lesicilien.it/sitemap.xml
 Disallow: /private/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /README.md
