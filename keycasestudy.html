@@ -1,378 +1,1060 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Sicilien - Performance Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Fonts from Index.html -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- CORE THEME FROM INDEX.HTML --- */
-        :root {
-            --bg-body: #F7F4ED;
-            --bg-section: #FFFFFF;
-            --text-main: #181818;
-            --text-muted: #707070;
-            --border-subtle: rgba(0,0,0,0.06);
-            --gold: #BFA05A;
-            --gold-soft: #E0D1AA;
-            --gold-hover: #9e844a;
-            --shadow-card: 0 18px 45px rgba(0,0,0,0.08);
-            --radius-soft: 22px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Sicilien — Performance Report 2025</title>
+  <meta name="description" content="Report performance e yield management con dati reali e recensioni 10/10." />
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--bg-body); 
-            color: var(--text-main);
-            -webkit-font-smoothing: antialiased;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        h1, h2, h3, h4, .brand-font { 
-            font-family: 'Cinzel', serif; 
-            font-weight: 500;
-            letter-spacing: 0.03em;
-        }
+  <style>
+    :root {
+      --bg-body: #F7F4ED;
+      --bg-section: #FFFFFF;
+      --text-main: #181818;
+      --text-muted: #707070;
+      --border-subtle: rgba(0,0,0,0.06);
+      --gold: #BFA05A;
+      --gold-soft: #E0D1AA;
+      --gold-hover: #9e844a;
+      --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      --shadow-card: 0 18px 45px rgba(0,0,0,0.08);
+      --shadow-search: 0 26px 70px rgba(0,0,0,0.16);
+      --radius-soft: 22px;
+    }
 
-        p {
-            color: var(--text-muted);
-            line-height: 1.75;
-        }
-        
-        /* Custom Colors Utilities */
-        .text-gold { color: var(--gold); }
-        .bg-gold { background-color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-        
-        /* Components */
-        .card { 
-            background: var(--bg-section);
-            box-shadow: var(--shadow-card);
-            border-radius: var(--radius-soft);
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Buttons */
-        .btn-gold {
-            background: var(--text-main);
-            color: #fff;
-            padding: 15px 42px;
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            font-size: 0.76rem;
-            display: inline-block;
-            border: none;
-            transition: all 0.3s;
-            border-radius: 999px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .btn-gold:hover { 
-            background: var(--gold); 
-            color: #fff; 
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 {
+      font-family: 'Cinzel', serif;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    p {
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--gold-hover); }
 
-        /* Table Styling */
-        th {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 0.05em;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-        td {
-            font-family: 'Montserrat', sans-serif;
-        }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .gold-text { color: var(--gold); }
+    .uppercase {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
 
-        /* Logo Styling */
-        .header-logo-svg {
-            height: 48px;
-            width: auto;
-        }
-        .header-logo-svg path,
-        .header-logo-svg ellipse {
-            fill: var(--text-main) !important;
-        }
-    </style>
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px 6px;
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: #fff;
+    }
+    .brand-badge i { color: var(--gold); }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .btn {
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.55);
+      padding: 10px 18px;
+      text-transform: uppercase;
+      font-size: 0.70rem;
+      letter-spacing: 0.18em;
+      background: transparent;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: var(--text-main);
+      color: #fff;
+      border-color: var(--text-main);
+    }
+    .btn.gold {
+      border-color: transparent;
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn.gold:hover { background: var(--text-main); }
+
+    /* Hero intro */
+    .hero {
+      padding: 56px 0 26px;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 3.1vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      max-width: 72ch;
+      margin: 0 auto;
+    }
+    .hero .meta {
+      margin-top: 16px;
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.8);
+    }
+    .divider {
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin: 28px 0 0;
+    }
+
+    /* Section */
+    section {
+      padding: 48px 0;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .section-bar {
+      width: 3px;
+      height: 48px;
+      background: var(--gold);
+      border-radius: 999px;
+      flex: 0 0 auto;
+      margin-top: 6px;
+    }
+    .section-title h2 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+    .section-title p {
+      color: var(--text-muted);
+    }
+
+    /* KPI cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+    .kpi-card {
+      background: var(--bg-section);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      opacity: 0.95;
+    }
+    .kpi-label {
+      font-size: 0.70rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.02em;
+    }
+    .kpi-note {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kpi-note i { color: var(--gold); }
+
+    /* Table */
+    .card {
+      background: var(--bg-section);
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .card-head {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.02), transparent);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .card-head h3 {
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card-pill {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 10px 6px;
+      border-radius: 999px;
+      background: #FAF7F0;
+      border: 1px solid rgba(0,0,0,0.05);
+      color: var(--text-muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.95rem;
+    }
+    th {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(0,0,0,0.02);
+    }
+    td.right, th.right { text-align: right; }
+    tr.highlight { background: rgba(191,160,90,0.12); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px 5px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .badge strong { color: var(--text-main); }
+
+    .footnote {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* Booking-like reviews */
+    .reviews-wrap {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .review-card {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 16px;
+      background: var(--bg-section);
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      padding: 16px;
+    }
+    .review-left {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding-right: 10px;
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.10em;
+      font-size: 0.95rem;
+      flex: 0 0 auto;
+    }
+    .reviewer-name {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .reviewer-meta {
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .review-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .review-title {
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+    .score-badge {
+      min-width: 44px;
+      height: 34px;
+      border-radius: 8px;
+      background: #003580; /* richiamo Booking */
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      flex: 0 0 auto;
+    }
+    .review-body {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+    }
+    .review-positive .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-hover);
+      font-weight: 700;
+    }
+    .review-positive p {
+      margin-top: 6px;
+      color: var(--text-muted);
+    }
+    .subratings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .subratings strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    .host-reply {
+      margin-top: 2px;
+      padding: 12px 12px 10px;
+      border-radius: 14px;
+      background: #FAF7F0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .host-reply-label {
+      font-size: 0.70rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .host-reply-text {
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    /* CTA */
+    .cta {
+      background: #151515;
+      color: #fff;
+      border-radius: 22px;
+      padding: 28px 22px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+      display: grid;
+      gap: 10px;
+      text-align: center;
+      margin-top: 26px;
+    }
+    .cta h3 { color: #fff; font-size: 1.55rem; }
+    .cta p { color: rgba(255,255,255,0.70); }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .review-card { grid-template-columns: 1fr; }
+      .review-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding-right: 0;
+        padding-bottom: 12px;
+      }
+    }
+  </style>
 </head>
-<body class="pt-24">
 
-    <!-- Header similar to Index -->
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-[#F7F4ED]/95 backdrop-blur-md border-b border-[#E0D1AA]/30">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <!-- SVG LOGO FROM INDEX.HTML -->
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00" class="header-logo-svg" aria-hidden="true">
-                    <path d="M 221.42 578.89 C 231.34 578.16 243.47 579.33 253.65 579.91 C 256.80 580.09 259.48 580.34 261.71 580.66 C 265.06 581.15 268.53 581.00 272.41 581.60 C 274.06 581.86 277.63 582.25 283.13 582.77 C 287.10 583.15 290.67 583.56 293.83 584.01 C 299.98 584.90 306.37 585.76 313.00 586.60 C 323.35 587.91 333.69 588.96 343.92 590.24 C 346.96 590.62 350.53 591.00 354.62 591.38 C 356.19 591.53 359.75 591.93 365.32 592.60 C 369.90 593.14 377.71 593.75 388.75 594.44 C 400.33 595.16 411.91 594.92 423.50 593.71 C 425.95 593.46 429.79 592.71 435.01 591.46 C 442.35 589.71 449.44 586.47 456.28 581.76 C 458.39 580.31 459.99 578.16 461.41 577.10 C 462.55 576.18 464.20 576.25 465.25 577.27 L 466.14 578.14 C 467.07 579.05 467.06 580.54 466.12 581.43 C 458.13 589.03 449.09 594.19 438.98 596.92 C 434.27 598.19 429.18 599.24 423.73 600.05 C 419.14 600.74 413.98 601.08 408.23 601.09 C 402.70 601.10 396.52 601.07 389.71 600.98 C 385.87 600.93 382.92 600.75 380.85 600.46 C 376.95 599.91 373.22 600.04 369.07 599.66 C 350.31 597.92 335.54 596.33 324.77 594.89 C 320.04 594.26 316.81 593.82 315.06 593.59 C 284.67 589.54 258.16 586.78 235.53 585.32 C 233.18 585.17 227.50 585.10 218.49 585.13 C 218.08 585.13 217.68 585.29 217.38 585.57 C 216.76 586.15 216.28 586.93 215.93 587.91 C 215.88 588.04 215.82 588.17 215.75 588.29 C 209.23 599.08 205.42 605.34 204.32 607.09 C 194.41 622.84 184.15 637.56 173.52 651.26 C 169.50 656.44 164.70 661.89 159.13 667.61 C 154.98 671.86 150.94 675.31 147.01 677.95 C 144.29 679.77 141.09 681.03 137.42 681.74 C 137.02 681.82 136.61 681.83 136.21 681.77 C 129.98 680.90 126.38 677.45 125.41 671.41 C 124.03 662.90 126.36 653.14 129.53 644.80 C 135.61 628.84 144.57 614.81 156.42 602.71 C 166.05 592.86 177.32 586.13 190.22 582.50 C 195.30 581.07 202.24 579.92 211.03 579.06 C 212.28 578.94 213.35 577.98 214.24 576.17 C 214.56 575.52 217.26 570.26 222.34 560.40 C 230.53 544.49 238.98 528.26 247.69 511.70 C 250.98 505.43 262.46 484.39 282.13 448.58 C 286.32 440.96 290.30 433.94 294.07 427.51 C 299.18 418.79 304.29 409.13 309.86 399.37 C 325.82 371.40 339.05 348.24 349.56 329.91 C 354.88 320.63 360.38 311.94 366.23 301.99 C 367.16 300.40 368.21 299.11 369.38 298.12 C 370.41 297.24 371.83 297.11 372.83 297.80 C 373.71 298.41 374.43 299.13 374.99 299.97 C 375.55 300.81 375.58 301.89 375.07 302.76 C 357.30 333.03 347.56 349.58 345.87 352.42 C 336.56 368.10 326.94 384.72 316.99 402.28 C 299.70 432.81 287.95 453.62 281.72 464.71 C 266.13 492.46 252.42 517.83 240.59 540.82 C 233.80 554.01 228.51 564.15 224.72 571.22 C 223.13 574.19 221.92 576.60 221.10 578.43 C 221.00 578.65 221.17 578.91 221.42 578.89 Z M 207.97 586.18 C 207.14 586.14 206.03 586.21 204.64 586.38 C 199.05 587.07 193.67 588.28 188.48 589.99 C 180.81 592.52 173.82 596.51 167.49 601.96 C 161.42 607.19 156.73 611.99 153.40 616.38 C 150.22 620.57 147.43 624.63 145.04 628.54 C 137.66 640.61 130.92 655.81 131.99 670.26 C 132.23 673.48 133.83 675.16 136.79 675.31 C 137.10 675.32 137.41 675.28 137.71 675.17 C 144.45 672.82 149.96 667.26 154.96 662.22 C 162.01 655.11 169.18 646.45 176.48 636.25 C 187.57 620.76 198.16 604.23 208.24 586.66 C 208.36 586.45 208.21 586.19 207.97 586.18 Z"/>
-                    <path d="M 662.33 516.22 C 662.46 515.70 661.86 515.32 661.44 515.64 C 659.85 516.87 656.21 519.59 650.51 523.79 C 646.44 526.80 641.50 529.23 638.21 530.93 C 635.07 532.56 632.00 533.73 629.00 534.46 C 625.63 535.27 621.28 535.24 618.41 532.93 C 616.01 531.00 614.60 528.88 614.19 526.57 C 613.24 521.26 614.25 516.81 615.18 509.69 C 615.22 509.41 614.89 509.24 614.68 509.42 C 608.06 515.03 600.88 520.43 593.15 525.63 C 588.85 528.52 584.78 530.88 580.95 532.69 C 577.42 534.36 574.52 535.46 572.25 535.98 C 571.56 536.14 569.51 536.13 566.10 535.94 C 565.75 535.92 565.42 535.81 565.13 535.63 C 560.38 532.58 558.35 528.06 559.06 522.05 C 559.38 519.36 560.07 516.59 561.13 513.74 C 561.29 513.32 560.85 512.93 560.45 513.13 C 557.57 514.61 554.88 516.96 552.06 518.47 C 542.01 523.84 535.59 527.02 532.78 528.02 C 526.91 530.11 521.40 531.08 516.24 530.92 C 510.20 530.73 506.32 527.63 504.61 521.62 C 504.37 520.77 504.41 520.03 504.74 519.42 C 505.22 518.52 504.13 517.59 503.32 518.22 C 496.18 523.75 488.51 528.72 480.31 533.15 C 475.27 535.87 469.48 537.54 463.51 535.36 C 463.18 535.23 462.88 535.04 462.62 534.80 C 457.01 529.40 458.73 522.33 460.82 515.58 C 460.97 515.10 460.42 514.70 460.01 515.00 L 436.70 532.12 C 436.03 532.61 435.70 533.44 435.86 534.26 C 437.32 541.90 435.56 550.42 428.42 554.51 C 423.85 557.12 418.39 555.25 415.35 551.52 C 415.08 551.18 414.73 550.24 414.30 548.71 C 412.34 541.73 422.63 534.17 427.35 531.03 C 427.90 530.67 428.21 530.04 428.17 529.38 C 427.93 525.73 427.67 522.63 427.39 520.09 C 426.99 516.55 427.50 513.82 428.08 509.77 C 429.02 503.27 433.50 497.24 440.61 497.15 C 441.03 497.14 441.43 497.26 441.78 497.49 C 442.80 498.16 443.55 499.21 444.02 500.66 C 444.31 501.56 443.73 502.58 442.70 502.98 C 437.23 505.15 435.77 509.18 434.21 514.52 C 434.13 514.80 434.09 515.08 434.10 515.37 L 434.44 525.73 C 434.45 526.06 434.82 526.25 435.10 526.07 C 446.11 518.89 458.07 509.98 468.31 500.27 C 471.00 497.72 473.35 498.00 475.38 501.11 C 475.55 501.37 475.58 501.70 475.45 501.99 C 474.09 505.04 473.31 506.74 473.10 507.08 C 469.75 512.62 467.77 516.30 467.14 518.11 C 465.81 521.94 465.21 524.57 465.33 525.98 C 465.83 532.19 471.77 530.45 475.83 528.81 C 479.91 527.15 485.38 523.96 492.24 519.23 C 498.97 514.60 505.79 509.18 512.70 502.97 C 514.41 501.44 518.28 499.45 524.30 497.02 C 524.69 496.87 525.11 496.82 525.52 496.89 C 526.59 497.06 527.39 497.01 527.92 496.73 C 528.25 496.56 528.63 496.53 528.98 496.65 C 532.36 497.75 535.54 499.81 535.25 503.61 C 535.10 505.67 533.68 507.05 531.01 507.75 C 530.29 507.94 529.50 507.38 529.26 506.48 C 528.85 504.99 527.93 503.90 526.50 503.22 C 526.19 503.08 525.82 503.09 525.53 503.26 C 519.31 506.86 513.41 510.60 511.76 517.18 C 510.81 520.97 511.91 523.43 515.06 524.56 C 516.86 525.21 518.63 524.79 520.52 524.87 C 520.85 524.88 521.18 524.85 521.51 524.77 C 522.16 524.62 524.41 524.12 528.26 523.27 C 530.05 522.88 532.05 522.21 534.27 521.26 C 547.02 515.81 558.67 508.32 569.24 498.81 C 569.98 498.14 571.05 498.02 571.93 498.49 C 572.58 498.85 573.47 499.72 574.59 501.11 C 574.94 501.55 574.99 502.15 574.72 502.64 C 571.69 508.15 569.22 513.02 567.31 517.27 C 566.33 519.44 565.89 522.60 565.99 526.74 C 566.00 527.06 566.08 527.36 566.23 527.64 C 567.50 529.89 569.54 530.56 572.34 529.65 C 575.69 528.56 578.43 527.45 580.55 526.32 C 594.00 519.19 605.86 510.30 616.13 499.64 C 617.80 497.91 619.17 495.78 620.23 493.27 C 622.86 487.06 624.68 482.76 625.70 480.37 C 641.03 444.56 658.80 407.44 679.03 369.01 C 682.06 363.25 686.15 356.19 691.31 347.84 C 692.49 345.93 694.95 345.28 696.92 346.35 L 697.08 346.44 C 699.00 347.48 699.69 349.90 698.60 351.80 C 676.49 390.63 656.88 429.12 639.79 467.29 C 633.70 480.86 629.17 491.65 626.19 499.65 C 623.92 505.75 622.27 511.53 621.26 516.99 C 620.61 520.55 620.83 523.84 621.92 526.87 C 622.04 527.19 622.26 527.46 622.56 527.62 C 626.67 529.90 634.37 526.38 638.09 524.34 C 650.65 517.45 661.74 509.11 671.36 499.30 C 673.42 497.19 676.43 499.42 677.09 501.77 C 677.16 502.02 677.15 502.29 677.05 502.53 C 674.23 509.56 668.36 516.34 667.11 524.37 C 666.96 525.38 667.18 526.87 667.79 528.82 C 667.90 529.18 668.16 529.47 668.51 529.61 C 671.83 530.97 674.88 529.52 678.21 527.94 C 680.78 526.72 685.10 524.13 691.15 520.16 C 692.07 519.55 695.25 517.19 700.68 513.06 C 702.53 511.65 705.25 509.42 708.82 506.36 C 712.65 503.07 716.40 500.30 720.08 498.07 C 724.30 495.50 731.45 492.80 735.23 496.56 C 740.13 501.44 733.60 509.14 729.15 511.40 C 724.00 514.02 718.49 515.67 712.60 516.34 C 711.53 516.46 710.58 517.12 710.09 518.08 C 707.90 522.38 708.26 528.38 713.75 530.07 C 713.92 530.12 714.10 530.15 714.28 530.15 L 719.59 530.05 C 719.90 530.04 720.21 529.98 720.49 529.85 C 721.41 529.44 722.67 529.18 724.27 529.07 C 724.40 529.06 724.54 529.04 724.67 529.00 L 732.29 526.87 C 732.31 526.86 732.33 526.86 732.34 526.85 C 747.83 520.16 761.87 511.03 774.48 499.46 C 776.46 497.65 778.43 497.61 780.39 499.34 C 781.16 500.02 781.42 501.11 781.04 502.06 L 777.08 512.13 C 776.86 512.67 777.36 513.23 777.92 513.07 C 778.17 513.00 778.42 512.68 778.69 512.11 C 778.83 511.82 779.03 511.56 779.27 511.35 C 782.58 508.52 785.29 506.22 787.41 504.43 C 791.57 500.92 796.08 498.51 800.95 497.21 C 801.22 497.14 801.48 497.10 801.75 497.09 C 808.78 496.82 810.88 501.59 811.31 507.65 C 811.52 510.60 811.69 513.26 811.84 515.63 C 811.88 516.28 812.47 516.75 813.11 516.65 C 818.06 515.88 820.95 514.02 826.03 511.13 C 831.13 508.23 835.24 504.91 840.03 501.49 C 840.97 500.82 842.27 501.02 842.95 501.95 L 843.36 502.50 C 844.18 503.62 844.00 505.19 842.94 506.09 C 835.65 512.28 827.96 517.37 819.89 521.38 C 817.60 522.51 815.12 523.38 812.43 523.98 C 812.29 524.01 812.13 523.99 811.99 523.94 L 807.56 522.20 C 807.41 522.13 807.28 522.03 807.19 521.89 C 806.24 520.47 805.71 519.21 805.60 518.12 C 805.23 514.43 805.00 511.65 804.89 509.77 C 804.77 507.71 804.41 505.92 803.82 504.39 C 803.56 503.74 802.86 503.37 802.18 503.53 L 798.75 504.34 C 798.61 504.37 798.48 504.43 798.35 504.50 C 788.76 510.02 780.47 517.59 773.49 527.20 C 772.85 528.07 771.83 528.45 771.01 528.13 C 769.50 527.53 768.45 526.58 767.86 525.28 C 767.69 524.92 767.61 524.52 767.62 524.13 C 767.72 519.74 768.39 515.85 769.63 512.44 C 769.74 512.14 769.52 511.83 769.20 511.84 C 768.60 511.85 767.79 512.24 766.76 513.01 C 759.01 518.76 750.86 523.84 742.29 528.25 C 735.14 531.93 727.88 534.49 720.49 535.92 C 719.39 536.13 717.46 536.22 714.69 536.17 C 708.62 536.08 704.27 532.84 702.05 527.06 C 701.96 526.84 701.92 526.61 701.93 526.38 L 702.08 520.66 C 702.09 520.30 701.75 520.03 701.40 520.12 C 699.38 520.66 698.29 522.02 696.59 523.25 C 693.46 525.50 690.70 527.43 688.29 529.05 C 683.45 532.30 678.60 534.61 673.75 535.96 C 672.43 536.33 670.33 536.36 667.46 536.07 C 667.10 536.04 666.75 535.93 666.44 535.75 C 660.99 532.71 659.72 527.54 661.00 521.73 C 661.09 521.30 661.54 519.47 662.33 516.22 Z"/>
-                    <path d="M 716.24 509.87 C 716.07 510.06 716.26 510.36 716.51 510.28 C 719.12 509.46 721.39 508.65 723.32 507.84 C 726.38 506.56 728.86 504.44 730.77 501.49 C 731.22 500.79 730.50 499.92 729.72 500.23 C 724.67 502.24 720.18 505.46 716.24 509.87 Z"/>
-                    <path d="M 429.56 538.33 C 429.61 537.94 429.17 537.68 428.84 537.90 C 424.80 540.66 421.60 542.68 420.42 548.01 C 420.34 548.35 420.54 548.69 420.87 548.80 C 424.16 549.81 426.56 548.95 428.06 546.22 C 429.41 543.77 429.21 541.42 429.56 538.33 Z"/>
-                    <ellipse cx="0.00" cy="0.00" transform="translate(483.43,484.26) rotate(-44.7)" rx="6.24" ry="4.35"/>
-                    <ellipse cx="0.00" cy="0.00" transform="translate(582.57,484.11) rotate(-43.2)" rx="5.98" ry="4.25"/>
-                    <ellipse cx="0.00" cy="0.00" transform="translate(684.27,484.06) rotate(-41.3)" rx="6.04" ry="4.23"/>
-                    <path d="M 364.85 502.44 C 365.76 501.78 367.04 501.96 367.73 502.85 L 368.51 503.84 C 369.28 504.83 369.16 506.26 368.23 507.11 C 359.29 515.29 348.96 522.41 337.23 528.47 C 335.81 529.20 335.07 529.58 335.02 529.61 C 329.34 532.38 323.93 534.36 318.80 535.53 C 313.75 536.69 308.15 536.88 303.33 534.77 C 296.63 531.82 294.52 525.19 297.06 518.21 C 299.52 511.46 303.52 505.65 309.05 500.78 C 314.51 495.98 319.99 491.64 326.74 490.12 C 330.86 489.20 333.91 490.69 335.88 494.60 C 336.06 494.96 336.16 495.34 336.19 495.73 C 336.44 500.00 334.85 503.59 331.41 506.50 C 325.67 511.36 318.05 513.65 310.68 515.22 C 310.30 515.31 309.90 515.33 309.51 515.29 C 307.96 515.15 306.93 515.37 306.44 515.94 C 303.95 518.86 302.96 522.05 303.48 525.50 C 304.15 530.02 309.66 530.33 313.54 529.74 C 319.75 528.81 326.07 526.89 332.50 523.98 C 342.47 519.47 351.18 514.02 358.64 507.63 C 362.21 504.56 364.28 502.83 364.85 502.44 Z M 312.70 508.37 C 315.61 507.84 318.62 506.78 321.73 505.20 C 324.83 503.63 327.29 501.30 329.10 498.21 C 329.50 497.53 328.90 496.69 328.13 496.85 C 325.19 497.44 322.54 498.73 320.17 500.71 C 317.54 502.91 314.99 505.35 312.52 508.04 C 312.39 508.18 312.51 508.40 312.70 508.37 Z"/>
-                </svg>
-            </div>
-            <div class="text-xs font-semibold text-[#707070] uppercase tracking-[0.2em] font-sans">Report Investitori 2025</div>
+<body>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-name">Le Sicilien</div>
+          <div class="brand-badge"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Report Investitori 2025</div>
         </div>
-    </header>
-
-    <main class="max-w-6xl mx-auto mt-16 px-6 lg:px-8 pb-12">
-
-        <!-- Intro Section -->
-        <div class="text-center mb-24 mt-12">
-            <span class="text-[#BFA05A] uppercase tracking-[0.16em] text-xs font-bold block mb-4">Analisi Strategica</span>
-            <h1 class="text-4xl md:text-5xl font-medium mb-6 text-[#181818] leading-tight">Performance <span class="italic font-serif text-[#BFA05A]">&</span><br> Yield Management</h1>
-            <p class="text-lg max-w-2xl mx-auto font-light">
-                Dati reali estratti dalle gestioni attuali. Dimostrazione di capacità di vendita <strong class="text-[#181818] font-medium">High-Ticket</strong> e <strong class="text-[#181818] font-medium">Destagionalizzazione</strong>.
-            </p>
+        <div class="topbar-right">
+          <a class="btn" href="/" title="Torna alla home">Home</a>
+          <a class="btn gold" href="https://wa.me/393888005083?text=Ciao%2C%20vorrei%20una%20valutazione%20per%20la%20mia%20propriet%C3%A0." target="_blank" rel="noopener">
+            Richiedi analisi <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <!-- CASE STUDY 1: VILLA EXCLUSIVE -->
-        <section class="mb-24">
-            <div class="flex items-end mb-10 gap-6">
-                <div class="w-px h-16 bg-[#BFA05A]"></div>
-                <div>
-                    <span class="text-xs text-[#BFA05A] uppercase tracking-widest font-bold">Case Study 1</span>
-                    <h2 class="text-3xl text-[#181818] mt-2">Villa Exclusive</h2>
-                    <p class="text-sm mt-1">Strategia: Massimizzazione Tariffaria (High Season)</p>
-                </div>
-            </div>
+  <main>
+    <div class="container">
+      <div class="hero" style="text-align:center;">
+        <div class="uppercase gold-text">Dati reali · Yield management · Selezione ospiti</div>
+        <h1>Performance &amp; Destagionalizzazione</h1>
+        <p>
+          Estratto operativo con incassi reali e recensioni <strong class="gold-text">10/10</strong>.
+          Obiettivo: mostrare capacità di posizionamento, pricing e controllo della domanda nel segmento premium.
+        </p>
+        <div class="meta" aria-label="Sintesi report">
+          <span><i class="fa-solid fa-circle-check gold-text" aria-hidden="true"></i> KPI verificabili</span>
+          <span><i class="fa-solid fa-shield-heart gold-text" aria-hidden="true"></i> Brand protection</span>
+          <span><i class="fa-solid fa-calendar-check gold-text" aria-hidden="true"></i> Planning &amp; operations</span>
+        </div>
+        <div class="divider"></div>
+      </div>
+    </div>
 
-            <!-- KPI Cards Villa -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="card p-8">
-                    <div class="text-[0.65rem] text-[#707070] uppercase tracking-widest font-bold mb-3">Ticket Medio / Prenotazione</div>
-                    <div class="text-4xl text-[#181818] brand-font">€ 5.586</div>
-                    <div class="text-xs text-[#BFA05A] mt-4 flex items-center font-bold uppercase tracking-wider">
-                        <i class="fas fa-arrow-up mr-2"></i> Cash flow immediato
-                    </div>
-                </div>
-                <div class="card p-8">
-                    <div class="text-[0.65rem] text-[#707070] uppercase tracking-widest font-bold mb-3">ADR (Prezzo Medio Notte)</div>
-                    <div class="text-4xl text-[#181818] brand-font">€ 710+</div>
-                    <div class="text-xs text-[#707070] mt-4 font-light">Picchi oltre €800/notte</div>
-                </div>
-                <div class="card p-8">
-                    <div class="text-[0.65rem] text-[#707070] uppercase tracking-widest font-bold mb-3">Finestra Prenotazione</div>
-                    <div class="text-4xl text-[#181818] brand-font">4 Mesi</div>
-                    <div class="text-xs text-[#707070] mt-4 font-light">Sicurezza finanziaria anticipata</div>
-                </div>
-            </div>
-
-            <!-- Data Table Villa -->
-            <div class="card overflow-hidden">
-                <div class="px-8 py-6 border-b border-[#f0f0f0] bg-white">
-                    <h3 class="text-lg text-[#181818]">Log Prenotazioni Reali <span class="text-[#707070] font-sans font-light text-sm ml-2">(Estratto 2025)</span></h3>
-                </div>
-                <table class="min-w-full divide-y divide-[#f0f0f0]">
-                    <thead class="bg-[#FAF9F6]">
-                        <tr>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Ospite</th>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Periodo</th>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Notti</th>
-                            <th class="px-8 py-5 text-right text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Totale Lordo</th>
-                            <th class="px-8 py-5 text-right text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">ADR</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-[#f0f0f0]">
-                        <tr class="hover:bg-[#FAF9F6] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Eden Filho</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Luglio '25</td>
-                            <td class="px-8 py-6 whitespace-nowrap"><span class="px-3 py-1 text-[0.65rem] font-bold border border-[#e0e0e0] text-[#707070] rounded-full uppercase tracking-wider">10 Notti</span></td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 6.150,00</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right text-sm text-[#707070]">€ 615,00</td>
-                        </tr>
-                        <tr class="bg-[#FAF9F6] hover:bg-[#F5F2EA] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Benjamin A.</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Luglio '25</td>
-                            <td class="px-8 py-6 whitespace-nowrap"><span class="px-3 py-1 text-[0.65rem] font-bold bg-[#BFA05A] text-white rounded-full uppercase tracking-wider">7 Notti</span></td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 5.700,00</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right text-sm font-bold text-[#BFA05A]">€ 814,00</td>
-                        </tr>
-                        <tr class="hover:bg-[#FAF9F6] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Paolo Foresta</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Agosto '25</td>
-                            <td class="px-8 py-6 whitespace-nowrap"><span class="px-3 py-1 text-[0.65rem] font-bold border border-[#e0e0e0] text-[#707070] rounded-full uppercase tracking-wider">7 Notti</span></td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 4.910,00</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right text-sm text-[#707070]">€ 701,00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- DIVIDER -->
-        <div class="flex justify-center my-20 opacity-40">
-            <span class="text-[#BFA05A] text-xl brand-font">✦</span>
+    <!-- Case Study 1 -->
+    <section aria-labelledby="cs1">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-bar"></div>
+          <div class="section-title">
+            <h2 id="cs1">Case Study 1 — Villa Exclusive</h2>
+            <p>Strategia: massimizzazione tariffaria in alta stagione (segmento high-ticket).</p>
+          </div>
         </div>
 
-        <!-- CASE STUDY 2: LUXURY APARTMENTS -->
-        <section class="mb-24">
-            <div class="flex items-end mb-10 gap-6">
-                <div class="w-px h-16 bg-[#181818]"></div>
-                <div>
-                    <span class="text-xs text-[#181818] uppercase tracking-widest font-bold">Case Study 2</span>
-                    <h2 class="text-3xl text-[#181818] mt-2">Appartamenti Deluxe</h2>
-                    <p class="text-sm mt-1">Strategia: Destagionalizzazione & Yield Costante</p>
-                </div>
-            </div>
-
-            <!-- Focus Box -->
-            <div class="bg-[#111111] text-white rounded-[22px] p-10 mb-12 shadow-2xl relative overflow-hidden border border-white/10">
-                <div class="absolute top-0 right-0 -mt-6 -mr-6 text-[#BFA05A] opacity-[0.03] text-9xl brand-font">€</div>
-                <div class="flex items-start relative z-10">
-                    <div class="text-[#BFA05A] mr-8 mt-1">
-                        <i class="fas fa-chart-line text-4xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-[#BFA05A] mb-4 tracking-wide font-sans uppercase text-sm">Il "Miracolo" di Ottobre</h4>
-                        <p class="text-gray-400 font-light leading-relaxed max-w-3xl text-lg">
-                            Mentre il mercato locale soffre un calo del 40-50% delle tariffe post-estate, gli appartamenti gestiti da 
-                            <strong class="text-white font-medium">Le Sicilien</strong> mantengono un ADR medio di <strong class="text-white font-medium">€390/notte</strong> anche in pieno autunno.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Data Table Apartments -->
-            <div class="card overflow-hidden">
-                <div class="px-8 py-6 border-b border-[#f0f0f0] bg-white flex justify-between items-center">
-                    <h3 class="text-lg text-[#181818]">Performance Bassa Stagione <span class="text-[#707070] font-sans font-light text-sm ml-2">(Set/Ott/Apr)</span></h3>
-                    <span class="text-[0.65rem] uppercase tracking-widest border border-[#e0e0e0] text-[#707070] px-3 py-1 rounded-full font-bold">Target: Business & Coppie</span>
-                </div>
-                <table class="min-w-full divide-y divide-[#f0f0f0]">
-                    <thead class="bg-[#FAF9F6]">
-                        <tr>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Ospite</th>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Mese</th>
-                            <th class="px-8 py-5 text-left text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Soggiorno</th>
-                            <th class="px-8 py-5 text-right text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Totale</th>
-                            <th class="px-8 py-5 text-right text-[0.65rem] font-bold text-[#707070] uppercase tracking-widest">Vs Mercato</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-[#f0f0f0]">
-                        <tr class="bg-[#FAF9F6] hover:bg-[#F5F2EA] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Joanne H.</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Settembre</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-sm text-[#707070]">4 Notti</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 1.790,60</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right">
-                                <span class="text-sm font-bold text-[#BFA05A]">€ 447/notte</span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#FAF9F6] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Niki Yena</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Ottobre</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-sm text-[#707070]">4 Notti</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 1.526,52</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right">
-                                <span class="text-sm font-medium text-[#181818]">€ 381/notte</span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#FAF9F6] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Richard Sloan</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Ottobre (Late)</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-sm text-[#707070]">4 Notti</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 1.415,04</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right">
-                                <span class="text-sm font-medium text-[#181818]">€ 353/notte</span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#FAF9F6] transition-colors">
-                            <td class="px-8 py-6 whitespace-nowrap font-medium text-[#181818]">Nuzhat Dunn</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-[#707070] font-light text-sm">Aprile</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-sm text-[#707070]">6 Notti</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right font-bold text-[#181818]">€ 1.582,64</td>
-                            <td class="px-8 py-6 whitespace-nowrap text-right">
-                                <span class="text-sm font-medium text-[#707070] bg-[#f0f0f0] px-2 py-1 rounded">€ 263/notte</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- REVIEWS SECTION -->
-        <section class="mt-24 mb-24 border-t border-[#e0e0e0] pt-20">
-            <div class="flex items-center mb-6 justify-center space-x-3 text-[#BFA05A]">
-                <i class="fas fa-star text-lg"></i>
-                <i class="fas fa-star text-lg"></i>
-                <i class="fas fa-star text-lg"></i>
-                <i class="fas fa-star text-lg"></i>
-                <i class="fas fa-star text-lg"></i>
-            </div>
-            <h2 class="text-3xl md:text-4xl text-[#181818] text-center mb-3 tracking-wide">Eccellenza Riconosciuta</h2>
-            <p class="text-center text-[#707070] font-light uppercase tracking-widest text-[0.65rem] mb-16">Guest Satisfaction (Solo punteggi 10/10)</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Review 1: Giampaolo -->
-                <div class="card p-10 relative">
-                    <div class="absolute top-0 right-0 bg-[#BFA05A] text-white text-[0.6rem] font-bold uppercase tracking-widest px-4 py-2 rounded-bl-[16px] rounded-tr-[16px]">10/10 Score</div>
-                    <div class="text-[#e0e0e0] mb-6"><i class="fas fa-quote-left text-5xl"></i></div>
-                    <h4 class="text-xl font-bold text-[#181818] mb-4">"Soggiorno fantastico"</h4>
-                    <p class="text-[#707070] font-light italic mb-8 leading-relaxed text-sm">
-                        "Ho passato un soggiorno fantastico a Moncada De Luna. La casa è comoda, luminosa e molto silenziosa... Gabriele è stato un host fantastico, ed è stato sempre disponibile. Non potevo chiedere di meglio."
-                    </p>
-                    <div class="flex items-center border-t border-[#f0f0f0] pt-6">
-                        <div class="w-12 h-12 rounded-full bg-[#111111] text-[#BFA05A] flex items-center justify-center font-serif text-xl mr-4 border border-[#BFA05A]">G</div>
-                        <div>
-                            <div class="text-sm font-bold text-[#181818] uppercase tracking-wide">Giampaolo</div>
-                            <div class="text-[0.65rem] text-[#707070] font-light uppercase tracking-wider">Dicembre 2024</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Review 2: Richard -->
-                <div class="card p-10 relative">
-                    <div class="absolute top-0 right-0 bg-[#BFA05A] text-white text-[0.6rem] font-bold uppercase tracking-widest px-4 py-2 rounded-bl-[16px] rounded-tr-[16px]">10/10 Score</div>
-                    <div class="text-[#e0e0e0] mb-6"><i class="fas fa-quote-left text-5xl"></i></div>
-                    <h4 class="text-xl font-bold text-[#181818] mb-4">"Home away from home"</h4>
-                    <p class="text-[#707070] font-light italic mb-8 leading-relaxed text-sm">
-                        "It was like a home away from home. Great location. I’m really happy to hear that you felt at home, that’s exactly what I hope every guest experiences here."
-                    </p>
-                    <div class="flex items-center border-t border-[#f0f0f0] pt-6">
-                        <div class="w-12 h-12 rounded-full bg-[#111111] text-[#BFA05A] flex items-center justify-center font-serif text-xl mr-4 border border-[#BFA05A]">R</div>
-                        <div>
-                            <div class="text-sm font-bold text-[#181818] uppercase tracking-wide">Richard</div>
-                            <div class="text-[0.65rem] text-[#707070] font-light uppercase tracking-wider">Ottobre 2025</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                 <span class="inline-flex items-center px-6 py-3 rounded-full text-[0.65rem] font-bold uppercase tracking-widest bg-[#181818] text-[#BFA05A] border border-[#BFA05A]/30 shadow-lg">
-                    <i class="fas fa-medal mr-3"></i> Superhost Status
-                 </span>
-            </div>
-        </section>
-
-        <!-- CTA / Footer -->
-        <div class="mt-20 bg-[#111111] rounded-[22px] p-16 text-center relative overflow-hidden shadow-2xl">
-            <!-- decorative gradient line -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#BFA05A] to-transparent opacity-50"></div>
-            
-            <h3 class="text-3xl font-medium text-white mb-6 brand-font">Il tuo immobile vale di più.</h3>
-            <p class="text-[#999] mb-10 font-light max-w-xl mx-auto leading-relaxed">
-                Non lasciare che la tua proprietà sia gestita "a caso". Passa al Revenue Management professionale.
-            </p>
-            <button class="btn-gold shadow-lg hover:shadow-[#BFA05A]/40">
-                Richiedi Analisi Gratuita
-            </button>
+        <div class="kpi-grid" role="list">
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">Ticket medio / prenotazione</div>
+            <div class="kpi-value">€ 5.586,67</div>
+            <div class="kpi-note"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Cash flow immediato e prevedibilità</div>
+          </div>
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">ADR medio (luglio–agosto)</div>
+            <div class="kpi-value">€ 698,33</div>
+            <div class="kpi-note"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i> Picchi oltre € 814,29/notte</div>
+          </div>
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">Lead time (esempio)</div>
+            <div class="kpi-value">~4 mesi</div>
+            <div class="kpi-note"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Prenotazione 13/03 → check-in 20/07</div>
+          </div>
         </div>
 
-    </main>
+        <div class="card" aria-label="Log prenotazioni villa">
+          <div class="card-head">
+            <h3>Log prenotazioni reali (estratto)</h3>
+            <div class="card-pill">Villa · Alta stagione</div>
+          </div>
+          <div style="overflow:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ospite</th>
+                  <th>Periodo</th>
+                  <th>Notti</th>
+                  <th class="right">Totale lordo</th>
+                  <th class="right">ADR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Eden Filho</strong></td>
+                  <td>Luglio '25</td>
+                  <td><span class="badge"><strong>10</strong> notti</span></td>
+                  <td class="right"><strong>€ 6.150,00</strong></td>
+                  <td class="right">€ 615,00/notte</td>
+                </tr>
+                <tr class="highlight">
+                  <td><strong>Benjamin Angeli</strong></td>
+                  <td>Luglio '25</td>
+                  <td><span class="badge"><strong>7</strong> notti</span></td>
+                  <td class="right"><strong>€ 5.700,00</strong></td>
+                  <td class="right"><strong class="gold-text">€ 814,29/notte</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Paolo Foresta</strong></td>
+                  <td>Agosto '25</td>
+                  <td><span class="badge"><strong>7</strong> notti</span></td>
+                  <td class="right"><strong>€ 4.910,00</strong></td>
+                  <td class="right">€ 701,43/notte</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="footnote">* Estratto da registri di gestione interna (valori lordi).</div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Case Study 2 -->
+    <section aria-labelledby="cs2" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-bar" style="background:#111;"></div>
+          <div class="section-title">
+            <h2 id="cs2">Case Study 2 — Appartamenti Deluxe</h2>
+            <p>Strategia: ADR sostenuto in bassa stagione (coppie, business, long weekend).</p>
+          </div>
+        </div>
+
+        <div class="kpi-grid" role="list">
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">ADR medio (ottobre)</div>
+            <div class="kpi-value">€ 365,78</div>
+            <div class="kpi-note"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Mercato in calo, pricing difeso</div>
+          </div>
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">Ticket tipico (4 notti)</div>
+            <div class="kpi-value">€ 1.463,11</div>
+            <div class="kpi-note"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Target: city break premium</div>
+          </div>
+          <div class="kpi-card" role="listitem">
+            <div class="kpi-label">Lead time (esempio)</div>
+            <div class="kpi-value">6 settimane</div>
+            <div class="kpi-note"><i class="fa-solid fa-clock" aria-hidden="true"></i> Prenotazione 26/02 → check-in 09/04</div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Performance bassa stagione appartamenti">
+          <div class="card-head">
+            <h3>Performance bassa stagione (set–ott–apr)</h3>
+            <div class="card-pill">Appartamenti · Destagionalizzazione</div>
+          </div>
+          <div style="overflow:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ospite</th>
+                  <th>Mese</th>
+                  <th>Soggiorno</th>
+                  <th class="right">Totale</th>
+                  <th class="right">ADR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight">
+                  <td><strong>Joanne H.</strong></td>
+                  <td>Settembre</td>
+                  <td>4 notti</td>
+                  <td class="right"><strong>€ 1.790,60</strong></td>
+                  <td class="right"><span class="badge"><strong>€ 447,65</strong>/notte</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Niki Yena</strong></td>
+                  <td>Ottobre</td>
+                  <td>4 notti</td>
+                  <td class="right"><strong>€ 1.526,52</strong></td>
+                  <td class="right"><span class="badge"><strong>€ 381,63</strong>/notte</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Richard Sloan</strong></td>
+                  <td>Ottobre (late)</td>
+                  <td>4 notti</td>
+                  <td class="right"><strong>€ 1.415,04</strong></td>
+                  <td class="right"><span class="badge"><strong>€ 353,76</strong>/notte</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Katrien Delameilliure</strong></td>
+                  <td>Ottobre / Novembre</td>
+                  <td>4 notti</td>
+                  <td class="right"><strong>€ 1.447,76</strong></td>
+                  <td class="right"><span class="badge"><strong>€ 361,94</strong>/notte</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Nuzhat Dunn</strong></td>
+                  <td>Aprile</td>
+                  <td>6 notti</td>
+                  <td class="right"><strong>€ 1.582,64</strong></td>
+                  <td class="right"><span class="badge"><strong>€ 263,77</strong>/notte</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="footnote">* Estratto da registri di gestione interna (valori lordi).</div>
+        </div>
+
+        <div class="cta" role="region" aria-label="Call to action">
+          <h3>Il tuo immobile sta performando così?</h3>
+          <p>Non sono proiezioni: sono dati operativi. Se vuoi una valutazione sul tuo asset, parliamone.</p>
+          <div style="margin-top: 8px;">
+            <a class="btn gold" href="https://wa.me/393888005083?text=Ciao%2C%20vorrei%20una%20valutazione%20gratuita%20del%20mio%20immobile." target="_blank" rel="noopener">
+              Richiedi analisi gratuita <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section aria-labelledby="rev" style="padding-top: 22px;">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-bar"></div>
+          <div class="section-title">
+            <h2 id="rev">Recensioni delle Strutture</h2>
+          </div>
+        </div>
+
+        <div class="reviews-wrap">
+          
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">G</div>
+            <div class="reviewer">
+                <div class="reviewer-name">GIAMPAOLO</div>
+                <div class="reviewer-meta">2024-12-24</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">Soggiorno fantastico</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>Ho passato un soggiorno fantastico a Moncada De Luna. La casa è comoda, luminosa e molto silenziosa. Un appartamento spazioso e dotato di tutte le comodità, arredato con molta  cura e gusto, con una cucina ampia e bene attrezzata.
+Il palazzo è bellissimo, con un servizio di portineria molto utile.  La posizione è ideale,  in pieno centro storico a pochi passi dalle maggiori attrazioni della città, vicino a tutto, ma senza il rumore della città.
+La camera era perfetta, ampia e pulita, con un comodo bagno dotato di  vasca idromassaggio, l’ideale per rilassarmi dopo una giornata in giro per Palermo. 
+Gabriele è stato un host fantastico,  ed è stato sempre disponibile. Non potevo chiedere di meglio   
+Lo consiglio vivamente a chiunque voglia soggiornare a Palermo!
+Tornerò sicuramente!</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you so much for your amazing review! I’m truly delighted to hear that you enjoyed every aspect of your stay, from the comfort and design of the apartment, to the relaxing bathroom with the Jacuzzi, and the beauty of the historic Moncada building.
+It was a genuine pleasure hosting you and assisting with anything you needed. Your kind words mean a lot, and I would be honored to welcome you back anytime you return to Palermo.
+Thank you again for recommending Moncada De Luna Exclusive Stay, we look forward to your next visit!
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">M</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Mykyta</div>
+                <div class="reviewer-meta">2025-01-04</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">Brilliant experience!</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>Apartment is located in an excellent luxury house, with good furniture and all facilities. Located in a historic city center, near all major attractions. Plenty of restaurants are nearby, 10 minutes away from the harbor. 
+The owner immediately answered to all our additional requests. Many thanks! We’ve enjoyed greatly our stay.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you so much for your wonderful review! I’m thrilled to hear that you enjoyed the apartment, its luxurious comfort, and the central location, with so many attractions and restaurants nearby.
+It was a pleasure to assist you with any requests, and I’m delighted that your stay was enjoyable and memorable. Your kind words truly mean a lot, and I would be honored to welcome you back to Moncada De Luna Exclusive Stay whenever you return to Palermo.
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">R</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Robert</div>
+                <div class="reviewer-meta">2025-01-28</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">Perfect stay in Palermo</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>Perfect location, well equipped luxury large apt., owner Gabriele was very helpful with any queries.
+Fully recommended for peacefull and comfortable stay in Palermo.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you very much for your wonderful review! I’m delighted to hear that you enjoyed the luxury and spaciousness of the apartment, as well as its full amenities and central location. It was a pleasure to assist you and ensure your stay in Palermo was both comfortable and memorable.
+We take great pride in offering an exclusive experience in the heart of the city, and your recommendation means a lot. I would be honored to welcome you back to Moncada De Luna Exclusive Stay anytime you return to Palermo.
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">L</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Levan</div>
+                <div class="reviewer-meta">2025-02-26</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">Exellent place and owner</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>One of the nice, cleane and most comfortable apartments we have ever stayed in Italy. The owner, Gabrielle, speaks excellent English, which helped us to finding out a lot about the local area. The apartments are located in the historic center of Palermo, in a rare Moncada building, inside everything is perfectly arranged, it is a very cozy, comfortable and convenient place. if you are looking to experience true Sicily, than this is best choose. If we return to this city again, we will definitely order these apartments again.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you so much for your wonderful review! I’m thrilled to hear that you enjoyed the apartment, its comfort, and the charm of the historic Moncada building. It was a real pleasure sharing a bit of Palermo and Sicily with you.
+Your kind words truly mean a lot, and I would be delighted to welcome you back anytime you return to our beautiful city.
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">P</div>
+            <div class="reviewer">
+                <div class="reviewer-name">PETROS</div>
+                <div class="reviewer-meta">2025-03-17</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title"></div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>The apartment is located in the heart of the historic centre of Palermo and all points of interest are really very near by walk. Gabriele was very frienfly and very helpful.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you very much for your kind words! I’m delighted to hear that you enjoyed our central location and felt well welcomed during your stay.
+I also appreciate your note regarding breakfast. We currently offer a light Italian-style breakfast, but your feedback is very valuable and will help us consider ways to enhance the experience for future guests.
+It was a pleasure hosting you, and I hope to welcome you back to Moncada De Luna Exclusive Stay soon!
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">L</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Lukáš</div>
+                <div class="reviewer-meta">2025-06-22</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title"></div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p></p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 7,5</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 7,5</span></div>
+                
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">J</div>
+            <div class="reviewer">
+                <div class="reviewer-name">John</div>
+                <div class="reviewer-meta">2025-07-11</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title"></div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p></p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">C</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Christian</div>
+                <div class="reviewer-meta">2025-09-17</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title"></div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p></p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">NY</div>
+            <div class="reviewer">
+                <div class="reviewer-name">Niki Yena</div>
+                <div class="reviewer-meta">2025-10-12</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">It’s a fabulous place in a fabulous location</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>Our host, Gabrielle was a lovely young man who met us and let us in.  He spend time to explain the area, apartment, safety etc.  the building is exquisite - an old palazzo that has been converted to apartments.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you so much for your wonderful review! It was a real pleasure welcoming you and sharing a few tips about Palermo and the apartment. I’m very happy to hear that you appreciated both the charm of our historic building and your overall stay.
+Regarding your note about the photo, the image on Booking actually shows the main façade of the building, which faces Via Roma. The entrance you used is part of the same historical palazzo, which has multiple access points but is one single property. I understand how this could have caused some confusion, and I’ll make sure to clarify it better in the listing description for future guests.
+Thank you again for choosing Moncada De Luna Exclusive Stay. I hope to welcome you back soon!
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">N</div>
+            <div class="reviewer">
+                <div class="reviewer-name"></div>
+                <div class="reviewer-meta">2025-10-14</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">We look forward to staying again next year.</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>The property was exceptional! We loved the location and the beautiful 2-bedroom apartment! Gabriel was wonderful host.</p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 10,0</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">Thank you so much for your wonderful words! It truly means a lot to know that you loved both the apartment and its location. It was a real pleasure meeting you and having you as my guests.  I’m so glad your stay was exactly what you were hoping for.
+You’re always welcome back anytime you return to Palermo!
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+
+    <article class="review-card">
+        <div class="review-left">
+            <div class="avatar" aria-hidden="true">R</div>
+            <div class="reviewer">
+                <div class="reviewer-name">richard</div>
+                <div class="reviewer-meta">2025-10-21</div>
+            </div>
+        </div>
+        <div class="review-right">
+            <div class="review-top">
+                <div class="review-title">It was like a home away from home</div>
+                <div class="score-badge" aria-label="Punteggio 10">10</div>
+            </div>
+            <div class="review-body">
+                <div class="review-positive">
+                    <span class="label">Piaciuto</span>
+                    <p>Great location </p>
+                </div>
+                <div class="subratings"><span><strong>Staff:</strong> 10,0</span><span><strong>Pulizia:</strong> 10,0</span><span><strong>Posizione:</strong> 10,0</span><span><strong>Servizi:</strong> 10,0</span><span><strong>Comfort:</strong> 10,0</span><span><strong>Rapporto qualità/prezzo:</strong> 7,5</span></div>
+                
+        <div class="host-reply">
+            <div class="host-reply-label">Risposta della struttura</div>
+            <div class="host-reply-text">I’m really happy to hear that you felt at home, that’s exactly what I hope every guest experiences here. Thank you so much for your kind words and for choosing Moncada De Luna Exclusive Stay.
+You’ll always have a home waiting for you here in Palermo!
+Warm regards,
+Gabriele</div>
+        </div>
+            </div>
+        </div>
+    </article>
+    
+        </div>
+
+        <div class="footnote" style="margin-top: 14px; border-radius: 14px;">
+          
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top: 0;">
+      <div class="container" style="padding-bottom: 64px;">
+        <div style="display:flex; justify-content:center; gap: 12px; flex-wrap:wrap;">
+          <a class="btn" href="/" title="Torna alla home">Torna al sito</a>
+          <a class="btn gold" href="mailto:lesicilienhouses@gmail.com?subject=Richiesta%20analisi%20immobile%20-%20Le%20Sicilien" title="Email">
+            Invia email <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </body>
 </html>
