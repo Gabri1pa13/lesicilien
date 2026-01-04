@@ -1331,18 +1331,15 @@
 
                 <!-- Footer Links modificati -->
                 <div class="footer-links" aria-label="Canali social">
-                    <a href="https://www.instagram.com/le_sicilien.it/" target="_blank" rel="noopener">
-                        Instagram
-                    </a>
+                    <a href="https://www.instagram.com/le_sicilien.it/" target="_blank" rel="noopener">Instagram</a>
 
                     <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
-                       target="_blank" rel="noopener">
-                        WhatsApp
-                    </a>
+                       target="_blank" rel="noopener">WhatsApp</a>
 
-                    <a href="mailto:lesicilienhouses@gmail.com">
-                        Email
-                    </a>
+                    <a href="mailto:lesicilienhouses@gmail.com">Email</a>
+
+                    <!-- Tiny almost invisible link to review.html -->
+                    <a class="footer-review-link" href="./review.html" aria-label="Apri pagina recensioni">·</a>
                 </div>
             </div>
         </section>
@@ -1523,6 +1520,26 @@
         color: #111111;
         transform: translateY(-2px);
     }
+
+    /* --- tiny hidden link to review.html --- */
+    .footer-review-link{
+        font-size: 11px;
+        opacity: 0.18;
+        text-decoration: none;
+        margin-left: 10px;
+        letter-spacing: 0.2px;
+        transition: opacity 0.15s ease;
+        line-height: 1;
+    }
+    .footer-review-link:hover,
+    .footer-review-link:focus{
+        opacity: 0.55;
+        text-decoration: underline;
+    }
+    @media (max-width: 480px){
+        .footer-review-link{ opacity: 0.14; font-size: 10.5px; }
+    }  
+    
     </style>
 
 </body>
