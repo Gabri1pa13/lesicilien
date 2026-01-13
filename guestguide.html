@@ -31,7 +31,7 @@
 
       --gold: #bfa05a; /* Gold for highlights */
       --danger: #d46a6a; /* For important warnings */
-      
+
       --radius-1: 14px;
       --radius-2: 18px;
       --radius-3: 22px;
@@ -40,13 +40,13 @@
       --ease: cubic-bezier(0.25, 1, 0.5, 1);
       --t-fast: 180ms var(--ease);
       --t-mid: 320ms var(--ease);
-      
+
       --maxw: 820px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: var(--bg); }
-    
+
     body {
       margin: 0;
       color: var(--text);
@@ -57,12 +57,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Poppins, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      padding-bottom: 80px; /* Space for footer/fab */
+      padding-bottom: 80px;
     }
 
     a { color: inherit; text-decoration: none; }
     button, input { font-family: inherit; }
-    
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
 
     .container {
@@ -70,10 +69,6 @@
       margin: 0 auto;
       padding: 14px 16px 34px;
     }
-
-    /* ==========================================================
-       Top Bar (sticky)
-       ========================================================== */
 
     .topbar {
       position: sticky;
@@ -100,7 +95,6 @@
 
     .topbar-row { display: grid; gap: 10px; align-items: center; }
 
-    /* Language Switcher */
     .langbar {
       display: inline-flex; justify-content: center; gap: 8px; padding: 8px 10px;
       border: 1px solid var(--border); border-radius: var(--radius-pill);
@@ -115,10 +109,9 @@
     .langbtn:hover { background: var(--accent-4); color: var(--text); }
     .langbtn.active { background: var(--accent); color: #ffffff; }
 
-    /* Search + Pills */
     .search-wrap { display: grid; gap: 10px; margin-top: 4px; }
     .search { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
-    
+
     .search input {
       width: 100%; padding: 14px 14px 14px 44px;
       border-radius: var(--radius-2); border: 1px solid var(--border);
@@ -147,10 +140,6 @@
     }
     .pill:hover { transform: translateY(-1px); color: var(--text); background: #fff; }
     .pill.active { background: var(--accent); border-color: var(--accent); color: #ffffff; }
-
-    /* ==========================================================
-       Sections & Cards
-       ========================================================== */
 
     .section { margin-top: 16px; }
     .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin: 14px 2px 10px; }
@@ -189,10 +178,6 @@
     .icon { width: 18px; height: 18px; opacity: 0.80; }
     .fav.active { background: rgba(191, 160, 90, 0.14); border-color: rgba(191, 160, 90, 0.42); }
 
-    /* ==========================================================
-       Modal
-       ========================================================== */
-
     .modal-overlay {
       position: fixed; inset: 0; z-index: 200;
       background: rgba(18, 18, 18, 0.54);
@@ -218,7 +203,7 @@
 
     .modal-topline { display: flex; justify-content: space-between; align-items: center; }
     .modal-kicker { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-    
+
     .modal-close {
       width: 40px; height: 40px; border-radius: 999px;
       border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
@@ -227,10 +212,10 @@
     .modal-close:hover { transform: translateY(-1px); background: #fff; }
 
     .modal-title { margin: 10px 0 0; font-size: 16px; letter-spacing: 0.01em; font-weight: 560; line-height: 1.2; }
-    
+
     .modal-body { padding: 14px 16px 18px; overflow-y: auto; }
     .modal-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
-    
+
     .modal-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; flex-shrink: 0; }
 
     .btn-primary {
@@ -260,9 +245,8 @@
     .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; }
     .meta-value { font-size: 12px; color: var(--text); line-height: 1.35; font-weight: 520; word-break: break-word; }
 
-    /* --- SPECIFIC STYLES FOR WASTE SCHEDULE --- */
     .waste-schedule {
-      display: grid; gap: 0; 
+      display: grid; gap: 0;
       border: 1px solid var(--border); border-radius: var(--radius-2);
       background: #fafafa; overflow: hidden; margin-top: 10px;
     }
@@ -276,17 +260,13 @@
     .waste-type { text-align: right; color: var(--muted); width: 70%; line-height: 1.3; }
     .waste-row.highlight { background: rgba(191, 160, 90, 0.08); }
     .waste-row.highlight .waste-type { color: var(--gold); font-weight: 600; }
-    
+
     .waste-warning {
       background: rgba(212, 106, 106, 0.10); border: 1px solid rgba(212, 106, 106, 0.20);
       color: #b94a48; padding: 12px; border-radius: var(--radius-2);
       font-size: 12px; line-height: 1.5; margin-bottom: 12px;
       display: flex; gap: 8px; align-items: start;
     }
-    
-    /* ==========================================================
-       Floating Buttons
-       ========================================================== */
 
     .floatbar {
       position: fixed; right: 16px; bottom: 16px; z-index: 120;
@@ -314,7 +294,6 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(-6px); }
 
-    /* Desktop */
     @media (min-width: 740px) {
       .topbar-inner { padding: 22px 18px 16px; gap: 14px; }
       .brand-title { font-size: 18px; }
@@ -409,8 +388,8 @@
           <div class="modal-meta" id="modalMeta"></div>
         </div>
         <div class="modal-actions">
-          <button class="btn-primary" id="modalPrimary" type="button">Open</button>
-          <button class="btn-secondary" id="modalSecondary" type="button">Copy link</button>
+          <button class="btn-primary" id="modalPrimary" type="button">Call</button>
+          <button class="btn-secondary" id="modalSecondary" type="button" style="display:none;">Copy link</button>
         </div>
       </div>
     </div>
@@ -422,6 +401,7 @@
        ========================================================== */
 
     const WHATSAPP_NUMBER = "393888005083";
+    const PRIVATE_NFC_PHONE = "+39 329 212 9335";
 
     const categories = [
       { key: "essentials",    icon: "✨" },
@@ -433,7 +413,7 @@
       { key: "supermarkets",  icon: "🛒" },
       { key: "pharmacies",    icon: "💊" },
       { key: "parking",       icon: "🚗" },
-      { key: "transport",     icon: "🚕" }
+      { key: "transport",     icon: "📞" }
     ];
 
     const i18n = {
@@ -466,7 +446,7 @@
           exclusive: "Exclusive services",
           essentials: "Essentials for your stay"
         },
-        typePlace: "Place",
+        typePlace: "Service",
         typeConcierge: "Concierge",
         typeInfo: "Info",
         modal: {
@@ -478,7 +458,7 @@
           open: "Open",
           copy: "Copy link",
           copied: "Link copied",
-          openMaps: "Open in Maps",
+          openMaps: "Call",
           openWhatsApp: "Book via WhatsApp",
           close: "Close"
         },
@@ -529,7 +509,7 @@
           exclusive: "Servizi esclusivi",
           essentials: "Essenziali per il soggiorno"
         },
-        typePlace: "Luogo",
+        typePlace: "Servizio",
         typeConcierge: "Concierge",
         typeInfo: "Info",
         modal: {
@@ -541,7 +521,7 @@
           open: "Apri",
           copy: "Copia link",
           copied: "Link copiato",
-          openMaps: "Apri in Maps",
+          openMaps: "Chiama",
           openWhatsApp: "Prenota su WhatsApp",
           close: "Chiudi"
         },
@@ -592,7 +572,7 @@
           exclusive: "Servicios exclusivos",
           essentials: "Esenciales para tu estancia"
         },
-        typePlace: "Lugar",
+        typePlace: "Servicio",
         typeConcierge: "Conserjería",
         typeInfo: "Info",
         modal: {
@@ -604,7 +584,7 @@
           open: "Abrir",
           copy: "Copiar enlace",
           copied: "Enlace copiado",
-          openMaps: "Abrir en Maps",
+          openMaps: "Llamar",
           openWhatsApp: "Reservar por WhatsApp",
           close: "Cerrar"
         },
@@ -655,7 +635,7 @@
           exclusive: "Services exclusifs",
           essentials: "Essentiels du séjour"
         },
-        typePlace: "Lieu",
+        typePlace: "Service",
         typeConcierge: "Conciergerie",
         typeInfo: "Info",
         modal: {
@@ -667,7 +647,7 @@
           open: "Ouvrir",
           copy: "Copier le lien",
           copied: "Lien copié",
-          openMaps: "Ouvrir dans Maps",
+          openMaps: "Appeler",
           openWhatsApp: "Réserver sur WhatsApp",
           close: "Fermer"
         },
@@ -718,7 +698,7 @@
           exclusive: "Exklusive Services",
           essentials: "Essentials für den Aufenthalt"
         },
-        typePlace: "Ort",
+        typePlace: "Service",
         typeConcierge: "Concierge",
         typeInfo: "Info",
         modal: {
@@ -730,7 +710,7 @@
           open: "Öffnen",
           copy: "Link kopieren",
           copied: "Link kopiert",
-          openMaps: "In Maps öffnen",
+          openMaps: "Anrufen",
           openWhatsApp: "Per WhatsApp buchen",
           close: "Schließen"
         },
@@ -755,14 +735,31 @@
     };
 
     const items = [
-      /* --- ESSENTIALS (Included Waste Collection) --- */
       {
         id: "ess-waste", category: "essentials", kind: "info", essential: true,
         name: { en: "Waste Collection Schedule", it: "Calendario Raccolta Rifiuti", es: "Calendario de Basura", fr: "Calendrier des Déchets", de: "Müllkalender" },
         desc: { en: "Important: Daily schedule for waste disposal (19:00–22:00).", it: "Importante: Calendario giornaliero per i rifiuti (19:00–22:00).", es: "Importante: Horario diario de basura (19:00–22:00).", fr: "Important: Horaire des déchets (19h00–22h00).", de: "Wichtig: Täglicher Müllplan (19:00–22:00)." },
         tags: { en: ["Essential", "Schedule"], it: ["Essenziale", "Orari"], es: ["Esencial", "Horario"], fr: ["Essentiel", "Horaire"], de: ["Essential", "Plan"] }
       },
-      
+
+      /* --- Transport (UPDATED) --- */
+      {
+        id: "tr-private-nfc",
+        category: "transport",
+        kind: "place",
+        essential: true,
+        phone: PRIVATE_NFC_PHONE,
+        name: { en: "Private NFC", it: "Private NFC", es: "Private NFC", fr: "Private NFC", de: "Private NFC" },
+        desc: {
+          en: "Call to book a private service. Please mention you are guests of our property to receive a special treatment.",
+          it: "Chiama per prenotare un servizio privato. Dì che sei ospite della nostra struttura per ricevere un trattamento speciale.",
+          es: "Llama para reservar un servicio privado. Indica que eres huésped de nuestra propiedad para recibir un trato especial.",
+          fr: "Appelez pour réserver un service privé. Mentionnez que vous êtes invités de notre propriété pour un traitement spécial.",
+          de: "Rufen Sie an, um einen privaten Service zu buchen. Bitte erwähnen Sie, dass Sie Gäste unserer Unterkunft sind, um eine besondere Behandlung zu erhalten."
+        },
+        tags: { en: ["Call", "Essential"], it: ["Chiamata", "Essenziale"], es: ["Llamar", "Esencial"], fr: ["Appeler", "Essentiel"], de: ["Anrufen", "Essential"] }
+      },
+
       /* --- Sightseeing --- */
       {
         id: "see-cathedral", category: "sightseeing", kind: "place", essential: true, mapsQuery: "Cattedrale di Palermo",
@@ -880,6 +877,8 @@
         desc: { en: "Historic pharmacy, central location.", it: "Farmacia storica in posizione centrale.", es: "Farmacia histórica, céntrica.", fr: "Pharmacie historique, emplacement central.", de: "Historische Apotheke, zentrale Lage." },
         tags: { en: ["Pharmacy"], it: ["Farmacia"], es: ["Farmacia"], fr: ["Pharmacie"], de: ["Apotheke"] }
       },
+
+      /* --- Parking --- */
       {
         id: "park-pagano", category: "parking", kind: "place", essential: false, mapsQuery: "Parcheggio Pagano Palermo",
         name: { en: "Parcheggio Pagano", it: "Parcheggio Pagano", es: "Parcheggio Pagano", fr: "Parcheggio Pagano", de: "Parcheggio Pagano" },
@@ -891,12 +890,6 @@
         name: { en: "Parcheggio Venezia", it: "Parcheggio Venezia", es: "Parcheggio Venezia", fr: "Parcheggio Venezia", de: "Parcheggio Venezia" },
         desc: { en: "Parking for city access.", it: "Parcheggio per accesso in città.", es: "Aparcamiento para la ciudad.", fr: "Parking pour la ville.", de: "Parken für die Stadt." },
         tags: { en: ["Parking"], it: ["Parcheggio"], es: ["Aparcamiento"], fr: ["Parking"], de: ["Parken"] }
-      },
-      {
-        id: "tr-taxi", category: "transport", kind: "place", essential: true, mapsQuery: "Taxi Palermo",
-        name: { en: "Taxi Palermo", it: "Taxi Palermo", es: "Taxi Palermo", fr: "Taxi Palermo", de: "Taxi Palermo" },
-        desc: { en: "Search in Maps for closest taxi.", it: "Cerca su Maps il taxi più vicino.", es: "Busca taxi en Maps.", fr: "Cherchez un taxi sur Maps.", de: "Taxi in Maps suchen." },
-        tags: { en: ["Essential"], it: ["Essenziale"], es: ["Esencial"], fr: ["Essentiel"], de: ["Essential"] }
       },
 
       /* --- EXCLUSIVE SERVICES --- */
@@ -936,10 +929,6 @@
 
     function categoryLabel(key) { return t(`sectionTitles.${key}`) || key; }
 
-    function openMapsByQuery(query) {
-      window.open("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query), "_blank", "noopener");
-    }
-
     function openWhatsApp(message) {
       window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank", "noopener");
     }
@@ -966,14 +955,16 @@
 
     function getPrimaryAction(item) {
       if (item.kind === "concierge") return () => openWhatsApp(item.whatsappMessage || "");
-      if (item.kind === "info") return () => closeModal(); /* Just close if just info */
-      return () => openMapsByQuery(item.mapsQuery || item.name?.en || "");
+      if (item.kind === "info") return () => closeModal();
+      if (item.phone) return () => { window.location.href = "tel:" + item.phone.replace(/[^\d+]/g, ""); };
+      return () => {};
     }
 
     function getPrimaryActionLabel(item) {
       if (item.kind === "concierge") return t("modal.openWhatsApp");
       if (item.kind === "info") return t("modal.close");
-      return t("modal.openMaps");
+      if (item.phone) return (state.lang === "it" ? "Chiama" : state.lang === "es" ? "Llamar" : state.lang === "fr" ? "Appeler" : state.lang === "de" ? "Anrufen" : "Call");
+      return "";
     }
 
     /* ==========================================================
@@ -984,23 +975,23 @@
       const L = state.lang;
       const title = item.name?.[L] || item.name?.en || "—";
       const desc = item.desc?.[L] || item.desc?.en || "";
-      
+
       const card = document.createElement("div");
       card.className = "card"; card.tabIndex = 0;
-      
+
       const left = document.createElement("div"); left.className = "card-left";
       const t1 = document.createElement("div"); t1.className = "card-title"; t1.textContent = title;
       const t2 = document.createElement("div"); t2.className = "card-sub"; t2.textContent = desc;
-      
+
       const tagRow = document.createElement("div"); tagRow.className = "card-tags";
       const kTag = document.createElement("span"); kTag.className = "tag " + (item.kind==="concierge"?"concierge":"");
       kTag.textContent = getKindLabel(item.kind);
       tagRow.appendChild(kTag);
-      
+
       left.append(t1, t2, tagRow);
 
       const right = document.createElement("div"); right.className = "card-right";
-      
+
       const favBtn = document.createElement("button"); favBtn.className = "icon-btn fav " + (state.favorites.has(item.id)?"active":"");
       favBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.2-8.9C1.2 8.7 3.1 6 6 6c1.8 0 3.1 1 4 2.2C10.9 7 12.2 6 14 6c2.9 0 4.8 2.7 3.2 6.1C19 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="2" opacity="0.9"/></svg>`;
       favBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleFavorite(item.id, favBtn); });
@@ -1012,13 +1003,13 @@
       right.append(favBtn, openBtn);
       card.append(left, right);
       card.addEventListener("click", () => openModal(item.id));
-      
+
       return card;
     }
 
     function renderAll() {
       const mount = document.getElementById("sectionsMount"); mount.innerHTML = "";
-      
+
       const filtered = items.filter(it => {
         const byFilter = state.filter === "all" ? true : it.category === state.filter;
         const bySearch = !state.search ? true : itemTextForSearch(it).includes(norm(state.search));
@@ -1028,9 +1019,8 @@
       const grouped = {};
       filtered.forEach(it => { grouped[it.category] = grouped[it.category] || []; grouped[it.category].push(it); });
 
-      // Explicit order for sections
       const order = [
-        "essentials", // Essentials first for visibility
+        "essentials",
         "sightseeing",
         "itineraries",
         "restaurants",
@@ -1061,13 +1051,13 @@
     function getWasteScheduleHTML(langCode) {
       const w = i18n[langCode].waste;
       if (!w) return "";
-      
-      const row = (d, t, highlight) => 
+
+      const row = (d, t, highlight) =>
         `<div class="waste-row ${highlight?'highlight':''}">
            <div class="waste-day">${d}</div>
            <div class="waste-type">${t}</div>
          </div>`;
-         
+
       return `
         <div class="waste-warning">${w.warning}</div>
         <div class="waste-schedule">
@@ -1085,24 +1075,22 @@
     function openModal(itemId) {
       const item = items.find(x => x.id === itemId); if (!item) return;
       const L = state.lang;
-      
+
       document.getElementById("modalKicker").textContent = t("modal.kicker");
       document.getElementById("modalTitle").textContent = item.name?.[L] || item.name?.en;
-      
+
       const descEl = document.getElementById("modalDesc");
-      const meta = document.getElementById("modalMeta"); 
+      const meta = document.getElementById("modalMeta");
       meta.innerHTML = "";
-      
-      /* Special Logic for Waste Schedule */
+
       if (itemId === "ess-waste") {
         descEl.innerHTML = getWasteScheduleHTML(L);
-        // Hide standard meta for waste as it's self-contained
       } else {
         descEl.textContent = item.desc?.[L] || item.desc?.en;
 
         const addMeta = (l, v) => {
-           if(!v) return;
-           meta.innerHTML += `<div class="meta-box"><div class="meta-label">${l}</div><div class="meta-value">${v}</div></div>`;
+          if(!v) return;
+          meta.innerHTML += `<div class="meta-box"><div class="meta-label">${l}</div><div class="meta-value">${v}</div></div>`;
         };
 
         addMeta(t("modal.typeLabel"), getKindLabel(item.kind));
@@ -1112,20 +1100,11 @@
       }
 
       const btnPrimary = document.getElementById("modalPrimary");
-      const label = getPrimaryActionLabel(item);
-      btnPrimary.textContent = label;
+      btnPrimary.textContent = getPrimaryActionLabel(item);
       btnPrimary.onclick = getPrimaryAction(item);
-      
+
       const btnSecondary = document.getElementById("modalSecondary");
-      if (item.kind === "info" && itemId !== "ess-wifi" && itemId !== "ess-waste") {
-         btnSecondary.style.display = "none";
-      } else {
-         btnSecondary.style.display = "block";
-         btnSecondary.onclick = () => {
-            const txt = item.mapsQuery || item.name?.en || "";
-            navigator.clipboard.writeText(txt).then(() => showToast(t("modal.copied")));
-         };
-      }
+      btnSecondary.style.display = "none";
 
       document.getElementById("modalOverlay").classList.add("open");
       document.getElementById("modalOverlay").setAttribute("aria-hidden", "false");
