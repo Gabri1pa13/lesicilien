@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guida per gli ospiti Le Sicilien: informazioni essenziali, servizi concierge e consigli per il tuo soggiorno nelle nostre case vacanze a Palermo." />
+  <title>Guest Guide | Guida Ospiti Le Sicilien Case Vacanze Palermo</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.lesicilien.it/guestguide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.lesicilien.it/guestguide.html">
+  <meta property="og:title" content="Guest Guide | Le Sicilien Case Vacanze Palermo">
+  <meta property="og:description" content="Guida per gli ospiti: informazioni essenziali e servizi concierge per il tuo soggiorno a Palermo.">
+  <meta property="og:image" content="https://www.lesicilien.it/22.jpeg">
+  <meta property="og:site_name" content="Le Sicilien">
+  <meta property="og:locale" content="it_IT">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.lesicilien.it/guestguide.html">
+  <meta name="twitter:title" content="Guest Guide | Le Sicilien Palermo">
+  <meta name="twitter:description" content="Guida per gli ospiti delle case vacanze Le Sicilien a Palermo.">
+  <meta name="twitter:image" content="https://www.lesicilien.it/22.jpeg">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62PCQP1DCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-62PCQP1DCW');
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Le Sicilien",
+    "description": "Guida per gli ospiti Le Sicilien: informazioni essenziali, servizi concierge e consigli per il tuo soggiorno nelle nostre case vacanze a Palermo.",
+    "url": "https://www.lesicilien.it/guestguide.html",
+    "logo": "https://www.lesicilien.it/FAVICON.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Palermo",
+      "addressRegion": "Sicilia",
+      "addressCountry": "IT"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================
+       LE SICILIEN · GUEST GUIDE
+       Single-file HTML · CSS · Vanilla JS
+       Luxury hospitality UI — Mobile-first
+       ========================================================== */
+
+    :root {
+      --bg: #f6f5f2;
+      --bg-2: #fbfaf7;
+      --surface: rgba(255, 255, 255, 0.92);
+      --card: #ffffff;
+      --text: #1e1e1e;
+      --muted: rgba(30, 30, 30, 0.62);
+      --muted-2: rgba(30, 30, 30, 0.45);
+      --border: rgba(30, 30, 30, 0.10);
+      --border-2: rgba(30, 30, 30, 0.06);
+      --shadow-1: 0 12px 34px rgba(0, 0, 0, 0.08);
+
+      --accent: #7f9c8b;
+      --accent-2: #6b8577;
+      --accent-4: rgba(127, 156, 139, 0.10);
+
+      --gold: #bfa05a; /* Gold for highlights */
+      --danger: #d46a6a; /* For important warnings */
+
+      --radius-1: 14px;
+      --radius-2: 18px;
+      --radius-3: 22px;
+      --radius-pill: 999px;
+
+      --ease: cubic-bezier(0.25, 1, 0.5, 1);
+      --t-fast: 180ms var(--ease);
+      --t-mid: 320ms var(--ease);
+
+      --maxw: 820px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 900px at 50% -10%, rgba(127, 156, 139, 0.12), transparent 55%),
+        radial-gradient(1000px 700px at 10% 0%, rgba(191, 160, 90, 0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Poppins, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-bottom: 80px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px 16px 34px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(250, 249, 246, 0.88), rgba(246, 245, 242, 0.70));
+      border-bottom: 1px solid var(--border-2);
+    }
+
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 18px 16px 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .brand { display: grid; gap: 6px; text-align: center; }
+    .brand-title { font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 520; }
+    .brand-subtitle { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); margin-top: -2px; }
+
+    .topbar-row { display: grid; gap: 10px; align-items: center; }
+
+    .langbar {
+      display: inline-flex; justify-content: center; gap: 8px; padding: 8px 10px;
+      border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.78); margin: 0 auto; width: fit-content;
+    }
+    .langbtn {
+      border: 0; background: transparent; padding: 8px 10px;
+      border-radius: var(--radius-pill); font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted); cursor: pointer;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    .langbtn:hover { background: var(--accent-4); color: var(--text); }
+    .langbtn.active { background: var(--accent); color: #ffffff; }
+
+    .search-wrap { display: grid; gap: 10px; margin-top: 4px; }
+    .search { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+
+    .search input {
+      width: 100%; padding: 14px 14px 14px 44px;
+      border-radius: var(--radius-2); border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.86); font-size: 14px; outline: none;
+      transition: all var(--t-fast); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+    }
+    .search input:focus { border-color: rgba(127, 156, 139, 0.42); background: rgba(255, 255, 255, 0.96); }
+
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; opacity: 0.72; pointer-events: none; }
+
+    .btn-ghost {
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.84); color: var(--text);
+      padding: 12px 14px; border-radius: var(--radius-2); font-size: 12px; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; transition: all var(--t-fast);
+    }
+    .btn-ghost:hover { transform: translateY(-1px); background: #fff; }
+
+    .pills { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; margin: 0; scrollbar-width: none; }
+    .pills::-webkit-scrollbar { display: none; }
+
+    .pill {
+      flex: 0 0 auto; padding: 9px 14px; border-radius: var(--radius-pill);
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
+      font-size: 12px; color: var(--muted); cursor: pointer; transition: all var(--t-fast);
+      user-select: none; white-space: nowrap;
+    }
+    .pill:hover { transform: translateY(-1px); color: var(--text); background: #fff; }
+    .pill.active { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+
+    .section { margin-top: 16px; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin: 14px 2px 10px; }
+    .section-title { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .section-count { font-size: 11px; letter-spacing: 0.06em; color: var(--muted-2); }
+    .list { display: grid; gap: 10px; }
+
+    .card {
+      border-radius: var(--radius-3); background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border); box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
+      padding: 14px 14px; display: grid; grid-template-columns: 1fr auto; align-items: center;
+      gap: 12px; cursor: pointer; transition: all var(--t-fast); position: relative; overflow: hidden;
+    }
+    .card:hover { transform: translateY(-1px); border-color: rgba(127, 156, 139, 0.34); background: #fff; }
+
+    .card-left { display: grid; gap: 6px; min-width: 0; }
+    .card-title { font-size: 14px; font-weight: 540; letter-spacing: 0.01em; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-sub { font-size: 11px; color: var(--muted); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+
+    .tag {
+      font-size: 10px; padding: 6px 10px; border-radius: var(--radius-pill);
+      border: 1px solid var(--border); color: var(--muted); background: rgba(255, 255, 255, 0.75); white-space: nowrap;
+    }
+    .tag.concierge { border-color: rgba(127, 156, 139, 0.34); color: var(--accent-2); background: rgba(127, 156, 139, 0.10); }
+    .tag.essential { border-color: rgba(191, 160, 90, 0.34); color: rgba(120, 96, 42, 0.92); background: rgba(191, 160, 90, 0.10); }
+
+    .card-right { display: grid; gap: 8px; align-items: center; justify-items: end; }
+
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
+      display: grid; place-items: center; cursor: pointer; transition: all var(--t-fast);
+    }
+    .icon-btn:hover { transform: translateY(-1px); background: #fff; border-color: rgba(127, 156, 139, 0.34); }
+    .icon { width: 18px; height: 18px; opacity: 0.80; }
+    .fav.active { background: rgba(191, 160, 90, 0.14); border-color: rgba(191, 160, 90, 0.42); }
+
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(18, 18, 18, 0.54);
+      display: none; align-items: flex-end; justify-content: center;
+      padding: 12px 12px 18px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      width: 100%; max-width: var(--maxw);
+      border-radius: 26px; background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      box-shadow: 0 28px 120px rgba(0, 0, 0, 0.28); overflow: hidden;
+      transform: translateY(12px); opacity: 0; transition: transform var(--t-mid), opacity var(--t-mid);
+      max-height: 85vh; display: flex; flex-direction: column;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); opacity: 1; }
+
+    .modal-head {
+      padding: 16px 16px 12px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+      border-bottom: 1px solid var(--border-2); flex-shrink: 0;
+    }
+
+    .modal-topline { display: flex; justify-content: space-between; align-items: center; }
+    .modal-kicker { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+    .modal-close {
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.86);
+      cursor: pointer; display: grid; place-items: center; transition: all var(--t-fast);
+    }
+    .modal-close:hover { transform: translateY(-1px); background: #fff; }
+
+    .modal-title { margin: 10px 0 0; font-size: 16px; letter-spacing: 0.01em; font-weight: 560; line-height: 1.2; }
+
+    .modal-body { padding: 14px 16px 18px; overflow-y: auto; }
+    .modal-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    .modal-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; flex-shrink: 0; }
+
+    .btn-primary {
+      width: 100%; border: 0; border-radius: var(--radius-2);
+      background: var(--accent); color: #fff; padding: 14px 14px;
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      cursor: pointer; transition: all var(--t-fast);
+      box-shadow: 0 18px 55px rgba(127, 156, 139, 0.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); background: var(--accent-2); }
+
+    .btn-secondary {
+      width: 100%; border-radius: var(--radius-2);
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.90);
+      color: var(--text); padding: 14px 14px;
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      cursor: pointer; transition: all var(--t-fast);
+    }
+    .btn-secondary:hover { transform: translateY(-1px); background: #fff; }
+
+    .modal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .meta-box {
+      border: 1px solid var(--border); border-radius: var(--radius-2);
+      padding: 12px 12px; background: rgba(255, 255, 255, 0.86);
+    }
+    .meta-box.full { grid-column: span 2; }
+    .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; }
+    .meta-value { font-size: 12px; color: var(--text); line-height: 1.35; font-weight: 520; word-break: break-word; }
+
+    .waste-schedule {
+      display: grid; gap: 0;
+      border: 1px solid var(--border); border-radius: var(--radius-2);
+      background: #fafafa; overflow: hidden; margin-top: 10px;
+    }
+    .waste-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 12px;
+    }
+    .waste-row:last-child { border-bottom: none; }
+    .waste-day { font-weight: 600; color: var(--text); width: 30%; }
+    .waste-type { text-align: right; color: var(--muted); width: 70%; line-height: 1.3; }
+    .waste-row.highlight { background: rgba(191, 160, 90, 0.08); }
+    .waste-row.highlight .waste-type { color: var(--gold); font-weight: 600; }
+
+    .waste-warning {
+      background: rgba(212, 106, 106, 0.10); border: 1px solid rgba(212, 106, 106, 0.20);
+      color: #b94a48; padding: 12px; border-radius: var(--radius-2);
+      font-size: 12px; line-height: 1.5; margin-bottom: 12px;
+      display: flex; gap: 8px; align-items: start;
+    }
+
+    .floatbar {
+      position: fixed; right: 16px; bottom: 16px; z-index: 120;
+      display: grid; gap: 10px; align-items: end; justify-items: end;
+    }
+
+    .fab {
+      width: 56px; height: 56px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.30);
+      background: rgba(17, 17, 17, 0.92); color: #fff;
+      display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 22px 70px rgba(0,0,0,0.22);
+      transition: all var(--t-fast);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .fab:hover { transform: translateY(-2px); background: #000; }
+    .fab svg { width: 22px; height: 22px; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+      z-index: 160; background: rgba(17, 17, 17, 0.92); color: #fff;
+      padding: 12px 14px; border-radius: 14px; opacity: 0; pointer-events: none;
+      transition: opacity var(--t-mid), transform var(--t-mid);
+      font-size: 12px; text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+    @media (min-width: 740px) {
+      .topbar-inner { padding: 22px 18px 16px; gap: 14px; }
+      .brand-title { font-size: 18px; }
+      .search-wrap { gap: 12px; }
+      .modal-actions { grid-template-columns: 1fr 1fr; }
+      .container { padding: 14px 18px 44px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand notranslate">
+        <div class="brand-title">LE SICILIEN</div>
+        <div class="brand-subtitle" id="uiSubtitle">Guest Guide</div>
+      </div>
+
+      <div class="topbar-row">
+        <div class="langbar notranslate">
+          <button class="langbtn active" type="button" data-lang="en">EN</button>
+          <button class="langbtn" type="button" data-lang="it">IT</button>
+          <button class="langbtn" type="button" data-lang="es">ES</button>
+          <button class="langbtn" type="button" data-lang="fr">FR</button>
+          <button class="langbtn" type="button" data-lang="de">DE</button>
+        </div>
+
+        <div class="search-wrap">
+          <div class="search">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M10.5 18.5c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8Z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+              <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+            </svg>
+            <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" />
+            <button class="btn-ghost" id="btnClear" type="button">Clear</button>
+          </div>
+
+          <div class="pills" id="pillRow">
+            <div class="pill active" data-filter="all">All</div>
+            <div class="pill" data-filter="essentials">Essentials</div>
+            <div class="pill" data-filter="sightseeing">Things to See</div>
+            <div class="pill" data-filter="itineraries">Itineraries</div>
+            <div class="pill" data-filter="restaurants">Restaurants</div>
+            <div class="pill" data-filter="wellness">Wellness & Spa</div>
+            <div class="pill" data-filter="exclusive">Exclusive</div>
+            <div class="pill" data-filter="transport">Transport</div>
+            <div class="pill" data-filter="supermarkets">Supermarkets</div>
+            <div class="pill" data-filter="pharmacies">Pharmacies</div>
+            <div class="pill" data-filter="parking">Parking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="sectionsMount"></div>
+
+    <footer class="notranslate" style="padding: 30px 6px 10px; text-align:center; color: rgba(30,30,30,0.50); font-size: 11px; letter-spacing: 0.04em;">
+      LE SICILIEN · Luxury Private Estates
+    </footer>
+  </div>
+
+  <div class="floatbar notranslate">
+    <button class="fab" id="fabTop" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 5l-7 7m7-7 7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 5v14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" role="dialog">
+      <div class="modal-head">
+        <div class="modal-topline">
+          <div class="modal-kicker" id="modalKicker">Details</div>
+          <button class="modal-close" id="modalClose" type="button">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+              <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-title" id="modalTitle">—</div>
+      </div>
+      <div class="modal-body">
+        <div id="modalContent">
+          <div class="modal-desc" id="modalDesc"></div>
+          <div class="modal-meta" id="modalMeta"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-primary" id="modalPrimary" type="button">Call</button>
+          <button class="btn-secondary" id="modalSecondary" type="button" style="display:none;">Copy link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       DATA
+       ========================================================== */
+
+    const WHATSAPP_NUMBER = "393888005083";
+    const PRIVATE_NFC_PHONE = "+39 329 212 9335";
+
+    const categories = [
+      { key: "essentials",    icon: "✨" },
+      { key: "sightseeing",   icon: "🏛️" },
+      { key: "itineraries",   icon: "🗺️" },
+      { key: "restaurants",   icon: "🍽️" },
+      { key: "wellness",      icon: "🧖‍♀️" },
+      { key: "exclusive",     icon: "🛥️" },
+      { key: "supermarkets",  icon: "🛒" },
+      { key: "pharmacies",    icon: "💊" },
+      { key: "parking",       icon: "🚗" },
+      { key: "transport",     icon: "📞" }
+    ];
+
+    const i18n = {
+      en: {
+        subtitle: "Guest Guide",
+        searchPlaceholder: "Search restaurant, culture...",
+        clear: "Clear",
+        pills: {
+          all: "All",
+          sightseeing: "Things to See",
+          itineraries: "Itineraries",
+          restaurants: "Restaurants",
+          wellness: "Wellness & Spa",
+          supermarkets: "Supermarkets",
+          pharmacies: "Pharmacies",
+          parking: "Parking",
+          transport: "Transport",
+          exclusive: "Exclusive Services",
+          essentials: "Essentials"
+        },
+        sectionTitles: {
+          sightseeing: "Things to See & Culture",
+          itineraries: "Curated Itineraries",
+          restaurants: "Restaurants",
+          wellness: "Wellness & Spa",
+          supermarkets: "Supermarkets",
+          pharmacies: "Pharmacies",
+          parking: "Parking",
+          transport: "Transport",
+          exclusive: "Exclusive services",
+          essentials: "Essentials for your stay"
+        },
+        typePlace: "Service",
+        typeConcierge: "Concierge",
+        typeInfo: "Info",
+        modal: {
+          kicker: "Details",
+          typeLabel: "Type",
+          categoryLabel: "Category",
+          phone: "Phone",
+          hours: "Opening Hours",
+          open: "Open",
+          copy: "Copy link",
+          copied: "Link copied",
+          openMaps: "Call",
+          openWhatsApp: "Book via WhatsApp",
+          close: "Close"
+        },
+        toasts: {
+          cleared: "Search cleared.",
+          favoritesOn: "Saved to favorites.",
+          favoritesOff: "Removed from favorites."
+        },
+        waste: {
+          warning: "⚠️ Guests are responsible for waste disposal. Please drop off bags in front of the building entrance between 19:00 and 22:00.",
+          schedule: {
+            mon: { day: "Monday", type: "Non-recyclable (Residuo)" },
+            tue: { day: "Tuesday", type: "Paper & Cardboard" },
+            wed: { day: "Wednesday", type: "Organic (Food waste)" },
+            thu: { day: "Thursday", type: "Non-recyclable (Residuo)" },
+            fri: { day: "Friday", type: "Organic (Food waste)" },
+            sat: { day: "Saturday", type: "No Collection" },
+            sun: { day: "Sunday", type: "Glass, Organic, Plastic & Metal" }
+          }
+        }
+      },
+      it: {
+        subtitle: "Guida per gli Ospiti",
+        searchPlaceholder: "Cerca ristorante, cultura...",
+        clear: "Pulisci",
+        pills: {
+          all: "Tutti",
+          sightseeing: "Cosa Vedere",
+          itineraries: "Itinerari",
+          restaurants: "Ristoranti",
+          wellness: "Wellness & Spa",
+          supermarkets: "Supermercati",
+          pharmacies: "Farmacie",
+          parking: "Parcheggi",
+          transport: "Trasporti",
+          exclusive: "Servizi esclusivi",
+          essentials: "Essenziali"
+        },
+        sectionTitles: {
+          sightseeing: "Cosa Vedere & Cultura",
+          itineraries: "Itinerari Consigliati",
+          restaurants: "Ristoranti",
+          wellness: "Benessere & Spa",
+          supermarkets: "Supermercati",
+          pharmacies: "Farmacie",
+          parking: "Parcheggi",
+          transport: "Trasporti",
+          exclusive: "Servizi esclusivi",
+          essentials: "Essenziali per il soggiorno"
+        },
+        typePlace: "Servizio",
+        typeConcierge: "Concierge",
+        typeInfo: "Info",
+        modal: {
+          kicker: "Dettagli",
+          typeLabel: "Tipo",
+          categoryLabel: "Categoria",
+          phone: "Telefono",
+          hours: "Orari Apertura",
+          open: "Apri",
+          copy: "Copia link",
+          copied: "Link copiato",
+          openMaps: "Chiama",
+          openWhatsApp: "Prenota su WhatsApp",
+          close: "Chiudi"
+        },
+        toasts: {
+          cleared: "Ricerca pulita.",
+          favoritesOn: "Salvato nei preferiti.",
+          favoritesOff: "Rimosso dai preferiti."
+        },
+        waste: {
+          warning: "⚠️ Gli ospiti sono responsabili del conferimento dei rifiuti. I sacchi vanno esposti davanti al portone dalle 19:00 alle 22:00.",
+          schedule: {
+            mon: { day: "Lunedì", type: "Residuo Non Riciclabile" },
+            tue: { day: "Martedì", type: "Carta, Cartoncino, Cartone" },
+            wed: { day: "Mercoledì", type: "Organico" },
+            thu: { day: "Giovedì", type: "Residuo Non Riciclabile" },
+            fri: { day: "Venerdì", type: "Organico" },
+            sat: { day: "Sabato", type: "Nessuna raccolta" },
+            sun: { day: "Domenica", type: "Vetro, Organico, Plastica, Metallo" }
+          }
+        }
+      },
+      es: {
+        subtitle: "Guía de huésped",
+        searchPlaceholder: "Buscar restaurante, cultura...",
+        clear: "Borrar",
+        pills: {
+          all: "Todo",
+          sightseeing: "Qué Ver",
+          itineraries: "Itinerarios",
+          restaurants: "Restaurantes",
+          wellness: "Bienestar & Spa",
+          supermarkets: "Supermercados",
+          pharmacies: "Farmacias",
+          parking: "Aparcamientos",
+          transport: "Transporte",
+          exclusive: "Servicios exclusivos",
+          essentials: "Esenciales"
+        },
+        sectionTitles: {
+          sightseeing: "Cultura & Qué Ver",
+          itineraries: "Itinerarios Curados",
+          restaurants: "Restaurantes",
+          wellness: "Bienestar & Spa",
+          supermarkets: "Supermercados",
+          pharmacies: "Farmacias",
+          parking: "Aparcamientos",
+          transport: "Transporte",
+          exclusive: "Servicios exclusivos",
+          essentials: "Esenciales para tu estancia"
+        },
+        typePlace: "Servicio",
+        typeConcierge: "Conserjería",
+        typeInfo: "Info",
+        modal: {
+          kicker: "Detalles",
+          typeLabel: "Tipo",
+          categoryLabel: "Categoría",
+          phone: "Teléfono",
+          hours: "Horario",
+          open: "Abrir",
+          copy: "Copiar enlace",
+          copied: "Enlace copiado",
+          openMaps: "Llamar",
+          openWhatsApp: "Reservar por WhatsApp",
+          close: "Cerrar"
+        },
+        toasts: {
+          cleared: "Búsqueda borrada.",
+          favoritesOn: "Guardado en favoritos.",
+          favoritesOff: "Quitado de favoritos."
+        },
+        waste: {
+          warning: "⚠️ Los huéspedes son responsables de tirar la basura. Dejar bolsas frente al edificio entre las 19:00 y las 22:00.",
+          schedule: {
+            mon: { day: "Lunes", type: "Residuos no reciclables" },
+            tue: { day: "Martes", type: "Papel y cartón" },
+            wed: { day: "Miércoles", type: "Orgánico" },
+            thu: { day: "Jueves", type: "Residuos no reciclables" },
+            fri: { day: "Viernes", type: "Orgánico" },
+            sat: { day: "Sábado", type: "Sin recogida" },
+            sun: { day: "Domingo", type: "Vidrio, Orgánico, Plástico y Metal" }
+          }
+        }
+      },
+      fr: {
+        subtitle: "Guide invité",
+        searchPlaceholder: "Rechercher restaurant, culture...",
+        clear: "Effacer",
+        pills: {
+          all: "Tout",
+          sightseeing: "À Voir",
+          itineraries: "Itinéraires",
+          restaurants: "Restaurants",
+          wellness: "Bien-être & Spa",
+          supermarkets: "Supermarchés",
+          pharmacies: "Pharmacies",
+          parking: "Parkings",
+          transport: "Transport",
+          exclusive: "Services exclusifs",
+          essentials: "Essentiels"
+        },
+        sectionTitles: {
+          sightseeing: "Culture & À Voir",
+          itineraries: "Itinéraires Conseillés",
+          restaurants: "Restaurants",
+          wellness: "Bien-être & Spa",
+          supermarkets: "Supermarchés",
+          pharmacies: "Pharmacies",
+          parking: "Parkings",
+          transport: "Transport",
+          exclusive: "Services exclusifs",
+          essentials: "Essentiels du séjour"
+        },
+        typePlace: "Service",
+        typeConcierge: "Conciergerie",
+        typeInfo: "Info",
+        modal: {
+          kicker: "Détails",
+          typeLabel: "Type",
+          categoryLabel: "Catégorie",
+          phone: "Téléphone",
+          hours: "Horaires",
+          open: "Ouvrir",
+          copy: "Copier le lien",
+          copied: "Lien copié",
+          openMaps: "Appeler",
+          openWhatsApp: "Réserver sur WhatsApp",
+          close: "Fermer"
+        },
+        toasts: {
+          cleared: "Recherche effacée.",
+          favoritesOn: "Ajouté aux favoris.",
+          favoritesOff: "Retiré des favoris."
+        },
+        waste: {
+          warning: "⚠️ Les invités doivent sortir les poubelles eux-mêmes. Déposez les sacs devant l'immeuble entre 19h00 et 22h00.",
+          schedule: {
+            mon: { day: "Lundi", type: "Déchets non recyclables" },
+            tue: { day: "Mardi", type: "Papier et carton" },
+            wed: { day: "Mercredi", type: "Organique" },
+            thu: { day: "Jeudi", type: "Déchets non recyclables" },
+            fri: { day: "Vendredi", type: "Organique" },
+            sat: { day: "Samedi", type: "Pas de collecte" },
+            sun: { day: "Dimanche", type: "Verre, Organique, Plastique, Métal" }
+          }
+        }
+      },
+      de: {
+        subtitle: "Gäste-Guide",
+        searchPlaceholder: "Restaurant, Kultur suchen...",
+        clear: "Löschen",
+        pills: {
+          all: "Alle",
+          sightseeing: "Sehenswertes",
+          itineraries: "Reiserouten",
+          restaurants: "Restaurants",
+          wellness: "Wellness & Spa",
+          supermarkets: "Supermärkte",
+          pharmacies: "Apotheken",
+          parking: "Parken",
+          transport: "Transport",
+          exclusive: "Exklusive Services",
+          essentials: "Essentials"
+        },
+        sectionTitles: {
+          sightseeing: "Kultur & Sehenswertes",
+          itineraries: "Kuratierte Routen",
+          restaurants: "Restaurants",
+          wellness: "Wellness & Spa",
+          supermarkets: "Supermärkte",
+          pharmacies: "Apotheken",
+          parking: "Parken",
+          transport: "Transport",
+          exclusive: "Exklusive Services",
+          essentials: "Essentials für den Aufenthalt"
+        },
+        typePlace: "Service",
+        typeConcierge: "Concierge",
+        typeInfo: "Info",
+        modal: {
+          kicker: "Details",
+          typeLabel: "Typ",
+          categoryLabel: "Kategorie",
+          phone: "Telefon",
+          hours: "Öffnungszeiten",
+          open: "Öffnen",
+          copy: "Link kopieren",
+          copied: "Link kopiert",
+          openMaps: "Anrufen",
+          openWhatsApp: "Per WhatsApp buchen",
+          close: "Schließen"
+        },
+        toasts: {
+          cleared: "Suche gelöscht.",
+          favoritesOn: "Zu Favoriten hinzugefügt.",
+          favoritesOff: "Aus Favoriten entfernt."
+        },
+        waste: {
+          warning: "⚠️ Gäste müssen den Müll selbst rausbringen. Bitte legen Sie die Säcke zwischen 19:00 und 22:00 Uhr vor den Eingang.",
+          schedule: {
+            mon: { day: "Montag", type: "Restmüll" },
+            tue: { day: "Dienstag", type: "Papier & Pappe" },
+            wed: { day: "Mittwoch", type: "Biomüll" },
+            thu: { day: "Donnerstag", type: "Restmüll" },
+            fri: { day: "Freitag", type: "Biomüll" },
+            sat: { day: "Samstag", type: "Keine Abholung" },
+            sun: { day: "Sonntag", type: "Glas, Biomüll, Plastik & Metall" }
+          }
+        }
+      }
+    };
+
+    const items = [
+      {
+        id: "ess-waste", category: "essentials", kind: "info", essential: true,
+        name: { en: "Waste Collection Schedule", it: "Calendario Raccolta Rifiuti", es: "Calendario de Basura", fr: "Calendrier des Déchets", de: "Müllkalender" },
+        desc: { en: "Important: Daily schedule for waste disposal (19:00–22:00).", it: "Importante: Calendario giornaliero per i rifiuti (19:00–22:00).", es: "Importante: Horario diario de basura (19:00–22:00).", fr: "Important: Horaire des déchets (19h00–22h00).", de: "Wichtig: Täglicher Müllplan (19:00–22:00)." },
+        tags: { en: ["Essential", "Schedule"], it: ["Essenziale", "Orari"], es: ["Esencial", "Horario"], fr: ["Essentiel", "Horaire"], de: ["Essential", "Plan"] }
+      },
+
+      /* --- Transport (UPDATED) --- */
+      {
+        id: "tr-private-nfc",
+        category: "transport",
+        kind: "place",
+        essential: true,
+        phone: PRIVATE_NFC_PHONE,
+        name: { en: "Private NFC", it: "Private NFC", es: "Private NFC", fr: "Private NFC", de: "Private NFC" },
+        desc: {
+          en: "Call to book a private service. Please mention you are guests of our property to receive a special treatment.",
+          it: "Chiama per prenotare un servizio privato. Dì che sei ospite della nostra struttura per ricevere un trattamento speciale.",
+          es: "Llama para reservar un servicio privado. Indica que eres huésped de nuestra propiedad para recibir un trato especial.",
+          fr: "Appelez pour réserver un service privé. Mentionnez que vous êtes invités de notre propriété pour un traitement spécial.",
+          de: "Rufen Sie an, um einen privaten Service zu buchen. Bitte erwähnen Sie, dass Sie Gäste unserer Unterkunft sind, um eine besondere Behandlung zu erhalten."
+        },
+        tags: { en: ["Call", "Essential"], it: ["Chiamata", "Essenziale"], es: ["Llamar", "Esencial"], fr: ["Appeler", "Essentiel"], de: ["Anrufen", "Essential"] }
+      },
+
+      /* --- Sightseeing --- */
+      {
+        id: "see-cathedral", category: "sightseeing", kind: "place", essential: true, mapsQuery: "Cattedrale di Palermo",
+        name: { en: "Palermo Cathedral", it: "Cattedrale di Palermo", es: "Catedral de Palermo", fr: "Cathédrale de Palerme", de: "Kathedrale von Palermo" },
+        desc: { en: "A masterpiece of Arab-Norman architecture containing royal tombs.", it: "Capolavoro arabo-normanno che custodisce le tombe reali.", es: "Obra maestra de la arquitectura árabe-normanda.", fr: "Un chef-d'œuvre de l'architecture arabo-normande.", de: "Ein Meisterwerk der arabisch-normannischen Architektur." },
+        tags: { en: ["Culture", "History"], it: ["Cultura", "Storia"], es: ["Cultura", "Historia"], fr: ["Culture", "Histoire"], de: ["Kultur", "Geschichte"] }
+      },
+      {
+        id: "see-monreale", category: "sightseeing", kind: "place", essential: true, mapsQuery: "Duomo di Monreale",
+        name: { en: "Monreale Cathedral", it: "Duomo di Monreale", es: "Catedral de Monreale", fr: "Cathédrale de Monreale", de: "Kathedrale von Monreale" },
+        desc: { en: "Famous for its breathtaking golden mosaics and cloister.", it: "Famoso per i suoi mozzafiato mosaici d'oro e il chiostro.", es: "Famosa por sus impresionantes mosaicos dorados.", fr: "Célèbre pour ses mosaïques dorées à couper le souffle.", de: "Berühmt für seine atemberaubenden goldenen Mosaike." },
+        tags: { en: ["Culture", "Art", "Must-see"], it: ["Cultura", "Arte", "Imperdibile"], es: ["Cultura", "Arte"], fr: ["Culture", "Art"], de: ["Kultur", "Kunst"] }
+      },
+      {
+        id: "see-teatro", category: "sightseeing", kind: "place", essential: true, mapsQuery: "Teatro Massimo Palermo",
+        name: { en: "Teatro Massimo", it: "Teatro Massimo", es: "Teatro Massimo", fr: "Teatro Massimo", de: "Teatro Massimo" },
+        desc: { en: "Italy's largest opera house, famous for its perfect acoustics.", it: "Il più grande teatro lirico d'Italia, famoso per l'acustica.", es: "El teatro de ópera más grande de Italia.", fr: "Le plus grand opéra d'Italie.", de: "Das größte Opernhaus Italiens." },
+        tags: { en: ["Culture", "Opera"], it: ["Cultura", "Opera"], es: ["Cultura", "Ópera"], fr: ["Culture", "Opéra"], de: ["Kultur", "Oper"] }
+      },
+      {
+        id: "see-cefalu", category: "sightseeing", kind: "place", essential: false, mapsQuery: "Cefalù",
+        name: { en: "Cefalù (Day Trip)", it: "Cefalù (Gita fuori porta)", es: "Cefalù (Excursión)", fr: "Cefalù (Excursion)", de: "Cefalù (Tagesausflug)" },
+        desc: { en: "Beautiful coastal town with a Norman cathedral and sandy beach.", it: "Splendida cittadina costiera con duomo normanno e spiaggia.", es: "Hermosa ciudad costera con catedral normanda.", fr: "Belle ville côtière avec cathédrale normande.", de: "Schöne Küstenstadt mit normannischer Kathedrale." },
+        tags: { en: ["Beach", "Day Trip"], it: ["Spiaggia", "Gita"], es: ["Playa", "Excursión"], fr: ["Plage", "Excursion"], de: ["Strand", "Ausflug"] }
+      },
+      {
+        id: "see-marina", category: "sightseeing", kind: "place", essential: false, mapsQuery: "Palermo Marina Yachting",
+        name: { en: "Marina Yachting (The Port)", it: "Marina Yachting (Molo Trapezoidale)", es: "Marina Yachting", fr: "Marina Yachting", de: "Marina Yachting" },
+        desc: { en: "New promenade with musical fountain, restaurants and lounge bars.", it: "Nuova passeggiata con fontana danzante, ristoranti e lounge bar.", es: "Nuevo paseo con fuente musical y restaurantes.", fr: "Nouvelle promenade avec fontaine musicale et restaurants.", de: "Neue Promenade mit musikalischer Fontäne und Restaurants." },
+        tags: { en: ["Promenade", "Relax"], it: ["Passeggiata", "Relax"], es: ["Paseo", "Relax"], fr: ["Promenade", "Détente"], de: ["Promenade", "Relax"] }
+      },
+      {
+        id: "see-mondello", category: "sightseeing", kind: "place", essential: false, mapsQuery: "Spiaggia di Mondello",
+        name: { en: "Mondello Beach", it: "Spiaggia di Mondello", es: "Playa de Mondello", fr: "Plage de Mondello", de: "Strand von Mondello" },
+        desc: { en: "White sand and turquoise waters. Ideal for families.", it: "Sabbia bianca e acque turchesi. Ideale per famiglie.", es: "Arena blanca y aguas turquesas.", fr: "Sable blanc et eaux turquoise.", de: "Weißer Sand und türkisfarbenes Wasser." },
+        tags: { en: ["Beach", "Relax"], it: ["Spiaggia", "Relax"], es: ["Playa", "Relax"], fr: ["Plage", "Détente"], de: ["Strand", "Relax"] }
+      },
+      {
+        id: "see-capo", category: "sightseeing", kind: "place", essential: false, mapsQuery: "Mercato del Capo Palermo",
+        name: { en: "Mercato del Capo", it: "Mercato del Capo", es: "Mercado del Capo", fr: "Marché del Capo", de: "Markt del Capo" },
+        desc: { en: "A vibrant historic market perfect for street food.", it: "Un vivace mercato storico perfetto per lo street food.", es: "Un mercado histórico vibrante.", fr: "Un marché historique vibrant.", de: "Ein lebhafter historischer Markt." },
+        tags: { en: ["Market", "Food"], it: ["Mercato", "Cibo"], es: ["Mercado", "Comida"], fr: ["Marché", "Nourriture"], de: ["Markt", "Essen"] }
+      },
+
+      /* --- Itineraries --- */
+      {
+        id: "itin-1day", category: "itineraries", kind: "place", essential: true, mapsQuery: "Quattro Canti Palermo",
+        name: { en: "Classic Palermo (1 Day)", it: "Palermo Classica (1 Giorno)", es: "Palermo Clásica (1 Día)", fr: "Palerme Classique (1 Jour)", de: "Klassisches Palermo (1 Tag)" },
+        desc: { en: "Start at Quattro Canti -> Piazza Pretoria -> Cathedral -> Norman Palace. Lunch at Ballarò.", it: "Inizia ai Quattro Canti -> Piazza Pretoria -> Cattedrale -> Palazzo dei Normanni. Pranzo a Ballarò.", es: "Inicio en Quattro Canti -> Catedral -> Palacio de los Normandos.", fr: "Départ Quattro Canti -> Cathédrale -> Palais des Normands.", de: "Start Quattro Canti -> Kathedrale -> Normannenpalast." },
+        tags: { en: ["Itinerary", "History"], it: ["Itinerario", "Storia"], es: ["Itinerario", "Historia"], fr: ["Itinéraire", "Histoire"], de: ["Route", "Geschichte"] }
+      },
+      {
+        id: "itin-hidden", category: "itineraries", kind: "place", essential: false, mapsQuery: "Orto Botanico di Palermo",
+        name: { en: "Hidden Gems & Gardens", it: "Gemme Nascoste e Giardini", es: "Joyas Ocultas y Jardines", fr: "Trésors Cachés et Jardins", de: "Verborgene Schätze & Gärten" },
+        desc: { en: "Botanical Garden -> Villa Giulia -> Spasimo -> Kalsa District. Perfect for couples.", it: "Orto Botanico -> Villa Giulia -> Spasimo -> Kalsa. Perfetto per coppie.", es: "Jardín Botánico -> Kalsa. Perfecto para parejas.", fr: "Jardin Botanique -> Kalsa. Parfait pour les couples.", de: "Botanischer Garten -> Kalsa. Perfekt für Paare." },
+        tags: { en: ["Itinerary", "Relax"], it: ["Itinerario", "Relax"], es: ["Itinerario", "Relax"], fr: ["Itinéraire", "Détente"], de: ["Route", "Relax"] }
+      },
+
+      /* --- Restaurants --- */
+      {
+        id: "rest-isgro", category: "restaurants", kind: "place", essential: true, mapsQuery: "Isgrò Palermo", phone: "+39 328 1234567", openingHours: "19:30 – 23:00 (Mon-Sat)",
+        name: { en: "Isgrò", it: "Isgrò", es: "Isgrò", fr: "Isgrò", de: "Isgrò" },
+        desc: { en: "Refined contemporary Sicilian dining.", it: "Cucina siciliana contemporanea raffinata.", es: "Cocina siciliana contemporánea.", fr: "Cuisine sicilienne contemporaine.", de: "Moderne sizilianische Küche." },
+        tags: { en: ["Dinner", "Couples"], it: ["Cena", "Coppie"], es: ["Cena", "Parejas"], fr: ["Dîner", "Couples"], de: ["Abendessen", "Paare"] }
+      },
+      {
+        id: "rest-dadalia", category: "restaurants", kind: "place", essential: true, mapsQuery: "Dadalia Palermo", phone: "+39 091 332233", openingHours: "12:30–15:00, 19:30–23:00",
+        name: { en: "Dadalia", it: "Dadalia", es: "Dadalia", fr: "Dadalia", de: "Dadalia" },
+        desc: { en: "Local flavors near Vucciria market.", it: "Sapori locali vicino alla Vucciria.", es: "Sabores locales cerca de Vucciria.", fr: "Saveurs locales près de la Vucciria.", de: "Lokale Aromen nahe Vucciria." },
+        tags: { en: ["Sicilian", "Casual"], it: ["Siciliano", "Casual"], es: ["Siciliano", "Casual"], fr: ["Sicilien", "Décontracté"], de: ["Sizilianisch", "Casual"] }
+      },
+      {
+        id: "rest-nonnadora", category: "restaurants", kind: "place", essential: false, mapsQuery: "Osteria Nonna Dora Palermo", phone: "+39 091 6112233", openingHours: "12:30–14:30, 19:30–22:30",
+        name: { en: "Osteria Nonna Dora", it: "Osteria Nonna Dora", es: "Osteria Nonna Dora", fr: "Osteria Nonna Dora", de: "Osteria Nonna Dora" },
+        desc: { en: "Classic osteria with traditional dishes.", it: "Osteria classica con piatti tradizionali.", es: "Osteria clásica con platos tradicionales.", fr: "Osteria classique avec plats traditionnels.", de: "Klassische Osteria mit traditionellen Gerichten." },
+        tags: { en: ["Traditional", "Family"], it: ["Tradizione", "Famiglie"], es: ["Tradicional", "Familias"], fr: ["Tradition", "Familles"], de: ["Traditionell", "Familien"] }
+      },
+
+      /* --- Wellness --- */
+      {
+        id: "well-igiea", category: "wellness", kind: "place", essential: true, mapsQuery: "Villa Igiea Spa Palermo", phone: "+39 091 631 2111", openingHours: "10:00 – 20:00",
+        name: { en: "Irene Forte Spa (Villa Igiea)", it: "Irene Forte Spa (Villa Igiea)", es: "Irene Forte Spa", fr: "Irene Forte Spa", de: "Irene Forte Spa" },
+        desc: { en: "Ultimate luxury spa experience.", it: "Esperienza spa di lusso definitiva.", es: "Experiencia de spa de lujo.", fr: "Expérience spa de luxe.", de: "Luxus-Spa-Erlebnis." },
+        tags: { en: ["Luxury", "Spa"], it: ["Lusso", "Spa"], es: ["Lujo", "Spa"], fr: ["Luxe", "Spa"], de: ["Luxus", "Spa"] }
+      },
+      {
+        id: "well-quinto", category: "wellness", kind: "place", essential: false, mapsQuery: "Quintocanto Hotel Spa Palermo", phone: "+39 091 342223",
+        name: { en: "Quintocanto Spa", it: "Quintocanto Spa", es: "Quintocanto Spa", fr: "Quintocanto Spa", de: "Quintocanto Spa" },
+        desc: { en: "Relaxing Arab-style hammam.", it: "Rilassante hammam in stile arabo.", es: "Hammam de estilo árabe.", fr: "Hammam de style arabe.", de: "Hamam im arabischen Stil." },
+        tags: { en: ["Spa", "Central"], it: ["Spa", "Centro"], es: ["Spa", "Céntrico"], fr: ["Spa", "Central"], de: ["Spa", "Zentral"] }
+      },
+
+      /* --- Supermarkets & Pharma --- */
+      {
+        id: "sup-quick", category: "supermarkets", kind: "place", essential: true, mapsQuery: "Quick Issa Vicolo Monteleone 11 Palermo", openingHours: "08:30 – 20:30",
+        name: { en: "Quick Issa (Market)", it: "Quick Issa (Market)", es: "Quick Issa (Mercado)", fr: "Quick Issa (Marché)", de: "Quick Issa (Markt)" },
+        desc: { en: "Mini-market in Vicolo Monteleone for quick supplies.", it: "Minimarket in Vicolo Monteleone per acquisti veloci.", es: "Minimercado para compras rápidas.", fr: "Supérette pour les courses rapides.", de: "Minimarkt für schnelle Einkäufe." },
+        tags: { en: ["Market", "Essentials"], it: ["Market", "Essenziali"], es: ["Mercado", "Esenciales"], fr: ["Marché", "Essentiels"], de: ["Markt", "Essentials"] }
+      },
+      {
+        id: "sup-fresko", category: "supermarkets", kind: "place", essential: false, mapsQuery: "Fresko Via Roma Palermo", openingHours: "08:00 – 22:00",
+        name: { en: "Fresko — Via Roma", it: "Fresko – Via Roma", es: "Fresko — Via Roma", fr: "Fresko — Via Roma", de: "Fresko — Via Roma" },
+        desc: { en: "Convenient for daily essentials.", it: "Comodo per la spesa quotidiana.", es: "Práctico para compras diarias.", fr: "Pratique pour les essentiels.", de: "Praktisch für tägliche Einkäufe." },
+        tags: { en: ["Essentials"], it: ["Essenziali"], es: ["Esenciales"], fr: ["Essentiels"], de: ["Essentials"] }
+      },
+      {
+        id: "pha-centro", category: "pharmacies", kind: "place", essential: true, mapsQuery: "Farmacia del Centro Palermo",
+        name: { en: "Farmacia del Centro", it: "Farmacia del Centro", es: "Farmacia del Centro", fr: "Farmacia del Centro", de: "Farmacia del Centro" },
+        desc: { en: "Central pharmacy for needs.", it: "Farmacia centrale.", es: "Farmacia céntrica.", fr: "Pharmacie centrale.", de: "Zentrale Apotheke." },
+        tags: { en: ["Essential"], it: ["Essenziale"], es: ["Esencial"], fr: ["Essentiel"], de: ["Essential"] }
+      },
+      {
+        id: "pha-cavour", category: "pharmacies", kind: "place", essential: false, mapsQuery: "Antica Farmacia Cavour Palermo",
+        name: { en: "Antica Farmacia Cavour", it: "Antica Farmacia Cavour", es: "Antica Farmacia Cavour", fr: "Antica Farmacia Cavour", de: "Antica Farmacia Cavour" },
+        desc: { en: "Historic pharmacy, central location.", it: "Farmacia storica in posizione centrale.", es: "Farmacia histórica, céntrica.", fr: "Pharmacie historique, emplacement central.", de: "Historische Apotheke, zentrale Lage." },
+        tags: { en: ["Pharmacy"], it: ["Farmacia"], es: ["Farmacia"], fr: ["Pharmacie"], de: ["Apotheke"] }
+      },
+
+      /* --- Parking --- */
+      {
+        id: "park-pagano", category: "parking", kind: "place", essential: false, mapsQuery: "Parcheggio Pagano Palermo",
+        name: { en: "Parcheggio Pagano", it: "Parcheggio Pagano", es: "Parcheggio Pagano", fr: "Parcheggio Pagano", de: "Parcheggio Pagano" },
+        desc: { en: "Secure parking near Teatro Massimo.", it: "Parcheggio custodito vicino al Teatro Massimo.", es: "Aparcamiento vigilado cerca del Teatro Massimo.", fr: "Parking gardé près du Teatro Massimo.", de: "Bewachter Parkplatz in der Nähe des Teatro Massimo." },
+        tags: { en: ["Parking"], it: ["Parcheggio"], es: ["Aparcamiento"], fr: ["Parking"], de: ["Parken"] }
+      },
+      {
+        id: "park-venezia", category: "parking", kind: "place", essential: false, mapsQuery: "Parcheggio Venezia Palermo",
+        name: { en: "Parcheggio Venezia", it: "Parcheggio Venezia", es: "Parcheggio Venezia", fr: "Parcheggio Venezia", de: "Parcheggio Venezia" },
+        desc: { en: "Parking for city access.", it: "Parcheggio per accesso in città.", es: "Aparcamiento para la ciudad.", fr: "Parking pour la ville.", de: "Parken für die Stadt." },
+        tags: { en: ["Parking"], it: ["Parcheggio"], es: ["Aparcamiento"], fr: ["Parking"], de: ["Parken"] }
+      },
+
+      /* --- EXCLUSIVE SERVICES --- */
+      {
+        id: "ex-yacht-tour", category: "exclusive", kind: "concierge", essential: true, whatsappMessage: "Buongiorno, vorrei organizzare un giro in yacht privato a Palermo",
+        name: { en: "Private yacht tour", it: "Giro in yacht privato", es: "Tour privado en yate", fr: "Tour privé en yacht", de: "Private Yacht Tour" },
+        desc: { en: "A private day at sea — curated route.", it: "Una giornata in mare privata.", es: "Un día privado en el mar.", fr: "Une journée privée en mer.", de: "Ein privater Tag auf See." },
+        tags: { en: ["Yacht"], it: ["Yacht"], es: ["Yate"], fr: ["Yacht"], de: ["Yacht"] }
+      },
+      {
+        id: "ex-yacht-dinner", category: "exclusive", kind: "concierge", essential: true, whatsappMessage: "Buongiorno, vorrei organizzare una cena privata su yacht a Palermo",
+        name: { en: "Private yacht dinner", it: "Cena privata su yacht", es: "Cena privada en yate", fr: "Dîner privé sur yacht", de: "Privates Yacht-Dinner" },
+        desc: { en: "Refined dinner onboard.", it: "Cena raffinata a bordo.", es: "Cena refinada a bordo.", fr: "Dîner raffiné à bord.", de: "Elegantes Dinner an Bord." },
+        tags: { en: ["Dinner"], it: ["Cena"], es: ["Cena"], fr: ["Dîner"], de: ["Dinner"] }
+      },
+      {
+        id: "ex-airport-transfer", category: "exclusive", kind: "concierge", whatsappMessage: "Buongiorno, vorrei prenotare un transfer privato.",
+        name: { en: "Airport transfer (Private Driver)", it: "Transfer aeroportuale (Autista)", es: "Traslado aeropuerto", fr: "Transfert aéroport", de: "Flughafen-Transfer" },
+        desc: { en: "Book a private driver for arrival/departure.", it: "Prenota un autista privato.", es: "Reserva conductor privado.", fr: "Réservez un chauffeur privé.", de: "Privatfahrer buchen." },
+        tags: { en: ["Driver"], it: ["Autista"], es: ["Conductor"], fr: ["Chauffeur"], de: ["Fahrer"] }
+      }
+    ];
+
+    /* ==========================================================
+       STATE & HELPERS
+       ========================================================== */
+
+    const state = { lang: "en", filter: "all", search: "", favorites: new Set() };
+
+    function t(path) {
+      const lang = state.lang in i18n ? state.lang : "en";
+      const parts = path.split(".");
+      let cur = i18n[lang];
+      for (const p of parts) { if (!cur || typeof cur !== "object") return ""; cur = cur[p]; }
+      return (cur ?? "");
+    }
+
+    function categoryLabel(key) { return t(`sectionTitles.${key}`) || key; }
+
+    function openWhatsApp(message) {
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank", "noopener");
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg; el.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    function norm(s) { return (s || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+
+    function itemTextForSearch(item) {
+      const L = state.lang;
+      return norm((item.name?.[L]||item.name?.en||"") + " " + (item.desc?.[L]||item.desc?.en||""));
+    }
+
+    function getKindLabel(kind) {
+      if (kind === "concierge") return t("typeConcierge");
+      if (kind === "info") return t("typeInfo");
+      return t("typePlace");
+    }
+
+    function getPrimaryAction(item) {
+      if (item.kind === "concierge") return () => openWhatsApp(item.whatsappMessage || "");
+      if (item.kind === "info") return () => closeModal();
+      if (item.phone) return () => { window.location.href = "tel:" + item.phone.replace(/[^\d+]/g, ""); };
+      return () => {};
+    }
+
+    function getPrimaryActionLabel(item) {
+      if (item.kind === "concierge") return t("modal.openWhatsApp");
+      if (item.kind === "info") return t("modal.close");
+      if (item.phone) return (state.lang === "it" ? "Chiama" : state.lang === "es" ? "Llamar" : state.lang === "fr" ? "Appeler" : state.lang === "de" ? "Anrufen" : "Call");
+      return "";
+    }
+
+    /* ==========================================================
+       RENDER
+       ========================================================== */
+
+    function buildCard(item) {
+      const L = state.lang;
+      const title = item.name?.[L] || item.name?.en || "—";
+      const desc = item.desc?.[L] || item.desc?.en || "";
+
+      const card = document.createElement("div");
+      card.className = "card"; card.tabIndex = 0;
+
+      const left = document.createElement("div"); left.className = "card-left";
+      const t1 = document.createElement("div"); t1.className = "card-title"; t1.textContent = title;
+      const t2 = document.createElement("div"); t2.className = "card-sub"; t2.textContent = desc;
+
+      const tagRow = document.createElement("div"); tagRow.className = "card-tags";
+      const kTag = document.createElement("span"); kTag.className = "tag " + (item.kind==="concierge"?"concierge":"");
+      kTag.textContent = getKindLabel(item.kind);
+      tagRow.appendChild(kTag);
+
+      left.append(t1, t2, tagRow);
+
+      const right = document.createElement("div"); right.className = "card-right";
+
+      const favBtn = document.createElement("button"); favBtn.className = "icon-btn fav " + (state.favorites.has(item.id)?"active":"");
+      favBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.2-8.9C1.2 8.7 3.1 6 6 6c1.8 0 3.1 1 4 2.2C10.9 7 12.2 6 14 6c2.9 0 4.8 2.7 3.2 6.1C19 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="2" opacity="0.9"/></svg>`;
+      favBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleFavorite(item.id, favBtn); });
+
+      const openBtn = document.createElement("button"); openBtn.className = "icon-btn";
+      openBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 3 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 6H6a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-4" stroke="currentColor" stroke-width="2" opacity="0.85"/></svg>`;
+      openBtn.addEventListener("click", (e) => { e.stopPropagation(); openModal(item.id); });
+
+      right.append(favBtn, openBtn);
+      card.append(left, right);
+      card.addEventListener("click", () => openModal(item.id));
+
+      return card;
+    }
+
+    function renderAll() {
+      const mount = document.getElementById("sectionsMount"); mount.innerHTML = "";
+
+      const filtered = items.filter(it => {
+        const byFilter = state.filter === "all" ? true : it.category === state.filter;
+        const bySearch = !state.search ? true : itemTextForSearch(it).includes(norm(state.search));
+        return byFilter && bySearch;
+      });
+
+      const grouped = {};
+      filtered.forEach(it => { grouped[it.category] = grouped[it.category] || []; grouped[it.category].push(it); });
+
+      const order = [
+        "essentials",
+        "sightseeing",
+        "itineraries",
+        "restaurants",
+        "wellness",
+        "exclusive",
+        "supermarkets",
+        "pharmacies",
+        "parking",
+        "transport"
+      ];
+
+      order.forEach(key => {
+        if (grouped[key]) {
+          const s = document.createElement("div"); s.className = "section";
+          const h = document.createElement("div"); h.className = "section-header";
+          h.innerHTML = `<div class="section-title">${(categories.find(c=>c.key===key)?.icon||"")} ${categoryLabel(key)}</div><div class="section-count">${grouped[key].length}</div>`;
+          const l = document.createElement("div"); l.className = "list";
+          grouped[key].forEach(it => l.appendChild(buildCard(it)));
+          s.append(h, l); mount.appendChild(s);
+        }
+      });
+    }
+
+    /* ==========================================================
+       MODAL & LOGIC
+       ========================================================== */
+
+    function getWasteScheduleHTML(langCode) {
+      const w = i18n[langCode].waste;
+      if (!w) return "";
+
+      const row = (d, t, highlight) =>
+        `<div class="waste-row ${highlight?'highlight':''}">
+           <div class="waste-day">${d}</div>
+           <div class="waste-type">${t}</div>
+         </div>`;
+
+      return `
+        <div class="waste-warning">${w.warning}</div>
+        <div class="waste-schedule">
+          ${row(w.schedule.mon.day, w.schedule.mon.type)}
+          ${row(w.schedule.tue.day, w.schedule.tue.type)}
+          ${row(w.schedule.wed.day, w.schedule.wed.type)}
+          ${row(w.schedule.thu.day, w.schedule.thu.type)}
+          ${row(w.schedule.fri.day, w.schedule.fri.type)}
+          ${row(w.schedule.sat.day, w.schedule.sat.type)}
+          ${row(w.schedule.sun.day, w.schedule.sun.type, true)}
+        </div>
+      `;
+    }
+
+    function openModal(itemId) {
+      const item = items.find(x => x.id === itemId); if (!item) return;
+      const L = state.lang;
+
+      document.getElementById("modalKicker").textContent = t("modal.kicker");
+      document.getElementById("modalTitle").textContent = item.name?.[L] || item.name?.en;
+
+      const descEl = document.getElementById("modalDesc");
+      const meta = document.getElementById("modalMeta");
+      meta.innerHTML = "";
+
+      if (itemId === "ess-waste") {
+        descEl.innerHTML = getWasteScheduleHTML(L);
+      } else {
+        descEl.textContent = item.desc?.[L] || item.desc?.en;
+
+        const addMeta = (l, v) => {
+          if(!v) return;
+          meta.innerHTML += `<div class="meta-box"><div class="meta-label">${l}</div><div class="meta-value">${v}</div></div>`;
+        };
+
+        addMeta(t("modal.typeLabel"), getKindLabel(item.kind));
+        addMeta(t("modal.categoryLabel"), categoryLabel(item.category));
+        addMeta(t("modal.phone"), item.phone);
+        addMeta(t("modal.hours"), item.openingHours);
+      }
+
+      const btnPrimary = document.getElementById("modalPrimary");
+      btnPrimary.textContent = getPrimaryActionLabel(item);
+      btnPrimary.onclick = getPrimaryAction(item);
+
+      const btnSecondary = document.getElementById("modalSecondary");
+      btnSecondary.style.display = "none";
+
+      document.getElementById("modalOverlay").classList.add("open");
+      document.getElementById("modalOverlay").setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      document.getElementById("modalOverlay").classList.remove("open");
+      document.getElementById("modalOverlay").setAttribute("aria-hidden", "true");
+    }
+
+    function toggleFavorite(id, btn) {
+      if (state.favorites.has(id)) { state.favorites.delete(id); showToast(t("toasts.favoritesOff")); }
+      else { state.favorites.add(id); showToast(t("toasts.favoritesOn")); }
+      btn.classList.toggle("active"); localStorage.setItem("ls_favs", JSON.stringify([...state.favorites]));
+    }
+
+    /* ==========================================================
+       INIT
+       ========================================================== */
+
+    (function init() {
+      try { const s = localStorage.getItem("ls_lang"); if(s) state.lang = s; } catch(e){}
+      try { const f = localStorage.getItem("ls_favs"); if(f) state.favorites = new Set(JSON.parse(f)); } catch(e){}
+
+      document.querySelectorAll(".langbtn").forEach(b => b.addEventListener("click", () => {
+        state.lang = b.dataset.lang; localStorage.setItem("ls_lang", state.lang);
+        applyLang();
+      }));
+
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", () => { state.search = searchInput.value; renderAll(); });
+      document.getElementById("btnClear").addEventListener("click", () => { searchInput.value = ""; state.search = ""; renderAll(); });
+
+      document.querySelectorAll(".pill").forEach(p => p.addEventListener("click", () => {
+        state.filter = p.dataset.filter;
+        document.querySelectorAll(".pill").forEach(x => x.classList.toggle("active", x === p));
+        renderAll();
+      }));
+
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+      document.getElementById("modalOverlay").addEventListener("click", (e) => { if(e.target.id==="modalOverlay") closeModal(); });
+      document.getElementById("fabTop").addEventListener("click", () => window.scrollTo({top:0}));
+
+      function applyLang() {
+        document.querySelectorAll(".langbtn").forEach(b => b.classList.toggle("active", b.dataset.lang === state.lang));
+        document.getElementById("uiSubtitle").textContent = t("subtitle");
+        document.getElementById("searchInput").placeholder = t("searchPlaceholder");
+        document.getElementById("btnClear").textContent = t("clear");
+        document.querySelectorAll(".pill").forEach(p => p.textContent = t("pills." + p.dataset.filter));
+        renderAll();
+      }
+
+      applyLang();
+    })();
+  </script>
+</body>
+</html>
