@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://www.lesicilien.it/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -550,6 +550,20 @@
   </url>
 
   <url>
+    <loc>https://www.lesicilien.it/pl/przewodniki/palermo-stare-miasto-vs-mondello-gdzie-nocowac/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/pl/przewodniki/willa-przy-morzu-blisko-palermo/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
     <loc>https://www.lesicilien.it/zh/zhinan/</loc>
     <lastmod>2026-02-22</lastmod>
     <priority>0.88</priority>
@@ -636,6 +650,20 @@
   <url>
     <loc>https://www.lesicilien.it/zh/zhinan/balemo-xiatian-zhusu-zhinan/</loc>
     <lastmod>2026-02-22</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/zh/zhinan/balemo-laocheng-vs-mengdele-zhusu-zhinan/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/zh/zhinan/balemo-linhai-bieshu-zhusu-zhinan/</loc>
+    <lastmod>2026-02-24</lastmod>
     <priority>0.88</priority>
     <changefreq>monthly</changefreq>
   </url>
