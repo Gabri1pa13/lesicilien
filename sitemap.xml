@@ -640,6 +640,51 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Stays: pagine SEO dedicate per ogni struttura -->
+  <url>
+    <loc>https://www.lesicilien.it/stays/palermo-centro/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.97</priority>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://www.lesicilien.it/moncada.jpeg</image:loc>
+      <image:title>Moncada de Luna Exclusive Stay – Appartamento di lusso Palermo Centro Storico</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/stays/fior-di-sicilia/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.97</priority>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://www.lesicilien.it/fiordisicilia.jpeg</image:loc>
+      <image:title>Fior di Sicilia – Appartamento con Terrazzo a Palermo</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/stays/villa-fronte-mare/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.97</priority>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://www.lesicilien.it/tildesunsetbay.jpg</image:loc>
+      <image:title>Tilde Sunset Bay Villa – Villa Fronte Mare Palermo</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/stays/mondello/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <priority>0.97</priority>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://www.lesicilien.it/villasulamre.jpg</image:loc>
+      <image:title>Villa Harmony Relax a Mondello – Casa Vacanze Mondello Palermo</image:title>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0</loc>
     <lastmod>2026-02-15</lastmod>
