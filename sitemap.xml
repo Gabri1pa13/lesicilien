@@ -640,9 +640,9 @@
     <changefreq>monthly</changefreq>
   </url>
 
-  <!-- Stays: pagine SEO dedicate per ogni struttura -->
+  <!-- Stays: pagine SEO dedicate per ogni struttura (URL canonici con nome proprietà) -->
   <url>
-    <loc>https://www.lesicilien.it/stays/palermo-centro/</loc>
+    <loc>https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/</loc>
     <lastmod>2026-03-09</lastmod>
     <priority>0.97</priority>
     <changefreq>weekly</changefreq>
@@ -664,7 +664,7 @@
   </url>
 
   <url>
-    <loc>https://www.lesicilien.it/stays/villa-fronte-mare/</loc>
+    <loc>https://www.lesicilien.it/stays/tilde-sunset-bay-villa/</loc>
     <lastmod>2026-03-09</lastmod>
     <priority>0.97</priority>
     <changefreq>weekly</changefreq>
@@ -675,7 +675,7 @@
   </url>
 
   <url>
-    <loc>https://www.lesicilien.it/stays/mondello/</loc>
+    <loc>https://www.lesicilien.it/stays/villa-harmony-relax/</loc>
     <lastmod>2026-03-09</lastmod>
     <priority>0.97</priority>
     <changefreq>weekly</changefreq>
