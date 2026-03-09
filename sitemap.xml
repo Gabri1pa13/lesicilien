@@ -685,32 +685,5 @@
     </image:image>
   </url>
 
-  <url>
-    <loc>https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0</loc>
-    <lastmod>2026-02-15</lastmod>
-    <priority>0.95</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0</loc>
-    <lastmod>2026-02-15</lastmod>
-    <priority>0.95</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://lesicilien.kross.travel/tilde-sunset-bay-villa?guests_rooms=2,0</loc>
-    <lastmod>2026-02-15</lastmod>
-    <priority>0.95</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0</loc>
-    <lastmod>2026-02-15</lastmod>
-    <priority>0.95</priority>
-    <changefreq>weekly</changefreq>
-  </url>
 
 </urlset>
