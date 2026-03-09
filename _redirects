@@ -1,0 +1,11 @@
+# Redirect 301 – alias URL per nome proprietà → URL canonico
+# Permette di trovare la struttura su Google anche cercando il nome esatto visto su Airbnb/Booking
+
+/stays/villa-harmony-relax/                 /stays/mondello/        301
+/stays/villa-harmony-relax-a-mondello/      /stays/mondello/        301
+
+/stays/moncada-de-luna/                     /stays/palermo-centro/  301
+/stays/moncada-de-luna-exclusive-stay/      /stays/palermo-centro/  301
+
+/stays/tilde-sunset-bay-villa/              /stays/villa-fronte-mare/ 301
+/stays/tilde-sunset-bay/                    /stays/villa-fronte-mare/ 301
