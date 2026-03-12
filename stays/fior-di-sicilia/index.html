@@ -77,15 +77,18 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
+    "@type": ["LodgingBusiness", "VacationRental"],
     "name": "Fior di Sicilia – Appartamento con Terrazzo",
     "description": "Appartamento con terrazzo privato nel cuore di Palermo: luce, colori e profumi della Sicilia a portata di mano. Gestito da Le Sicilien.",
     "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
     "image": "https://www.lesicilien.it/fiordisicilia.jpeg",
+    "telephone": "+39-388-800-5083",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Centro Storico",
       "addressLocality": "Palermo",
       "addressRegion": "Sicilia",
+      "postalCode": "90134",
       "addressCountry": "IT"
     },
     "geo": {
@@ -93,6 +96,14 @@
       "latitude": 38.1157,
       "longitude": 13.3615
     },
+    "checkinTime": "T15:00",
+    "checkoutTime": "T10:00",
+    "numberOfRooms": 2,
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "maxValue": 6
+    },
+    "petsAllowed": false,
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Terrazzo privato", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
@@ -100,7 +111,14 @@
       { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
     ],
     "priceRange": "€€€",
-    "starRating": { "@type": "Rating", "ratingValue": "5" }
+    "starRating": { "@type": "Rating", "ratingValue": "5" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "127"
+    }
   }
   </script>
 
