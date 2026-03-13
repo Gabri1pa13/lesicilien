@@ -347,6 +347,25 @@
       .modal-actions { grid-template-columns: 1fr 1fr; }
       .container { padding: 14px 18px 44px; }
     }
+
+    /* Site navigation links in topbar */
+    .topbar-site-links {
+      display: flex; gap: 8px; align-items: center; flex-shrink: 0;
+    }
+    .topbar-site-link {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 6px 12px; border-radius: 999px;
+      text-decoration: none; color: #555; background: rgba(0,0,0,0.05);
+      transition: background 0.2s;
+    }
+    .topbar-site-link:hover { background: rgba(0,0,0,0.10); color: #111; }
+    .topbar-site-cta {
+      background: #BFA05A; color: #fff !important;
+    }
+    .topbar-site-cta:hover { background: #9e844a !important; }
+    @media (max-width: 480px) {
+      .topbar-site-links { display: none; }
+    }
   </style>
 </head>
 
@@ -355,8 +374,15 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand notranslate">
-        <div class="brand-title">LE SICILIEN</div>
-        <div class="brand-subtitle" id="uiSubtitle">Guest Guide</div>
+        <a href="https://www.lesicilien.it/" style="text-decoration:none;color:inherit;">
+          <div class="brand-title">LE SICILIEN</div>
+          <div class="brand-subtitle" id="uiSubtitle">Guest Guide</div>
+        </a>
+      </div>
+
+      <div class="topbar-site-links notranslate">
+        <a href="https://www.lesicilien.it/#properties" class="topbar-site-link">Proprietà</a>
+        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="topbar-site-link topbar-site-cta">Prenota</a>
       </div>
 
       <div class="topbar-row">
