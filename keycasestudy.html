@@ -282,7 +282,7 @@
       /* Header */
       .brand-badge { display: none; } /* Hide generic badge on mobile */
       .topbar-right .btn { padding: 8px 14px; font-size: 0.7rem; }
-      .topbar-right .btn:not(.gold) { display: none; } /* Show only primary CTA */
+      .topbar-right .btn:not(.gold):not(:first-child) { display: none; } /* Show Home + CTA on mobile */
 
       /* KPI */
       .kpi-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -359,6 +359,8 @@
         </div>
         <div class="topbar-right">
           <a class="btn" href="/">Home</a>
+          <a class="btn" href="/#properties">Proprietà</a>
+          <a class="btn" href="/Asset-Management.html">Gestione</a>
           <a class="btn gold" href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20una%20valutazione%20per%20la%20mia%20propriet%C3%A0." target="_blank">
             Richiedi analisi <i class="fa-solid fa-arrow-right"></i>
           </a>

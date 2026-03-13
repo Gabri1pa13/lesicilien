@@ -179,6 +179,10 @@
       padding: 8px 14px; background: rgba(255,255,255,0.80);
     }
     .nav-back:hover { color: var(--text); background: #fff; }
+    .nav-links { display: flex; gap: 16px; align-items: center; }
+    .nav-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color 200ms; }
+    .nav-link:hover { color: var(--text); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
 
     .hero {
       position: relative; width: 100%; height: clamp(320px, 55vw, 520px);
@@ -328,7 +332,12 @@
   <nav class="nav" aria-label="Navigazione principale">
     <div class="nav-inner">
       <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
-      <a href="https://www.lesicilien.it/" class="nav-back">
+      <div class="nav-links">
+        <a href="https://www.lesicilien.it/#properties" class="nav-link">Proprietà</a>
+        <a href="https://www.lesicilien.it/guestguide.html" class="nav-link">Guest Guide</a>
+        <a href="https://www.lesicilien.it/Asset-Management.html" class="nav-link">Gestione</a>
+      </div>
+      <a href="https://www.lesicilien.it/#properties" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

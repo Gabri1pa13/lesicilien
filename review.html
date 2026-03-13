@@ -308,6 +308,59 @@
 </head>
 
 <body>
+
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Navigazione principale">
+    <div class="site-nav-inner">
+      <a href="https://www.lesicilien.it/" class="site-nav-brand">Le Sicilien</a>
+      <div class="site-nav-links">
+        <a href="https://www.lesicilien.it/#properties">Proprietà</a>
+        <a href="https://www.lesicilien.it/guestguide.html">Guest Guide</a>
+        <a href="https://www.lesicilien.it/Asset-Management.html">Gestione</a>
+      </div>
+      <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="site-nav-cta">Prenota ora</a>
+    </div>
+  </nav>
+
+  <style>
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .site-nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px; gap: 16px;
+    }
+    .site-nav-brand {
+      font-weight: 700; font-size: 1rem; color: #0c1220;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+    }
+    .site-nav-links {
+      display: flex; gap: 20px; align-items: center;
+    }
+    .site-nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: #444;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .site-nav-links a:hover { color: #BFA05A; }
+    .site-nav-cta {
+      background: #BFA05A; color: #fff;
+      padding: 8px 18px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+    }
+    @media (max-width: 520px) {
+      .site-nav-links { display: none; }
+    }
+  </style>
+
   <main class="card" role="main" aria-label="Le Sicilien Review Hub">
     <header class="top">
       <div class="brand-logo" aria-label="Le Sicilien">
