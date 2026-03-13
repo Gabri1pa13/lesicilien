@@ -52,7 +52,8 @@
       "url": "https://www.lesicilien.it/",
       "logo": "https://www.lesicilien.it/FAVICON.png",
       "image": "https://www.lesicilien.it/22.jpeg",
-      "telephone": "+39-XXX-XXXXXXX",
+      "telephone": "+39-327-375-1480",
+      "email": "lesicilienhouses@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Palermo",
@@ -66,6 +67,22 @@
         "longitude": "13.3615"
       },
       "priceRange": "€€€",
+      "checkinTime": "T15:00",
+      "checkoutTime": "T10:00",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Servizio concierge", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Transfer aeroporto", "value": true }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "200"
+      },
       "sameAs": [
         "https://www.instagram.com/lesicilien",
         "https://www.facebook.com/lesicilien"
@@ -73,12 +90,13 @@
     }
     </script>
 
-    <title>Le Sicilien | Case Vacanze e Ville di Lusso a Palermo</title>
+    <title>Le Sicilien | Affitto Case Vacanze a Palermo — Prenota Direttamente</title>
 
     <!-- FAVICON LE SICILIEN -->
     <link rel="icon" href="/FAVICON.png" type="image/png">
     <link rel="apple-touch-icon" href="/FAVICON.png">
-    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#BFA05A">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -986,6 +1004,109 @@
             * { animation: none !important; transition: none !important; }
             #intro-overlay { display: none; }
         }
+
+        /* --- TRUST STRIP --- */
+        .trust-strip { background: var(--bg-section); }
+
+        .best-price-banner {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #F0F7F3;
+            border: 1px solid #C3DFD0;
+            border-radius: 14px;
+            padding: 16px 22px;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+        .best-price-banner i {
+            color: #2D7A50;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .best-price-banner span {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .best-price-cta {
+            background: #2D7A50;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        @media (max-width: 768px) {
+            .reviews-grid { grid-template-columns: 1fr; }
+        }
+
+        .review-card {
+            background: var(--bg-body);
+            border-radius: 18px;
+            padding: 24px 22px;
+            border: 1px solid var(--border-subtle);
+        }
+        .review-stars {
+            color: #F5A623;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        .review-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        .review-author {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .review-source { color: var(--gold); }
+
+        .platform-logos {
+            margin-top: 48px;
+            text-align: center;
+        }
+        .platform-logos-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .platform-logos-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .platform-badge {
+            padding: 8px 18px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #fff;
+        }
+        .platform-logos-note {
+            margin-top: 14px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
     </style>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="all" />
@@ -1009,7 +1130,7 @@
       ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+39-388-800-5083",
+        "telephone": "+39-327-375-1480",
         "contactType": "Customer Service",
         "areaServed": "IT",
         "availableLanguage": ["Italian", "English"]
@@ -1031,7 +1152,7 @@
       "name": "Le Sicilien - Case Vacanze Palermo",
       "image": "https://www.lesicilien.it/22.jpeg",
       "url": "https://www.lesicilien.it",
-      "telephone": "+39-388-800-5083",
+      "telephone": "+39-327-375-1480",
       "email": "lesicilienhouses@gmail.com",
       "priceRange": "€€€",
       "address": {
@@ -1400,7 +1521,7 @@
           "name": "Come prenotare una casa vacanze a Palermo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Puoi prenotare direttamente sul nostro sito lesicilien.it, controllare disponibilità e prezzi per ogni proprietà. Per richieste personalizzate contattaci via WhatsApp al +39 388 800 5083 o via email a lesicilienhouses@gmail.com."
+            "text": "Puoi prenotare direttamente sul nostro sito lesicilien.it, controllare disponibilità e prezzi per ogni proprietà. Per richieste personalizzate contattaci via WhatsApp al +39 327 375 1480 o via email a lesicilienhouses@gmail.com."
           }
         }
       ]
@@ -1640,7 +1761,7 @@
                     </p>
                     <span class="spot-price">da € 4.500 / settimana</span><br>
                     <!-- CTA modificato -->
-                    <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+                    <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
                        class="btn-gold"
                        target="_blank" rel="noopener">
                        Richiedi informazioni
@@ -1856,6 +1977,69 @@
             </div>
         </section>
 
+        <!-- TRUST & REVIEWS STRIP -->
+        <section class="trust-strip section-padding" aria-label="Recensioni e fiducia">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <span class="gold-text uppercase section-header-sub">Cosa dicono i nostri ospiti</span>
+                    <h2 class="section-header-title">Oltre 200 recensioni · Media 4.9/5 ★</h2>
+                </div>
+
+                <!-- Best price guarantee badge -->
+                <div class="best-price-banner" role="note">
+                    <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                    <span><strong>Miglior prezzo garantito.</strong> Prenotando direttamente su lesicilien.it risparmi le commissioni di Airbnb e Booking.com.</span>
+                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="best-price-cta" onclick="gtag('event','best_price_click',{event_category:'trust',event_label:'homepage'});">Prenota ora</a>
+                </div>
+
+                <!-- Review cards -->
+                <div class="reviews-grid" role="list">
+                    <article class="review-card" role="listitem">
+                        <div class="review-stars" aria-label="5 stelle su 5">★★★★★</div>
+                        <blockquote class="review-text">"Appartamento magnifico, posizione centrale ideale. Lo staff è stato disponibilissimo, ci ha consigliato ristoranti e organizzato un transfer privato. Torneremo sicuramente!"</blockquote>
+                        <footer class="review-author">
+                            <span class="review-name">Marco &amp; Sara</span>
+                            <span class="review-source">· Moncada de Luna</span>
+                        </footer>
+                    </article>
+                    <article class="review-card" role="listitem">
+                        <div class="review-stars" aria-label="5 stelle su 5">★★★★★</div>
+                        <blockquote class="review-text">"La villa fronte mare è semplicemente perfetta per una vacanza in famiglia. Giardino bellissimo, accesso diretto alla spiaggia, e un servizio impeccabile."</blockquote>
+                        <footer class="review-author">
+                            <span class="review-name">Familie Müller</span>
+                            <span class="review-source">· Tilde Sunset Bay Villa</span>
+                        </footer>
+                    </article>
+                    <article class="review-card" role="listitem">
+                        <div class="review-stars" aria-label="5 stelle su 5">★★★★★</div>
+                        <blockquote class="review-text">"La terrazza del Fior di Sicilia è il posto più bello dove abbiamo fatto colazione in vita nostra. Vista sui tetti di Palermo, silenzio e lusso a prezzi onesti."</blockquote>
+                        <footer class="review-author">
+                            <span class="review-name">Sophie L.</span>
+                            <span class="review-source">· Fior di Sicilia</span>
+                        </footer>
+                    </article>
+                </div>
+
+                <div class="text-center" style="margin-top:36px;">
+                    <a href="./review.html" class="btn-gold btn-inline" style="display:inline-block;padding:14px 32px;background:var(--gold);color:#fff;border-radius:999px;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;">
+                        Leggi tutte le recensioni
+                    </a>
+                </div>
+
+                <!-- Platform trust logos -->
+                <div class="platform-logos" aria-label="Prenotabile anche su">
+                    <p class="platform-logos-label">Presente su</p>
+                    <div class="platform-logos-row">
+                        <span class="platform-badge">Airbnb</span>
+                        <span class="platform-badge">Booking.com</span>
+                        <span class="platform-badge">VRBO</span>
+                        <span class="platform-badge">Google Hotels</span>
+                    </div>
+                    <p class="platform-logos-note">Miglior prezzo garantito prenotando direttamente con noi</p>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTATTI -->
         <section id="contact" class="footer-cta" aria-labelledby="contact-title">
             <div class="container">
@@ -1877,7 +2061,7 @@
                 <div class="footer-links" aria-label="Canali social">
                     <a href="https://www.instagram.com/le_sicilien.it/" target="_blank" rel="noopener">Instagram</a>
 
-                    <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+                    <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
                        target="_blank" rel="noopener">WhatsApp</a>
 
                     <a href="mailto:lesicilienhouses@gmail.com">Email</a>
@@ -2037,9 +2221,10 @@
         function handleSearch(event) {
             event.preventDefault();
             const form = event.currentTarget;
-            const destination = form.destination.value;
-            const guests = form.guests.value;
-            showToast(`Ricerca attivata per ${destination || 'Sicilia'} · ${guests || 'ospiti'}`);
+            const guests = form.guests ? form.guests.value : '';
+            const guestsParam = guests ? `?guests_rooms=${guests},0` : '';
+            gtag('event', 'search_submit', {event_category: 'cta', event_label: 'hero_search'});
+            window.open('https://lesicilien.kross.travel/' + guestsParam, '_blank', 'noopener');
         }
 
         function handleNewsletter(event) {
@@ -2050,13 +2235,25 @@
     </script>
 
        <!-- Floating WhatsApp Button -->
-       <a href="https://wa.me/393888005083?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+       <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20un%20soggiorno%20a%20Palermo.%20Potete%20aiutarmi%20a%20verificare%20la%20disponibilit%C3%A0%3F"
        class="whatsapp-float"
        target="_blank"
        rel="noopener"
-       aria-label="Contattaci su WhatsApp">
+       aria-label="Prenota via WhatsApp">
        <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Mobile Sticky Booking CTA Bar -->
+    <div class="mobile-booking-bar" id="mobileBookingBar" aria-label="Prenota il tuo soggiorno">
+        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="mobile-booking-btn" onclick="gtag('event','mobile_sticky_booking_click',{event_category:'cta',event_label:'mobile_bar'});">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            Verifica disponibilità
+        </a>
+        <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20un%20soggiorno%20a%20Palermo.%20Potete%20aiutarmi%20a%20verificare%20la%20disponibilit%C3%A0%3F" target="_blank" rel="noopener" class="mobile-whatsapp-btn" onclick="gtag('event','mobile_sticky_whatsapp_click',{event_category:'cta',event_label:'mobile_bar'});">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            WhatsApp
+        </a>
+    </div>
 
     <!-- Floating Guest Guide Button -->
     <a href="/guestguide.html"
@@ -2113,6 +2310,61 @@
         background: #ffffff;
         color: #111111;
         transform: translateY(-2px);
+    }
+
+    /* --- Mobile sticky booking bar --- */
+    .mobile-booking-bar {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2500;
+        background: #fff;
+        border-top: 1px solid rgba(0,0,0,0.10);
+        padding: 10px 16px;
+        gap: 10px;
+        box-shadow: 0 -4px 18px rgba(0,0,0,0.10);
+    }
+    @media (max-width: 768px) {
+        .mobile-booking-bar { display: flex; }
+        /* push WhatsApp float button above the bar */
+        .whatsapp-float { bottom: 80px; }
+        .guest-guide-float { bottom: 80px; }
+    }
+    .mobile-booking-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #BFA05A;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: 12px;
+        padding: 13px 10px;
+        text-decoration: none;
+    }
+    .mobile-whatsapp-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #25D366;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: 12px;
+        padding: 13px 18px;
+        text-decoration: none;
+        white-space: nowrap;
     }
 
     /* --- tiny hidden link to review.html --- */

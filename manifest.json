@@ -1,0 +1,21 @@
+{
+  "name": "Le Sicilien — Case Vacanze Palermo",
+  "short_name": "Le Sicilien",
+  "description": "Affitto case vacanze e ville di lusso a Palermo, Sicilia. Prenota direttamente.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F7F4ED",
+  "theme_color": "#BFA05A",
+  "icons": [
+    {
+      "src": "/FAVICON.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/FAVICON.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
