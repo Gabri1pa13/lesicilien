@@ -862,6 +862,56 @@
         }
 
         /* --- CONTACT / FOOTER CTA --- */
+        /* CONCIERGE BANNER */
+        .concierge-banner {
+            background: #111;
+            padding: 72px 0;
+        }
+        .concierge-banner-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .concierge-banner-text {
+            flex: 1;
+        }
+        .concierge-banner-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 8px 0 14px;
+            line-height: 1.25;
+        }
+        .concierge-banner-sub {
+            color: rgba(255,255,255,0.62);
+            font-size: 0.97rem;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 520px;
+        }
+        .concierge-wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 34px;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .concierge-wa-btn i { font-size: 1.2rem; }
+        .concierge-wa-btn:hover { background: #1ebe59; transform: translateY(-2px); }
+
         .footer-cta {
             background: #151515;
             color: #fff;
@@ -1031,6 +1081,9 @@
             .exp-grid { grid-template-columns: 1fr; margin-top: 40px; }
             .exp-item { height: 360px; }
 
+            .concierge-banner-inner { flex-direction: column; text-align: center; }
+            .concierge-banner-sub { margin: 0 auto; }
+            .concierge-banner-title { font-size: 1.5rem; }
             .footer-cta { padding: 76px 0 70px; }
             .footer-links { flex-direction: column; gap: 18px; }
             .footer-guides-grid { grid-template-columns: 1fr 1fr; }
@@ -2101,6 +2154,24 @@
                     </div>
                     <p class="platform-logos-note">Miglior prezzo garantito prenotando direttamente con noi</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- CONCIERGE BANNER -->
+        <section class="concierge-banner" aria-label="Concierge WhatsApp">
+            <div class="container concierge-banner-inner">
+                <div class="concierge-banner-text">
+                    <span class="gold-text uppercase section-header-sub">Concierge</span>
+                    <h2 class="concierge-banner-title">Need assistance planning your stay?</h2>
+                    <p class="concierge-banner-sub">Our concierge is available 24/7 — from booking to checkout, we take care of everything.</p>
+                </div>
+                <a href="https://wa.me/393273751480?text=Hi%2C%20I%27d%20like%20assistance%20planning%20my%20stay%20in%20Sicily."
+                   target="_blank" rel="noopener"
+                   class="concierge-wa-btn"
+                   onclick="gtag('event','whatsapp_concierge_click',{event_category:'cta',event_label:'concierge_banner'});">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    WhatsApp us
+                </a>
             </div>
         </section>
 
