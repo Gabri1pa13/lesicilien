@@ -411,6 +411,60 @@
             font-weight: 300;
         }
 
+        /* HERO SUBTITLE */
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.80);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        /* HERO CTA BUTTONS */
+        .hero-cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 30px;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .hero-btn-primary {
+            background: var(--gold);
+            color: #fff;
+            border: 2px solid var(--gold);
+        }
+        .hero-btn-primary:hover {
+            background: var(--gold-hover);
+            border-color: var(--gold-hover);
+        }
+        .hero-btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.65);
+        }
+        .hero-btn-secondary:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.95);
+        }
+
         /* --- SEARCH BAR --- */
         .search-wrapper {
             position: relative;
@@ -419,7 +473,7 @@
             display: flex;
             justify-content: center;
             padding: 0 20px 32px;
-            margin-top: -425px; /* MOLTO PIÙ SU VICINO AL LOGO */
+            margin-top: -560px; /* adjusted for subtitle + CTA buttons */
         }
 
         .search-container {
@@ -996,6 +1050,9 @@
             .header-logo-svg { height: 40px; }
             .hero-logo-svg { width: 78vw; margin-bottom: 20px; }
             .hero p { letter-spacing: 0.18em; }
+            .hero-subtitle { font-size: 0.88rem; }
+            .hero-cta-buttons { gap: 10px; }
+            .hero-btn { padding: 11px 22px; font-size: 0.70rem; }
             .footer-guides-grid { grid-template-columns: 1fr; }
         }
 
@@ -1607,10 +1664,16 @@
                 </svg>
 
                 <!-- NUOVA FRASE RICHIESTA -->
-                <div class="hero-claim">PRIVATE ESTATES IN SICILY</div>
+                <div class="hero-claim">PRIVATE LUXURY ESTATES IN PALERMO & SICILY</div>
 
                 <!-- payoff sotto -->
-                <p>Ville, terrazze e mare.</p>
+                <div class="hero-subtitle">A curated collection of villas, historic residences<br>and exclusive experiences.</div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-cta-buttons">
+                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Book your stay</a>
+                    <a href="#properties" class="hero-btn hero-btn-secondary">Explore our estates</a>
+                </div>
             </div>
 
             <div class="search-wrapper" aria-label="Modulo di ricerca disponibilità">
