@@ -248,6 +248,85 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- SEO Landing Pages -->
+  <url>
+    <loc>https://www.lesicilien.it/en/luxury-villas-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.95</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/villa-mondello-with-pool/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.92</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/luxury-stay-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.92</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/luxury-villas-sicily/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.92</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/yacht-charter-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/private-chef-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.88</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- New Palermo Guide Articles -->
+  <url>
+    <loc>https://www.lesicilien.it/en/guides/best-beaches-near-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/guides/best-restaurants-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/guides/things-to-do-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/guides/luxury-experiences-sicily/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.lesicilien.it/en/guides/where-to-stay-palermo/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
   <url>
     <loc>https://www.lesicilien.it/fr/guides/</loc>
     <lastmod>2026-02-22</lastmod>
