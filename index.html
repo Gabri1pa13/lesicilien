@@ -32,6 +32,19 @@
     <meta name="geo.position" content="38.1157;13.3615">
     <meta name="ICBM" content="38.1157, 13.3615">
 
+    <!-- Language auto-redirect (runs only on root Italian homepage) -->
+    <script>
+      (function() {
+        try {
+          if (sessionStorage.getItem('ls-lang-redirect')) return;
+          sessionStorage.setItem('ls-lang-redirect', '1');
+          var lang = (navigator.language || navigator.userLanguage || '').toLowerCase().slice(0, 2);
+          var map = { en: '/en/', fr: '/fr/', de: '/de/' };
+          if (map[lang]) location.replace(map[lang]);
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-62PCQP1DCW"></script>
 <script>
@@ -97,6 +110,13 @@
     <link rel="apple-touch-icon" href="/FAVICON.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#BFA05A">
+
+    <!-- Hreflang alternates -->
+    <link rel="alternate" hreflang="it" href="https://www.lesicilien.it/">
+    <link rel="alternate" hreflang="en" href="https://www.lesicilien.it/en/">
+    <link rel="alternate" hreflang="fr" href="https://www.lesicilien.it/fr/">
+    <link rel="alternate" hreflang="de" href="https://www.lesicilien.it/de/">
+    <link rel="alternate" hreflang="x-default" href="https://www.lesicilien.it/en/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
