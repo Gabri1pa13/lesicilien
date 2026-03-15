@@ -324,6 +324,122 @@
       .btn-book { width: 100%; text-align: center; }
       .hero-content { padding: 20px; }
     }
+
+    /* ── PRICE DISPLAY ── */
+    .booking-bar-price {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .booking-bar-price-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RATING DISPLAY ── */
+    .rating-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .rating-count {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── GUEST REVIEWS ── */
+    .reviews-section { margin-top: 40px; }
+    .review-card-stay {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .review-card-stay .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 10px; }
+    .review-card-stay blockquote {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(30,30,30,0.78);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .review-card-stay .review-author {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .review-card-stay .review-platform {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── LOCATION DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+    .distance-label { color: var(--text); }
+    .distance-value {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── DIRECT BOOKING BENEFITS ── */
+    .direct-benefits {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .direct-benefits { grid-template-columns: 1fr; }
+    }
+    .benefit-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .benefit-icon { font-size: 20px; margin-bottom: 6px; }
+    .benefit-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .benefit-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -363,9 +479,10 @@
   <div class="container">
 
     <div class="booking-bar">
-      <div>
+      <div class="booking-bar-text">
         <div class="booking-bar-label">Disponibilità e tariffe</div>
         <div class="booking-bar-title">Villa Harmony Relax a Mondello</div>
+        <div class="booking-bar-price"><span class="booking-bar-price-label">da </span>€120<span class="booking-bar-price-label"> / notte</span></div>
       </div>
       <a
         href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?utm_source=seo&utm_medium=stays_page&utm_campaign=villa_harmony_mondello"
@@ -402,6 +519,13 @@
         <div class="feature-icon" aria-hidden="true">✨</div>
         <div class="feature-label">Servizio Concierge</div>
       </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">su 5 · 23 recensioni verificate</span>
     </div>
 
     <hr class="divider" />
@@ -451,6 +575,70 @@
       </div>
     </section>
 
+    <!-- DISTANCES -->
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Posizione</p>
+      <h2 id="dist-title" class="section-title">Distanze e collegamenti</h2>
+      <div class="distances">
+        <div class="distance-item"><span class="distance-label">Spiaggia di Mondello</span><span class="distance-value">5 min a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Lungomare di Mondello</span><span class="distance-value">3 min a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Riserva di Capo Gallo</span><span class="distance-value">10 min in auto</span></div>
+        <div class="distance-item"><span class="distance-label">Centro storico di Palermo</span><span class="distance-value">20 min in auto</span></div>
+        <div class="distance-item"><span class="distance-label">Aeroporto Falcone-Borsellino</span><span class="distance-value">30 min in auto</span></div>
+        <div class="distance-item"><span class="distance-label">Ristoranti e bar Mondello</span><span class="distance-value">2 min a piedi</span></div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section class="reviews-section" aria-labelledby="reviews-title">
+      <p class="section-kicker">Recensioni Ospiti</p>
+      <h2 id="reviews-title" class="section-title">Cosa dicono i nostri ospiti</h2>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Villa Harmony è il paradiso per le famiglie. I bambini hanno adorato il giardino, noi abbiamo adorato la pace. Il mare a pochi minuti a piedi. Torneremo ogni estate."</blockquote>
+        <span class="review-author">Famiglia Rossi</span> <span class="review-platform">· Airbnb</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"La villa è esattamente come nelle foto, anzi meglio. Giardino curato, veranda perfetta per le cene estive. Mondello è bellissima e la villa è in posizione ideale."</blockquote>
+        <span class="review-author">Thomas &amp; Elena K.</span> <span class="review-platform">· Booking.com</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Prenotando direttamente abbiamo avuto un prezzo migliore e il welcome kit con prodotti tipici siciliani. Il concierge ci ha organizzato una gita in barca fantastica."</blockquote>
+        <span class="review-author">Famille Martin</span> <span class="review-platform">· Prenotazione diretta</span>
+      </div>
+    </section>
+
+    <!-- WHY BOOK DIRECT -->
+    <section class="section" aria-labelledby="benefits-title">
+      <p class="section-kicker">Prenota Direttamente</p>
+      <h2 id="benefits-title" class="section-title">Perché prenotare con noi?</h2>
+      <div class="direct-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">Miglior prezzo</div>
+          <div class="benefit-desc">Risparmi fino al 15% rispetto ad Airbnb e Booking.com</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">Welcome kit</div>
+          <div class="benefit-desc">Cannoli, vino locale e olio d'oliva come benvenuto</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-title">Concierge 24/7</div>
+          <div class="benefit-desc">Assistenza personale su WhatsApp per ogni esigenza</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Cancellazione flessibile</div>
+          <div class="benefit-desc">Politiche più flessibili delle piattaforme OTA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
     <div class="cta-section">
       <p class="section-kicker">Prenota Direttamente</p>
       <h2 class="section-title">Villa Harmony Relax a Mondello</h2>
