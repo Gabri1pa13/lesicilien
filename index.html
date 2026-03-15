@@ -1046,7 +1046,7 @@
                 opacity: 1;
                 pointer-events: auto;
             }
-            .btn-reserve { align-self: flex-start; }
+            .btn-reserve { display: none; } /* sticky bar handles CTA on mobile */
             .nav-toggle { display: block; color: inherit; }
         }
 
@@ -2401,12 +2401,10 @@
     <!-- Mobile Sticky Booking CTA Bar -->
     <div class="mobile-booking-bar" id="mobileBookingBar" aria-label="Prenota il tuo soggiorno">
         <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="mobile-booking-btn" onclick="gtag('event','mobile_sticky_booking_click',{event_category:'cta',event_label:'mobile_bar'});">
-            <i class="fas fa-calendar-check" aria-hidden="true"></i>
-            Verifica disponibilità
+            Prenota ora
         </a>
-        <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20un%20soggiorno%20a%20Palermo.%20Potete%20aiutarmi%20a%20verificare%20la%20disponibilit%C3%A0%3F" target="_blank" rel="noopener" class="mobile-whatsapp-btn" onclick="gtag('event','mobile_sticky_whatsapp_click',{event_category:'cta',event_label:'mobile_bar'});">
+        <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20un%20soggiorno%20a%20Palermo.%20Potete%20aiutarmi%20a%20verificare%20la%20disponibilit%C3%A0%3F" target="_blank" rel="noopener" class="mobile-whatsapp-btn" aria-label="Contattaci via WhatsApp" onclick="gtag('event','mobile_sticky_whatsapp_click',{event_category:'cta',event_label:'mobile_bar'});">
             <i class="fab fa-whatsapp" aria-hidden="true"></i>
-            WhatsApp
         </a>
     </div>
 
@@ -2475,17 +2473,19 @@
         left: 0;
         right: 0;
         z-index: 2500;
-        background: #fff;
-        border-top: 1px solid rgba(0,0,0,0.10);
-        padding: 10px 16px;
+        background: rgba(255,255,255,0.96);
+        border-top: 1px solid rgba(0,0,0,0.08);
+        padding: 12px 16px 16px;
         gap: 10px;
-        box-shadow: 0 -4px 18px rgba(0,0,0,0.10);
+        box-shadow: 0 -8px 30px rgba(0,0,0,0.10);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
     }
     @media (max-width: 768px) {
-        .mobile-booking-bar { display: flex; }
-        /* push WhatsApp float button above the bar */
-        .whatsapp-float { bottom: 80px; }
-        .guest-guide-float { bottom: 80px; }
+        .mobile-booking-bar { display: flex; align-items: center; }
+        /* hide floating buttons on mobile — bar handles all CTAs */
+        .whatsapp-float { display: none; }
+        .guest-guide-float { display: none; }
     }
     .mobile-booking-btn {
         flex: 1;
@@ -2496,31 +2496,32 @@
         background: #BFA05A;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.82rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        border-radius: 12px;
-        padding: 13px 10px;
+        border-radius: 14px;
+        padding: 16px 10px;
         text-decoration: none;
+        transition: background 0.2s;
     }
+    .mobile-booking-btn:active { background: #9e844a; }
     .mobile-whatsapp-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        background: #25D366;
-        color: #fff;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.82rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        border-radius: 12px;
-        padding: 13px 18px;
+        width: 52px;
+        height: 52px;
+        flex-shrink: 0;
+        background: transparent;
+        border: 1.5px solid rgba(0,0,0,0.14);
+        color: #25D366;
+        border-radius: 14px;
+        font-size: 22px;
         text-decoration: none;
-        white-space: nowrap;
+        transition: background 0.2s, border-color 0.2s;
     }
+    .mobile-whatsapp-btn:active { background: rgba(37,211,102,0.10); }
 
     /* --- tiny hidden link to review.html --- */
     .footer-review-link{
