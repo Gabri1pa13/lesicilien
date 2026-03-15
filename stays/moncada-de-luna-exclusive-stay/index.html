@@ -339,6 +339,122 @@
       .btn-book { width: 100%; text-align: center; }
       .hero-content { padding: 20px; }
     }
+
+    /* ── PRICE DISPLAY ── */
+    .booking-bar-price {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .booking-bar-price-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RATING DISPLAY ── */
+    .rating-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .rating-count {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── GUEST REVIEWS ── */
+    .reviews-section { margin-top: 40px; }
+    .review-card-stay {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .review-card-stay .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 10px; }
+    .review-card-stay blockquote {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(30,30,30,0.78);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .review-card-stay .review-author {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .review-card-stay .review-platform {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── LOCATION DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+    .distance-label { color: var(--text); }
+    .distance-value {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── DIRECT BOOKING BENEFITS ── */
+    .direct-benefits {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .direct-benefits { grid-template-columns: 1fr; }
+    }
+    .benefit-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .benefit-icon { font-size: 20px; margin-bottom: 6px; }
+    .benefit-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .benefit-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -384,6 +500,7 @@
       <div class="booking-bar-text">
         <div class="booking-bar-label">Disponibilità e tariffe</div>
         <div class="booking-bar-title">Moncada de Luna Exclusive Stay</div>
+        <div class="booking-bar-price"><span class="booking-bar-price-label">da </span>€95<span class="booking-bar-price-label"> / notte</span></div>
       </div>
       <a
         href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?utm_source=seo&utm_medium=stays_page&utm_campaign=moncada_de_luna"
@@ -421,6 +538,13 @@
         <div class="feature-icon" aria-hidden="true">✨</div>
         <div class="feature-label">Servizio Concierge</div>
       </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">su 5 · 34 recensioni verificate</span>
     </div>
 
     <hr class="divider" />
@@ -468,6 +592,70 @@
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div class="highlight-text">Biancheria di qualità premium, cambio lenzuola incluso nel soggiorno</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISTANCES -->
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Posizione</p>
+      <h2 id="dist-title" class="section-title">Distanze e collegamenti</h2>
+      <div class="distances">
+        <div class="distance-item"><span class="distance-label">Cattedrale di Palermo</span><span class="distance-value">200 m a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Teatro Massimo</span><span class="distance-value">500 m a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Mercato della Vucciria</span><span class="distance-value">350 m a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Mercato del Ballarò</span><span class="distance-value">600 m a piedi</span></div>
+        <div class="distance-item"><span class="distance-label">Porto di Palermo</span><span class="distance-value">1.2 km</span></div>
+        <div class="distance-item"><span class="distance-label">Aeroporto Falcone-Borsellino</span><span class="distance-value">35 min in auto</span></div>
+        <div class="distance-item"><span class="distance-label">Spiaggia di Mondello</span><span class="distance-value">25 min in auto</span></div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section class="reviews-section" aria-labelledby="reviews-title">
+      <p class="section-kicker">Recensioni Ospiti</p>
+      <h2 id="reviews-title" class="section-title">Cosa dicono i nostri ospiti</h2>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Appartamento magnifico, posizione centrale ideale. Lo staff è stato disponibilissimo, ci ha consigliato ristoranti e organizzato un transfer privato. Torneremo sicuramente!"</blockquote>
+        <span class="review-author">Marco &amp; Sara</span> <span class="review-platform">· Prenotazione diretta</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"I soffitti affrescati sono meravigliosi. Posizione perfetta per esplorare Palermo a piedi. Il servizio concierge ci ha organizzato una cena privata che non dimenticheremo mai."</blockquote>
+        <span class="review-author">James &amp; Claire W.</span> <span class="review-platform">· Airbnb</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Abbiamo prenotato direttamente e risparmiato rispetto a Booking. Check-in personalizzato con welcome kit siciliano. Un'esperienza che vale ogni euro."</blockquote>
+        <span class="review-author">Francesca R.</span> <span class="review-platform">· Prenotazione diretta</span>
+      </div>
+    </section>
+
+    <!-- WHY BOOK DIRECT -->
+    <section class="section" aria-labelledby="benefits-title">
+      <p class="section-kicker">Prenota Direttamente</p>
+      <h2 id="benefits-title" class="section-title">Perché prenotare con noi?</h2>
+      <div class="direct-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">Miglior prezzo</div>
+          <div class="benefit-desc">Risparmi fino al 15% rispetto ad Airbnb e Booking.com</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">Welcome kit</div>
+          <div class="benefit-desc">Cannoli, vino locale e olio d'oliva come benvenuto</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-title">Concierge 24/7</div>
+          <div class="benefit-desc">Assistenza personale su WhatsApp per ogni esigenza</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Cancellazione flessibile</div>
+          <div class="benefit-desc">Politiche più flessibili delle piattaforme OTA</div>
         </div>
       </div>
     </section>
