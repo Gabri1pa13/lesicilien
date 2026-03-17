@@ -39,7 +39,7 @@
           if (sessionStorage.getItem('ls-lang-redirect')) return;
           sessionStorage.setItem('ls-lang-redirect', '1');
           var lang = (navigator.language || navigator.userLanguage || '').toLowerCase().slice(0, 2);
-          var map = { en: '/en/', fr: '/fr/', de: '/de/' };
+          var map = { en: '/en/', fr: '/fr/', de: '/de/', pl: '/pl/', zh: '/zh/' };
           if (map[lang]) location.replace(map[lang]);
         } catch(e) {}
       })();
