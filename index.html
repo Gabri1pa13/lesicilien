@@ -341,6 +341,73 @@
         }
         .nav-item:hover::after { width: 100%; }
 
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+        }
+        .lang-selector-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 6px;
+            color: inherit;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            font-family: inherit;
+            font-weight: 500;
+        }
+        header.scrolled .lang-selector-btn {
+            border-color: rgba(0,0,0,0.2);
+        }
+        .lang-selector-btn:hover {
+            border-color: var(--gold);
+        }
+        .lang-selector-btn svg {
+            width: 10px;
+            height: 10px;
+            transition: transform 0.2s;
+        }
+        .lang-selector.open .lang-selector-btn svg {
+            transform: rotate(180deg);
+        }
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            min-width: 140px;
+            padding: 6px 0;
+            z-index: 3000;
+        }
+        .lang-selector.open .lang-dropdown {
+            display: block;
+        }
+        .lang-dropdown a {
+            display: block;
+            padding: 10px 16px;
+            font-size: 0.78rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.15s;
+            letter-spacing: 0.05em;
+        }
+        .lang-dropdown a:hover {
+            background: #f5f2ea;
+        }
+        .lang-dropdown a.active {
+            font-weight: 700;
+            color: var(--gold);
+        }
+
         .btn-reserve {
             border-radius: 999px;
             border: 1px solid rgba(255,255,255,0.55);
@@ -1061,6 +1128,9 @@
             }
             .btn-reserve { display: none; } /* sticky bar handles CTA on mobile */
             .nav-toggle { display: block; color: inherit; }
+            .lang-selector-btn { border-color: rgba(0,0,0,0.2); color: #333; }
+            header:not(.scrolled) .lang-selector-btn { border-color: rgba(255,255,255,0.35); color: #fff; }
+            .lang-dropdown { right: auto; left: 0; }
         }
 
         @media (max-width: 900px) {
@@ -2003,6 +2073,19 @@
             <a href="/guestguide.html" class="nav-item">Guest Guide</a>
             <!-- Spostiamo il pulsante Contatti all'interno del menu di navigazione come item -->
             <a href="#contact" class="nav-item">Contatti</a>
+            <div class="lang-selector" id="langSelector">
+                <button class="lang-selector-btn" aria-label="Seleziona lingua" aria-expanded="false">
+                    IT <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="/" class="active">Italiano</a>
+                    <a href="/en/">English</a>
+                    <a href="/fr/">Français</a>
+                    <a href="/de/">Deutsch</a>
+                    <a href="/pl/">Polski</a>
+                    <a href="/zh/">中文</a>
+                </div>
+            </div>
         </nav>
         <!-- Pulsante Prenota: porta alla home del booking engine (KrossBooking) -->
         <a href="https://lesicilien.kross.travel/" class="btn-reserve" target="_blank" rel="noopener" style="margin-left: 16px;">
@@ -2759,6 +2842,21 @@
                 navToggle.setAttribute('aria-expanded', 'false');
             });
         });
+
+        // Language selector toggle
+        const langSelector = document.getElementById('langSelector');
+        if (langSelector) {
+            const langBtn = langSelector.querySelector('.lang-selector-btn');
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langSelector.classList.toggle('open');
+                langBtn.setAttribute('aria-expanded', langSelector.classList.contains('open'));
+            });
+            document.addEventListener('click', () => {
+                langSelector.classList.remove('open');
+                langBtn.setAttribute('aria-expanded', 'false');
+            });
+        }
 
         // Scroll reveal animations
         const revealElements = document.querySelectorAll('.reveal');
