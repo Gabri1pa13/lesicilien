@@ -123,9 +123,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="image" href="/22.jpeg">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://ajax.aspnetcdn.com" crossorigin>
+    <link rel="preconnect" href="https://data.krossbooking.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preload" as="image" href="/22.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/22.jpeg" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
 
     <style>
@@ -373,7 +378,8 @@
         /* --- HERO --- */
         .hero {
             min-height: 100vh;
-            background: url('22.jpeg') center/cover no-repeat;
+            background: url('22.webp') center/cover no-repeat;
+            background-image: image-set(url('22.webp') type('image/webp'), url('22.jpeg') type('image/jpeg'));
             position: relative;
             display: flex;
             flex-direction: column;
@@ -1524,9 +1530,10 @@
         }
         .prop-card:hover .prop-image::after { opacity: 1; }
     </style>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="all" />
-<script type='text/javascript' defer='defer' src='https://data.krossbooking.com/widget/v6/lesicilien/2.js'></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js" defer></script>
+<link rel="stylesheet" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" /></noscript>
+<script defer src='https://data.krossbooking.com/widget/v6/lesicilien/2.js'></script>
 
     <!-- JSON-LD Structured Data for AI Search Engines -->
 
@@ -2004,7 +2011,7 @@
 
     <main id="main-content">
         <!-- HERO -->
-        <section id="hero" class="hero" aria-label="Le Sicilien · Private Estates in Sicily">
+        <section id="hero" class="hero" role="img" aria-label="Vista panoramica di Palermo e delle nostre proprietà">
             <div class="hero-content">
                 <h4 class="uppercase" style="color: rgba(255,255,255,0.84);">Le Sicilien</h4>
 
@@ -2060,7 +2067,7 @@
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
                             <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
-                                <img src="moncada.jpeg" alt="Moncada de Luna Exclusive Stay, facciata storica e carrozza" loading="lazy">
+                                <picture><source srcset="moncada.webp" type="image/webp"><img src="moncada.jpeg" alt="Moncada de Luna Exclusive Stay, facciata storica e carrozza" loading="lazy" width="800" height="554"></picture>
                             </a>
                         </div>
                         <div class="prop-body">
@@ -2090,7 +2097,7 @@
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
                             <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
-                                <img src="fiordisicilia.jpeg" alt="Fior di Sicilia appartamento con terrazza, outdoor dining" loading="lazy">
+                                <picture><source srcset="fiordisicilia.webp" type="image/webp"><img src="fiordisicilia.jpeg" alt="Fior di Sicilia appartamento con terrazza, outdoor dining" loading="lazy" width="800" height="531"></picture>
                             </a>
                         </div>
                         <div class="prop-body">
@@ -2120,7 +2127,7 @@
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
                             <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
-                                <img src="tildesunsetbay.jpg" alt="Tilde Sunset Bay Villa, villa fronte mare con giardino" loading="lazy">
+                                <picture><source srcset="tildesunsetbay.webp" type="image/webp"><img src="tildesunsetbay.jpg" alt="Tilde Sunset Bay Villa, villa fronte mare con giardino" loading="lazy" width="800" height="533"></picture>
                             </a>
                         </div>
                         <div class="prop-body">
@@ -2150,7 +2157,7 @@
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
                             <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
-                                <img src="villa harmony.JPG" alt="Villa Harmony relax a Mondello, facciata bianca con giardino" loading="lazy">
+                                <picture><source srcset="villa harmony.webp" type="image/webp"><img src="villa harmony.JPG" alt="Villa Harmony relax a Mondello, facciata bianca con giardino" loading="lazy" width="800" height="533"></picture>
                             </a>
                         </div>
                         <div class="prop-body">
@@ -2183,7 +2190,7 @@
             <div class="container spot-wrapper">
                 <div class="spot-visual">
                     <div class="spot-badge">FEATURED<br>VILLA</div>
-                    <img src="tildesunsetbay.jpg" alt="Piscina e facciata di Tilde Sunset Bay Villa" loading="lazy">
+                    <picture><source srcset="tildesunsetbay.webp" type="image/webp"><img src="tildesunsetbay.jpg" alt="Piscina e facciata di Tilde Sunset Bay Villa" loading="lazy" width="800" height="533"></picture>
                 </div>
                 <div class="spot-text">
                     <span class="uppercase gold-text">Esclusiva del mese</span>
@@ -2215,7 +2222,7 @@
                 <div class="exp-grid" role="list">
                     <!-- PRIVATE CHEF -->
                     <div class="exp-item" role="listitem">
-                        <img src="private chef.jpg" alt="Chef privato prepara una cena gourmet" loading="lazy">
+                        <picture><source srcset="private chef.webp" type="image/webp"><img src="private chef.jpg" alt="Chef privato prepara una cena gourmet" loading="lazy" width="800" height="1206"></picture>
                         <div class="exp-content">
                             <h3>Private Chef</h3>
                             <p>Cene firmate da chef privati direttamente in villa.</p>
@@ -2224,7 +2231,7 @@
 
                     <!-- YACHT CHARTER -->
                     <div class="exp-item" role="listitem">
-                        <img src="yacht e charter.png" alt="Catamarano di lusso in navigazione lungo la costa" loading="lazy">
+                        <picture><source srcset="yacht e charter.webp" type="image/webp"><img src="yacht e charter.png" alt="Catamarano di lusso in navigazione lungo la costa" loading="lazy" width="800" height="493"></picture>
                         <div class="exp-content">
                             <h3>Yacht Charter</h3>
                             <p>Crociere giornaliere tra le Eolie e le baie più riservate.</p>
@@ -2233,7 +2240,7 @@
 
                     <!-- EXCLUSIVE YACHT DINNER -->
                     <div class="exp-item" role="listitem">
-                        <img src="exclusive yacht dinner.png" alt="Cena esclusiva a bordo di uno yacht" loading="lazy">
+                        <picture><source srcset="exclusive yacht dinner.webp" type="image/webp"><img src="exclusive yacht dinner.png" alt="Cena esclusiva a bordo di uno yacht" loading="lazy" width="800" height="521"></picture>
                         <div class="exp-content">
                             <h3>Exclusive Yacht Dinner</h3>
                             <p>Cena a bordo di yacht privato, con servizio dedicato e menu su misura.</p>
