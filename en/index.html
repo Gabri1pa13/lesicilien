@@ -1121,6 +1121,46 @@
             .lang-selector-btn { border-color: rgba(0,0,0,0.2); color: #333; }
             header:not(.scrolled) .lang-selector-btn { border-color: rgba(255,255,255,0.35); color: #fff; }
             .lang-dropdown { right: auto; left: 0; }
+            /* Mobile nav: lingue come pill inline, niente dropdown */
+            .nav-menu .lang-selector-btn { display: none; }
+            .nav-menu .lang-dropdown {
+                position: static;
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 4px 0 0;
+                box-shadow: none;
+                border-radius: 0;
+                background: transparent;
+                min-width: 0;
+            }
+            .nav-menu .lang-dropdown a {
+                display: flex;
+                align-items: center;
+                padding: 7px 16px;
+                border-radius: 999px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                border: 1px solid rgba(0,0,0,0.15);
+                color: #333;
+                min-height: 38px;
+                background: none;
+            }
+            header:not(.scrolled) .nav-menu .lang-dropdown a {
+                border-color: rgba(255,255,255,0.3);
+                color: rgba(255,255,255,0.85);
+            }
+            .nav-menu .lang-dropdown a.active {
+                background: #BFA05A;
+                color: #fff;
+                border-color: #BFA05A;
+            }
+            header:not(.scrolled) .nav-menu .lang-dropdown a.active {
+                background: rgba(191,160,90,0.85);
+                border-color: transparent;
+            }
         }
 
         @media (max-width: 900px) {
