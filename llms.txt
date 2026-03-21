@@ -1,0 +1,56 @@
+# Le Sicilien
+
+> Le Sicilien is a luxury vacation rental company offering private villas and estates in Palermo and Sicily, Italy. We specialize in direct bookings without OTA intermediaries, paired with bespoke concierge services including private chefs, yacht charters, and airport transfers.
+
+## About
+
+Le Sicilien manages a curated collection of historic residences and luxury villas in Palermo and the surrounding Sicilian coast. All properties are in the premium segment (€€€) with full concierge support.
+
+- Rating: 4.9/5 (200+ guest reviews)
+- Location: Palermo, Sicily, Italy (38.1157°N, 13.3615°E)
+- Contact: lesicilienhouses@gmail.com | +39-327-375-1480
+- Website: https://www.lesicilien.it/
+- Languages: Italian, English, French, German, Polish, Chinese
+
+## Properties
+
+- [Moncada De Luna Exclusive Stay](https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/) — Historic villa in Palermo's city centre
+- [Villa Harmony Relax](https://www.lesicilien.it/stays/villa-harmony-relax/) — Beachfront villa near Mondello
+- [Tilde Sunset Bay Villa](https://www.lesicilien.it/stays/tilde-sunset-bay-villa/) — Seafront villa with panoramic sea views
+- [Fior di Sicilia](https://www.lesicilien.it/stays/fior-di-sicilia/) — Boutique estate in Sicily
+
+## Services
+
+- Concierge service (24/7 guest support)
+- Private chef bookings
+- Yacht charter and boat trips
+- Airport and port transfers
+- Property management for investors
+
+## Guest Guides (English)
+
+Practical guides written by the Le Sicilien team for guests visiting Palermo and Sicily:
+
+- [Where to Stay in Palermo — Complete Guide](https://www.lesicilien.it/en/guides/where-to-stay-palermo/)
+- [Best Beaches Near Palermo](https://www.lesicilien.it/en/guides/best-beaches-near-palermo/)
+- [Best Restaurants in Palermo](https://www.lesicilien.it/en/guides/best-restaurants-palermo/)
+- [Luxury Experiences in Sicily](https://www.lesicilien.it/en/guides/luxury-experiences-sicily/)
+- [B&B in Palermo — Areas, Prices & Booking Guide](https://www.lesicilien.it/en/guides/bnb-in-palermo-areas-prices-booking-guide/)
+- [Historic Centre vs Mondello — Where to Stay](https://www.lesicilien.it/en/guides/where-to-stay-palermo-historic-center-vs-mondello/)
+- [Stay Near the Sea in Palermo — Mondello & Surroundings](https://www.lesicilien.it/en/guides/stay-near-the-sea-in-palermo-mondello-surroundings/)
+- [Palermo Historic Centre Neighbourhoods](https://www.lesicilien.it/en/guides/palermo-historic-center-neighborhoods-where-to-stay/)
+- [Seafront Villa Near Palermo — Guide](https://www.lesicilien.it/en/guides/seafront-villa-near-palermo-guide/)
+- [Where to Stay in Palermo in Spring](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-in-spring/)
+- [Where to Stay in Palermo in Summer](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-in-summer/)
+- [Where to Stay in Palermo in Autumn](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-in-autumn/)
+- [Where to Stay in Palermo with Kids](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-with-kids/)
+- [Where to Stay in Palermo for a Weekend (2–4 nights)](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-for-a-2-3-4-night-weekend/)
+- [Where to Stay in Palermo Without a Car](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-without-a-car/)
+- [Where to Stay Near Palermo Train Station and Port](https://www.lesicilien.it/en/guides/where-to-stay-near-palermo-train-station-and-port/)
+- [Where to Stay Near Palermo Airport](https://www.lesicilien.it/en/guides/where-to-stay-near-palermo-airport/)
+- [Hotel or Apartment in Palermo — What to Choose](https://www.lesicilien.it/en/guides/hotel-or-apartment-in-palermo-what-to-choose/)
+- [Things to Do in Palermo](https://www.lesicilien.it/en/guides/things-to-do-palermo/)
+
+## Sitemap
+
+Full URL index: https://www.lesicilien.it/sitemap.xml
