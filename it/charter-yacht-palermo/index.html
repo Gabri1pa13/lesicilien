@@ -126,6 +126,10 @@
     .site-booking-widget .kross-container { min-height: 138px; }
     .site-booking-fallback { margin: 10px 6px 0; color: rgba(255,255,255,.8); font-size: .86rem; }
     .site-booking-fallback a { color: #F4E7C7; text-decoration: underline; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 14px; margin: 28px 0 6px; }
+    .photo-grid picture { display: block; border-radius: 14px; overflow: hidden; }
+    .photo-grid img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .photo-grid picture:hover img { transform: scale(1.04); }
     .site-mobile-booking { display: none; }
     footer { margin-top: 36px; background: #181818; color: #f0f0f0; padding: 26px 20px 38px; }
     .footer-title { font-family: "Cinzel", serif; font-size: 1.5rem; margin-bottom: 8px; }
@@ -163,6 +167,21 @@
 
     <article>
       <p class="lead">Le Sicilien &egrave; una collezione curata di ville di lusso e residenze storiche a Palermo e in tutta la Sicilia. Offriamo soggiorni privati con servizio concierge che include charter yacht, chef privato ed esperienze esclusive &mdash; prenotabili direttamente senza commissioni OTA.</p>
+
+      <div class="photo-grid">
+        <picture>
+          <source srcset="/catamaran-charter.webp" type="image/webp">
+          <img src="/catamaran-charter.jpg" alt="Catamarano a vela nel golfo di Palermo — acque cristalline" loading="lazy" width="800" height="533">
+        </picture>
+        <picture>
+          <source srcset="/salone-yacht.webp" type="image/webp">
+          <img src="/salone-yacht.jpg" alt="Salone interno di yacht di lusso — aperitivo serale a bordo" loading="lazy" width="800" height="533">
+        </picture>
+        <picture>
+          <source srcset="/cabina-yacht.webp" type="image/webp">
+          <img src="/cabina-yacht.jpg" alt="Cabina suite di lusso su yacht con champagne" loading="lazy" width="800" height="533">
+        </picture>
+      </div>
 
       <h2>Le nostre ville di lusso e residenze private a Palermo</h2>
       <p>Ogni propriet&agrave; nel portfolio Le Sicilien &egrave; stata selezionata per il suo carattere, la posizione e la qualit&agrave; del comfort. Dal centro storico di Palermo al lungomare di Mondello, ogni soggiorno include il supporto concierge dedicato e una linea diretta con il nostro team.</p>
@@ -228,9 +247,9 @@
       <p>Utilizza il nostro motore di prenotazione diretta per verificare la disponibilit&agrave; e confermare le date &mdash; nessuna piattaforma OTA, nessun costo aggiuntivo. Per richieste personalizzate, itinerari su misura o soggiorni multi-propriet&agrave;, contatta il nostro team direttamente.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Verifica disponibilit&agrave;<small>Prenotazione diretta &mdash; miglior prezzo garantito</small></a>
-        <a class="cta" href="/stays/tilde-sunset-bay-villa/">Villa fronte mare<small>Privacy esclusiva sulla costa siciliana</small></a>
-        <a class="cta" href="/stays/villa-harmony-relax/">Villa Mondello<small>Accesso spiaggia, vista mare, concierge completo</small></a>
+        <a class="cta" href="/it/esperienze-charter-yacht-palermo/">Esperienze in mare<small>Cena gourmet, aperitivi al tramonto e crociere private</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Prenota una villa<small>Miglior prezzo garantito — prenotazione diretta</small></a>
+        <a class="cta" href="/stays/tilde-sunset-bay-villa/">Villa fronte mare<small>La base ideale per chi ama il mare</small></a>
       </div>
 
       <h2>FAQ &mdash; Charter yacht a Palermo</h2>

@@ -96,6 +96,10 @@
     .contact-box { background: #111; color: #fff; border-radius: 16px; padding: 24px; margin: 26px 0; }
     .contact-box h3 { color: #F4E7C7; margin-top: 0; }
     .contact-box a { color: var(--gold); }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 14px; margin: 28px 0 6px; }
+    .photo-grid picture { display: block; border-radius: 14px; overflow: hidden; }
+    .photo-grid img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .photo-grid picture:hover img { transform: scale(1.04); }
     .site-mobile-booking { display: none; }
     footer { margin-top: 36px; background: #181818; color: #f0f0f0; padding: 26px 20px 38px; }
     .footer-title { font-family: "Cinzel", serif; font-size: 1.5rem; margin-bottom: 8px; }
@@ -121,6 +125,21 @@
   <main>
     <article style="max-width:960px; margin: 34px auto; background:#fff; border-radius:20px; border:1px solid #e6ddcf; box-shadow:0 20px 44px rgba(0,0,0,.06); padding:clamp(24px,4vw,46px);">
       <p class="lead">The Gulf of Palermo is one of the most dramatically beautiful stretches of the Tyrrhenian coast — framed by Monte Pellegrino to the north and opening towards the Egadi Islands to the west. A private yacht charter from Palermo gives you access to this landscape on your own terms: no schedules, no crowds, just open water and Sicilian light.</p>
+
+      <div class="photo-grid">
+        <picture>
+          <source srcset="/catamaran-charter.webp" type="image/webp">
+          <img src="/catamaran-charter.jpg" alt="Luxury sailing catamaran anchored in crystal-clear waters near Palermo" loading="lazy" width="800" height="533">
+        </picture>
+        <picture>
+          <source srcset="/salone-yacht.webp" type="image/webp">
+          <img src="/salone-yacht.jpg" alt="Luxury yacht salon interior — evening aperitivo on board" loading="lazy" width="800" height="533">
+        </picture>
+        <picture>
+          <source srcset="/cabina-yacht.webp" type="image/webp">
+          <img src="/cabina-yacht.jpg" alt="Luxury yacht master cabin suite with champagne" loading="lazy" width="800" height="533">
+        </picture>
+      </div>
 
       <h2>Private Yacht Charter — What Le Sicilien Arranges</h2>
       <p>Le Sicilien's concierge team coordinates private boat hire for villa guests from departure to return. We work with trusted local skippers and charter operators to provide the right vessel for your group — whether a classic motor yacht, a sailing boat or a traditional Sicilian luzzu.</p>
@@ -158,9 +177,9 @@
       <p>Yacht charters are most rewarding when part of a wider Sicilian itinerary. Le Sicilien's villa portfolio gives you the perfect base: a private residence in Palermo with a team that knows the coast, the harbours and the best conditions for each type of excursion.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="/en/luxury-villas-palermo/">Luxury Villas Palermo<small>Book your base first</small></a>
-        <a class="cta" href="/stays/tilde-sunset-bay-villa/">Seafront Villa<small>Ideal for coastal stays</small></a>
-        <a class="cta" href="/en/private-chef-palermo/">Private Chef<small>Add a chef to your charter</small></a>
+        <a class="cta" href="/en/charter-experiences-palermo/">Charter Experiences<small>Gourmet dinner, sunset aperitivo, private cruises</small></a>
+        <a class="cta" href="/en/luxury-villas-palermo/">Luxury Villas Palermo<small>Book your base on the island</small></a>
+        <a class="cta" href="/stays/tilde-sunset-bay-villa/">Seafront Villa<small>The ideal base for coastal stays</small></a>
       </div>
 
       <h2>FAQ — Yacht Charter Palermo</h2>
