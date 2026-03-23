@@ -92,11 +92,7 @@
       "https://www.lesicilien.it/fotosaloneapparta,mento.JPG",
       "https://www.lesicilien.it/fotostanzacontelevisione.JPG"
     ],
-    "identifier": {
-      "@type": "PropertyValue",
-      "name": "Le Sicilien Property ID",
-      "value": "fior-di-sicilia"
-    },
+    "identifier": "lesicilien-fior-di-sicilia",
     "additionalType": "https://www.wikidata.org/wiki/Q1371125",
     "telephone": "+39-327-375-1480",
     "address": {
@@ -114,9 +110,13 @@
     },
     "containsPlace": {
       "@type": "Accommodation",
+      "additionalType": "https://www.wikidata.org/wiki/Q1371125",
       "name": "Appartamento con Terrazza Privata – Fior di Sicilia",
       "description": "Appartamento di 2 camere con terrazza privata esclusiva, completamente arredato, per un massimo di 6 ospiti.",
-      "occupancy": { "@type": "QuantitativeValue", "maxValue": 6 },
+      "numberOfBedrooms": 2,
+      "numberOfBathroomsTotal": 1,
+      "bed": { "@type": "BedDetails", "typeOfBed": "Letto matrimoniale", "numberOfBeds": 2 },
+      "occupancy": { "@type": "QuantitativeValue", "value": 6, "maxValue": 6 },
       "numberOfRooms": 2,
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Terrazza privata", "value": true },
@@ -130,6 +130,7 @@
     "numberOfRooms": 2,
     "occupancy": {
       "@type": "QuantitativeValue",
+      "value": 6,
       "maxValue": 6
     },
     "petsAllowed": false,
@@ -151,12 +152,14 @@
     "review": [
       {
         "@type": "Review",
+        "datePublished": "2025-08-10",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "author": { "@type": "Person", "name": "Sophie L." },
         "reviewBody": "La terrazza del Fior di Sicilia è il posto più bello dove abbiamo fatto colazione in vita nostra. Vista sui tetti di Palermo, silenzio e lusso a prezzi onesti."
       },
       {
         "@type": "Review",
+        "datePublished": "2025-09-05",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "author": { "@type": "Person", "name": "Lorenzo e Giulia" },
         "reviewBody": "Appartamento luminoso e curato in ogni dettaglio. La terrazza è un sogno — abbiamo cenato fuori ogni sera. Posizione perfetta per i mercati storici."
