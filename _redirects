@@ -1,3 +1,6 @@
+# www enforcement — redirige il dominio non-www al dominio www canonico
+https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
+
 # Redirect 301 – vecchi URL generici → nuovi URL con nome proprietà (canonico)
 # Garantisce che i link esistenti (guide, OTA, backlink) continuino a funzionare
 
