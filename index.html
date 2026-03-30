@@ -52,7 +52,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-62PCQP1DCW');
+  gtag('config', 'G-62PCQP1DCW', {
+    linker: {
+      domains: ['lesicilien.it', 'lesicilien.kross.travel']
+    }
+  });
 </script>
 
     <!-- JSON-LD Structured Data for Local Business -->
@@ -2093,7 +2097,7 @@
 
 
 
-            <a href="/guestguide.html" class="nav-item">Guest Guide</a>
+            <a href="/guestguide.html" class="nav-item">Guida Ospiti</a>
             <!-- Spostiamo il pulsante Contatti all'interno del menu di navigazione come item -->
             <a href="#contact" class="nav-item">Contatti</a>
             <div class="lang-selector" id="langSelector">
@@ -2111,7 +2115,7 @@
             </div>
         </nav>
         <!-- Pulsante Prenota: porta alla home del booking engine (KrossBooking) -->
-        <a href="https://lesicilien.kross.travel/" class="btn-reserve" target="_blank" rel="noopener" style="margin-left: 16px;">
+        <a href="https://lesicilien.kross.travel/?utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=nav_reserve" class="btn-reserve" target="_blank" rel="noopener noreferrer" style="margin-left: 16px;" onclick="gtag('event','booking_click',{event_category:'cta',event_label:'nav_reserve'});">
             Prenota
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Apri o chiudi il menu" aria-expanded="false">
@@ -2126,7 +2130,7 @@
                 <h4 class="uppercase" style="color: rgba(255,255,255,0.84);">Le Sicilien</h4>
 
                 <!-- H1 per SEO / accessibilità -->
-                <h1 class="sr-only">Le Sicilien · Luxury Private Estates in Sicily</h1>
+                <h1 class="sr-only">Le Sicilien · Case vacanze e ville di lusso a Palermo e in Sicilia</h1>
 
                 <!-- LOGO SVG CENTRALE GRANDE -->
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00" class="hero-logo-svg" aria-hidden="true">
@@ -2141,14 +2145,14 @@
                 </svg>
 
                 <!-- NUOVA FRASE RICHIESTA -->
-                <div class="hero-claim">PRIVATE LUXURY ESTATES IN PALERMO & SICILY</div>
+                <div class="hero-claim">DIMORE DI LUSSO PRIVATE A PALERMO E IN SICILIA</div>
 
                 <!-- payoff sotto -->
-                <div class="hero-subtitle">A curated collection of villas, historic residences<br>and exclusive experiences.</div>
+                <div class="hero-subtitle">Una collezione curata di ville, dimore storiche<br>ed esperienze esclusive.</div>
 
                 <!-- CTA Buttons -->
                 <div class="hero-cta-buttons">
-                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Book your stay</a>
+                    <a href="https://lesicilien.kross.travel/?utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=hero_primary" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-primary" onclick="gtag('event','booking_click',{event_category:'cta',event_label:'hero_primary'});">Prenota il tuo soggiorno</a>
                     <a href="#properties" class="hero-btn hero-btn-secondary">Explore our estates</a>
                 </div>
             </div>
@@ -2192,7 +2196,7 @@
                                 <li>2 camere</li>
                                 <li>Affacci storici</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_moncada" class="prop-cta">
                                 Richiedi disponibilità <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2218,7 +2222,7 @@
                                 <li>Terrazza attrezzata</li>
                                 <li>Cucina moderna</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_fior_di_sicilia" class="prop-cta">
                                 Richiedi disponibilità <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2244,7 +2248,7 @@
                                 <li>Giardino privato</li>
                                 <li>5 min dall’aeroporto</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_tilde" class="prop-cta">
                                 Richiedi disponibilità <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2270,7 +2274,7 @@
                                 <li>Giardino e verande</li>
                                 <li>Vicino alla spiaggia</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_villa_harmony" class="prop-cta">
                                 Richiedi disponibilità <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2296,10 +2300,10 @@
                         villa rappresenta il meglio dell'ospitalità di alto livello in Sicilia.
                     </p>
                     <!-- CTA modificato -->
-                    <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+                    <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20Tilde%20Sunset%20Bay%20Villa.%20Potete%20aiutarmi%20a%20verificare%20disponibilit%C3%A0%20e%20tariffa%20migliore%3F"
                        class="btn-gold"
                        target="_blank" rel="noopener">
-                       Richiedi informazioni
+                       Prenota questa villa
                     </a>
                 </div>
             </div>
@@ -2524,7 +2528,7 @@
                 <div class="best-price-banner" role="note">
                     <i class="fas fa-shield-halved" aria-hidden="true"></i>
                     <span><strong>Miglior prezzo garantito.</strong> Prenotando direttamente su lesicilien.it risparmi le commissioni di Airbnb e Booking.com.</span>
-                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="best-price-cta" onclick="gtag('event','best_price_click',{event_category:'trust',event_label:'homepage'});">Prenota ora</a>
+                    <a href="https://lesicilien.kross.travel/?utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=best_price" target="_blank" rel="noopener noreferrer" class="best-price-cta" onclick="gtag('event','best_price_click',{event_category:'trust',event_label:'homepage'});">Prenota ora</a>
                 </div>
 
                 <!-- Review carousel -->
@@ -2661,7 +2665,7 @@
                             </div>
                             <div class="price-savings">Risparmi fino a € 120</div>
                             <div style="margin-top: 20px;">
-                                <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="font-size: 0.72rem;" onclick="gtag('event','book_direct_cta',{event_category:'conversion',event_label:'price_compare'});">
+                                <a href="https://lesicilien.kross.travel/?utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=price_compare" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-primary" style="font-size: 0.72rem;" onclick="gtag('event','book_direct_cta',{event_category:'conversion',event_label:'price_compare'});">
                                     Prenota al miglior prezzo
                                 </a>
                             </div>
@@ -2710,7 +2714,7 @@
                 <div class="footer-links" aria-label="Canali social">
                     <a href="https://www.instagram.com/le_sicilien.it/" target="_blank" rel="noopener">Instagram</a>
 
-                    <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20interessato%20ai%20vostri%20servizi%20di%20cohost%20su%20Palermo%2C%20puoi%20dirmi%20di%20pi%C3%B9%3F"
+                    <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20Tilde%20Sunset%20Bay%20Villa.%20Potete%20aiutarmi%20a%20verificare%20disponibilit%C3%A0%20e%20tariffa%20migliore%3F"
                        target="_blank" rel="noopener">WhatsApp</a>
 
                     <a href="mailto:lesicilienhouses@gmail.com">Email</a>
@@ -2983,9 +2987,14 @@
             event.preventDefault();
             const form = event.currentTarget;
             const guests = form.guests ? form.guests.value : '';
-            const guestsParam = guests ? `?guests_rooms=${guests},0` : '';
+            const query = new URLSearchParams();
+            if (guests) query.set('guests_rooms', `${guests},0`);
+            query.set('utm_source', 'lesicilien.it');
+            query.set('utm_medium', 'website');
+            query.set('utm_campaign', 'direct_booking');
+            query.set('utm_content', 'hero_search');
             gtag('event', 'search_submit', {event_category: 'cta', event_label: 'hero_search'});
-            window.open('https://lesicilien.kross.travel/' + guestsParam, '_blank', 'noopener');
+            window.open('https://lesicilien.kross.travel/?' + query.toString(), '_blank', 'noopener');
         }
 
         function handleNewsletter(event) {
@@ -3006,7 +3015,7 @@
 
     <!-- Mobile Sticky Booking CTA Bar -->
     <div class="mobile-booking-bar" id="mobileBookingBar" aria-label="Prenota il tuo soggiorno">
-        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="mobile-booking-btn" onclick="gtag('event','mobile_sticky_booking_click',{event_category:'cta',event_label:'mobile_bar'});">
+        <a href="https://lesicilien.kross.travel/?utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=mobile_sticky" target="_blank" rel="noopener noreferrer" class="mobile-booking-btn" onclick="gtag('event','mobile_sticky_booking_click',{event_category:'cta',event_label:'mobile_bar'});">
             Prenota ora
         </a>
         <a href="https://wa.me/393273751480?text=Ciao%2C%20vorrei%20prenotare%20un%20soggiorno%20a%20Palermo.%20Potete%20aiutarmi%20a%20verificare%20la%20disponibilit%C3%A0%3F" target="_blank" rel="noopener" class="mobile-whatsapp-btn" aria-label="Contattaci via WhatsApp" onclick="gtag('event','mobile_sticky_whatsapp_click',{event_category:'cta',event_label:'mobile_bar'});">
@@ -3018,7 +3027,7 @@
     <a href="/guestguide.html"
        class="guest-guide-float"
        aria-label="Apri Guest Guide">
-       Guest Guide
+       Guida Ospiti
     </a>
 
     <!-- EXIT INTENT POPUP -->
