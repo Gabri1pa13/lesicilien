@@ -52,26 +52,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Cos'è Moncada de Luna Exclusive Stay?",
+        "name": "Si possono portare animali domestici a Moncada de Luna?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Moncada de Luna Exclusive Stay è un appartamento di lusso ricavato in un palazzo storico del Settecento, nel centro storico di Palermo. Con soffitti affrescati e arredi d'epoca, è gestito da Le Sicilien per affitti brevi esclusivi."
+          "text": "Per tutelare gli affreschi originali e gli arredi d'epoca, non sono ammessi animali domestici all'interno della struttura."
         }
       },
       {
         "@type": "Question",
-        "name": "Moncada de Luna Exclusive Stay si trova su Airbnb o Booking.com?",
+        "name": "È disponibile il parcheggio presso Moncada de Luna?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Moncada de Luna Exclusive Stay è prenotabile direttamente tramite il portale ufficiale Le Sicilien, senza commissioni aggiuntive. La struttura potrebbe comparire anche su OTA come Airbnb o Booking.com, ma il miglior prezzo è garantito prenotando direttamente."
+          "text": "L'appartamento si trova in piena zona ZTL. Consigliamo di parcheggiare presso il garage privato convenzionato situato a pochi metri dall'ingresso del palazzo."
         }
       },
       {
         "@type": "Question",
-        "name": "Dove si trova Moncada de Luna a Palermo?",
+        "name": "Distanza dai principali monumenti di Palermo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Moncada de Luna Exclusive Stay si trova nel centro storico di Palermo, a pochi passi dalla Cattedrale di Palermo e dal Teatro Massimo. La posizione è ideale per esplorare la città a piedi."
+          "text": "La posizione è invidiabile: la Cattedrale dista 200m, i Quattro Canti 300m e il Teatro Massimo circa 500m. Tutto è raggiungibile con una breve passeggiata."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La connessione Wi-Fi è veloce per lavorare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, l'appartamento è dotato di Wi-Fi in fibra ottica ad alta velocità dedicato, perfetto per lo smart working e le videochiamate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come funziona il check-in tardivo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Offriamo un servizio di accoglienza personalizzato. Per arrivi oltre le 20:00, vi preghiamo di avvisarci in anticipo per organizzare al meglio il vostro ingresso."
         }
       }
     ]
@@ -81,18 +97,21 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
+    "@type": "VacationRental",
     "name": "Moncada de Luna Exclusive Stay",
-    "description": "Appartamento di lusso nel cuore del centro storico di Palermo, con soffitti affrescati, arredi d'epoca e comfort moderni. Gestito da Le Sicilien.",
+    "description": "Appartamento di lusso in un palazzo nobile del Settecento nel centro storico di Palermo. Soffitti affrescati, arredi d'epoca e comfort moderni. Gestito da Le Sicilien.",
     "url": "https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/",
-    "image": "https://www.lesicilien.it/moncada.jpeg",
+    "image": [
+      "https://www.lesicilien.it/moncada.jpeg",
+      "https://www.lesicilien.it/camerapalazzomoncada.jpg"
+    ],
     "telephone": "+39-327-375-1480",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Centro Storico",
+      "streetAddress": "Via dei Tintori",
       "addressLocality": "Palermo",
       "addressRegion": "Sicilia",
-      "postalCode": "90134",
+      "postalCode": "90133",
       "addressCountry": "IT"
     },
     "geo": {
@@ -100,22 +119,22 @@
       "latitude": 38.1157,
       "longitude": 13.3615
     },
-    "checkinTime": "T15:00",
-    "checkoutTime": "T10:00",
-    "numberOfRooms": 2,
+    "checkinTime": "15:00",
+    "checkoutTime": "10:00",
+    "numberOfRooms": 3,
     "occupancy": {
       "@type": "QuantitativeValue",
       "maxValue": 6
     },
-    "petsAllowed": false,
+    "petsAllowed": "No",
     "amenityFeature": [
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Palazzo Storico", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Affreschi originali", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Palazzo storico", "value": true }
+      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
     ],
     "priceRange": "€€€",
-    "starRating": { "@type": "Rating", "ratingValue": "5" },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -469,7 +488,7 @@
       <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
       <div class="nav-links">
         <a href="https://www.lesicilien.it/#properties" class="nav-link">Proprietà</a>
-        <a href="https://www.lesicilien.it/guestguide.html" class="nav-link">Guest Guide</a>
+        <a href="https://www.lesicilien.it/it/guide/" class="nav-link">Guide</a>
         <a href="https://www.lesicilien.it/Asset-Management.html" class="nav-link">Gestione</a>
       </div>
       <a href="https://www.lesicilien.it/#properties" class="nav-back">
@@ -488,6 +507,8 @@
       alt="Moncada de Luna Exclusive Stay – Appartamento di lusso nel centro storico di Palermo"
       loading="eager"
       fetchpriority="high"
+      width="1200"
+      height="800"
     />
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -564,7 +585,7 @@
         Gli spazi sono caratterizzati da soffitti alti con affreschi originali, pavimenti in maioliche tradizionali e arredi d'epoca selezionati con cura. Ogni dettaglio è stato pensato per garantire il massimo del comfort senza rinunciare all'eleganza e all'atmosfera storica.
       </p>
       <p class="section-text">
-        La posizione è strategica: a pochi passi dalla <strong>Cattedrale di Palermo</strong>, dal <strong>Teatro Massimo</strong> e dai principali mercati storici come la Vucciria e il Ballarò. Un punto di partenza ideale per esplorare la città a piedi.
+        La posizione è strategica: a pochi passi dalla <strong>Cattedrale di Palermo</strong>, dal <strong>Teatro Massimo</strong> e dai principali mercati storici come la Vucciria e il Ballarò. Per organizzare le tue giornate in città, consulta la nostra guida su <a href="/it/guide/cosa-fare-a-palermo/" style="text-decoration:underline;">cosa fare a Palermo</a> e i nostri suggerimenti su <a href="/it/guide/palermo-centro-storico-quartieri-dove-alloggiare/" style="text-decoration:underline;">dove alloggiare nel centro storico</a>.
       </p>
     </section>
 
@@ -700,22 +721,36 @@
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Cos'è Moncada de Luna Exclusive Stay?</div>
-            <div class="highlight-text">Moncada de Luna Exclusive Stay è un appartamento di lusso in un palazzo del Settecento nel centro storico di Palermo, con soffitti affrescati e arredi d'epoca. Gestito da Le Sicilien per soggiorni esclusivi.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Si possono portare animali domestici a Moncada de Luna?</div>
+            <div class="highlight-text">Per tutelare gli affreschi originali e gli arredi d'epoca, non sono ammessi animali domestici all'interno della struttura.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Moncada de Luna Exclusive Stay si trova su Airbnb o Booking.com?</div>
-            <div class="highlight-text">La struttura è prenotabile direttamente su lesicilien.it, con il miglior prezzo garantito. Potrebbe comparire anche su OTA come Airbnb o Booking.com — in ogni caso, il nome ufficiale è Moncada de Luna Exclusive Stay.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">È disponibile il parcheggio presso Moncada de Luna?</div>
+            <div class="highlight-text">L'appartamento si trova in piena zona ZTL. Consigliamo di parcheggiare presso il garage privato convenzionato situato a pochi metri dall'ingresso del palazzo.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Dove si trova Moncada de Luna a Palermo?</div>
-            <div class="highlight-text">L'appartamento si trova nel centro storico di Palermo, a pochi passi dalla Cattedrale e dal Teatro Massimo. Posizione ideale per esplorare la città a piedi e raggiungere mercati storici come la Vucciria e il Ballarò.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Distanza dai principali monumenti di Palermo?</div>
+            <div class="highlight-text">La posizione è invidiabile: la Cattedrale dista 200m, i Quattro Canti 300m e il Teatro Massimo circa 500m. Tutto è raggiungibile con una breve passeggiata.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">La connessione Wi-Fi è veloce per lavorare?</div>
+            <div class="highlight-text">Sì, l'appartamento è dotato di Wi-Fi in fibra ottica ad alta velocità dedicato, perfetto per lo smart working e le videochiamate.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Come funziona il check-in tardivo?</div>
+            <div class="highlight-text">Offriamo un servizio di accoglienza personalizzato. Per arrivi oltre le 20:00, vi preghiamo di avvisarci in anticipo per organizzare al meglio il vostro ingresso.</div>
           </div>
         </div>
       </div>
@@ -724,8 +759,13 @@
   </div>
 
   <footer>
-    <p>LE SICILIEN · Luxury Private Estates · Palermo, Sicilia</p>
-    <p style="margin-top:6px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70;">← Torna alla home</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 22px; font-size: 0.78rem; opacity: 0.55;">&copy; 2026 Le Sicilien. All rights reserved.</p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Torna alla home</a></p>
+    </div>
   </footer>
 
 </body>

@@ -52,26 +52,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Cos'è Villa Harmony Relax a Mondello?",
+        "name": "Si possono portare animali domestici a Villa Harmony?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Villa Harmony Relax è una villa di lusso situata a Mondello, la celebre spiaggia di sabbia bianca di Palermo. Gestita da Le Sicilien, è disponibile per affitti brevi e soggiorni esclusivi con prenotazione diretta senza commissioni OTA."
+          "text": "Sì, Villa Harmony è pet-friendly. Accogliamo i vostri animali domestici su richiesta, vi preghiamo di informarci in anticipo."
         }
       },
       {
         "@type": "Question",
-        "name": "Villa Harmony Relax si trova su Airbnb o Booking.com?",
+        "name": "È disponibile il parcheggio privato?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Villa Harmony Relax a Mondello è prenotabile direttamente tramite il portale ufficiale Le Sicilien, senza commissioni aggiuntive. La struttura potrebbe comparire anche su piattaforme OTA come Airbnb o Booking.com, ma il miglior prezzo è sempre garantito prenotando direttamente."
+          "text": "Sì, la villa dispone di un parcheggio privato interno gratuito per gli ospiti, garantendo massima comodità e sicurezza."
         }
       },
       {
         "@type": "Question",
-        "name": "Dove si trova esattamente Villa Harmony Relax?",
+        "name": "Quanto dista Villa Harmony dalla spiaggia di Mondello?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Villa Harmony Relax si trova a Mondello, a pochi passi dalla spiaggia. Mondello è raggiungibile in circa 20 minuti dal centro storico di Palermo."
+          "text": "La villa si trova in una posizione privilegiata, a soli 5 minuti a piedi dal lungomare e dalla spiaggia di sabbia bianca di Mondello."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La connessione Wi-Fi è adatta per lavorare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, offriamo una connessione Wi-Fi in fibra ottica ad alta velocità in tutta la proprietà, ideale per smart working e streaming."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono gli orari di check-in e check-out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il check-in è disponibile dalle 15:00, mentre il check-out è richiesto entro le 10:00. Cerchiamo di essere flessibili in base alla disponibilità."
         }
       }
     ]
@@ -81,11 +97,14 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
+    "@type": "VacationRental",
     "name": "Villa Harmony Relax a Mondello",
     "description": "Villa di lusso a Mondello, la rinomata spiaggia di Palermo: relax, sabbia bianca, acque cristalline e tutti i comfort di un soggiorno esclusivo. Gestita da Le Sicilien.",
     "url": "https://www.lesicilien.it/stays/villa-harmony-relax/",
-    "image": "https://www.lesicilien.it/villasulamre.jpg",
+    "image": [
+      "https://www.lesicilien.it/villasulamre.jpg",
+      "https://www.lesicilien.it/villa%20harmony.JPG"
+    ],
     "telephone": "+39-327-375-1480",
     "address": {
       "@type": "PostalAddress",
@@ -99,22 +118,22 @@
       "latitude": 38.2196,
       "longitude": 13.3269
     },
-    "checkinTime": "T15:00",
-    "checkoutTime": "T10:00",
+    "checkinTime": "15:00",
+    "checkoutTime": "10:00",
     "numberOfRooms": 3,
     "occupancy": {
       "@type": "QuantitativeValue",
-      "maxValue": 6
+      "maxValue": 8
     },
-    "petsAllowed": false,
+    "petsAllowed": "On request",
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Vicinanza alla spiaggia", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
     ],
     "priceRange": "€€€€",
-    "starRating": { "@type": "Rating", "ratingValue": "5" },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -453,7 +472,7 @@
       <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
       <div class="nav-links">
         <a href="https://www.lesicilien.it/#properties" class="nav-link">Proprietà</a>
-        <a href="https://www.lesicilien.it/guestguide.html" class="nav-link">Guest Guide</a>
+        <a href="https://www.lesicilien.it/it/guide/" class="nav-link">Guide</a>
         <a href="https://www.lesicilien.it/Asset-Management.html" class="nav-link">Gestione</a>
       </div>
       <a href="https://www.lesicilien.it/#properties" class="nav-back">
@@ -471,6 +490,8 @@
       alt="Villa Harmony Relax a Mondello – Casa vacanze di lusso a Mondello, Palermo"
       loading="eager"
       fetchpriority="high"
+      width="1200"
+      height="800"
     />
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -504,8 +525,8 @@
         <div class="feature-label">Vicino alla Spiaggia</div>
       </div>
       <div class="feature-card" role="listitem">
-        <div class="feature-icon" aria-hidden="true">🌊</div>
-        <div class="feature-label">Mare Cristallino</div>
+        <div class="feature-icon" aria-hidden="true">🚗</div>
+        <div class="feature-label">Parcheggio Privato</div>
       </div>
       <div class="feature-card" role="listitem">
         <div class="feature-icon" aria-hidden="true">❄️</div>
@@ -541,10 +562,10 @@
         La <strong>Villa Harmony Relax a Mondello</strong> è un rifugio di lusso nel cuore di Mondello, la celebre spiaggia di sabbia bianca e acque turchesi che ha reso celebre il litorale palermitano in tutto il mondo. Qui il relax non è solo una promessa: è un'esperienza quotidiana, scandita dal suono delle onde, dalla luce dorata del sole siciliano e dal profumo del mare.
       </p>
       <p class="section-text">
-        La villa è stata progettata per garantire il massimo del comfort e della privacy: spazi ampi e luminosi, interni eleganti con tocchi di Sicilia autentica, cucina attrezzata e ogni dettaglio curato per rendere il soggiorno impeccabile. La vicinanza alla spiaggia di Mondello permette di raggiungere il mare in pochi minuti a piedi, tornando poi a casa in un'oasi di pace e bellezza.
+        La villa è stata progettata per garantire il massimo del comfort e della privacy: spazi ampi e luminosi, interni eleganti con tocchi di Sicilia autentica, cucina attrezzata e ogni dettaglio curato per rendere il soggiorno impeccabile. La vicinanza alla spiaggia di Mondello permette di raggiungere il mare in soli 5 minuti a piedi.
       </p>
       <p class="section-text">
-        Mondello è raggiungibile in soli 20 minuti dal centro storico di Palermo, rendendola la scelta perfetta per chi vuole godere sia del mare sia delle ricchezze culturali della città. Ideale per famiglie, coppie e chiunque voglia vivere la Sicilia nella sua essenza più autentica e rilassante.
+        Mondello è raggiungibile in soli 20 minuti dal centro storico di Palermo. Per i tuoi giorni di mare, non perdere la nostra guida su <a href="/it/guide/dormire-vicino-mare-palermo-mondello-dintorni/" style="text-decoration:underline;">dove dormire vicino al mare a Palermo</a> e i nostri consigli su <a href="/it/guide/villa-fronte-mare-palermo-guida/" style="text-decoration:underline;">ville fronte mare</a>.
       </p>
     </section>
 
@@ -554,11 +575,11 @@
       <div class="highlights" role="list">
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
-          <div class="highlight-text">Posizione a pochi passi dalla spiaggia di Mondello — sabbia bianca e mare cristallino</div>
+          <div class="highlight-text">Posizione a soli 5 minuti a piedi dalla spiaggia di Mondello</div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
-          <div class="highlight-text">Interni eleganti con atmosfera rilassante ispirata alla Sicilia costiera</div>
+          <div class="highlight-text">Parcheggio privato interno per la massima sicurezza e comodità</div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
@@ -566,7 +587,7 @@
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
-          <div class="highlight-text">Cucina completamente attrezzata con i migliori prodotti freschi della Sicilia</div>
+          <div class="highlight-text">Cucina completamente attrezzata per i tuoi pranzi e cene in villa</div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
@@ -677,22 +698,36 @@
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Cos'è Villa Harmony Relax a Mondello?</div>
-            <div class="highlight-text">Villa Harmony Relax è una villa di lusso a Mondello, la celebre spiaggia di Palermo, gestita da Le Sicilien. Disponibile per affitti brevi con prenotazione diretta, senza commissioni.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Si possono portare animali domestici a Villa Harmony?</div>
+            <div class="highlight-text">Sì, Villa Harmony è pet-friendly. Accogliamo i vostri animali domestici su richiesta, vi preghiamo di informarci in anticipo.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Villa Harmony Relax si trova su Airbnb o Booking.com?</div>
-            <div class="highlight-text">La struttura è prenotabile direttamente su lesicilien.it, con il miglior prezzo garantito. Potrebbe comparire anche su OTA come Airbnb o Booking.com — in ogni caso, il nome ufficiale della proprietà è Villa Harmony Relax a Mondello.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">È disponibile il parcheggio privato?</div>
+            <div class="highlight-text">Sì, la villa dispone di un parcheggio privato interno gratuito per gli ospiti, garantendo massima comodità e sicurezza.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Dove si trova Villa Harmony Relax?</div>
-            <div class="highlight-text">La villa si trova a Mondello, il rinomato litorale di Palermo con sabbia bianca e acque cristalline, a circa 20 minuti dal centro storico.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quanto dista Villa Harmony dalla spiaggia di Mondello?</div>
+            <div class="highlight-text">La villa si trova in una posizione privilegiata, a soli 5 minuti a piedi dal lungomare e dalla spiaggia di sabbia bianca di Mondello.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">La connessione Wi-Fi è adatta per lavorare?</div>
+            <div class="highlight-text">Sì, offriamo una connessione Wi-Fi in fibra ottica ad alta velocità in tutta la proprietà, ideale per smart working e streaming.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quali sono gli orari di check-in e check-out?</div>
+            <div class="highlight-text">Il check-in è disponibile dalle 15:00, mentre il check-out è richiesto entro le 10:00. Cerchiamo di essere flessibili in base alla disponibilità.</div>
           </div>
         </div>
       </div>
@@ -701,8 +736,13 @@
   </div>
 
   <footer>
-    <p>LE SICILIEN · Luxury Private Estates · Palermo, Sicilia</p>
-    <p style="margin-top:6px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70;">← Torna alla home</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 22px; font-size: 0.78rem; opacity: 0.55;">&copy; 2026 Le Sicilien. All rights reserved.</p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Torna alla home</a></p>
+    </div>
   </footer>
 
 </body>

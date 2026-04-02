@@ -52,26 +52,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Cos'è Fior di Sicilia?",
+        "name": "Si possono portare animali domestici a Fior di Sicilia?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Fior di Sicilia è un appartamento con terrazza privata situato nel cuore di Palermo. Gestito da Le Sicilien, è disponibile per affitti brevi con prenotazione diretta, senza commissioni OTA."
+          "text": "Generalmente non sono ammessi animali domestici per preservare l'integrità degli arredi di pregio, ma vi invitiamo a contattarci per valutare richieste specifiche."
         }
       },
       {
         "@type": "Question",
-        "name": "Fior di Sicilia si trova su Airbnb o Booking.com?",
+        "name": "È disponibile il parcheggio presso l'appartamento?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Fior di Sicilia è prenotabile direttamente tramite il portale ufficiale Le Sicilien, senza commissioni aggiuntive. La struttura potrebbe comparire anche su OTA come Airbnb o Booking.com, ma il miglior prezzo è garantito prenotando direttamente."
+          "text": "L'appartamento si trova in una zona centrale (ZTL). È possibile parcheggiare in strada fuori dalla ZTL o usufruire di garage privati convenzionati nelle immediate vicinanze."
         }
       },
       {
         "@type": "Question",
-        "name": "Dove si trova l'appartamento Fior di Sicilia a Palermo?",
+        "name": "Quanto dista Fior di Sicilia dai principali monumenti?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Fior di Sicilia si trova in posizione centrale a Palermo, a pochi minuti a piedi dai principali monumenti, mercati storici e ristoranti della città."
+          "text": "Fior di Sicilia si trova nel cuore del centro storico. La Cattedrale, il Teatro Massimo e i Quattro Canti sono tutti raggiungibili a piedi in meno di 10 minuti."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La connessione Wi-Fi è adatta per lo smart working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, Fior di Sicilia dispone di una connessione Wi-Fi in fibra ottica ad alta velocità (fino a 1Gbps), ideale per videochiamate, streaming e lavoro da remoto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono gli orari di check-in e check-out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il check-in è previsto a partire dalle 15:00, mentre il check-out deve essere effettuato entro le 10:00. Offriamo la possibilità di deposito bagagli e, ove possibile, flessibilità sugli orari."
         }
       }
     ]
@@ -81,26 +97,22 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Fior di Sicilia – Appartamento con Terrazza Privata",
-    "description": "Appartamento con terrazza privata nel cuore di Palermo: luce, colori e profumi della Sicilia a portata di mano. Gestito da Le Sicilien.",
+    "@type": "VacationRental",
+    "name": "Fior di Sicilia | Appartamento con Terrazza a Palermo",
+    "description": "Elegante appartamento con grande terrazza privata a Palermo. Ideale per chi cerca comfort, stile e una posizione perfetta per esplorare la città. Gestito da Le Sicilien.",
     "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
     "image": [
       "https://www.lesicilien.it/fiordisicilia.jpeg",
       "https://www.lesicilien.it/fiordisicilia.webp",
-      "https://www.lesicilien.it/fotoappartamentoconterrazzo.jpeg",
-      "https://www.lesicilien.it/fotosaloneapparta,mento.JPG",
-      "https://www.lesicilien.it/fotostanzacontelevisione.JPG"
+      "https://www.lesicilien.it/fotoappartamentoconterrazzo.jpeg"
     ],
-    "identifier": "lesicilien-fior-di-sicilia",
-    "additionalType": "https://www.wikidata.org/wiki/Q1371125",
     "telephone": "+39-327-375-1480",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Centro Storico",
+      "streetAddress": "Via dei Tintori",
       "addressLocality": "Palermo",
       "addressRegion": "Sicilia",
-      "postalCode": "90134",
+      "postalCode": "90133",
       "addressCountry": "IT"
     },
     "geo": {
@@ -108,63 +120,29 @@
       "latitude": 38.1157,
       "longitude": 13.3615
     },
-    "containsPlace": {
-      "@type": "Accommodation",
-      "additionalType": "https://www.wikidata.org/wiki/Q1371125",
-      "name": "Appartamento con Terrazza Privata – Fior di Sicilia",
-      "description": "Appartamento di 2 camere con terrazza privata esclusiva, completamente arredato, per un massimo di 6 ospiti.",
-      "numberOfBedrooms": 2,
-      "numberOfBathroomsTotal": 1,
-      "bed": { "@type": "BedDetails", "typeOfBed": "Letto matrimoniale", "numberOfBeds": 2 },
-      "occupancy": { "@type": "QuantitativeValue", "value": 6, "maxValue": 6 },
-      "numberOfRooms": 2,
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Terrazza privata", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
-      ]
-    },
-    "checkinTime": "T15:00",
-    "checkoutTime": "T10:00",
+    "checkinTime": "15:00",
+    "checkoutTime": "10:00",
     "numberOfRooms": 2,
     "occupancy": {
       "@type": "QuantitativeValue",
-      "value": 6,
       "maxValue": 6
     },
-    "petsAllowed": false,
+    "petsAllowed": "On request",
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Terrazza privata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
+      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "ZTL Access", "value": true }
     ],
     "priceRange": "€€€",
-    "starRating": { "@type": "Rating", "ratingValue": "5" },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
       "bestRating": "5",
       "worstRating": "1",
       "ratingCount": "28"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "datePublished": "2025-08-10",
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        "author": { "@type": "Person", "name": "Sophie L." },
-        "reviewBody": "La terrazza del Fior di Sicilia è il posto più bello dove abbiamo fatto colazione in vita nostra. Vista sui tetti di Palermo, silenzio e lusso a prezzi onesti."
-      },
-      {
-        "@type": "Review",
-        "datePublished": "2025-09-05",
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        "author": { "@type": "Person", "name": "Lorenzo e Giulia" },
-        "reviewBody": "Appartamento luminoso e curato in ogni dettaglio. La terrazza è un sogno — abbiamo cenato fuori ogni sera. Posizione perfetta per i mercati storici."
-      }
-    ]
+    }
   }
   </script>
 
@@ -496,7 +474,7 @@
       <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
       <div class="nav-links">
         <a href="https://www.lesicilien.it/#properties" class="nav-link">Proprietà</a>
-        <a href="https://www.lesicilien.it/guestguide.html" class="nav-link">Guest Guide</a>
+        <a href="https://www.lesicilien.it/it/guide/" class="nav-link">Guide</a>
         <a href="https://www.lesicilien.it/Asset-Management.html" class="nav-link">Gestione</a>
       </div>
       <a href="https://www.lesicilien.it/#properties" class="nav-back">
@@ -510,10 +488,12 @@
 
   <div class="hero">
     <img
-      src="../../fiordisicilia.jpeg"
-      alt="Fior di Sicilia – Appartamento con terrazza privata a Palermo"
+      src="../../fiordisicilia.webp"
+      alt="Fior di Sicilia | Appartamento con Terrazza Privata a Palermo"
       loading="eager"
       fetchpriority="high"
+      width="1200"
+      height="800"
     />
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -587,7 +567,7 @@
         L'appartamento è curato nei minimi dettagli: arredi ricercati, cucina completamente attrezzata e tutti i comfort moderni si fondono con il fascino siciliano. Il terrazzo — il vero punto di forza della struttura — offre un'esperienza di soggiorno fuori dal comune, permettendo di vivere la città dall'alto, immersi nel silenzio e nella bellezza dell'architettura palermitana.
       </p>
       <p class="section-text">
-        La posizione centrale garantisce facile accesso ai principali monumenti di Palermo, ai mercati storici e ai migliori ristoranti della città. Ideale per coppie e viaggiatori che cercano un soggiorno esclusivo e personalizzato.
+        La posizione centrale garantisce facile accesso ai principali monumenti di Palermo, ai mercati storici e ai migliori ristoranti della città. Per pianificare al meglio il tuo viaggio, consulta le nostre guide su <a href="/it/guide/cosa-fare-a-palermo/" style="text-decoration:underline;">cosa fare a Palermo</a> e su <a href="/it/guide/dove-dormire-a-palermo-guida-completa/" style="text-decoration:underline;">dove alloggiare</a>.
       </p>
     </section>
 
@@ -721,22 +701,36 @@
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Cos'è Fior di Sicilia?</div>
-            <div class="highlight-text">Fior di Sicilia è un appartamento con terrazzo privato nel cuore di Palermo. Gestito da Le Sicilien, è disponibile per affitti brevi con prenotazione diretta, senza commissioni OTA.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Si possono portare animali domestici a Fior di Sicilia?</div>
+            <div class="highlight-text">Generalmente non sono ammessi animali domestici per preservare l'integrità degli arredi di pregio, ma vi invitiamo a contattarci per valutare richieste specifiche.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Fior di Sicilia si trova su Airbnb o Booking.com?</div>
-            <div class="highlight-text">La struttura è prenotabile direttamente su lesicilien.it, con il miglior prezzo garantito. Potrebbe comparire anche su OTA come Airbnb o Booking.com — in ogni caso, il nome ufficiale della proprietà è Fior di Sicilia.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">È disponibile il parcheggio presso l'appartamento?</div>
+            <div class="highlight-text">L'appartamento si trova in una zona centrale (ZTL). È possibile parcheggiare in strada fuori dalla ZTL o usufruire di garage privati convenzionati nelle immediate vicinanze.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Dove si trova l'appartamento Fior di Sicilia a Palermo?</div>
-            <div class="highlight-text">Fior di Sicilia si trova in posizione centrale a Palermo, a pochi minuti a piedi dai principali monumenti, mercati storici come la Vucciria e il Ballarò, e dai migliori ristoranti della città.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quanto dista Fior di Sicilia dai principali monumenti?</div>
+            <div class="highlight-text">Fior di Sicilia si trova nel cuore del centro storico. La Cattedrale, il Teatro Massimo e i Quattro Canti sono tutti raggiungibili a piedi in meno di 10 minuti.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">La connessione Wi-Fi è adatta per lo smart working?</div>
+            <div class="highlight-text">Sì, Fior di Sicilia dispone di una connessione Wi-Fi in fibra ottica ad alta velocità (fino a 1Gbps), ideale per videochiamate, streaming e lavoro da remoto.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quali sono gli orari di check-in e check-out?</div>
+            <div class="highlight-text">Il check-in è previsto a partire dalle 15:00, mentre il check-out deve essere effettuato entro le 10:00. Offriamo la possibilità di deposito bagagli e, ove possibile, flessibilità sugli orari.</div>
           </div>
         </div>
       </div>
@@ -745,8 +739,13 @@
   </div>
 
   <footer>
-    <p>LE SICILIEN · Luxury Private Estates · Palermo, Sicilia</p>
-    <p style="margin-top:6px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70;">← Torna alla home</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 22px; font-size: 0.78rem; opacity: 0.55;">&copy; 2026 Le Sicilien. All rights reserved.</p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Torna alla home</a></p>
+    </div>
   </footer>
 
 </body>

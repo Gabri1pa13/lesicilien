@@ -59,51 +59,60 @@
   });
 </script>
 
-    <!-- JSON-LD Structured Data for Local Business -->
+    <!-- JSON-LD Structured Data for Entity SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Le Sicilien",
+      "url": "https://www.lesicilien.it/",
+      "logo": "https://www.lesicilien.it/favicon.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+39-327-375-1480",
+        "contactType": "customer service",
+        "email": "lesicilienhouses@gmail.com",
+        "availableLanguage": ["Italian", "English", "French"]
+      },
+      "sameAs": [
+        "https://www.instagram.com/lesicilien",
+        "https://www.facebook.com/lesicilien",
+        "https://lesicilien.kross.travel/"
+      ]
+    }
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LodgingBusiness",
       "name": "Le Sicilien",
-      "description": "Case vacanze e ville di lusso a Palermo: B&B centro storico, appartamenti con terrazza, ville fronte mare a Mondello. Servizi concierge, gestione proprietà e progetti per investitori in Sicilia.",
+      "description": "Case vacanze e ville di lusso a Palermo: centro storico, ville fronte mare a Mondello. Servizi concierge e gestione proprietà in Sicilia.",
       "url": "https://www.lesicilien.it/",
-      "logo": "https://www.lesicilien.it/favicon.png",
-      "image": "https://www.lesicilien.it/22.jpeg",
       "telephone": "+39-327-375-1480",
-      "email": "lesicilienhouses@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Palermo",
         "addressRegion": "Sicilia",
         "addressCountry": "IT",
-        "postalCode": "90100"
+        "postalCode": "90133"
       },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": "38.1157",
         "longitude": "13.3615"
       },
-      "priceRange": "€€€",
-      "checkinTime": "T15:00",
-      "checkoutTime": "T10:00",
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Servizio concierge", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Transfer aeroporto", "value": true }
+      "areaServed": [
+        { "@type": "City", "name": "Palermo", "sameAs": "https://www.wikidata.org/wiki/Q3156" },
+        { "@type": "City", "name": "Mondello", "sameAs": "https://www.wikidata.org/wiki/Q645151" },
+        { "@type": "Region", "name": "Sicilia", "sameAs": "https://www.wikidata.org/wiki/Q1460" }
       ],
+      "priceRange": "€€€",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "bestRating": "5",
-        "worstRating": "1",
         "ratingCount": "200"
-      },
-      "sameAs": [
-        "https://www.instagram.com/lesicilien",
-        "https://www.facebook.com/lesicilien"
-      ]
+      }
     }
     </script>
 
@@ -1636,120 +1645,7 @@
 <noscript><link rel="stylesheet" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" /></noscript>
 <script defer src='https://data.krossbooking.com/widget/v6/lesicilien/2.js'></script>
 
-    <!-- JSON-LD Structured Data for AI Search Engines -->
-
-    <!-- Organization Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Le Sicilien",
-      "legalName": "Le Sicilien Luxury Real Estate",
-      "url": "https://www.lesicilien.it",
-      "logo": "https://www.lesicilien.it/favicon.png",
-      "description": "Case vacanze, B&B e ville di lusso a Palermo. Gestione proprietà immobiliari turistiche con servizi concierge dedicati.",
-      "sameAs": [
-        "https://www.instagram.com/le_sicilien.it/",
-        "https://lesicilien.kross.travel/"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+39-327-375-1480",
-        "contactType": "Customer Service",
-        "areaServed": "IT",
-        "availableLanguage": ["Italian", "English"]
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Palermo",
-        "addressRegion": "Sicilia",
-        "addressCountry": "IT"
-      }
-    }
-    </script>
-
-    <!-- LocalBusiness Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "Le Sicilien - Case Vacanze Palermo",
-      "image": "https://www.lesicilien.it/22.jpeg",
-      "url": "https://www.lesicilien.it",
-      "telephone": "+39-327-375-1480",
-      "email": "lesicilienhouses@gmail.com",
-      "priceRange": "€€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Palermo Centro Storico",
-        "addressLocality": "Palermo",
-        "addressRegion": "PA",
-        "postalCode": "90100",
-        "addressCountry": "IT"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "38.1157",
-        "longitude": "13.3615"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "127"
-      },
-      "amenityFeature": [
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "WiFi gratuito",
-          "value": true
-        },
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "Aria condizionata",
-          "value": true
-        },
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "Servizio concierge",
-          "value": true
-        },
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "Private Chef disponibile",
-          "value": true
-        }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servizi di ospitalità",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Appartamenti vacanze centro storico"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Ville fronte mare"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Servizi concierge premium"
-            }
-          }
-        ]
-      }
-    }
-    </script>
+    <!-- JSON-LD Structured Data for Individual Properties -->
 
     <!-- Property 1: Moncada de Luna Exclusive Stay -->
     <script type="application/ld+json">
@@ -2777,8 +2673,11 @@
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Le Sicilien Luxury Real Estate. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+            <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+            <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+            <p style="margin-top: 22px; font-size: 0.78rem; opacity: 0.55;">&copy; 2026 Le Sicilien. All rights reserved.</p>
         </div>
     </footer>
 

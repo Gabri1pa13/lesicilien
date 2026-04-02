@@ -52,26 +52,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Cos'è Tilde Sunset Bay Villa?",
+        "name": "Si possono portare animali domestici a Tilde Sunset Bay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tilde Sunset Bay Villa è una villa esclusiva con accesso diretto al mare, situata sul litorale nei pressi di Palermo. Gestita da Le Sicilien, offre tramonti mozzafiato sulla baia, spazi outdoor privati e tutti i comfort di un soggiorno di lusso."
+          "text": "Per garantire la massima qualità e igiene degli ambienti, non sono ammessi animali domestici presso la villa."
         }
       },
       {
         "@type": "Question",
-        "name": "Tilde Sunset Bay Villa si trova su Airbnb o Booking.com?",
+        "name": "È disponibile il parcheggio privato in villa?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tilde Sunset Bay Villa è prenotabile direttamente tramite il portale ufficiale Le Sicilien, senza commissioni aggiuntive. La struttura potrebbe comparire anche su OTA come Airbnb o Booking.com, ma il miglior prezzo è sempre garantito prenotando direttamente."
+          "text": "Sì, la proprietà dispone di un ampio parcheggio privato interno gratuito riservato agli ospiti."
         }
       },
       {
         "@type": "Question",
-        "name": "Dove si trova Tilde Sunset Bay Villa?",
+        "name": "Quanto dista la villa dal mare?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tilde Sunset Bay Villa si trova sul litorale nei pressi di Palermo, con accesso diretto alla baia. La posizione è a breve distanza dal centro città, in un contesto di quiete e bellezza naturale."
+          "text": "La villa è situata direttamente fronte mare, con accesso privato e diretto alla baia sottostante."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "C'è una connessione Wi-Fi veloce per lo smart working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Certamente. La villa è coperta da Wi-Fi in fibra ottica ad alta velocità, ideale per chi ha necessità di lavorare da remoto godendosi la vista mare."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono gli orari di check-in e check-out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il check-in è previsto a partire dalle 15:00, mentre il check-out deve essere effettuato entro le 10:00. Cerchiamo di accomodare richieste particolari ove possibile."
         }
       }
     ]
@@ -81,11 +97,14 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
+    "@type": "VacationRental",
     "name": "Tilde Sunset Bay Villa",
     "description": "Villa di lusso fronte mare nei pressi di Palermo: accesso diretto alla baia, tramonti spettacolari e servizi esclusivi. Gestita da Le Sicilien.",
     "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
-    "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
+    "image": [
+      "https://www.lesicilien.it/tildesunsetbay.jpg",
+      "https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"
+    ],
     "telephone": "+39-327-375-1480",
     "address": {
       "@type": "PostalAddress",
@@ -94,29 +113,33 @@
       "postalCode": "90151",
       "addressCountry": "IT"
     },
-    "checkinTime": "T15:00",
-    "checkoutTime": "T10:00",
-    "numberOfRooms": 3,
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 38.1850,
+      "longitude": 13.2850
+    },
+    "checkinTime": "15:00",
+    "checkoutTime": "10:00",
+    "numberOfRooms": 4,
     "occupancy": {
       "@type": "QuantitativeValue",
       "maxValue": 10
     },
-    "petsAllowed": false,
+    "petsAllowed": "No",
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Accesso diretto al mare", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Vista mare", "value": true }
+      { "@type": "LocationFeatureSpecification", "name": "Vista mare frontale", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true }
     ],
     "priceRange": "€€€€",
-    "starRating": { "@type": "Rating", "ratingValue": "5" },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
+      "ratingValue": "5.0",
       "bestRating": "5",
       "worstRating": "1",
-      "ratingCount": "127"
+      "ratingCount": "42"
     }
   }
   </script>
@@ -467,6 +490,8 @@
       alt="Tilde Sunset Bay Villa – Villa fronte mare vicino Palermo"
       loading="eager"
       fetchpriority="high"
+      width="1200"
+      height="800"
     />
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -537,7 +562,7 @@
         La <strong>Tilde Sunset Bay Villa</strong> è una villa esclusiva con accesso diretto al mare, immersa nella bellezza del litorale palermitano. Qui il tempo si dilata al ritmo delle onde e la luce della Sicilia tinge ogni tramonto di rosso e oro, regalando scenari di straordinaria bellezza dalla comodità della tua villa privata.
       </p>
       <p class="section-text">
-        La struttura è stata progettata per offrire il massimo del comfort e della privacy, con ampie vetrate che incorniciano la baia, spazi aperti che si fondono con il paesaggio marino e interni curati nei minimi dettagli. La villa dispone di tutto il necessario per un soggiorno indimenticabile: dal salotto panoramico alla cucina attrezzata, dai bagni eleganti agli spazi outdoor affacciati sul mare.
+        La struttura è stata progettata per offrire il massimo del comfort e della privacy, con ampie vetrate che incorniciano la baia e spazi aperti che si fondono con il paesaggio marino. Per scoprire le migliori spiagge nei dintorni, consulta la nostra guida sulle <a href="/it/guide/dormire-vicino-mare-palermo-mondello-dintorni/" style="text-decoration:underline;">spiagge di Palermo</a> e i nostri consigli sulle <a href="/it/guide/villa-fronte-mare-palermo-guida/" style="text-decoration:underline;">ville fronte mare</a>.
       </p>
       <p class="section-text">
         Ideale per famiglie, gruppi di amici o coppie in cerca di un'esperienza di lusso autentica. La villa si trova in posizione strategica, a breve distanza da Palermo e dalle sue attrazioni culturali, pur mantenendo quella quiete e quella bellezza naturale che solo il mare siciliano sa offrire.
@@ -673,22 +698,36 @@
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Cos'è Tilde Sunset Bay Villa?</div>
-            <div class="highlight-text">Tilde Sunset Bay Villa è una villa esclusiva con accesso diretto al mare nei pressi di Palermo. Gestita da Le Sicilien, offre tramonti spettacolari sulla baia e spazi outdoor privati per soggiorni di lusso.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Si possono portare animali domestici a Tilde Sunset Bay?</div>
+            <div class="highlight-text">Per garantire la massima qualità e igiene degli ambienti, non sono ammessi animali domestici presso la villa.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Tilde Sunset Bay Villa si trova su Airbnb o Booking.com?</div>
-            <div class="highlight-text">La struttura è prenotabile direttamente su lesicilien.it, con il miglior prezzo garantito. Potrebbe comparire anche su OTA come Airbnb o Booking.com — in ogni caso, il nome ufficiale della proprietà è Tilde Sunset Bay Villa.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">È disponibile il parcheggio privato in villa?</div>
+            <div class="highlight-text">Sì, la proprietà dispone di un ampio parcheggio privato interno gratuito riservato agli ospiti.</div>
           </div>
         </div>
         <div class="highlight-item" role="listitem">
           <div class="highlight-dot" aria-hidden="true"></div>
           <div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Dove si trova Tilde Sunset Bay Villa?</div>
-            <div class="highlight-text">La villa si trova sul litorale nei pressi di Palermo, con accesso diretto alla baia. È a breve distanza dal centro città e dalle principali attrazioni culturali di Palermo.</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quanto dista la villa dal mare?</div>
+            <div class="highlight-text">La villa è situata direttamente fronte mare, con accesso privato e diretto alla baia sottostante.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">C'è una connessione Wi-Fi veloce per lo smart working?</div>
+            <div class="highlight-text">Certamente. La villa è coperta da Wi-Fi in fibra ottica ad alta velocità, ideale per chi ha necessità di lavorare da remoto godendosi la vista mare.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Quali sono gli orari di check-in e check-out?</div>
+            <div class="highlight-text">Il check-in è previsto a partire dalle 15:00, mentre il check-out deve essere effettuato entro le 10:00. Cerchiamo di accomodare richieste particolari ove possibile.</div>
           </div>
         </div>
       </div>
@@ -697,8 +736,13 @@
   </div>
 
   <footer>
-    <p>LE SICILIEN · Luxury Private Estates · Palermo, Sicilia</p>
-    <p style="margin-top:6px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70;">← Torna alla home</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 22px; font-size: 0.78rem; opacity: 0.55;">&copy; 2026 Le Sicilien. All rights reserved.</p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Torna alla home</a></p>
+    </div>
   </footer>
 
 </body>
