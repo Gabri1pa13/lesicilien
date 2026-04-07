@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>蒂尔德日落湾别墅 | 巴勒莫海滨豪华别墅</title>
-  <meta name="description" content="蒂尔德日落湾别墅：巴勒莫附近的豪华海滨别墅，拥有令人叹为观止的日落景色。3间卧室，直接通往大海。" />
+  <title>蒂尔德日落湾公寓 | 巴勒莫海滨豪华公寓</title>
+  <meta name="description" content="蒂尔德日落湾公寓：巴勒莫附近的两个独立豪华海滨单元，拥有令人叹为观止的日落景色。Tilde 1 (二层) 和 Tilde (底层/一楼)。直接通往大海。" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.lesicilien.it/stays/tilde-sunset-bay-villa/" />
@@ -22,8 +22,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.lesicilien.it/zh/stays/tilde-sunset-bay-villa/" />
-  <meta property="og:title" content="蒂尔德日落湾别墅 | 巴勒莫海滨豪华别墅" />
-  <meta property="og:description" content="蒂尔德日落湾别墅：巴勒莫附近的豪华海滨别墅，拥有令人叹为观止的日落景色。3间卧室，直接通往大海。" />
+  <meta property="og:title" content="蒂尔德日落湾公寓 | 巴勒莫海滨豪华公寓" />
+  <meta property="og:description" content="蒂尔德日落湾公寓：巴勒莫附近的两个独立豪华海滨单元，拥有令人叹为观止的日落景色。Tilde 1 (二层) 和 Tilde (底层/一楼)。" />
   <meta property="og:image" content="https://www.lesicilien.it/tildesunsetbay.jpg" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:site_name" content="Le Sicilien" />
@@ -42,8 +42,8 @@
   {
     "@context": "https://schema.org",
     "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Tilde Sunset Bay Villa",
-    "description": "蒂尔德日落湾别墅：巴勒莫附近的豪华海滨别墅，拥有令人叹为观止的日落景色。3间卧室，直接通往大海。",
+    "name": "Tilde Sunset Bay Apartments",
+    "description": "蒂尔德日落湾公寓：巴勒莫附近的两个独立豪华海滨单元，拥有令人叹为观止的日落景色。Tilde 1 (二层) 和 Tilde (底层/一楼)。",
     "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
     "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
     "address": {
@@ -98,7 +98,8 @@
     .booking-bar-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 500; }
     .booking-bar-price { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); font-weight: 600; }
     .booking-bar-price-label { font-size: 11px; color: var(--muted); }
-    .btn-book { display: inline-block; padding: 14px 32px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+    .btn-book { display: inline-block; padding: 14px 24px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+    .btn-book:hover { background: var(--accent-2); }
     .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 14px; margin-top: 32px; }
     .feature-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
     .feature-icon { font-size: 22px; margin-bottom: 8px; }
@@ -111,9 +112,11 @@
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
-    .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .btn-book-light { display: inline-block; padding: 16px 32px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: opacity 0.2s; }
+    .btn-book-light:hover { opacity: 0.9; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 11px; color: rgba(30,30,30,0.42); }
-    @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+    .booking-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .booking-btns { width: 100%; flex-direction: column; } .btn-book { width: 100%; text-align: center; } }
   </style>
 </head>
 <body>
@@ -128,12 +131,12 @@
   </nav>
 
   <div class="hero">
-    <img src="../../tildesunsetbay.jpg" alt="Tilde Sunset Bay Villa – 海滨别墅 · 巴勒莫，西西里" loading="eager" fetchpriority="high" />
+    <img src="../../tildesunsetbay.jpg" alt="Tilde Sunset Bay Apartments – 海滨公寓 · 巴勒莫，西西里" loading="eager" fetchpriority="high" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">Le Sicilien · 海滨别墅</div>
-      <h1 class="hero-title">Tilde Sunset<br>Bay Villa</h1>
-      <p class="hero-sub">海滨别墅 · 巴勒莫，西西里</p>
+      <div class="hero-badge">Le Sicilien · 海滨公寓</div>
+      <h1 class="hero-title">Tilde Sunset<br>Bay Apartments</h1>
+      <p class="hero-sub">海滨公寓 · 巴勒莫，西西里</p>
     </div>
   </div>
 
@@ -141,10 +144,13 @@
     <div class="booking-bar">
       <div class="booking-bar-text">
         <div class="booking-bar-label">查看可用日期和价格</div>
-        <div class="booking-bar-title">Tilde Sunset Bay Villa</div>
-        <div class="booking-bar-price"><span class="booking-bar-price-label">起价 </span>€640<span class="booking-bar-price-label"> / 晚</span></div>
+        <div class="booking-bar-title">Tilde Sunset Bay Apartments</div>
+        <div class="booking-bar-price"><span class="booking-bar-price-label">起价 </span>€320<span class="booking-bar-price-label"> / 晚</span></div>
       </div>
-      <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page&utm_campaign=tilde_sunset_bay" class="btn-book" target="_blank" rel="noopener">立即预订</a>
+      <div class="booking-btns">
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-book" target="_blank" rel="noopener">Tilde 1 (二层)</a>
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-book" target="_blank" rel="noopener">Tilde (底层/一楼)</a>
+      </div>
     </div>
 
     <div class="features">
@@ -177,14 +183,17 @@
     <div class="section">
       <div class="section-kicker">房源介绍</div>
       <h2 class="section-title">日落与西西里海相遇之处</h2>
-      <p class="section-text">蒂尔德日落湾别墅是一栋豪华海滨别墅，拥有西西里海岸最壮观的景色之一。三间卧室，直接通往大海，广阔视野，是在巴勒莫附近享受独家假期的完美选择。</p>
+      <p class="section-text">蒂尔德日落湾现在分为两个独立的豪华海滨单元，拥有西西里海岸最壮观的景色之一：Tilde 1 (二层) 和 Tilde (底层/一楼)。拥有直接通往大海的通道、私人空间和无遮挡的地平线，它们是在巴勒莫附近享受独家假期的完美选择。</p>
     </div>
 
     <div class="cta-section">
       <div class="section-kicker">直接预订</div>
       <h2 class="section-title">预订您的独家体验</h2>
-      <p>无需手续费，最低价保证。</p>
-      <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page&utm_campaign=tilde_sunset_bay" class="btn-book-light" target="_blank" rel="noopener">立即预订</a>
+      <p>无需手续费，最低价保证。请在下方选择您喜欢的单元。</p>
+      <div class="booking-btns" style="justify-content: center;">
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-book-light" target="_blank" rel="noopener">Tilde 1 (二层)</a>
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-book-light" target="_blank" rel="noopener">Tilde (底层/一楼)</a>
+      </div>
     </div>
   </div>
 

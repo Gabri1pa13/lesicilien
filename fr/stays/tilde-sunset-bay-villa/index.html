@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Tilde Sunset Bay Villa | Villa de Luxe Bord de Mer Palerme</title>
-  <meta name="description" content="Tilde Sunset Bay Villa : villa de luxe en bord de mer avec vue imprenable sur le coucher de soleil, près de Palerme. 3 chambres, accès direct à la mer." />
+  <title>Tilde Sunset Bay Apartments | Appartements de Luxe Bord de Mer Palerme</title>
+  <meta name="description" content="Tilde Sunset Bay Apartments : deux unités de luxe indépendantes en bord de mer avec vue imprenable sur le coucher de soleil. Tilde 1 (Premier étage) et Tilde (Rez-de-chaussée). Accès direct à la mer." />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.lesicilien.it/stays/tilde-sunset-bay-villa/" />
@@ -22,8 +22,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.lesicilien.it/fr/stays/tilde-sunset-bay-villa/" />
-  <meta property="og:title" content="Tilde Sunset Bay Villa | Villa de Luxe Bord de Mer Palerme" />
-  <meta property="og:description" content="Tilde Sunset Bay Villa : villa de luxe en bord de mer avec vue imprenable sur le coucher de soleil, près de Palerme. 3 chambres, accès direct à la mer." />
+  <meta property="og:title" content="Tilde Sunset Bay Apartments | Appartements de Luxe Bord de Mer Palerme" />
+  <meta property="og:description" content="Tilde Sunset Bay Apartments : deux unités de luxe indépendantes en bord de mer avec vue imprenable sur le coucher de soleil. Tilde 1 (Premier étage) et Tilde (Rez-de-chaussée)." />
   <meta property="og:image" content="https://www.lesicilien.it/tildesunsetbay.jpg" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Le Sicilien" />
@@ -42,8 +42,8 @@
   {
     "@context": "https://schema.org",
     "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Tilde Sunset Bay Villa",
-    "description": "Tilde Sunset Bay Villa : villa de luxe en bord de mer avec vue imprenable sur le coucher de soleil, près de Palerme. 3 chambres, accès direct à la mer.",
+    "name": "Tilde Sunset Bay Apartments",
+    "description": "Tilde Sunset Bay Apartments : deux unités de luxe indépendantes en bord de mer avec vue imprenable sur le coucher de soleil. Tilde 1 (Premier étage) et Tilde (Rez-de-chaussée).",
     "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
     "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
     "address": {
@@ -98,7 +98,8 @@
     .booking-bar-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 500; }
     .booking-bar-price { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); font-weight: 600; }
     .booking-bar-price-label { font-size: 12px; color: var(--muted); }
-    .btn-book { display: inline-block; padding: 14px 32px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+    .btn-book { display: inline-block; padding: 14px 24px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+    .btn-book:hover { background: var(--accent-2); }
     .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 14px; margin-top: 32px; }
     .feature-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
     .feature-icon { font-size: 22px; margin-bottom: 8px; }
@@ -111,9 +112,11 @@
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
-    .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .btn-book-light { display: inline-block; padding: 16px 32px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: opacity 0.2s; }
+    .btn-book-light:hover { opacity: 0.9; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 12px; color: rgba(30,30,30,0.42); }
-    @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+    .booking-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .booking-btns { width: 100%; flex-direction: column; } .btn-book { width: 100%; text-align: center; } }
   </style>
 </head>
 <body>
@@ -128,12 +131,12 @@
   </nav>
 
   <div class="hero">
-    <img src="../../tildesunsetbay.jpg" alt="Tilde Sunset Bay Villa – Villa Bord de Mer · Palerme, Sicile" loading="eager" fetchpriority="high" />
+    <img src="../../tildesunsetbay.jpg" alt="Tilde Sunset Bay Apartments – Appartements Bord de Mer · Palerme, Sicile" loading="eager" fetchpriority="high" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">Le Sicilien · Villa Bord de Mer</div>
-      <h1 class="hero-title">Tilde Sunset<br>Bay Villa</h1>
-      <p class="hero-sub">Villa Bord de Mer · Palerme, Sicile</p>
+      <div class="hero-badge">Le Sicilien · Appartements Bord de Mer</div>
+      <h1 class="hero-title">Tilde Sunset<br>Bay Apartments</h1>
+      <p class="hero-sub">Appartements Bord de Mer · Palerme, Sicile</p>
     </div>
   </div>
 
@@ -141,10 +144,13 @@
     <div class="booking-bar">
       <div class="booking-bar-text">
         <div class="booking-bar-label">Disponibilités et tarifs</div>
-        <div class="booking-bar-title">Tilde Sunset Bay Villa</div>
-        <div class="booking-bar-price"><span class="booking-bar-price-label">à partir de </span>€640<span class="booking-bar-price-label"> / nuit</span></div>
+        <div class="booking-bar-title">Tilde Sunset Bay Apartments</div>
+        <div class="booking-bar-price"><span class="booking-bar-price-label">à partir de </span>€320<span class="booking-bar-price-label"> / nuit</span></div>
       </div>
-      <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page&utm_campaign=tilde_sunset_bay" class="btn-book" target="_blank" rel="noopener">Réserver</a>
+      <div class="booking-btns">
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-book" target="_blank" rel="noopener">Tilde 1 (Premier étage)</a>
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-book" target="_blank" rel="noopener">Tilde (Rez-de-chaussée)</a>
+      </div>
     </div>
 
     <div class="features">
@@ -177,14 +183,17 @@
     <div class="section">
       <div class="section-kicker">La propriété</div>
       <h2 class="section-title">Là où le coucher de soleil rencontre la mer sicilienne</h2>
-      <p class="section-text">Tilde Sunset Bay Villa est une villa de luxe en bord de mer offrant l'une des vues les plus spectaculaires de la côte sicilienne. Trois chambres, accès direct à la mer et horizon dégagé pour des vacances exclusives près de Palerme.</p>
+      <p class="section-text">Tilde Sunset Bay est désormais divisé en deux unités de luxe indépendantes en bord de mer, offrant l'une des vues les plus spectaculaires de la côte sicilienne : Tilde 1 (Premier étage) et Tilde (Rez-de-chaussée). Avec un accès direct à la mer, des espaces privés et un horizon dégagé, ils constituent le choix idéal pour des vacances exclusives près de Palerme.</p>
     </div>
 
     <div class="cta-section">
       <div class="section-kicker">Réservation directe</div>
       <h2 class="section-title">Réservez votre séjour exclusif</h2>
-      <p>Pas de commission, meilleur prix garanti.</p>
-      <a href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page&utm_campaign=tilde_sunset_bay" class="btn-book-light" target="_blank" rel="noopener">Réserver maintenant</a>
+      <p>Pas de commission, meilleur prix garanti. Choisissez votre unité préférée ci-dessous.</p>
+      <div class="booking-btns" style="justify-content: center;">
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-book-light" target="_blank" rel="noopener">Tilde 1 (Premier étage)</a>
+        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-book-light" target="_blank" rel="noopener">Tilde (Rez-de-chaussée)</a>
+      </div>
     </div>
   </div>
 
