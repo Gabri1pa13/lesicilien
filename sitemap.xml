@@ -200,6 +200,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/de/villa-mondello-mit-pool/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -392,6 +398,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/en/villa-mondello-with-pool/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -580,6 +592,12 @@
   <url>
     <loc>https://www.lesicilien.it/fr/stays/villa-harmony-relax/</loc>
     <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -980,6 +998,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/pl/willa-mondello-z-basenem/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -1042,6 +1066,12 @@
   <url>
     <loc>https://www.lesicilien.it/stays/villa-harmony-relax/</loc>
     <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1114,6 +1144,12 @@
   <url>
     <loc>https://www.lesicilien.it/zh/stays/villa-harmony-relax/</loc>
     <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
