@@ -92,15 +92,35 @@ function buildConfirmEmail({ nome, serviceName, servicePrice, dataDesiderata, pe
         <!-- CTA PAGAMENTO -->
         <div style="text-align:center;margin:32px 0;">
           <p style="font-family:Arial,sans-serif;font-size:13px;font-weight:300;color:#8A8278;margin:0 0 20px;">
-            Per completare la prenotazione, effettui il pagamento tramite il link sicuro qui sotto.<br/>
+            Per completare la prenotazione, effettui il pagamento tramite uno dei metodi qui sotto.<br/>
             Il servizio sarà definitivamente confermato al ricevimento del pagamento.
           </p>
           <a href="${revolutLink}"
              style="display:inline-block;background:${DARK};color:${GOLD};padding:16px 40px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-decoration:none;text-transform:uppercase;">
-            → Completa il pagamento
+            → Paga con Revolut
           </a>
           <p style="font-family:Arial,sans-serif;font-size:11px;color:#B0A898;margin:12px 0 0;">
-            Pagamento sicuro tramite Revolut
+            Pagamento istantaneo tramite Revolut
+          </p>
+        </div>
+
+        <!-- ALTERNATIVA: BONIFICO BANCARIO -->
+        <div style="border:1px solid #E0D9CC;padding:18px 20px;margin-bottom:28px;background:#fff;">
+          <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:.15em;color:${GOLD};text-transform:uppercase;margin:0 0 10px;">
+            Non hai Revolut? Bonifico bancario
+          </p>
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:.08em;color:#8A8278;text-transform:uppercase;padding:5px 0;width:90px;">IBAN</td>
+              <td style="font-family:Georgia,serif;font-size:14px;color:${DARK};padding:5px 0;letter-spacing:.04em;">IT06 M036 6901 6003 0054 7209 879</td>
+            </tr>
+            <tr>
+              <td style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:.08em;color:#8A8278;text-transform:uppercase;padding:5px 0;">Causale</td>
+              <td style="font-family:Arial,sans-serif;font-size:13px;color:${DARK};padding:5px 0;">${serviceName} — ${nome}</td>
+            </tr>
+          </table>
+          <p style="font-family:Arial,sans-serif;font-size:11px;color:#B0A898;margin:10px 0 0;">
+            Il bonifico può richiedere 1–2 giorni lavorativi. Ci invii la ricevuta su WhatsApp per conferma immediata.
           </p>
         </div>
 
