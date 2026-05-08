@@ -248,7 +248,10 @@ export default function AdminRequests() {
             <p style={s.headerTag}>LE SICILIEN · ADMIN</p>
             <h1 style={s.title}>Pannello Richieste</h1>
           </div>
-          <button onClick={fetchRequests} style={s.refreshBtn}>↻ Aggiorna</button>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button onClick={fetchRequests} style={s.refreshBtn}>↻ Aggiorna</button>
+            <button onClick={async () => { await supabase.auth.signOut(); window.location.href = "/admin/login"; }} style={{ ...s.refreshBtn, background: "transparent", color: BRAND.textMuted, border: `1px solid ${BRAND.border}` }}>Esci</button>
+          </div>
         </div>
 
         {/* STATS */}
