@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Services — Le Sicilien Concierge</title>
+<meta name="description" content="Bespoke concierge services for Le Sicilien guests — transfers, private chef, yacht charter, wellness and more. Palermo, Sicily."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:#FAF8F3;color:#3A3530}
+:root{--gold:#BFA05A;--gold-light:#D4B97A;--cream:#FAF8F3;--cream-dark:#F2EFE7;--dark:#1A1814;--dark-mid:#2C2820;--text:#3A3530;--muted:#8A8278;--border:#E0D9CC}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--dark);border-bottom:1px solid rgba(191,160,90,.15)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:58px;display:flex;align-items:center;gap:20px}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;letter-spacing:.22em;color:var(--gold);flex-shrink:0;text-decoration:none}
+.nav-pills{flex:1;display:flex;gap:2px;overflow-x:auto;padding:6px 0}
+.nav-pill{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.45);text-decoration:none;padding:5px 12px;white-space:nowrap;transition:color .2s;text-transform:uppercase}
+.nav-pill:hover{color:#fff}
+.nav-cta{flex-shrink:0;background:var(--gold);color:var(--dark);font-size:10px;font-weight:500;letter-spacing:.14em;padding:8px 18px;text-decoration:none;text-transform:uppercase}
+@media(max-width:640px){.nav-pills{display:none}}
+
+/* HERO */
+.hero{background:var(--dark);padding:96px 32px 80px;text-align:center}
+.hero-wrap{max-width:680px;margin:0 auto}
+.hero-tag{font-size:10px;letter-spacing:.28em;color:var(--gold);margin-bottom:28px;text-transform:uppercase}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,68px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:28px}
+.hero-rule{width:40px;height:1px;background:var(--gold);margin:0 auto 28px}
+.hero-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:40px}
+.legend{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:300;color:rgba(255,255,255,.45)}
+.dot-g{display:inline-block;width:6px;height:6px;border-radius:50%;background:#6BAE75;flex-shrink:0}
+.dot-o{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* MAIN */
+main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
+.section{margin-bottom:88px}
+.sec-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:32px}
+.sec-line{width:1px;min-height:56px;background:var(--gold);flex-shrink:0;margin-top:4px}
+.sec-icon{font-size:13px;color:var(--gold);margin-bottom:6px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--dark);letter-spacing:.02em;margin-bottom:6px}
+.sec-note{font-size:11px;font-weight:300;color:var(--muted);font-style:italic}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:var(--cream);padding:26px 22px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 12px 40px rgba(0,0,0,.12);transform:translateY(-2px)}
+.card-meta{display:flex;align-items:center;gap:8px}
+.meta-txt{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark);line-height:1.4;flex:1}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px solid var(--border);margin-top:auto}
+.card-price{font-size:19px;font-weight:500;color:var(--dark)}
+.btn-dark{background:var(--dark);color:var(--gold);border:none;padding:9px 16px;font-size:10px;font-weight:500;letter-spacing:.12em;cursor:pointer;white-space:nowrap;text-transform:uppercase;transition:background .2s;font-family:'Jost',sans-serif}
+.btn-dark:hover{background:var(--gold-light)}
+.btn-border{background:transparent;color:var(--text);border:1px solid var(--border);padding:8px 16px;font-size:10px;font-weight:500;letter-spacing:.12em;cursor:pointer;white-space:nowrap;text-transform:uppercase;transition:background .2s;font-family:'Jost',sans-serif}
+.btn-border:hover{background:var(--cream-dark)}
+
+/* FOOTER */
+.page-footer{background:var(--dark-mid);padding:80px 32px;text-align:center}
+.ft-tag{font-size:10px;letter-spacing:.28em;color:var(--gold);margin-bottom:20px;text-transform:uppercase}
+.ft-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,44px);font-weight:300;color:#fff;line-height:1.2;margin-bottom:18px}
+.ft-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:36px}
+.ft-btn{display:inline-block;background:var(--gold);color:var(--dark);padding:14px 36px;font-size:12px;font-weight:500;letter-spacing:.14em;text-decoration:none;text-transform:uppercase}
+.ft-rule{width:40px;height:1px;background:rgba(191,160,90,.25);margin:48px auto 24px}
+.ft-copy{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.2);text-transform:uppercase}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(26,24,20,.88);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(10px)}
+.overlay.hidden{display:none}
+.modal{background:var(--cream);width:100%;max-width:580px;max-height:90vh;overflow-y:auto;border:1px solid var(--border)}
+.modal-header{padding:36px 36px 28px;position:relative}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:15px;cursor:pointer;color:var(--muted)}
+.modal-label{font-size:9px;letter-spacing:.28em;color:var(--gold);margin-bottom:14px;text-transform:uppercase;display:block}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);line-height:1.3;margin-bottom:12px}
+.modal-price{font-size:22px;font-weight:500;color:var(--dark)}
+.modal-divider{height:1px;background:var(--border)}
+.modal-body{padding:28px 36px}
+.form-row{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.form-group{display:flex;flex-direction:column;gap:7px;flex:1;min-width:180px}
+.form-label{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.form-input{background:#fff;border:1px solid var(--border);padding:11px 14px;font-size:14px;font-family:'Jost',sans-serif;font-weight:300;color:var(--dark);transition:border-color .2s;width:100%}
+.form-input:focus{outline:none;border-color:var(--gold)}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;padding:20px 36px 30px}
+.btn-gold{background:var(--dark);color:var(--gold);border:none;padding:13px 28px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 22px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif}
+.sent-box{padding:60px 36px;text-align:center}
+.sent-check{width:50px;height:50px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:18px;color:var(--gold)}
+.sent-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--dark);margin-bottom:16px}
+.sent-text{font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:32px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">LE SICILIEN</a>
+    <div class="nav-pills" id="navPills"></div>
+    <a href="https://wa.me/393888005083" target="_blank" rel="noreferrer" class="nav-cta">Concierge</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-wrap">
+    <p class="hero-tag">CONCIERGE SERVICES · PALERMO & SICILIA</p>
+    <h1 class="hero-h1">Bespoke Experiences<br/><em style="font-style:italic;color:var(--gold)">for Our Guests</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Ogni servizio è curato personalmente dal nostro team.<br/>Alcuni sono prenotabili subito, altri richiedono la nostra conferma.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="dot-g"></span>Prenotazione diretta — pagamento via Revolut</span>
+      <span class="legend-item"><span class="dot-o"></span>Su richiesta — confermiamo entro poche ore</span>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer class="page-footer">
+  <p class="ft-tag">CONCIERGE 24/7</p>
+  <h2 class="ft-h2">Hai bisogno di qualcosa<br/>che non trovi qui?</h2>
+  <p class="ft-sub">Il nostro team è disponibile per qualsiasi richiesta — scriveteci su WhatsApp.</p>
+  <a href="https://wa.me/393888005083" target="_blank" rel="noreferrer" class="ft-btn">💬 Scrivi al Concierge</a>
+  <div class="ft-rule"></div>
+  <p class="ft-copy">© 2025 Le Sicilien · Luxury Real Estate · Palermo, Sicilia</p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay hidden" id="modal">
+  <div class="modal">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const WA = "393888005083";
+const REVOLUT = {
+  transfer_one:"https://revolut.me/gabriel1r6/45",transfer_ar:"https://revolut.me/gabriel1r6/80",
+  bagagli:"https://revolut.me/gabriel1r6/10",early_checkin:"https://revolut.me/gabriel1r6/25",
+  late_checkin:"https://revolut.me/gabriel1r6/20",late_checkout:"https://revolut.me/gabriel1r6/30",
+  kit_base:"https://revolut.me/gabriel1r6/35",kit_premium:"https://revolut.me/gabriel1r6/65",
+  biancheria_extra:"https://revolut.me/gabriel1r6/15",ristorante:"https://revolut.me/gabriel1r6/10",
+  _default:"https://revolut.me/gabriel1r6"
+};
+const SERVICES = [
+  {cat:"Trasporti & Logistica",icon:"✦",items:[
+    {id:"transfer_one",name:"Transfer aeroporto — solo andata",price:"45€",type:"direct"},
+    {id:"transfer_ar",name:"Transfer aeroporto/stazione — A/R",price:"80€",type:"direct"},
+    {id:"bagagli",name:"Servizio bagagli — deposito & consegna",price:"10€",type:"direct"}
+  ]},
+  {cat:"Comfort in Villa",icon:"✦",items:[
+    {id:"early_checkin",name:"Early check-in (dalle 10:00)",price:"25€",type:"direct"},
+    {id:"late_checkin",name:"Late check-in (dalle 23:00 in poi)",price:"20€",type:"direct"},
+    {id:"late_checkout",name:"Late check-out (fino alle 18:00)",price:"30€",type:"request"},
+    {id:"kit_base",name:"Kit benvenuto — vino & prodotti locali",price:"35€",type:"direct"},
+    {id:"kit_premium",name:"Kit benvenuto premium — champagne & dolci",price:"65€",type:"direct"},
+    {id:"frigo_base",name:"Frigorifero pre-rifornito — spesa base",price:"40€",type:"request"},
+    {id:"frigo_premium",name:"Frigorifero pre-rifornito — spesa premium",price:"80€",type:"request"},
+    {id:"kit_bebe",name:"Kit bebè — lettino, seggiolone & vasca",price:"30€/soggiorno",type:"request"},
+    {id:"biancheria_extra",name:"Biancheria extra",price:"15€",type:"direct"},
+    {id:"cambio_biancheria",name:"Cambio biancheria mid-stay",price:"20€",type:"request"},
+    {id:"lavanderia",name:"Servizio lavanderia",price:"20€",type:"request"},
+    {id:"stireria",name:"Servizio stireria",price:"15€",type:"request"}
+  ]},
+  {cat:"Private Chef & Dining",icon:"✦",items:[
+    {id:"colazione",name:"Colazione consegnata in villa",price:"12€/persona",type:"request"},
+    {id:"chef_4",name:"Private chef — cena per 2–4 persone",price:"120€",type:"request"},
+    {id:"chef_8",name:"Private chef — cena per 5–8 persone",price:"200€",type:"request"},
+    {id:"ristorante",name:"Prenotazione ristorante — corsia preferenziale",price:"10€",type:"direct"},
+    {id:"streetfood",name:"Street food tour guidato (2h)",price:"35€/persona",type:"request"},
+    {id:"cucina",name:"Corso di cucina siciliana (3h, pranzo incluso)",price:"75€/persona",type:"request"},
+    {id:"aperitivo_app",name:"Aperitivo di benvenuto in villa",price:"25€/persona",type:"request"}
+  ]},
+  {cat:"Esperienze & Tour Privati",icon:"✦",note:"Transfer non incluso per destinazioni fuori Palermo",items:[
+    {id:"tour_centro",name:"Tour privato centro storico (3h · fino a 6 persone)",price:"80€",type:"request"},
+    {id:"etna",name:"Escursione Etna — giornata intera con transfer",price:"90€/persona",type:"request"},
+    {id:"templi",name:"Escursione Valle dei Templi",price:"85€/persona",type:"request"},
+    {id:"scala_turchi",name:"Scala dei Turchi & Agrigento — giornata",price:"90€/persona",type:"request"},
+    {id:"cantina",name:"Visita cantina con degustazione",price:"55€/persona",type:"request"},
+    {id:"mercati",name:"Tour mercati storici — Ballarò & Vucciria",price:"25€/persona",type:"request"},
+    {id:"mercato_pesce",name:"Esperienza mattutina mercato del pesce",price:"20€/persona",type:"request"}
+  ]},
+  {cat:"Yacht Charter — Catamarano Whale",icon:"⛵",note:"Fountaine Pajot Eleuthera 60 · 18 metri · Porto base: Palermo · Soggetto a disponibilità",items:[
+    {id:"whale_aperitivo_nav",name:"Aperitivo al Tramonto in Navigazione · 2.5h · max 12 pax",price:"da 2.700€",type:"request"},
+    {id:"whale_aperitivo_orm",name:"Aperitivo Esclusivo Ormeggiata · 2.5h · max 12 pax",price:"da 1.800€",type:"request"},
+    {id:"whale_cena_orm",name:"Cena Gourmet Ormeggiata · 3.5h · max 8 pax",price:"da 2.000€",type:"request"},
+    {id:"whale_cena_nav",name:"Cena Panoramica in Navigazione · 4h · max 8 pax",price:"da 3.000€",type:"request"},
+    {id:"whale_giornata",name:"Giornata Completa in Catamarano · 10h · max 12 pax",price:"da 3.000€",type:"request"},
+    {id:"whale_2giorni",name:"Luxury 2 Giorni · 39h · max 12 pax",price:"da 6.000€",type:"request"},
+    {id:"whale_weekly",name:"Weekly Charter · 7 giorni / 6 notti · max 12 pax",price:"da 15.000€",type:"request"}
+  ]},
+  {cat:"Wellness & Benessere",icon:"✦",items:[
+    {id:"massaggio_relax",name:"Massaggio rilassante in villa (60 min)",price:"70€",type:"request"},
+    {id:"massaggio_dec",name:"Massaggio decontratturante in villa (60 min)",price:"80€",type:"request"},
+    {id:"massaggio_coppia",name:"Massaggio coppia — simultaneo (60 min)",price:"130€",type:"request"},
+    {id:"personal_trainer",name:"Personal trainer (sessione 60 min)",price:"50€",type:"request"},
+    {id:"yoga",name:"Yoga privato in villa (60 min)",price:"45€",type:"request"}
+  ]},
+  {cat:"Famiglia & Assistenza",icon:"✦",items:[
+    {id:"babysitter",name:"Babysitter certificata",price:"15€/h",type:"request"},
+    {id:"guida_mezza",name:"Guida turistica privata — mezza giornata (4h)",price:"120€",type:"request"},
+    {id:"guida_intera",name:"Guida turistica privata — giornata intera",price:"200€",type:"request"},
+    {id:"interprete",name:"Assistente & interprete per pratiche",price:"40€/h",type:"request"}
+  ]},
+  {cat:"Momenti Indimenticabili",icon:"✦",items:[
+    {id:"foto_1h",name:"Servizio fotografico professionale (1h)",price:"120€",type:"request"},
+    {id:"foto_2h",name:"Servizio fotografico premium — editing incluso (2h)",price:"200€",type:"request"},
+    {id:"proposta",name:"Organizzazione proposta di matrimonio",price:"350€",type:"request"},
+    {id:"luna_miele",name:"Pacchetto luna di miele — kit, esperienze & foto",price:"450€",type:"request"}
+  ]}
+];
+
+// Build nav pills
+const pillsEl = document.getElementById('navPills');
+SERVICES.forEach((s,i)=>{
+  const a = document.createElement('a');
+  a.href = '#s'+i; a.className='nav-pill'; a.textContent=s.cat;
+  pillsEl.appendChild(a);
+});
+
+// Build main content
+const mainEl = document.getElementById('main');
+SERVICES.forEach((sec,si)=>{
+  const section = document.createElement('section');
+  section.id='s'+si; section.className='section';
+  section.innerHTML=`
+    <div class="sec-head">
+      <div class="sec-line"></div>
+      <div>
+        <p class="sec-icon">${sec.icon}</p>
+        <h2 class="sec-title">${sec.cat}</h2>
+        ${sec.note?`<p class="sec-note">${sec.note}</p>`:''}
+      </div>
+    </div>
+    <div class="grid">
+      ${sec.items.map(item=>`
+        <article class="card">
+          <div class="card-meta">
+            <span class="${item.type==='direct'?'dot-g':'dot-o'}"></span>
+            <span class="meta-txt">${item.type==='direct'?'Prenotazione diretta':'Su richiesta'}</span>
+          </div>
+          <h3 class="card-name">${item.name}</h3>
+          <div class="card-foot">
+            <span class="card-price">${item.price}</span>
+            <button class="${item.type==='direct'?'btn-dark':'btn-border'}" onclick="${item.type==='direct'?`directBook('${item.id}')`:`openModal('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`}">
+              ${item.type==='direct'?'Prenota ora':'Richiedi →'}
+            </button>
+          </div>
+        </article>`).join('')}
+    </div>`;
+  mainEl.appendChild(section);
+});
+
+function directBook(id){
+  window.open(REVOLUT[id]||REVOLUT._default,'_blank');
+}
+
+function openModal(id,name,price){
+  const modal=document.getElementById('modal');
+  const content=document.getElementById('modalContent');
+  content.innerHTML=`
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <span class="modal-label">RICHIESTA DI DISPONIBILITÀ</span>
+      <h3 class="modal-title">${name}</h3>
+      <div class="modal-price">${price}</div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Nome e cognome *</label><input class="form-input" type="text" id="f_nome" placeholder="Mario Rossi"/></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="f_email" placeholder="mario@email.com"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Telefono</label><input class="form-input" type="text" id="f_tel" placeholder="+39 333 000 0000"/></div>
+        <div class="form-group"><label class="form-label">Data desiderata *</label><input class="form-input" type="date" id="f_data"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">N. persone</label><input class="form-input" type="number" id="f_persone" value="1" min="1"/></div>
+        <div class="form-group"><label class="form-label">Note & richieste speciali</label><input class="form-input" type="text" id="f_note" placeholder="Allergie, occasioni..."/></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal()">Annulla</button>
+      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")}','${price}')">Invia richiesta</button>
+    </div>`;
+  modal.classList.remove('hidden');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.add('hidden');
+  document.body.style.overflow='';
+}
+
+function submitRequest(id,name,price){
+  const nome=document.getElementById('f_nome').value.trim();
+  const email=document.getElementById('f_email').value.trim();
+  const data=document.getElementById('f_data').value;
+  if(!nome||!email||!data){alert('Compila i campi obbligatori: nome, email e data.');return;}
+  const tel=document.getElementById('f_tel').value.trim();
+  const persone=document.getElementById('f_persone').value;
+  const note=document.getElementById('f_note').value.trim();
+  const txt=`🛎 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`,'_blank');
+  // Salva su DB in background
+  fetch('/api/send-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service:{id,name,price},form:{nome,email,telefono:tel,data,persone,note}})}).catch(()=>{});
+  // Mostra conferma
+  document.getElementById('modalContent').innerHTML=`
+    <div class="sent-box">
+      <div class="sent-check">✓</div>
+      <span class="modal-label">RICHIESTA INVIATA</span>
+      <h3 class="sent-title">Ti risponderemo a breve</h3>
+      <p class="sent-text">Il nostro team verificherà la disponibilità e vi contatterà entro poche ore.</p>
+      <button class="btn-gold" onclick="closeModal()">Chiudi</button>
+    </div>`;
+}
+
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
