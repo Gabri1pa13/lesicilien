@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
-const ADMIN_EMAIL = "info@lesicilien.com";
+const ADMIN_EMAIL = "info@costanzoacquisizioni.it";
 const GOLD = "#BFA05A";
 const DARK = "#1A1814";
 const CREAM = "#FAF8F3";
