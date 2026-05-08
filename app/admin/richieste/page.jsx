@@ -1,10 +1,11 @@
 "use client";
-// Posiziona in: /app/admin/richieste/page.jsx
+
+export const dynamic = "force-dynamic";
 
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
+const getSupabase = () => createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
@@ -211,7 +212,7 @@ export default function AdminRequests() {
 
   const fetchRequests = async () => {
     setLoading(true);
-    const { data } = await supabase
+    const { data } = await getSupabase()
       .from("requests").select("*").order("created_at", { ascending: false });
     setRequests(data || []);
     setLoading(false);
@@ -220,7 +221,7 @@ export default function AdminRequests() {
   const handleConfirmed = (id) => setRequests(p => p.map(r => r.id === id ? { ...r, status: "confirmed" } : r));
   const handleRejected  = (id) => setRequests(p => p.map(r => r.id === id ? { ...r, status: "rejected"  } : r));
   const markPaid = async (id) => {
-    await supabase.from("requests").update({ status: "paid" }).eq("id", id);
+    await getSupabase().from("requests").update({ status: "paid" }).eq("id", id);
     setRequests(p => p.map(r => r.id === id ? { ...r, status: "paid" } : r));
   };
 
@@ -250,7 +251,7 @@ export default function AdminRequests() {
           </div>
           <div style={{ display: "flex", gap: "10px" }}>
             <button onClick={fetchRequests} style={s.refreshBtn}>↻ Aggiorna</button>
-            <button onClick={async () => { await supabase.auth.signOut(); window.location.href = "/admin/login"; }} style={{ ...s.refreshBtn, background: "transparent", color: BRAND.textMuted, border: `1px solid ${BRAND.border}` }}>Esci</button>
+            <button onClick={async () => { await getSupabase().auth.signOut(); window.location.href = "/admin/login"; }} style={{ ...s.refreshBtn, background: "transparent", color: BRAND.textMuted, border: `1px solid ${BRAND.border}` }}>Esci</button>
           </div>
         </div>
 

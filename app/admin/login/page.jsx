@@ -1,11 +1,9 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 const BRAND = { gold: "#BFA05A", dark: "#1A1814", cream: "#FAF8F3", border: "#E0D9CC", textMuted: "#8A8278" };
 
@@ -19,6 +17,7 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setError("Email o password errati.");
