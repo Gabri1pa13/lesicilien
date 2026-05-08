@@ -6,14 +6,13 @@
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 
-const resend  = new Resend(process.env.RESEND_API_KEY);
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-
 const GOLD  = "#BFA05A";
 const DARK  = "#1A1814";
 const CREAM = "#FAF8F3";
 
 export async function POST(req) {
+  const resend   = new Resend(process.env.RESEND_API_KEY);
+  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
   try {
     const { requestId, email, nome, serviceName, servicePrice, dataDesiderata, persone, revolutLink, messageExtra } = await req.json();
 
