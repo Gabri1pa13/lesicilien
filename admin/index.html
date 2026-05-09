@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex"/>
+<title>Admin — Le Sicilien</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:#1A1814;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{background:#FAF8F3;width:100%;max-width:380px;border:1px solid #E0D9CC}
+.card-head{padding:36px 36px 28px;text-align:center;border-bottom:1px solid #E0D9CC}
+.tag{font-size:9px;letter-spacing:.28em;color:#BFA05A;text-transform:uppercase;margin-bottom:10px}
+h1{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:#1A1814}
+.card-body{padding:28px 36px 36px}
+label{display:block;font-size:9px;letter-spacing:.18em;color:#8A8278;text-transform:uppercase;margin-bottom:7px}
+input{width:100%;background:#fff;border:1px solid #E0D9CC;padding:11px 14px;font-size:14px;font-family:'Jost',sans-serif;color:#1A1814;margin-bottom:18px}
+input:focus{outline:none;border-color:#BFA05A}
+.btn{width:100%;background:#1A1814;color:#BFA05A;border:none;padding:13px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif}
+.err{font-size:12px;color:#C62828;margin-bottom:14px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-head">
+    <p class="tag">LE SICILIEN · ADMIN</p>
+    <h1>Accesso</h1>
+  </div>
+  <div class="card-body">
+    <label>Email</label>
+    <input type="email" id="email" placeholder="admin@lesicilien.it"/>
+    <label>Password</label>
+    <input type="password" id="password"/>
+    <p class="err" id="err" style="display:none"></p>
+    <button class="btn" id="btn" onclick="login()">Accedi</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL  = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// Se già loggato, vai al dashboard
+sb.auth.getSession().then(({data:{session}}) => {
+  if (session) location.href = '/admin/dashboard.html';
+});
+
+async function login() {
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const btn      = document.getElementById('btn');
+  const err      = document.getElementById('err');
+  btn.textContent = 'Accesso...';
+  btn.disabled    = true;
+  err.style.display = 'none';
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if (error) {
+    err.textContent  = 'Email o password errati.';
+    err.style.display = 'block';
+    btn.textContent  = 'Accedi';
+    btn.disabled     = false;
+  } else {
+    location.href = '/admin/dashboard.html';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') login();
+});
+</script>
+</body>
+</html>

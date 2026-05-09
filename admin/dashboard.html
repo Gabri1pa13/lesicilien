@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex"/>
+<title>Dashboard — Le Sicilien Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:#F4F1EA;color:#1A1814;min-height:100vh}
+
+/* TOP BAR */
+.topbar{background:#1A1814;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:100}
+.topbar-brand{font-size:10px;letter-spacing:.28em;color:#BFA05A;text-transform:uppercase}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.topbar-user{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.06em}
+.btn-logout{background:transparent;border:1px solid rgba(191,160,90,.3);color:#BFA05A;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-logout:hover{background:rgba(191,160,90,.08)}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid #E0D9CC;background:#FAF8F3;padding:0 28px}
+.tab{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A8278;padding:16px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:#1A1814;border-bottom-color:#BFA05A}
+.tab-panel{display:none;padding:28px}
+.tab-panel.active{display:block}
+
+/* TOOLBAR */
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:7px 16px;border:1px solid #E0D9CC;background:#fff;cursor:pointer;color:#8A8278;font-family:'Jost',sans-serif}
+.filter-btn.active{background:#1A1814;color:#BFA05A;border-color:#1A1814}
+.toolbar-right{margin-left:auto}
+.btn-gold{background:#1A1814;color:#BFA05A;border:none;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:9px 20px;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-gold:hover{background:#2a2520}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;background:#FAF8F3;border:1px solid #E0D9CC}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8A8278;padding:10px 14px;text-align:left;border-bottom:1px solid #E0D9CC;white-space:nowrap}
+td{font-size:13px;color:#1A1814;padding:12px 14px;border-bottom:1px solid #F0EDE6;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#F7F4EE}
+
+/* STATUS BADGES */
+.badge{font-size:8px;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;display:inline-block}
+.badge-pending{background:#FFF8E7;color:#9A7A1A;border:1px solid #F0D97A}
+.badge-confirmed{background:#E8F4F0;color:#1A6A4A;border:1px solid #8DD0B8}
+.badge-paid{background:#E8F0F8;color:#1A3A6A;border:1px solid #8DAED0}
+.badge-rejected{background:#FBE9E9;color:#8A1A1A;border:1px solid #E08D8D}
+
+/* ACTION BUTTONS */
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn-sm{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border:none;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap}
+.btn-confirm{background:#1A1814;color:#BFA05A}
+.btn-confirm:hover{background:#2a2520}
+.btn-reject{background:#fff;color:#C62828;border:1px solid #E0D9CC}
+.btn-reject:hover{background:#FBE9E9}
+.btn-paid{background:#1A4A3A;color:#8DD0B8}
+.btn-paid:hover{background:#153b2e}
+.btn-edit{background:#fff;color:#5A5550;border:1px solid #E0D9CC}
+.btn-edit:hover{background:#F0EDE6}
+.btn-delete{background:#fff;color:#C62828;border:1px solid #E0D9CC}
+.btn-delete:hover{background:#FBE9E9}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,24,20,.7);z-index:200;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal{background:#FAF8F3;width:100%;max-width:440px;border:1px solid #E0D9CC}
+.modal-head{padding:24px 28px 18px;border-bottom:1px solid #E0D9CC}
+.modal-tag{font-size:8px;letter-spacing:.24em;color:#BFA05A;text-transform:uppercase;margin-bottom:8px}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400}
+.modal-body{padding:24px 28px}
+.modal-body label{display:block;font-size:8px;letter-spacing:.18em;color:#8A8278;text-transform:uppercase;margin-bottom:6px}
+.modal-body input,.modal-body select,.modal-body textarea{width:100%;border:1px solid #E0D9CC;padding:10px 13px;font-size:13px;font-family:'Jost',sans-serif;color:#1A1814;background:#fff;margin-bottom:16px}
+.modal-body input:focus,.modal-body select:focus,.modal-body textarea:focus{outline:none;border-color:#BFA05A}
+.modal-body textarea{min-height:80px;resize:vertical}
+.modal-foot{padding:16px 28px 24px;display:flex;gap:10px;justify-content:flex-end}
+.btn-cancel{background:#fff;color:#5A5550;border:1px solid #E0D9CC;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-send-wa{background:#25D366;color:#fff;border:none;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-primary{background:#1A1814;color:#BFA05A;border:none;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;cursor:pointer;font-family:'Jost',sans-serif}
+
+/* SERVICES GRID */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400}
+.category-block{margin-bottom:32px}
+.category-label{font-size:8px;letter-spacing:.24em;color:#BFA05A;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #E0D9CC}
+.service-card{background:#FAF8F3;border:1px solid #E0D9CC;padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.service-info{flex:1;min-width:0}
+.service-name{font-size:14px;font-weight:400;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.service-meta{font-size:11px;color:#8A8278;display:flex;gap:12px;flex-wrap:wrap}
+.service-badge{font-size:7px;letter-spacing:.15em;text-transform:uppercase;padding:2px 8px;border:1px solid}
+.badge-active{color:#1A6A4A;border-color:#8DD0B8;background:#E8F4F0}
+.badge-inactive{color:#8A8278;border-color:#D0CAC0;background:#F0EDE6}
+.badge-booking{color:#9A4A00;border-color:#E0A060;background:#FFF0E0}
+.toggle-switch{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#D0CAC0;cursor:pointer;border-radius:20px;transition:.2s}
+.toggle-slider:before{content:'';position:absolute;width:14px;height:14px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+input:checked+.toggle-slider{background:#BFA05A}
+input:checked+.toggle-slider:before{transform:translateX(16px)}
+
+/* EMPTY / LOADING */
+.empty{text-align:center;padding:60px 24px;color:#8A8278;font-size:13px}
+.loading{text-align:center;padding:40px;color:#8A8278;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+/* REQUEST DETAIL */
+.detail-col{font-size:12px;color:#5A5550;line-height:1.6}
+.detail-col strong{display:block;font-size:8px;letter-spacing:.14em;color:#8A8278;text-transform:uppercase;margin-bottom:2px;font-weight:400}
+
+@media(max-width:600px){
+  .tab-panel{padding:16px}
+  .topbar{padding:0 16px}
+  .toolbar{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-brand">Le Sicilien · Admin</span>
+  <div class="topbar-right">
+    <span class="topbar-user" id="user-email"></span>
+    <button class="btn-logout" onclick="logout()">Esci</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('richieste')">Richieste</div>
+  <div class="tab" onclick="showTab('servizi')">Servizi</div>
+</div>
+
+<!-- TAB: RICHIESTE -->
+<div class="tab-panel active" id="tab-richieste">
+  <div class="toolbar">
+    <button class="filter-btn active" onclick="setFilter('all',this)">Tutte</button>
+    <button class="filter-btn" onclick="setFilter('pending',this)">In attesa</button>
+    <button class="filter-btn" onclick="setFilter('confirmed',this)">Confermate</button>
+    <button class="filter-btn" onclick="setFilter('paid',this)">Pagate</button>
+    <button class="filter-btn" onclick="setFilter('rejected',this)">Rifiutate</button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Cliente</th>
+          <th>Servizio</th>
+          <th>Dettagli</th>
+          <th>Stato</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody id="requests-tbody">
+        <tr><td colspan="6" class="loading">Caricamento...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TAB: SERVIZI -->
+<div class="tab-panel" id="tab-servizi">
+  <div class="section-head">
+    <span class="section-title">Gestione Servizi</span>
+    <button class="btn-gold" onclick="openServiceModal()">+ Nuovo servizio</button>
+  </div>
+  <div id="services-list">
+    <div class="loading">Caricamento...</div>
+  </div>
+</div>
+
+<!-- MODAL: CONFIRM (WhatsApp) -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal">
+    <div class="modal-head">
+      <p class="modal-tag">Conferma prenotazione</p>
+      <p class="modal-title">Invia via WhatsApp</p>
+    </div>
+    <div class="modal-body">
+      <label>Importo da richiedere (€)</label>
+      <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
+      <label>Link Revolut (opzionale)</label>
+      <input type="text" id="conf-revolut" placeholder="https://revolut.me/..."/>
+      <label>Nota aggiuntiva (opzionale)</label>
+      <textarea id="conf-note" placeholder="Messaggio extra per il cliente..."></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('modal-confirm')">Annulla</button>
+      <button class="btn-send-wa" onclick="sendConfirmWA()">💬 Apri WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: REJECT (WhatsApp) -->
+<div class="modal-overlay" id="modal-reject">
+  <div class="modal">
+    <div class="modal-head">
+      <p class="modal-tag">Rifiuta richiesta</p>
+      <p class="modal-title">Motivo del rifiuto</p>
+    </div>
+    <div class="modal-body">
+      <label>Messaggio al cliente</label>
+      <textarea id="rej-note" style="min-height:100px"></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('modal-reject')">Annulla</button>
+      <button class="btn-send-wa" onclick="sendRejectWA()">💬 Apri WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SERVICE FORM -->
+<div class="modal-overlay" id="modal-service">
+  <div class="modal">
+    <div class="modal-head">
+      <p class="modal-tag" id="svc-modal-tag">Nuovo servizio</p>
+      <p class="modal-title" id="svc-modal-title">Aggiungi servizio</p>
+    </div>
+    <div class="modal-body">
+      <label>Nome servizio *</label>
+      <input type="text" id="svc-name" placeholder="es. Transfer aeroporto"/>
+      <label>Categoria *</label>
+      <select id="svc-category">
+        <option value="trasporti">Trasporti</option>
+        <option value="comfort">Comfort &amp; Suite</option>
+        <option value="chef">Chef &amp; Dining</option>
+        <option value="esperienze">Esperienze</option>
+        <option value="yacht">Yacht &amp; Mare</option>
+        <option value="wellness">Wellness &amp; Spa</option>
+        <option value="famiglia">Famiglia</option>
+        <option value="momenti">Momenti Speciali</option>
+      </select>
+      <label>Prezzo visualizzato *</label>
+      <input type="text" id="svc-price" placeholder="es. Da €120 / notte"/>
+      <label>Descrizione breve</label>
+      <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <input type="checkbox" id="svc-booking-only" style="width:auto;margin-bottom:0"/>
+        Solo su prenotazione
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-top:12px">
+        <input type="checkbox" id="svc-active" style="width:auto;margin-bottom:0" checked/>
+        Servizio attivo (visibile ai clienti)
+      </label>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('modal-service')">Annulla</button>
+      <button class="btn-primary" onclick="saveService()">Salva</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL  = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+const WA_NUMBER     = '393888005083';
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let currentFilter  = 'all';
+let allRequests    = [];
+let activeRequest  = null;
+let editServiceId  = null;
+
+// ─── AUTH GUARD ────────────────────────────────────────────
+async function init() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.href = '/admin/index.html'; return; }
+  document.getElementById('user-email').textContent = session.user.email;
+  loadRequests();
+  loadServices();
+}
+
+async function logout() {
+  await sb.auth.signOut();
+  location.href = '/admin/index.html';
+}
+
+// ─── TABS ──────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['richieste','servizi'][i] === name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ─── RICHIESTE ─────────────────────────────────────────────
+async function loadRequests() {
+  const { data, error } = await sb
+    .from('requests')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) { console.error(error); return; }
+  allRequests = data || [];
+  renderRequests();
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRequests();
+}
+
+function renderRequests() {
+  const list = currentFilter === 'all'
+    ? allRequests
+    : allRequests.filter(r => r.status === currentFilter);
+
+  const tbody = document.getElementById('requests-tbody');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty">Nessuna richiesta</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = list.map(r => {
+    const date = new Date(r.created_at).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const badge = badgeHtml(r.status);
+    const actions = actionsHtml(r);
+    const details = [
+      r.data_desiderata ? `<strong>Data</strong>${r.data_desiderata}` : '',
+      r.persone         ? `<strong>Persone</strong>${r.persone}` : '',
+      r.messaggio       ? `<strong>Note</strong>${r.messaggio.substring(0,60)}${r.messaggio.length>60?'…':''}` : '',
+    ].filter(Boolean).join(' ');
+
+    return `<tr>
+      <td class="detail-col"><strong>Ricevuta</strong>${date}</td>
+      <td class="detail-col"><strong>Nome</strong>${escHtml(r.nome||'')}<br/><small style="color:#8A8278">${escHtml(r.email||'')} ${r.telefono?'· '+escHtml(r.telefono):''}</small></td>
+      <td class="detail-col"><strong>Servizio</strong>${escHtml(r.service_name||r.servizio||'')}<br/><small style="color:#BFA05A">${escHtml(r.service_price||r.prezzo||'')}</small></td>
+      <td class="detail-col">${details}</td>
+      <td>${badge}</td>
+      <td><div class="actions">${actions}</div></td>
+    </tr>`;
+  }).join('');
+}
+
+function badgeHtml(status) {
+  const map = {
+    pending:   ['badge-pending',  'In attesa'],
+    confirmed: ['badge-confirmed','Confermata'],
+    paid:      ['badge-paid',     'Pagata'],
+    rejected:  ['badge-rejected', 'Rifiutata'],
+  };
+  const [cls, label] = map[status] || ['badge-pending','In attesa'];
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function actionsHtml(r) {
+  const id = r.id;
+  let btns = '';
+  if (r.status === 'pending') {
+    btns += `<button class="btn-sm btn-confirm" onclick="openConfirm('${id}')">Conferma</button>`;
+    btns += `<button class="btn-sm btn-reject"  onclick="openReject('${id}')">Rifiuta</button>`;
+  }
+  if (r.status === 'confirmed') {
+    btns += `<button class="btn-sm btn-paid" onclick="markPaid('${id}')">Segna pagata</button>`;
+    btns += `<button class="btn-sm btn-reject" onclick="openReject('${id}')">Rifiuta</button>`;
+  }
+  return btns;
+}
+
+// ─── CONFIRM FLOW ──────────────────────────────────────────
+function openConfirm(id) {
+  activeRequest = allRequests.find(r => r.id === id);
+  document.getElementById('conf-amount').value  = '';
+  document.getElementById('conf-revolut').value = '';
+  document.getElementById('conf-note').value    = '';
+  openModal('modal-confirm');
+}
+
+async function sendConfirmWA() {
+  const r       = activeRequest;
+  const amount  = document.getElementById('conf-amount').value.trim();
+  const revolut = document.getElementById('conf-revolut').value.trim();
+  const note    = document.getElementById('conf-note').value.trim();
+  const phone   = (r.telefono || '').replace(/\D/g,'');
+
+  if (!amount) { alert('Inserisci l\'importo'); return; }
+
+  let msg = `Gentile ${r.nome},\n\nSiamo lieti di confermare la disponibilità per: *${r.service_name||r.servizio}*.\n\n`;
+  msg += `Importo: *€${amount}*\n`;
+  if (revolut) msg += `\nPagamento Revolut: ${revolut}\n`;
+  msg += `\nIBAN: IT06 M036 6901 6003 0054 7209 879\nCausale: ${r.service_name||r.servizio} — ${r.nome}\n`;
+  if (note) msg += `\n${note}\n`;
+  msg += `\nCordiali saluti,\nLe Sicilien Concierge`;
+
+  await sb.from('requests').update({
+    status: 'confirmed',
+    revolut_link: revolut || null,
+  }).eq('id', r.id);
+
+  const target = phone || WA_NUMBER;
+  window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank');
+  closeModal('modal-confirm');
+  await loadRequests();
+}
+
+// ─── REJECT FLOW ───────────────────────────────────────────
+function openReject(id) {
+  activeRequest = allRequests.find(r => r.id === id);
+  document.getElementById('rej-note').value =
+    `Gentile ${activeRequest.nome},\n\npurtroppo non siamo in grado di soddisfare la sua richiesta per: *${activeRequest.service_name||activeRequest.servizio}*.\n\nLe chiediamo scusa per l'inconveniente. Rimaniamo a disposizione per qualsiasi altra esigenza.\n\nCordiali saluti,\nLe Sicilien Concierge`;
+  openModal('modal-reject');
+}
+
+async function sendRejectWA() {
+  const r     = activeRequest;
+  const note  = document.getElementById('rej-note').value.trim();
+  const phone = (r.telefono || '').replace(/\D/g,'');
+
+  await sb.from('requests').update({ status: 'rejected' }).eq('id', r.id);
+
+  const target = phone || WA_NUMBER;
+  window.open(`https://wa.me/${target}?text=${encodeURIComponent(note)}`, '_blank');
+  closeModal('modal-reject');
+  await loadRequests();
+}
+
+// ─── MARK PAID ─────────────────────────────────────────────
+async function markPaid(id) {
+  if (!confirm('Segna come pagata?')) return;
+  await sb.from('requests').update({ status: 'paid' }).eq('id', id);
+  await loadRequests();
+}
+
+// ─── SERVICES ──────────────────────────────────────────────
+const CATEGORIES = [
+  { key:'trasporti',   label:'Trasporti' },
+  { key:'comfort',     label:'Comfort & Suite' },
+  { key:'chef',        label:'Chef & Dining' },
+  { key:'esperienze',  label:'Esperienze' },
+  { key:'yacht',       label:'Yacht & Mare' },
+  { key:'wellness',    label:'Wellness & Spa' },
+  { key:'famiglia',    label:'Famiglia' },
+  { key:'momenti',     label:'Momenti Speciali' },
+];
+
+async function loadServices() {
+  const { data, error } = await sb
+    .from('services')
+    .select('*')
+    .order('category')
+    .order('name');
+  if (error) { console.error(error); return; }
+  renderServices(data || []);
+}
+
+function renderServices(services) {
+  const container = document.getElementById('services-list');
+  if (!services.length) {
+    container.innerHTML = '<div class="empty">Nessun servizio. Clicca "+ Nuovo servizio" per aggiungerne uno.</div>';
+    return;
+  }
+
+  const byCat = {};
+  CATEGORIES.forEach(c => { byCat[c.key] = []; });
+  services.forEach(s => {
+    const cat = s.category || 'altro';
+    if (!byCat[cat]) byCat[cat] = [];
+    byCat[cat].push(s);
+  });
+
+  container.innerHTML = CATEGORIES.map(c => {
+    const items = byCat[c.key];
+    if (!items.length) return '';
+    return `<div class="category-block">
+      <div class="category-label">${c.label}</div>
+      ${items.map(s => serviceCardHtml(s)).join('')}
+    </div>`;
+  }).join('');
+}
+
+function serviceCardHtml(s) {
+  const activeBadge   = s.active ? 'badge-active' : 'badge-inactive';
+  const activeLabel   = s.active ? 'Attivo' : 'Inattivo';
+  const bookingBadge  = s.booking_only ? '<span class="service-badge badge-booking">Solo prenotazione</span>' : '';
+
+  return `<div class="service-card" id="svc-${s.id}">
+    <label class="toggle-switch" title="${s.active?'Disattiva':'Attiva'}">
+      <input type="checkbox" ${s.active?'checked':''} onchange="toggleService('${s.id}',this.checked)"/>
+      <span class="toggle-slider"></span>
+    </label>
+    <div class="service-info">
+      <div class="service-name">${escHtml(s.name)}</div>
+      <div class="service-meta">
+        <span>${escHtml(s.price||'')}</span>
+        <span class="service-badge ${activeBadge}">${activeLabel}</span>
+        ${bookingBadge}
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn-sm btn-edit"   onclick="openServiceModal('${s.id}')">Modifica</button>
+      <button class="btn-sm btn-delete" onclick="deleteService('${s.id}')">Elimina</button>
+    </div>
+  </div>`;
+}
+
+async function toggleService(id, active) {
+  await sb.from('services').update({ active }).eq('id', id);
+}
+
+async function deleteService(id) {
+  if (!confirm('Eliminare questo servizio?')) return;
+  await sb.from('services').delete().eq('id', id);
+  await loadServices();
+}
+
+async function openServiceModal(id) {
+  editServiceId = id || null;
+  const tag   = document.getElementById('svc-modal-tag');
+  const title = document.getElementById('svc-modal-title');
+
+  if (id) {
+    const { data } = await sb.from('services').select('*').eq('id', id).single();
+    tag.textContent   = 'Modifica servizio';
+    title.textContent = 'Modifica servizio';
+    document.getElementById('svc-name').value          = data.name || '';
+    document.getElementById('svc-category').value      = data.category || 'trasporti';
+    document.getElementById('svc-price').value         = data.price || '';
+    document.getElementById('svc-desc').value          = data.description || '';
+    document.getElementById('svc-booking-only').checked = !!data.booking_only;
+    document.getElementById('svc-active').checked       = data.active !== false;
+  } else {
+    tag.textContent   = 'Nuovo servizio';
+    title.textContent = 'Aggiungi servizio';
+    document.getElementById('svc-name').value          = '';
+    document.getElementById('svc-category').value      = 'trasporti';
+    document.getElementById('svc-price').value         = '';
+    document.getElementById('svc-desc').value          = '';
+    document.getElementById('svc-booking-only').checked = false;
+    document.getElementById('svc-active').checked       = true;
+  }
+  openModal('modal-service');
+}
+
+async function saveService() {
+  const payload = {
+    name:         document.getElementById('svc-name').value.trim(),
+    category:     document.getElementById('svc-category').value,
+    price:        document.getElementById('svc-price').value.trim(),
+    description:  document.getElementById('svc-desc').value.trim(),
+    booking_only: document.getElementById('svc-booking-only').checked,
+    active:       document.getElementById('svc-active').checked,
+  };
+
+  if (!payload.name || !payload.price) {
+    alert('Nome e prezzo sono obbligatori');
+    return;
+  }
+
+  if (editServiceId) {
+    await sb.from('services').update(payload).eq('id', editServiceId);
+  } else {
+    await sb.from('services').insert(payload);
+  }
+
+  closeModal('modal-service');
+  await loadServices();
+}
+
+// ─── MODAL HELPERS ─────────────────────────────────────────
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
+});
+
+// ─── UTILS ─────────────────────────────────────────────────
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+init();
+</script>
+</body>
+</html>
