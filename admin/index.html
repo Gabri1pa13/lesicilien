@@ -39,11 +39,10 @@ input:focus{outline:none;border-color:#BFA05A}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-const SUPABASE_URL  = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL  = 'https://amixnhmgxbxuiykqndxi.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// Se già loggato, vai al dashboard
 sb.auth.getSession().then(({data:{session}}) => {
   if (session) location.href = '/admin/dashboard.html';
 });
@@ -56,15 +55,24 @@ async function login() {
   btn.textContent = 'Accesso...';
   btn.disabled    = true;
   err.style.display = 'none';
-  const { error } = await sb.auth.signInWithPassword({ email, password });
-  if (error) {
-    err.textContent  = 'Email o password errati.';
+  try {
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Timeout: server non risponde (progetto Supabase in pausa?)')), 8000)
+    );
+    const auth = sb.auth.signInWithPassword({ email, password });
+    const { error } = await Promise.race([auth, timeout]);
+    if (error) {
+      err.textContent = 'Errore: ' + error.message;
+      err.style.display = 'block';
+    } else {
+      location.href = '/admin/dashboard.html';
+    }
+  } catch(e) {
+    err.textContent = e.message;
     err.style.display = 'block';
-    btn.textContent  = 'Accedi';
-    btn.disabled     = false;
-  } else {
-    location.href = '/admin/dashboard.html';
   }
+  btn.textContent = 'Accedi';
+  btn.disabled    = false;
 }
 
 document.addEventListener('keydown', e => {
