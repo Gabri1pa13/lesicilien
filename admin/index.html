@@ -56,15 +56,24 @@ async function login() {
   btn.textContent = 'Accesso...';
   btn.disabled    = true;
   err.style.display = 'none';
-  const { error } = await sb.auth.signInWithPassword({ email, password });
-  if (error) {
-    err.textContent  = 'Email o password errati.';
+  try {
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Timeout: server non risponde (progetto Supabase in pausa?)')), 8000)
+    );
+    const auth = sb.auth.signInWithPassword({ email, password });
+    const { error } = await Promise.race([auth, timeout]);
+    if (error) {
+      err.textContent = 'Errore: ' + error.message;
+      err.style.display = 'block';
+    } else {
+      location.href = '/admin/dashboard.html';
+    }
+  } catch(e) {
+    err.textContent = e.message;
     err.style.display = 'block';
-    btn.textContent  = 'Accedi';
-    btn.disabled     = false;
-  } else {
-    location.href = '/admin/dashboard.html';
   }
+  btn.textContent = 'Accedi';
+  btn.disabled    = false;
 }
 
 document.addEventListener('keydown', e => {
