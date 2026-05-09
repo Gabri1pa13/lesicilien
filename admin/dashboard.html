@@ -439,12 +439,17 @@ const CATEGORIES = [
 ];
 
 async function loadServices() {
+  const container = document.getElementById('services-list');
+  container.innerHTML = '<div class="loading">Caricamento...</div>';
   const { data, error } = await sb
     .from('services')
     .select('*')
     .order('category')
     .order('name');
-  if (error) { console.error(error); return; }
+  if (error) {
+    container.innerHTML = `<div class="empty" style="color:#C62828">Errore: ${escHtml(error.message)}</div>`;
+    return;
+  }
   renderServices(data || []);
 }
 
@@ -551,10 +556,16 @@ async function saveService() {
     return;
   }
 
+  let error;
   if (editServiceId) {
-    await sb.from('services').update(payload).eq('id', editServiceId);
+    ({ error } = await sb.from('services').update(payload).eq('id', editServiceId));
   } else {
-    await sb.from('services').insert(payload);
+    ({ error } = await sb.from('services').insert(payload));
+  }
+
+  if (error) {
+    alert('Errore salvataggio: ' + error.message);
+    return;
   }
 
   closeModal('modal-service');
