@@ -178,7 +178,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
       <p class="modal-title">Invia via WhatsApp</p>
     </div>
     <div class="modal-body">
-      <label>Importo da richiedere (€)</label>
+      <label>Importo da richiedere (&euro;)</label>
       <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
       <label>Link Revolut (opzionale)</label>
       <input type="text" id="conf-revolut" placeholder="https://revolut.me/..."/>
@@ -187,7 +187,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
     </div>
     <div class="modal-foot">
       <button class="btn-cancel" onclick="closeModal('modal-confirm')">Annulla</button>
-      <button class="btn-send-wa" onclick="sendConfirmWA()">💬 Apri WhatsApp</button>
+      <button class="btn-send-wa" onclick="sendConfirmWA()">&#128172; Apri WhatsApp</button>
     </div>
   </div>
 </div>
@@ -205,7 +205,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
     </div>
     <div class="modal-foot">
       <button class="btn-cancel" onclick="closeModal('modal-reject')">Annulla</button>
-      <button class="btn-send-wa" onclick="sendRejectWA()">💬 Apri WhatsApp</button>
+      <button class="btn-send-wa" onclick="sendRejectWA()">&#128172; Apri WhatsApp</button>
     </div>
   </div>
 </div>
@@ -232,7 +232,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
         <option value="momenti">Momenti Speciali</option>
       </select>
       <label>Prezzo visualizzato *</label>
-      <input type="text" id="svc-price" placeholder="es. Da €120 / notte"/>
+      <input type="text" id="svc-price" placeholder="es. Da &euro;120 / notte"/>
       <label>Descrizione breve</label>
       <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
@@ -253,8 +253,8 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-const SUPABASE_URL  = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL  = 'https://amixnhmgxbxuiykqndxi.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const WA_NUMBER     = '393888005083';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
@@ -264,7 +264,7 @@ let allRequests    = [];
 let activeRequest  = null;
 let editServiceId  = null;
 
-// ─── AUTH GUARD ────────────────────────────────────────────
+// AUTH GUARD
 async function init() {
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { location.href = '/admin/index.html'; return; }
@@ -278,7 +278,7 @@ async function logout() {
   location.href = '/admin/index.html';
 }
 
-// ─── TABS ──────────────────────────────────────────────────
+// TABS
 function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => {
     t.classList.toggle('active', ['richieste','servizi'][i] === name);
@@ -287,7 +287,7 @@ function showTab(name) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
-// ─── RICHIESTE ─────────────────────────────────────────────
+// RICHIESTE
 async function loadRequests() {
   const { data, error } = await sb
     .from('requests')
@@ -362,7 +362,7 @@ function actionsHtml(r) {
   return btns;
 }
 
-// ─── CONFIRM FLOW ──────────────────────────────────────────
+// CONFIRM FLOW
 function openConfirm(id) {
   activeRequest = allRequests.find(r => r.id === id);
   document.getElementById('conf-amount').value  = '';
@@ -398,7 +398,7 @@ async function sendConfirmWA() {
   await loadRequests();
 }
 
-// ─── REJECT FLOW ───────────────────────────────────────────
+// REJECT FLOW
 function openReject(id) {
   activeRequest = allRequests.find(r => r.id === id);
   document.getElementById('rej-note').value =
@@ -419,14 +419,14 @@ async function sendRejectWA() {
   await loadRequests();
 }
 
-// ─── MARK PAID ─────────────────────────────────────────────
+// MARK PAID
 async function markPaid(id) {
   if (!confirm('Segna come pagata?')) return;
   await sb.from('requests').update({ status: 'paid' }).eq('id', id);
   await loadRequests();
 }
 
-// ─── SERVICES ──────────────────────────────────────────────
+// SERVICES
 const CATEGORIES = [
   { key:'trasporti',   label:'Trasporti' },
   { key:'comfort',     label:'Comfort & Suite' },
@@ -439,12 +439,17 @@ const CATEGORIES = [
 ];
 
 async function loadServices() {
+  const container = document.getElementById('services-list');
+  container.innerHTML = '<div class="loading">Caricamento...</div>';
   const { data, error } = await sb
     .from('services')
     .select('*')
     .order('category')
     .order('name');
-  if (error) { console.error(error); return; }
+  if (error) {
+    container.innerHTML = `<div class="empty" style="color:#C62828">Errore: ${escHtml(error.message)}</div>`;
+    return;
+  }
   renderServices(data || []);
 }
 
@@ -551,17 +556,23 @@ async function saveService() {
     return;
   }
 
+  let error;
   if (editServiceId) {
-    await sb.from('services').update(payload).eq('id', editServiceId);
+    ({ error } = await sb.from('services').update(payload).eq('id', editServiceId));
   } else {
-    await sb.from('services').insert(payload);
+    ({ error } = await sb.from('services').insert(payload));
+  }
+
+  if (error) {
+    alert('Errore salvataggio: ' + error.message);
+    return;
   }
 
   closeModal('modal-service');
   await loadServices();
 }
 
-// ─── MODAL HELPERS ─────────────────────────────────────────
+// MODAL HELPERS
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
@@ -569,7 +580,7 @@ document.querySelectorAll('.modal-overlay').forEach(el => {
   el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
 });
 
-// ─── UTILS ─────────────────────────────────────────────────
+// UTILS
 function escHtml(str) {
   return String(str)
     .replace(/&/g,'&amp;')
