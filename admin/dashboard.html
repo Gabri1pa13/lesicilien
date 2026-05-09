@@ -180,8 +180,8 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
     <div class="modal-body">
       <label>Importo da richiedere (€)</label>
       <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
-      <label>Link Revolut (opzionale)</label>
-      <input type="text" id="conf-revolut" placeholder="https://revolut.me/..."/>
+      <label>Link pagamento SumUp (opzionale)</label>
+      <input type="text" id="conf-revolut" placeholder="https://pay.sumup.com/..."/>
       <label>Nota aggiuntiva (opzionale)</label>
       <textarea id="conf-note" placeholder="Messaggio extra per il cliente..."></textarea>
     </div>
@@ -382,7 +382,7 @@ async function sendConfirmWA() {
 
   let msg = `Gentile ${r.nome},\n\nSiamo lieti di confermare la disponibilità per: *${r.service_name||r.servizio}*.\n\n`;
   msg += `Importo: *€${amount}*\n`;
-  if (revolut) msg += `\nPagamento Revolut: ${revolut}\n`;
+  if (revolut) msg += `\nLink pagamento: ${revolut}\n`;
   msg += `\nIBAN: IT06 M036 6901 6003 0054 7209 879\nCausale: ${r.service_name||r.servizio} — ${r.nome}\n`;
   if (note) msg += `\n${note}\n`;
   msg += `\nCordiali saluti,\nLe Sicilien Concierge`;
