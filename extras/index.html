@@ -109,7 +109,7 @@ main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
     <div class="hero-rule"></div>
     <p class="hero-sub">Ogni servizio è curato personalmente dal nostro team.<br/>Alcuni sono prenotabili subito, altri richiedono la nostra conferma.</p>
     <div class="legend">
-      <span class="legend-item"><span class="dot-g"></span>Prenotazione diretta — pagamento via Revolut</span>
+      <span class="legend-item"><span class="dot-g"></span>Prenotazione diretta — pagamento online sicuro</span>
       <span class="legend-item"><span class="dot-o"></span>Su richiesta — confermiamo entro poche ore</span>
     </div>
   </div>
@@ -135,14 +135,8 @@ main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
 
 <script>
 const WA = "393888005083";
-const REVOLUT = {
-  transfer_one:"https://revolut.me/gabriel1r6/45",transfer_ar:"https://revolut.me/gabriel1r6/80",
-  bagagli:"https://revolut.me/gabriel1r6/10",early_checkin:"https://revolut.me/gabriel1r6/25",
-  late_checkin:"https://revolut.me/gabriel1r6/20",late_checkout:"https://revolut.me/gabriel1r6/30",
-  kit_base:"https://revolut.me/gabriel1r6/35",kit_premium:"https://revolut.me/gabriel1r6/65",
-  biancheria_extra:"https://revolut.me/gabriel1r6/15",ristorante:"https://revolut.me/gabriel1r6/10",
-  _default:"https://revolut.me/gabriel1r6"
-};
+const SUMUP_FN = 'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout';
+const SUMUP_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const SERVICES = [
   {cat:"Trasporti & Logistica",icon:"✦",items:[
     {id:"transfer_one",name:"Transfer aeroporto — solo andata",price:"45€",type:"direct"},
@@ -243,7 +237,7 @@ SERVICES.forEach((sec,si)=>{
           <h3 class="card-name">${item.name}</h3>
           <div class="card-foot">
             <span class="card-price">${item.price}</span>
-            <button class="${item.type==='direct'?'btn-dark':'btn-border'}" onclick="${item.type==='direct'?`directBook('${item.id}')`:`openModal('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`}">
+            <button class="${item.type==='direct'?'btn-dark':'btn-border'}" id="btn-${item.id}" onclick="${item.type==='direct'?`directBook('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`:`openModal('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`}">
               ${item.type==='direct'?'Prenota ora':'Richiedi →'}
             </button>
           </div>
@@ -252,8 +246,30 @@ SERVICES.forEach((sec,si)=>{
   mainEl.appendChild(section);
 });
 
-function directBook(id){
-  window.open(REVOLUT[id]||REVOLUT._default,'_blank');
+async function directBook(id, name, price) {
+  const btn = document.getElementById('btn-' + id);
+  const orig = btn.textContent;
+  btn.textContent = '…';
+  btn.disabled = true;
+  const amount = price.replace(/[^\d.]/g, '');
+  try {
+    const res = await fetch(SUMUP_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` },
+      body: JSON.stringify({ amount, description: name, reference: `LS-${id}-${Date.now()}` }),
+    });
+    const data = await res.json();
+    if (data.checkout_url) {
+      window.open(data.checkout_url, '_blank');
+    } else {
+      throw new Error(data.error || 'link non generato');
+    }
+  } catch (e) {
+    // Fallback: WhatsApp
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Vorrei prenotare: ${name} (${price})`)}`, '_blank');
+  }
+  btn.textContent = orig;
+  btn.disabled = false;
 }
 
 function openModal(id,name,price){
