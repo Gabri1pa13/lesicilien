@@ -170,7 +170,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
   </div>
 </div>
 
-<!-- MODAL: CONFIRM (WhatsApp) -->
+<!-- MODAL: CONFIRM -->
 <div class="modal-overlay" id="modal-confirm">
   <div class="modal">
     <div class="modal-head">
@@ -178,7 +178,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
       <p class="modal-title">Invia via WhatsApp</p>
     </div>
     <div class="modal-body">
-      <label>Importo da richiedere (€)</label>
+      <label>Importo da richiedere (&euro;)</label>
       <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
       <label>Nota aggiuntiva (opzionale)</label>
       <textarea id="conf-note" placeholder="Messaggio extra per il cliente..."></textarea>
@@ -191,7 +191,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
   </div>
 </div>
 
-<!-- MODAL: REJECT (WhatsApp) -->
+<!-- MODAL: REJECT -->
 <div class="modal-overlay" id="modal-reject">
   <div class="modal">
     <div class="modal-head">
@@ -204,7 +204,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
     </div>
     <div class="modal-foot">
       <button class="btn-cancel" onclick="closeModal('modal-reject')">Annulla</button>
-      <button class="btn-send-wa" onclick="sendRejectWA()">💬 Apri WhatsApp</button>
+      <button class="btn-send-wa" onclick="sendRejectWA()">&#128172; Apri WhatsApp</button>
     </div>
   </div>
 </div>
@@ -231,7 +231,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
         <option value="momenti">Momenti Speciali</option>
       </select>
       <label>Prezzo visualizzato *</label>
-      <input type="text" id="svc-price" placeholder="es. Da €120 / notte"/>
+      <input type="text" id="svc-price" placeholder="es. Da &euro;120 / notte"/>
       <label>Descrizione breve</label>
       <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
@@ -263,7 +263,6 @@ let allRequests    = [];
 let activeRequest  = null;
 let editServiceId  = null;
 
-// ─── AUTH GUARD ────────────────────────────────────────────
 async function init() {
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { location.href = '/admin/index.html'; return; }
@@ -277,7 +276,6 @@ async function logout() {
   location.href = '/admin/index.html';
 }
 
-// ─── TABS ──────────────────────────────────────────────────
 function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => {
     t.classList.toggle('active', ['richieste','servizi'][i] === name);
@@ -286,7 +284,6 @@ function showTab(name) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
-// ─── RICHIESTE ─────────────────────────────────────────────
 async function loadRequests() {
   const { data, error } = await sb
     .from('requests')
@@ -324,7 +321,6 @@ function renderRequests() {
       r.persone         ? `<strong>Persone</strong>${r.persone}` : '',
       r.messaggio       ? `<strong>Note</strong>${r.messaggio.substring(0,60)}${r.messaggio.length>60?'…':''}` : '',
     ].filter(Boolean).join(' ');
-
     return `<tr>
       <td class="detail-col"><strong>Ricevuta</strong>${date}</td>
       <td class="detail-col"><strong>Nome</strong>${escHtml(r.nome||'')}<br/><small style="color:#8A8278">${escHtml(r.email||'')} ${r.telefono?'· '+escHtml(r.telefono):''}</small></td>
@@ -361,7 +357,6 @@ function actionsHtml(r) {
   return btns;
 }
 
-// ─── CONFIRM FLOW ──────────────────────────────────────────
 function openConfirm(id) {
   activeRequest = allRequests.find(r => r.id === id);
   document.getElementById('conf-amount').value = '';
@@ -435,7 +430,6 @@ async function sendConfirmWA() {
   await loadRequests();
 }
 
-// ─── REJECT FLOW ───────────────────────────────────────────
 function openReject(id) {
   activeRequest = allRequests.find(r => r.id === id);
   document.getElementById('rej-note').value =
@@ -447,23 +441,19 @@ async function sendRejectWA() {
   const r     = activeRequest;
   const note  = document.getElementById('rej-note').value.trim();
   const phone = (r.telefono || '').replace(/\D/g,'');
-
   await sb.from('requests').update({ status: 'rejected' }).eq('id', r.id);
-
   const target = phone || WA_NUMBER;
   window.open(`https://wa.me/${target}?text=${encodeURIComponent(note)}`, '_blank');
   closeModal('modal-reject');
   await loadRequests();
 }
 
-// ─── MARK PAID ─────────────────────────────────────────────
 async function markPaid(id) {
   if (!confirm('Segna come pagata?')) return;
   await sb.from('requests').update({ status: 'paid' }).eq('id', id);
   await loadRequests();
 }
 
-// ─── SERVICES ──────────────────────────────────────────────
 const CATEGORIES = [
   { key:'trasporti',   label:'Trasporti' },
   { key:'comfort',     label:'Comfort & Suite' },
@@ -496,7 +486,6 @@ function renderServices(services) {
     container.innerHTML = '<div class="empty">Nessun servizio. Clicca "+ Nuovo servizio" per aggiungerne uno.</div>';
     return;
   }
-
   const byCat = {};
   CATEGORIES.forEach(c => { byCat[c.key] = []; });
   services.forEach(s => {
@@ -504,7 +493,6 @@ function renderServices(services) {
     if (!byCat[cat]) byCat[cat] = [];
     byCat[cat].push(s);
   });
-
   container.innerHTML = CATEGORIES.map(c => {
     const items = byCat[c.key];
     if (!items.length) return '';
@@ -516,10 +504,9 @@ function renderServices(services) {
 }
 
 function serviceCardHtml(s) {
-  const activeBadge   = s.active ? 'badge-active' : 'badge-inactive';
-  const activeLabel   = s.active ? 'Attivo' : 'Inattivo';
-  const bookingBadge  = s.booking_only ? '<span class="service-badge badge-booking">Solo prenotazione</span>' : '';
-
+  const activeBadge  = s.active ? 'badge-active' : 'badge-inactive';
+  const activeLabel  = s.active ? 'Attivo' : 'Inattivo';
+  const bookingBadge = s.booking_only ? '<span class="service-badge badge-booking">Solo prenotazione</span>' : '';
   return `<div class="service-card" id="svc-${s.id}">
     <label class="toggle-switch" title="${s.active?'Disattiva':'Attiva'}">
       <input type="checkbox" ${s.active?'checked':''} onchange="toggleService('${s.id}',this.checked)"/>
@@ -554,24 +541,23 @@ async function openServiceModal(id) {
   editServiceId = id || null;
   const tag   = document.getElementById('svc-modal-tag');
   const title = document.getElementById('svc-modal-title');
-
   if (id) {
     const { data } = await sb.from('services').select('*').eq('id', id).single();
     tag.textContent   = 'Modifica servizio';
     title.textContent = 'Modifica servizio';
-    document.getElementById('svc-name').value          = data.name || '';
-    document.getElementById('svc-category').value      = data.category || 'trasporti';
-    document.getElementById('svc-price').value         = data.price || '';
-    document.getElementById('svc-desc').value          = data.description || '';
+    document.getElementById('svc-name').value           = data.name || '';
+    document.getElementById('svc-category').value       = data.category || 'trasporti';
+    document.getElementById('svc-price').value          = data.price || '';
+    document.getElementById('svc-desc').value           = data.description || '';
     document.getElementById('svc-booking-only').checked = !!data.booking_only;
     document.getElementById('svc-active').checked       = data.active !== false;
   } else {
     tag.textContent   = 'Nuovo servizio';
     title.textContent = 'Aggiungi servizio';
-    document.getElementById('svc-name').value          = '';
-    document.getElementById('svc-category').value      = 'trasporti';
-    document.getElementById('svc-price').value         = '';
-    document.getElementById('svc-desc').value          = '';
+    document.getElementById('svc-name').value           = '';
+    document.getElementById('svc-category').value       = 'trasporti';
+    document.getElementById('svc-price').value          = '';
+    document.getElementById('svc-desc').value           = '';
     document.getElementById('svc-booking-only').checked = false;
     document.getElementById('svc-active').checked       = true;
   }
@@ -587,7 +573,6 @@ async function saveService() {
     booking_only: document.getElementById('svc-booking-only').checked,
     active:       document.getElementById('svc-active').checked,
   };
-
   if (!payload.name || !payload.price) {
     alert('Nome e prezzo sono obbligatori');
     return;
@@ -604,12 +589,10 @@ async function saveService() {
     alert('Errore salvataggio: ' + error.message);
     return;
   }
-
   closeModal('modal-service');
   await loadServices();
 }
 
-// ─── MODAL HELPERS ─────────────────────────────────────────
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
@@ -617,7 +600,6 @@ document.querySelectorAll('.modal-overlay').forEach(el => {
   el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
 });
 
-// ─── UTILS ─────────────────────────────────────────────────
 function escHtml(str) {
   return String(str)
     .replace(/&/g,'&amp;')

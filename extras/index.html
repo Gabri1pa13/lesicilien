@@ -172,7 +172,7 @@ const SERVICES = [
     {id:"templi",name:"Escursione Valle dei Templi",price:"85€/persona",type:"request"},
     {id:"scala_turchi",name:"Scala dei Turchi & Agrigento — giornata",price:"90€/persona",type:"request"},
     {id:"cantina",name:"Visita cantina con degustazione",price:"55€/persona",type:"request"},
-    {id:"mercati",name:"Tour mercati storici — Ballarò & Vucciria",price:"25€/persona",type:"request"},
+    {id:"mercati",name:"Tour mercati storici — Ballerò & Vucciria",price:"25€/persona",type:"request"},
     {id:"mercato_pesce",name:"Esperienza mattutina mercato del pesce",price:"20€/persona",type:"request"}
   ]},
   {cat:"Yacht Charter — Catamarano Whale",icon:"⛵",note:"Fountaine Pajot Eleuthera 60 · 18 metri · Porto base: Palermo · Soggetto a disponibilità",items:[
@@ -205,7 +205,6 @@ const SERVICES = [
   ]}
 ];
 
-// Build nav pills
 const pillsEl = document.getElementById('navPills');
 SERVICES.forEach((s,i)=>{
   const a = document.createElement('a');
@@ -213,7 +212,6 @@ SERVICES.forEach((s,i)=>{
   pillsEl.appendChild(a);
 });
 
-// Build main content
 const mainEl = document.getElementById('main');
 SERVICES.forEach((sec,si)=>{
   const section = document.createElement('section');
@@ -304,7 +302,7 @@ function openModal(id,name,price){
     </div>
     <div class="modal-footer">
       <button class="btn-outline" onclick="closeModal()">Annulla</button>
-      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")}','${price}')">Invia richiesta</button>
+      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")  }','${price}')">Invia richiesta</button>
     </div>`;
   modal.classList.remove('hidden');
   document.body.style.overflow='hidden';
@@ -323,11 +321,9 @@ function submitRequest(id,name,price){
   const tel=document.getElementById('f_tel').value.trim();
   const persone=document.getElementById('f_persone').value;
   const note=document.getElementById('f_note').value.trim();
-  const txt=`🛎 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
+  const txt=`🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`,'_blank');
-  // Salva su DB in background
   fetch('/api/send-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service:{id,name,price},form:{nome,email,telefono:tel,data,persone,note}})}).catch(()=>{});
-  // Mostra conferma
   document.getElementById('modalContent').innerHTML=`
     <div class="sent-box">
       <div class="sent-check">✓</div>
