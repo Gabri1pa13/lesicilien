@@ -180,14 +180,13 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
     <div class="modal-body">
       <label>Importo da richiedere (&euro;)</label>
       <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
-      <label>Link pagamento SumUp (opzionale)</label>
-      <input type="text" id="conf-revolut" placeholder="https://pay.sumup.com/..."/>
       <label>Nota aggiuntiva (opzionale)</label>
       <textarea id="conf-note" placeholder="Messaggio extra per il cliente..."></textarea>
+      <p id="conf-status" style="font-size:11px;color:#8A8278;margin-top:-8px;display:none"></p>
     </div>
     <div class="modal-foot">
       <button class="btn-cancel" onclick="closeModal('modal-confirm')">Annulla</button>
-      <button class="btn-send-wa" onclick="sendConfirmWA()">&#128172; Apri WhatsApp</button>
+      <button class="btn-send-wa" id="btn-send-wa" onclick="sendConfirmWA()">💬 Apri WhatsApp</button>
     </div>
   </div>
 </div>
@@ -360,24 +359,61 @@ function actionsHtml(r) {
 
 function openConfirm(id) {
   activeRequest = allRequests.find(r => r.id === id);
-  document.getElementById('conf-amount').value  = '';
-  document.getElementById('conf-revolut').value = '';
-  document.getElementById('conf-note').value    = '';
+  document.getElementById('conf-amount').value = '';
+  document.getElementById('conf-note').value   = '';
+  document.getElementById('conf-status').style.display = 'none';
   openModal('modal-confirm');
 }
 
 async function sendConfirmWA() {
-  const r       = activeRequest;
-  const amount  = document.getElementById('conf-amount').value.trim();
-  const paylink = document.getElementById('conf-revolut').value.trim();
-  const note    = document.getElementById('conf-note').value.trim();
-  const phone   = (r.telefono || '').replace(/\D/g,'');
+  const r      = activeRequest;
+  const amount = document.getElementById('conf-amount').value.trim();
+  const note   = document.getElementById('conf-note').value.trim();
+  const phone  = (r.telefono || '').replace(/\D/g,'');
+  const status = document.getElementById('conf-status');
+  const btn    = document.getElementById('btn-send-wa');
 
   if (!amount) { alert('Inserisci l\'importo'); return; }
 
+  btn.textContent = '⧐ Generazione link...';
+  btn.disabled = true;
+  status.textContent = 'Creazione link di pagamento SumUp...';
+  status.style.display = 'block';
+
+  let paylink = '';
+  try {
+    const res = await fetch(
+      'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON}`,
+        },
+        body: JSON.stringify({
+          amount,
+          description: `${r.service_name||r.servizio} — ${r.nome}`,
+          reference: `LS-${r.id.substring(0,8)}`,
+        }),
+      }
+    );
+    const data = await res.json();
+    if (data.checkout_url) {
+      paylink = data.checkout_url;
+      status.textContent = '✓ Link generato';
+    } else {
+      status.textContent = `Attenzione: ${data.error||'link non generato'}, invio senza link SumUp`;
+    }
+  } catch (e) {
+    status.textContent = 'Attenzione: link SumUp non generato, invio senza';
+  }
+
+  btn.textContent = '💬 Apri WhatsApp';
+  btn.disabled = false;
+
   let msg = `Gentile ${r.nome},\n\nSiamo lieti di confermare la disponibilità per: *${r.service_name||r.servizio}*.\n\n`;
   msg += `Importo: *€${amount}*\n`;
-  if (paylink) msg += `\nLink pagamento: ${paylink}\n`;
+  if (paylink) msg += `\n💳 Paga ora: ${paylink}\n`;
   msg += `\nIBAN: IT06 M036 6901 6003 0054 7209 879\nCausale: ${r.service_name||r.servizio} — ${r.nome}\n`;
   if (note) msg += `\n${note}\n`;
   msg += `\nCordiali saluti,\nLe Sicilien Concierge`;
@@ -390,6 +426,7 @@ async function sendConfirmWA() {
   const target = phone || WA_NUMBER;
   window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank');
   closeModal('modal-confirm');
+  status.style.display = 'none';
   await loadRequests();
 }
 
@@ -540,12 +577,14 @@ async function saveService() {
     alert('Nome e prezzo sono obbligatori');
     return;
   }
+
   let error;
   if (editServiceId) {
     ({ error } = await sb.from('services').update(payload).eq('id', editServiceId));
   } else {
     ({ error } = await sb.from('services').insert(payload));
   }
+
   if (error) {
     alert('Errore salvataggio: ' + error.message);
     return;

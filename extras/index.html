@@ -235,7 +235,7 @@ SERVICES.forEach((sec,si)=>{
           <h3 class="card-name">${item.name}</h3>
           <div class="card-foot">
             <span class="card-price">${item.price}</span>
-            <button class="${item.type==='direct'?'btn-dark':'btn-border'}" id="btn-${item.id}" onclick="${item.type==='direct'?`directBook('${item.id}','${item.name.replace(/'/g,"\\'")  }','${item.price}')`:`openModal('${item.id}','${item.name.replace(/'/g,"\\'")  }','${item.price}')`}">
+            <button class="${item.type==='direct'?'btn-dark':'btn-border'}" id="btn-${item.id}" onclick="${item.type==='direct'?`directBook('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`:`openModal('${item.id}','${item.name.replace(/'/g,"\\'")}','${item.price}')`}">
               ${item.type==='direct'?'Prenota ora':'Richiedi →'}
             </button>
           </div>
@@ -250,6 +250,9 @@ async function directBook(id, name, price) {
   btn.textContent = '…';
   btn.disabled = true;
   const amount = price.replace(/[^\d.]/g, '');
+  // Open window immediately (inside click handler) to avoid popup blocker
+  const win = window.open('', '_blank');
+  if (win) win.document.write('<p style="font-family:sans-serif;padding:40px;text-align:center;color:#555">Preparazione pagamento…</p>');
   try {
     const res = await fetch(SUMUP_FN, {
       method: 'POST',
@@ -258,12 +261,15 @@ async function directBook(id, name, price) {
     });
     const data = await res.json();
     if (data.checkout_url) {
-      window.open(data.checkout_url, '_blank');
+      if (win) win.location.href = data.checkout_url;
+      else window.open(data.checkout_url, '_blank');
     } else {
       throw new Error(data.error || 'link non generato');
     }
   } catch (e) {
-    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Vorrei prenotare: ${name} (${price})`)}`, '_blank');
+    const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent(`Vorrei prenotare: ${name} (${price})`)}`;
+    if (win) win.location.href = waUrl;
+    else window.open(waUrl, '_blank');
   }
   btn.textContent = orig;
   btn.disabled = false;
