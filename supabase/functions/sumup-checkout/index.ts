@@ -23,6 +23,7 @@ Deno.serve(async (req) => {
       description: description || 'Le Sicilien Concierge',
       merchant_code: merchantCode,
       return_url: 'https://www.lesicilien.it/extras/?payment=ok',
+      hosted_checkout: { enabled: true },
     };
     console.log('SumUp payload:', JSON.stringify(payload));
 
@@ -40,8 +41,9 @@ Deno.serve(async (req) => {
 
     if (!res.ok) throw new Error(data.message || JSON.stringify(data));
 
+    const checkoutUrl = data.hosted_checkout_url || `https://checkout.sumup.com/pay/${data.id}`;
     return new Response(
-      JSON.stringify({ checkout_url: `https://checkout.sumup.com/pay/${data.id}` }),
+      JSON.stringify({ checkout_url: checkoutUrl }),
       { headers: { ...CORS, 'Content-Type': 'application/json' } }
     );
   } catch (err) {
