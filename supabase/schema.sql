@@ -13,6 +13,7 @@ create table if not exists requests (
   email            text        not null,
   telefono         text,
   data_desiderata  date,
+  orario           text,
   persone          integer     default 1,
   note             text,
   revolut_link     text,        -- link Revolut inviato al cliente al momento della conferma
@@ -32,6 +33,7 @@ create policy "Guest insert only" on requests
   for insert with check (true);
 
 -- ============================================================
--- Se hai già creato la tabella in precedenza, aggiungi solo:
+-- Se hai già creato la tabella in precedenza, aggiungi:
 -- ALTER TABLE requests ADD COLUMN IF NOT EXISTS revolut_link text;
+-- ALTER TABLE requests ADD COLUMN IF NOT EXISTS orario text;
 -- ============================================================

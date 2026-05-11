@@ -133,6 +133,7 @@ main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 const WA = "393888005083";
 const SUMUP_FN = 'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout';
@@ -296,6 +297,7 @@ function openModal(id,name,price){
         <div class="form-group"><label class="form-label">Data desiderata *</label><input class="form-input" type="date" id="f_data"/></div>
       </div>
       <div class="form-row">
+        <div class="form-group"><label class="form-label">Orario desiderato *</label><input class="form-input" type="time" id="f_orario"/></div>
         <div class="form-group"><label class="form-label">N. persone</label><input class="form-input" type="number" id="f_persone" value="1" min="1"/></div>
         <div class="form-group"><label class="form-label">Note & richieste speciali</label><input class="form-input" type="text" id="f_note" placeholder="Allergie, occasioni..."/></div>
       </div>
@@ -313,17 +315,22 @@ function closeModal(){
   document.body.style.overflow='';
 }
 
-function submitRequest(id,name,price){
+async function submitRequest(id,name,price){
   const nome=document.getElementById('f_nome').value.trim();
   const email=document.getElementById('f_email').value.trim();
   const data=document.getElementById('f_data').value;
-  if(!nome||!email||!data){alert('Compila i campi obbligatori: nome, email e data.');return;}
+  const orario=document.getElementById('f_orario').value;
+  if(!nome||!email||!data||!orario){alert('Compila i campi obbligatori: nome, email, data e orario.');return;}
   const tel=document.getElementById('f_tel').value.trim();
   const persone=document.getElementById('f_persone').value;
   const note=document.getElementById('f_note').value.trim();
-  const txt=`🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
+  const txt=`🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data} ore ${orario}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`,'_blank');
-  fetch('/api/send-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service:{id,name,price},form:{nome,email,telefono:tel,data,persone,note}})}).catch(()=>{});
+  // Save to Supabase
+  const sb=supabase.createClient('https://amixnhmgxbxuiykqndxi.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk');
+  const {data:row}=await sb.from('requests').insert({service_id:id,service_name:name,service_price:price,nome,email,telefono:tel||null,data_desiderata:data,orario,persone:parseInt(persone),note:note||null}).select().single().catch(()=>({data:null}));
+  // Send email notification
+  fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk'},body:JSON.stringify({service_name:name,service_price:price,nome,email,telefono:tel||'—',data,orario,persone,note:note||'—'})}).catch(()=>{});
   document.getElementById('modalContent').innerHTML=`
     <div class="sent-box">
       <div class="sent-check">✓</div>

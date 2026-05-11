@@ -317,7 +317,7 @@ function renderRequests() {
     const badge = badgeHtml(r.status);
     const actions = actionsHtml(r);
     const details = [
-      r.data_desiderata ? `<strong>Data</strong>${r.data_desiderata}` : '',
+      r.data_desiderata ? `<strong>Data</strong>${r.data_desiderata}${r.orario?' ore '+r.orario:''}` : '',
       r.persone         ? `<strong>Persone</strong>${r.persone}` : '',
       r.messaggio       ? `<strong>Note</strong>${r.messaggio.substring(0,60)}${r.messaggio.length>60?'…':''}` : '',
     ].filter(Boolean).join(' ');
