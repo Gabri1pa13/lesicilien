@@ -22,6 +22,7 @@ Deno.serve(async (req) => {
       currency: 'EUR',
       description: description || 'Le Sicilien Concierge',
       merchant_code: merchantCode,
+      return_url: 'https://www.lesicilien.it/extras/?payment=ok',
     };
     console.log('SumUp payload:', JSON.stringify(payload));
 
