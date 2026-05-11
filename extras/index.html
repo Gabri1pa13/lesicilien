@@ -245,35 +245,79 @@ SERVICES.forEach((sec,si)=>{
   mainEl.appendChild(section);
 });
 
-async function directBook(id, name, price) {
-  const btn = document.getElementById('btn-' + id);
-  const orig = btn.textContent;
-  btn.textContent = '…';
-  btn.disabled = true;
+function directBook(id, name, price) {
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modalContent');
+  content.innerHTML = `
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <span class="modal-label">PRENOTA ORA</span>
+      <h3 class="modal-title">${name}</h3>
+      <div class="modal-price">${price}</div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Nome e cognome *</label><input class="form-input" type="text" id="f_nome" placeholder="Mario Rossi"/></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="f_email" placeholder="mario@email.com"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Data desiderata *</label><input class="form-input" type="date" id="f_data"/></div>
+        <div class="form-group"><label class="form-label">Orario desiderato *</label><input class="form-input" type="time" id="f_orario"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Telefono</label><input class="form-input" type="text" id="f_tel" placeholder="+39 333 000 0000"/></div>
+        <div class="form-group"><label class="form-label">N. persone</label><input class="form-input" type="number" id="f_persone" value="1" min="1"/></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal()">Annulla</button>
+      <button class="btn-gold" id="btn-pay-now" onclick="confirmDirectBook('${id}','${name.replace(/'/g,"\\'")}','${price}')">Procedi al pagamento →</button>
+    </div>`;
+  modal.classList.remove('hidden');
+}
+
+async function confirmDirectBook(id, name, price) {
+  const nome = document.getElementById('f_nome').value.trim();
+  const email = document.getElementById('f_email').value.trim();
+  const data = document.getElementById('f_data').value;
+  const orario = document.getElementById('f_orario').value;
+  if (!nome || !email || !data || !orario) { alert('Compila i campi obbligatori: nome, email, data e orario.'); return; }
+  const tel = document.getElementById('f_tel').value.trim();
+  const persone = document.getElementById('f_persone').value;
+
+  const btn = document.getElementById('btn-pay-now');
+  btn.textContent = '…'; btn.disabled = true;
+
   const amount = price.replace(/[^\d.]/g, '');
-  // Open window immediately (inside click handler) to avoid popup blocker
   const win = window.open('', '_blank');
   if (win) win.document.write('<p style="font-family:sans-serif;padding:40px;text-align:center;color:#555">Preparazione pagamento…</p>');
+
   try {
     const res = await fetch(SUMUP_FN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` },
       body: JSON.stringify({ amount, description: name, reference: `LS-${id}-${Date.now()}` }),
     });
-    const data = await res.json();
-    if (data.checkout_url) {
-      if (win) win.location.href = data.checkout_url;
-      else window.open(data.checkout_url, '_blank');
+    const data2 = await res.json();
+    if (data2.checkout_url) {
+      if (win) win.location.href = data2.checkout_url;
+      else window.open(data2.checkout_url, '_blank');
     } else {
-      throw new Error(data.error || 'link non generato');
+      throw new Error(data2.error || 'link non generato');
     }
   } catch (e) {
     const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent(`Vorrei prenotare: ${name} (${price})`)}`;
     if (win) win.location.href = waUrl;
     else window.open(waUrl, '_blank');
   }
-  btn.textContent = orig;
-  btn.disabled = false;
+
+  // Save to Supabase + email notification
+  const sb = supabase.createClient('https://amixnhmgxbxuiykqndxi.supabase.co', SUMUP_ANON);
+  sb.from('requests').insert({ service_id: id, service_name: name, service_price: price, nome, email, telefono: tel || null, data_desiderata: data, orario, persone: parseInt(persone), note: null, status: 'confirmed' }).catch(() => {});
+  fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` }, body: JSON.stringify({ service_name: name, service_price: price, nome, email, telefono: tel || '—', data, orario, persone, note: '—' }) }).catch(() => {});
+
+  closeModal();
 }
 
 function openModal(id,name,price){
