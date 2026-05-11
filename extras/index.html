@@ -22,9 +22,15 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);border-bottom:1px s
 .nav-pill{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.45);text-decoration:none;padding:5px 12px;white-space:nowrap;transition:color .2s;text-transform:uppercase}
 .nav-pill:hover{color:#fff}
 .nav-cta{flex-shrink:0;background:var(--gold);color:var(--dark);font-size:10px;font-weight:500;letter-spacing:.14em;padding:8px 18px;text-decoration:none;text-transform:uppercase}
-.lang-switcher{display:flex;gap:4px;align-items:center;flex-shrink:0}
-.lang-btn{background:transparent;border:none;font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.45);cursor:pointer;padding:4px 6px;text-transform:uppercase;font-family:'Jost',sans-serif;transition:color .2s}
-.lang-btn:hover,.lang-btn.active{color:#BFA05A}
+.lang-switcher{position:relative;flex-shrink:0}
+.lang-selected{background:transparent;border:1px solid rgba(255,255,255,.2);font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.7);cursor:pointer;padding:5px 10px;text-transform:uppercase;font-family:'Jost',sans-serif;display:flex;align-items:center;gap:5px;transition:color .2s}
+.lang-selected:hover{color:#BFA05A;border-color:#BFA05A}
+.lang-selected::after{content:'▾';font-size:8px;opacity:.6}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 4px);right:0;background:#1A1814;border:1px solid rgba(191,160,90,.2);min-width:110px;z-index:200}
+.lang-switcher.open .lang-dropdown{display:block}
+.lang-dropdown button{display:block;width:100%;background:transparent;border:none;font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.55);cursor:pointer;padding:8px 14px;text-align:left;text-transform:uppercase;font-family:'Jost',sans-serif;transition:color .2s}
+.lang-dropdown button:hover{color:#BFA05A}
+.lang-dropdown button.active{color:#BFA05A}
 @media(max-width:640px){.nav-pills{display:none}}
 
 /* HERO */
@@ -260,10 +266,16 @@ const SERVICES_DATA = [
 
 /* ── RENDER FUNCTIONS ─────────────────────────────────────────────────────── */
 function renderLangSwitcher() {
+  const cur = LANGS.find(l => l.code === currentLang);
   const el = document.getElementById('langSwitcher');
-  el.innerHTML = LANGS.map(l =>
-    `<button class="lang-btn${l.code === currentLang ? ' active' : ''}" onclick="setLang('${l.code}')">${l.flag} ${l.label}</button>`
-  ).join('');
+  el.innerHTML = `
+    <button class="lang-selected" onclick="this.closest('.lang-switcher').classList.toggle('open')">${cur.flag} ${cur.label}</button>
+    <div class="lang-dropdown">
+      ${LANGS.map(l => `<button class="${l.code === currentLang ? 'active' : ''}" onclick="setLang('${l.code}')">${l.flag} ${l.label}</button>`).join('')}
+    </div>`;
+  document.addEventListener('click', function closeDD(e) {
+    if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', closeDD); }
+  }, { once: false });
 }
 
 function renderNavPills() {
