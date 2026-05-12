@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx @opennextjs/cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js",
+    "build": "npx @opennextjs/cloudflare build",
     "start": "next start",
     "pages:build": "next build && npx @opennextjs/cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js",
     "preview": "npm run pages:build && wrangler pages dev",
