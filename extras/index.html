@@ -161,6 +161,9 @@ const CAT_MAP = {
 };
 const CAT_ORDER = ['trasporti','comfort','chef','esperienze','yacht','wellness','famiglia','momenti'];
 
+// Reverse map: Italian service name → translation key (built after T is defined)
+let IT_NAME_TO_TKEY = {};
+
 /* ── TRANSLATIONS ─────────────────────────────────────────────────────────── */
 const T = {
   it: {
@@ -206,6 +209,9 @@ let currentLang = detectLang();
 function t(key) {
   return (T[currentLang] && T[currentLang][key]) ? T[currentLang][key] : (T['it'][key] || key);
 }
+
+// Build reverse map: Italian service name → translation key
+Object.keys(T.it).filter(k => k.startsWith('svc_')).forEach(k => { IT_NAME_TO_TKEY[T.it[k]] = k; });
 
 /* ── SERVICES DATA ────────────────────────────────────────────────────────── */
 const SERVICES_DATA = [
@@ -321,7 +327,8 @@ function renderMain() {
     </div>
     <div class="grid">
       ${sec.items.map(item => {
-        const name = item.name || t('svc_' + item.id) || item.id;
+        const tKey = item.name ? IT_NAME_TO_TKEY[item.name] : null;
+        const name = tKey ? t(tKey) : (item.name || t('svc_' + item.id) || item.id);
         const safeName = name.replace(/'/g, "\\'");
         const btnClass = item.type === 'direct' ? 'btn-dark' : 'btn-border';
         const btnLabel = item.type === 'direct' ? t('book_direct') : t('book_request');
