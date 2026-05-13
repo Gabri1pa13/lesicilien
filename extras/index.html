@@ -506,8 +506,11 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
       data.forEach(s => { if (s.name) dbMap[s.name] = s; });
       SERVICES_DATA.forEach(sec => {
         sec.items.forEach(item => {
-          const itName = T.it['svc_' + item.id] || '';
-          const db = itName && dbMap[itName];
+          let db = null;
+          for (const lang of Object.keys(T)) {
+            const name = T[lang]['svc_' + item.id];
+            if (name && dbMap[name]) { db = dbMap[name]; break; }
+          }
           if (db) {
             if (db.image_url) item.image_url = db.image_url;
             if (db.price) item.price = db.price;
