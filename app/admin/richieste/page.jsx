@@ -33,6 +33,66 @@ const CATEGORIES = [
   { slug: "momenti",   label: "Momenti Indimenticabili" },
 ];
 
+const CATALOG_FLAT = [
+  // Trasporti & Logistica
+  { id: "transfer_one",        name: "Transfer aeroporto — solo andata",                        category: "trasporti", category_label: "Trasporti & Logistica",      price: "45€",           mode: "direct",   revolut_amount: 45,  sort_order: 0 },
+  { id: "transfer_ar",         name: "Transfer aeroporto/stazione — A/R",                        category: "trasporti", category_label: "Trasporti & Logistica",      price: "80€",           mode: "direct",   revolut_amount: 80,  sort_order: 1 },
+  { id: "bagagli",             name: "Servizio bagagli — deposito & consegna",                   category: "trasporti", category_label: "Trasporti & Logistica",      price: "10€",           mode: "direct",   revolut_amount: 10,  sort_order: 2 },
+  // Comfort in Villa
+  { id: "early_checkin",       name: "Early check-in (dalle 10:00)",                            category: "comfort",   category_label: "Comfort in Villa",           price: "25€",           mode: "direct",   revolut_amount: 25,  sort_order: 0 },
+  { id: "late_checkin",        name: "Late check-in (dalle 23:00 in poi)",                      category: "comfort",   category_label: "Comfort in Villa",           price: "20€",           mode: "direct",   revolut_amount: 20,  sort_order: 1 },
+  { id: "late_checkout",       name: "Late check-out (fino alle 18:00)",                        category: "comfort",   category_label: "Comfort in Villa",           price: "30€",           mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "kit_base",            name: "Kit benvenuto — vino & prodotti locali",                  category: "comfort",   category_label: "Comfort in Villa",           price: "35€",           mode: "direct",   revolut_amount: 35,  sort_order: 3 },
+  { id: "kit_premium",         name: "Kit benvenuto premium — champagne & dolci",               category: "comfort",   category_label: "Comfort in Villa",           price: "65€",           mode: "direct",   revolut_amount: 65,  sort_order: 4 },
+  { id: "frigo_base",          name: "Frigorifero pre-rifornito — spesa base",                  category: "comfort",   category_label: "Comfort in Villa",           price: "40€",           mode: "request",  revolut_amount: null, sort_order: 5 },
+  { id: "frigo_premium",       name: "Frigorifero pre-rifornito — spesa premium",               category: "comfort",   category_label: "Comfort in Villa",           price: "80€",           mode: "request",  revolut_amount: null, sort_order: 6 },
+  { id: "kit_bebe",            name: "Kit bebè — lettino, seggiolone & vasca",                  category: "comfort",   category_label: "Comfort in Villa",           price: "30€/soggiorno", mode: "request",  revolut_amount: null, sort_order: 7 },
+  { id: "biancheria_extra",    name: "Biancheria extra",                                        category: "comfort",   category_label: "Comfort in Villa",           price: "15€",           mode: "direct",   revolut_amount: 15,  sort_order: 8 },
+  { id: "cambio_biancheria",   name: "Cambio biancheria mid-stay",                              category: "comfort",   category_label: "Comfort in Villa",           price: "20€",           mode: "request",  revolut_amount: null, sort_order: 9 },
+  { id: "lavanderia",          name: "Servizio lavanderia",                                     category: "comfort",   category_label: "Comfort in Villa",           price: "20€",           mode: "request",  revolut_amount: null, sort_order: 10 },
+  { id: "stireria",            name: "Servizio stireria",                                       category: "comfort",   category_label: "Comfort in Villa",           price: "15€",           mode: "request",  revolut_amount: null, sort_order: 11 },
+  // Private Chef & Dining
+  { id: "colazione",           name: "Colazione consegnata in villa",                           category: "chef",      category_label: "Private Chef & Dining",      price: "12€/persona",   mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "chef_4",              name: "Private chef — cena per 2–4 persone",                    category: "chef",      category_label: "Private Chef & Dining",      price: "120€",          mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "chef_8",              name: "Private chef — cena per 5–8 persone",                    category: "chef",      category_label: "Private Chef & Dining",      price: "200€",          mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "ristorante",          name: "Prenotazione ristorante — corsia preferenziale",          category: "chef",      category_label: "Private Chef & Dining",      price: "10€",           mode: "direct",   revolut_amount: 10,  sort_order: 3 },
+  { id: "streetfood",          name: "Street food tour guidato (2h)",                           category: "chef",      category_label: "Private Chef & Dining",      price: "35€/persona",   mode: "request",  revolut_amount: null, sort_order: 4 },
+  { id: "cucina",              name: "Corso di cucina siciliana (3h, pranzo incluso)",          category: "chef",      category_label: "Private Chef & Dining",      price: "75€/persona",   mode: "request",  revolut_amount: null, sort_order: 5 },
+  { id: "aperitivo_app",       name: "Aperitivo di benvenuto in villa",                        category: "chef",      category_label: "Private Chef & Dining",      price: "25€/persona",   mode: "request",  revolut_amount: null, sort_order: 6 },
+  // Esperienze & Tour Privati
+  { id: "tour_centro",         name: "Tour privato centro storico (3h · fino a 6 persone)",    category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "80€",           mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "etna",                name: "Escursione Etna — giornata intera con transfer",          category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "90€/persona",   mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "templi",              name: "Escursione Valle dei Templi",                             category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "85€/persona",   mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "scala_turchi",        name: "Scala dei Turchi & Agrigento — giornata",                category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "90€/persona",   mode: "request",  revolut_amount: null, sort_order: 3 },
+  { id: "cantina",             name: "Visita cantina con degustazione",                        category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "55€/persona",   mode: "request",  revolut_amount: null, sort_order: 4 },
+  { id: "mercati",             name: "Tour mercati storici — Ballarò & Vucciria",              category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "25€/persona",   mode: "request",  revolut_amount: null, sort_order: 5 },
+  { id: "mercato_pesce",       name: "Esperienza mattutina mercato del pesce",                 category: "esperienze",category_label: "Esperienze & Tour Privati",   price: "20€/persona",   mode: "request",  revolut_amount: null, sort_order: 6 },
+  // Yacht Charter
+  { id: "whale_aperitivo_nav", name: "Aperitivo al Tramonto in Navigazione · 2.5h · max 12 pax", category: "yacht",  category_label: "Yacht Charter",              price: "da 2.700€",     mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "whale_aperitivo_orm", name: "Aperitivo Esclusivo Ormeggiata · 2.5h · max 12 pax",    category: "yacht",     category_label: "Yacht Charter",              price: "da 1.800€",     mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "whale_cena_orm",      name: "Cena Gourmet Ormeggiata · 3.5h · max 8 pax",            category: "yacht",     category_label: "Yacht Charter",              price: "da 2.000€",     mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "whale_cena_nav",      name: "Cena Panoramica in Navigazione · 4h · max 8 pax",       category: "yacht",     category_label: "Yacht Charter",              price: "da 3.000€",     mode: "request",  revolut_amount: null, sort_order: 3 },
+  { id: "whale_giornata",      name: "Giornata Completa in Catamarano · 10h · max 12 pax",    category: "yacht",     category_label: "Yacht Charter",              price: "da 3.000€",     mode: "request",  revolut_amount: null, sort_order: 4 },
+  { id: "whale_2giorni",       name: "Luxury 2 Giorni · 39h · max 12 pax",                    category: "yacht",     category_label: "Yacht Charter",              price: "da 6.000€",     mode: "request",  revolut_amount: null, sort_order: 5 },
+  { id: "whale_weekly",        name: "Weekly Charter · 7 giorni / 6 notti · max 12 pax",      category: "yacht",     category_label: "Yacht Charter",              price: "da 15.000€",    mode: "request",  revolut_amount: null, sort_order: 6 },
+  // Wellness & Benessere
+  { id: "massaggio_relax",     name: "Massaggio rilassante in villa (60 min)",                 category: "wellness",  category_label: "Wellness & Benessere",       price: "70€",           mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "massaggio_dec",       name: "Massaggio decontratturante in villa (60 min)",           category: "wellness",  category_label: "Wellness & Benessere",       price: "80€",           mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "massaggio_coppia",    name: "Massaggio coppia — simultaneo (60 min)",                 category: "wellness",  category_label: "Wellness & Benessere",       price: "130€",          mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "personal_trainer",    name: "Personal trainer (sessione 60 min)",                     category: "wellness",  category_label: "Wellness & Benessere",       price: "50€",           mode: "request",  revolut_amount: null, sort_order: 3 },
+  { id: "yoga",                name: "Yoga privato in villa (60 min)",                         category: "wellness",  category_label: "Wellness & Benessere",       price: "45€",           mode: "request",  revolut_amount: null, sort_order: 4 },
+  // Famiglia & Assistenza
+  { id: "babysitter",          name: "Babysitter certificata",                                 category: "famiglia",  category_label: "Famiglia & Assistenza",      price: "15€/h",         mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "guida_mezza",         name: "Guida turistica privata — mezza giornata (4h)",          category: "famiglia",  category_label: "Famiglia & Assistenza",      price: "120€",          mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "guida_intera",        name: "Guida turistica privata — giornata intera",              category: "famiglia",  category_label: "Famiglia & Assistenza",      price: "200€",          mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "interprete",          name: "Assistente & interprete per pratiche",                   category: "famiglia",  category_label: "Famiglia & Assistenza",      price: "40€/h",         mode: "request",  revolut_amount: null, sort_order: 3 },
+  // Momenti Indimenticabili
+  { id: "foto_1h",             name: "Servizio fotografico professionale (1h)",                category: "momenti",   category_label: "Momenti Indimenticabili",    price: "120€",          mode: "request",  revolut_amount: null, sort_order: 0 },
+  { id: "foto_2h",             name: "Servizio fotografico premium — editing incluso (2h)",    category: "momenti",   category_label: "Momenti Indimenticabili",    price: "200€",          mode: "request",  revolut_amount: null, sort_order: 1 },
+  { id: "proposta",            name: "Organizzazione proposta di matrimonio",                  category: "momenti",   category_label: "Momenti Indimenticabili",    price: "350€",          mode: "request",  revolut_amount: null, sort_order: 2 },
+  { id: "luna_miele",          name: "Pacchetto luna di miele — kit, esperienze & foto",       category: "momenti",   category_label: "Momenti Indimenticabili",    price: "450€",          mode: "request",  revolut_amount: null, sort_order: 3 },
+];
+
 // ─── MODAL CONFERMA ──────────────────────────────────────────────────────────
 function ConfirmModal({ request, onClose, onConfirmed }) {
   const [importo, setImporto] = useState("");
@@ -365,6 +425,145 @@ function ServiceModal({ service, onClose, onSaved }) {
   );
 }
 
+// ─── TAB FOTO CATALOGO ────────────────────────────────────────────────────────
+function CatalogPhotosTab() {
+  const [dbServices, setDbServices] = useState([]);
+  const [imgMap, setImgMap]         = useState({}); // catalog item id → image_url
+  const [nameToDb, setNameToDb]     = useState({}); // service name → db record
+  const [uploading, setUploading]   = useState({}); // item id → bool
+  const [errors, setErrors]         = useState({}); // item id → error string
+
+  useEffect(() => { loadDb(); }, []);
+
+  const loadDb = async () => {
+    const res = await fetch("/api/admin/services");
+    const { data } = await res.json();
+    const services = data || [];
+    setDbServices(services);
+    const nm = {};
+    services.forEach(s => { nm[s.name] = s; });
+    setNameToDb(nm);
+    const im = {};
+    CATALOG_FLAT.forEach(item => {
+      if (nm[item.name]?.image_url) im[item.id] = nm[item.name].image_url;
+    });
+    setImgMap(im);
+  };
+
+  const handleUpload = async (e, item) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    e.target.value = "";
+    setUploading(p => ({ ...p, [item.id]: true }));
+    setErrors(p => ({ ...p, [item.id]: "" }));
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const uploadRes = await fetch("/api/admin/services/image", { method: "POST", body: fd });
+      const { url, error: upErr } = await uploadRes.json();
+      if (!uploadRes.ok || !url) throw new Error(upErr || "Upload fallito");
+
+      const existing = nameToDb[item.name];
+      if (existing) {
+        const r = await fetch("/api/admin/services", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: existing.id, image_url: url }),
+        });
+        if (!r.ok) throw new Error("Salvataggio fallito");
+      } else {
+        const r = await fetch("/api/admin/services", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: item.name, category: item.category, category_label: item.category_label,
+            price: item.price, mode: item.mode, revolut_amount: item.revolut_amount,
+            sort_order: item.sort_order, active: true, image_url: url,
+          }),
+        });
+        if (!r.ok) throw new Error("Salvataggio fallito");
+      }
+      setImgMap(p => ({ ...p, [item.id]: url }));
+      await loadDb();
+    } catch (err) {
+      setErrors(p => ({ ...p, [item.id]: err.message }));
+    }
+    setUploading(p => ({ ...p, [item.id]: false }));
+  };
+
+  const handleRemove = async (item) => {
+    const existing = nameToDb[item.name];
+    if (!existing) return;
+    await fetch("/api/admin/services", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: existing.id, image_url: null }),
+    });
+    setImgMap(p => { const n = { ...p }; delete n[item.id]; return n; });
+    await loadDb();
+  };
+
+  const grouped = CATEGORIES.map(cat => ({
+    ...cat,
+    items: CATALOG_FLAT.filter(item => item.category === cat.slug),
+  }));
+
+  return (
+    <div>
+      <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", color: BRAND.textMuted, marginBottom: "24px" }}>
+        Gestisci le foto del catalogo servizi. Le immagini vengono mostrate sulla pagina Servizi del sito.
+      </p>
+      {grouped.map(group => (
+        <div key={group.slug} style={{ marginBottom: "36px" }}>
+          <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "18px", fontWeight: "400", color: BRAND.dark, marginBottom: "12px", paddingBottom: "8px", borderBottom: `1px solid ${BRAND.border}` }}>
+            {group.label}
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: "12px" }}>
+            {group.items.map(item => {
+              const imgUrl   = imgMap[item.id];
+              const isUp     = uploading[item.id];
+              const errMsg   = errors[item.id];
+              return (
+                <div key={item.id} style={{ background: "#fff", border: `1px solid ${BRAND.border}`, display: "flex", flexDirection: "column" }}>
+                  {imgUrl ? (
+                    <img src={imgUrl} alt={item.name} style={{ width: "100%", height: "120px", objectFit: "cover", display: "block" }} />
+                  ) : (
+                    <div style={{ width: "100%", height: "120px", background: BRAND.cream, display: "flex", alignItems: "center", justifyContent: "center", border: `1px dashed ${BRAND.border}` }}>
+                      <span style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif" }}>Nessuna foto</span>
+                    </div>
+                  )}
+                  <div style={{ padding: "8px 10px", flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "11px", color: BRAND.dark, lineHeight: "1.4" }}>{item.name}</p>
+                    {errMsg && <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "10px", color: "#C62828" }}>{errMsg}</p>}
+                    <div style={{ display: "flex", gap: "6px", marginTop: "auto" }}>
+                      <label style={{
+                        flex: 1, textAlign: "center", padding: "5px 8px", fontSize: "10px",
+                        letterSpacing: ".08em", textTransform: "uppercase", cursor: isUp ? "wait" : "pointer",
+                        background: BRAND.dark, color: BRAND.gold, border: "none",
+                        fontFamily: "'Jost',sans-serif", whiteSpace: "nowrap",
+                      }}>
+                        {isUp ? "..." : imgUrl ? "↑ Cambia" : "+ Foto"}
+                        <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => handleUpload(e, item)} disabled={isUp} />
+                      </label>
+                      {imgUrl && (
+                        <button onClick={() => handleRemove(item)} style={{
+                          padding: "5px 8px", fontSize: "10px", cursor: "pointer",
+                          background: "#FFEBEE", color: "#C62828", border: "1px solid #EF9A9A",
+                          fontFamily: "'Jost',sans-serif",
+                        }}>✕</button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── TAB SERVIZI ──────────────────────────────────────────────────────────────
 function ServicesTab() {
   const [services, setServices]     = useState([]);
@@ -643,7 +842,7 @@ function RequestsTab() {
 
 // ─── PANNELLO PRINCIPALE ──────────────────────────────────────────────────────
 export default function AdminPanel() {
-  const [tab, setTab] = useState("richieste");
+  const [tab, setTab] = useState("foto");
 
   return (
     <>
@@ -664,6 +863,9 @@ export default function AdminPanel() {
               style={{ ...s.tabBtn, ...(tab === "richieste" ? s.tabActive : {}) }}
               onClick={() => setTab("richieste")}>Richieste</button>
             <button
+              style={{ ...s.tabBtn, ...(tab === "foto" ? s.tabActive : {}) }}
+              onClick={() => setTab("foto")}>Foto Servizi</button>
+            <button
               style={{ ...s.tabBtn, ...(tab === "servizi" ? s.tabActive : {}) }}
               onClick={() => setTab("servizi")}>Servizi</button>
             <button
@@ -674,7 +876,7 @@ export default function AdminPanel() {
           </div>
         </div>
 
-        {tab === "richieste" ? <RequestsTab /> : <ServicesTab />}
+        {tab === "richieste" ? <RequestsTab /> : tab === "foto" ? <CatalogPhotosTab /> : <ServicesTab />}
       </div>
     </>
   );
