@@ -37,3 +37,33 @@ create policy "Guest insert only" on requests
 -- ALTER TABLE requests ADD COLUMN IF NOT EXISTS revolut_link text;
 -- ALTER TABLE requests ADD COLUMN IF NOT EXISTS orario text;
 -- ============================================================
+
+-- ============================================================
+-- Tabella SERVICES (catalogo servizi concierge)
+-- ============================================================
+
+create table if not exists services (
+  id           uuid        default gen_random_uuid() primary key,
+  created_at   timestamptz default now(),
+  name         text        not null,
+  category     text        not null,
+  price        text        not null,
+  description  text,
+  booking_only boolean     default false,
+  active       boolean     default true,
+  image_url    text,
+  sort_order   integer     default 0
+);
+
+alter table services enable row level security;
+
+create policy "Admin full access on services" on services
+  for all using (auth.role() = 'authenticated');
+
+create policy "Guest read active services" on services
+  for select using (active = true);
+
+-- ============================================================
+-- Se la tabella services esiste già senza image_url, esegui:
+-- ALTER TABLE services ADD COLUMN IF NOT EXISTS image_url text;
+-- ============================================================
