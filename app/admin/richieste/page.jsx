@@ -476,9 +476,8 @@ function CatalogPhotosTab() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: item.name, category: item.category, category_label: item.category_label,
-            price: item.price, mode: item.mode, revolut_amount: item.revolut_amount,
-            sort_order: item.sort_order, active: true, image_url: url,
+            name: item.name, category: item.category,
+            price: item.price, sort_order: item.sort_order, active: true, image_url: url,
           }),
         });
         if (!r.ok) throw new Error("Salvataggio fallito");
