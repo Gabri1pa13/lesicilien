@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ─── CONFIG — REVOLUT REALE ─────────────────────────────────────────────────
 const CONFIG = {
@@ -20,6 +20,59 @@ const CONFIG = {
     // Fallback generico (senza importo) — non dovrebbe mai servire
     default:          "https://revolut.me/gabriel1r6",
   },
+};
+
+// Default photos per service (Unsplash)
+const SVCID_IMG = {
+  transfer_one:        "https://source.unsplash.com/uPpHANGHIUY/800x500",
+  transfer_ar:         "https://source.unsplash.com/LJYwKEBAhho/800x500",
+  bagagli:             "https://source.unsplash.com/JjhNVeC8w8g/800x500",
+  early_checkin:       "https://source.unsplash.com/2XpaA2Cxq5c/800x500",
+  late_checkin:        "https://source.unsplash.com/d_qcnd3CB20/800x500",
+  late_checkout:       "https://source.unsplash.com/hlkmA5Tw3Gk/800x500",
+  kit_base:            "https://source.unsplash.com/8XiksUkK2dM/800x500",
+  kit_premium:         "https://source.unsplash.com/kzYzTA_B6K4/800x500",
+  frigo_base:          "https://source.unsplash.com/3A0qRjOesX4/800x500",
+  frigo_premium:       "https://source.unsplash.com/ZUhM8LE_HGc/800x500",
+  kit_bebe:            "https://source.unsplash.com/AbVt7IT2PeE/800x500",
+  biancheria_extra:    "https://source.unsplash.com/NngNVT74o6s/800x500",
+  cambio_biancheria:   "https://source.unsplash.com/sFJUhpTsD0U/800x500",
+  lavanderia:          "https://source.unsplash.com/C5Zpy8QF1-k/800x500",
+  stireria:            "https://source.unsplash.com/gma1zfS3_6E/800x500",
+  colazione:           "https://source.unsplash.com/s3asO_8GWWI/800x500",
+  chef_4:              "https://source.unsplash.com/6jVutqtcgQs/800x500",
+  chef_8:              "https://source.unsplash.com/bhoHDqroF14/800x500",
+  ristorante:          "https://source.unsplash.com/3edGjj--6kc/800x500",
+  streetfood:          "https://source.unsplash.com/ziY-tPmCW2g/800x500",
+  cucina:              "https://source.unsplash.com/DgUbU4y4lNU/800x500",
+  aperitivo_app:       "https://source.unsplash.com/_qZOwG2oaj4/800x500",
+  tour_centro:         "https://source.unsplash.com/sD1g_ogRIh8/800x500",
+  etna:                "https://source.unsplash.com/2mMMEVUdXcs/800x500",
+  templi:              "https://source.unsplash.com/4k8OuBDNAW8/800x500",
+  scala_turchi:        "https://source.unsplash.com/QbDkhVZ80To/800x500",
+  cantina:             "https://source.unsplash.com/qZp9ixAouI4/800x500",
+  mercati:             "https://source.unsplash.com/M0AWNxnLaMw/800x500",
+  mercato_pesce:       "https://source.unsplash.com/zNuA1ikK0aA/800x500",
+  whale_aperitivo_nav: "https://source.unsplash.com/Y_YSuBfQCmI/800x500",
+  whale_aperitivo_orm: "https://source.unsplash.com/P4yIqMuHah0/800x500",
+  whale_cena_orm:      "https://source.unsplash.com/bgvn4Ft288k/800x500",
+  whale_cena_nav:      "https://source.unsplash.com/j8xBZuBmTiY/800x500",
+  whale_giornata:      "https://source.unsplash.com/7qDBBjDZp0k/800x500",
+  whale_2giorni:       "https://source.unsplash.com/6iH-qD2kPLk/800x500",
+  whale_weekly:        "https://source.unsplash.com/mYBHnqbyHuY/800x500",
+  massaggio_relax:     "https://source.unsplash.com/bBmupPTAHyw/800x500",
+  massaggio_dec:       "https://source.unsplash.com/aQWmCH_b3MU/800x500",
+  massaggio_coppia:    "https://source.unsplash.com/5acMVJm3JQc/800x500",
+  personal_trainer:    "https://source.unsplash.com/owhL84uD1S0/800x500",
+  yoga:                "https://source.unsplash.com/2hKNq2rX93g/800x500",
+  babysitter:          "https://source.unsplash.com/uAkVQ0ZgQP8/800x500",
+  guida_mezza:         "https://source.unsplash.com/xV4DzJFJalM/800x500",
+  guida_intera:        "https://source.unsplash.com/4k8OuBDNAW8/800x500",
+  interprete:          "https://source.unsplash.com/pncxxTAOsPA/800x500",
+  foto_1h:             "https://source.unsplash.com/G7p0DlHz0Mw/800x500",
+  foto_2h:             "https://source.unsplash.com/nX0rylVn3Vc/800x500",
+  proposta:            "https://source.unsplash.com/mfWQegglrIs/800x500",
+  luna_miele:          "https://source.unsplash.com/AD3k4pko7wo/800x500",
 };
 
 const BRAND = {
@@ -203,6 +256,19 @@ function RequestModal({ service, onClose, onSubmit }) {
 // ─── MAIN ───────────────────────────────────────────────────────────────────
 export default function ExtrasPage() {
   const [selected, setSelected] = useState(null);
+  const [imgOverrides, setImgOverrides] = useState({});
+
+  useEffect(() => {
+    fetch("/api/admin/services")
+      .then(r => r.json())
+      .then(({ data }) => {
+        if (!data) return;
+        const map = {};
+        data.forEach(svc => { if (svc.image_url) map[svc.name] = svc.image_url; });
+        setImgOverrides(map);
+      })
+      .catch(() => {});
+  }, []);
 
   // Per i servizi diretti usa il link Revolut con importo precompilato
   const handleDirectBook = (item) => {
@@ -297,25 +363,39 @@ export default function ExtrasPage() {
                 </div>
               </div>
               <div style={p.grid} className="ls-grid">
-                {sec.items.map(item => (
-                  <article key={item.id} style={p.card} className="ls-card">
-                    <div style={p.cardMeta}>
-                      <span style={item.type === "direct" ? p.dotG : p.dotO} />
-                      <span style={p.metaTxt}>{item.type === "direct" ? "Prenotazione diretta" : "Su richiesta"}</span>
-                    </div>
-                    <h3 style={p.cardName}>{item.name}</h3>
-                    <div style={p.cardFoot}>
-                      <span style={p.cardPrice}>{item.price}</span>
-                      <button
-                        style={item.type === "direct" ? p.btnDark : p.btnBorder}
-                        className={item.type === "direct" ? "ls-btn-dark" : "ls-btn-border"}
-                        onClick={() => item.type === "direct" ? handleDirectBook(item) : setSelected(item)}
-                      >
-                        {item.type === "direct" ? "Prenota ora" : "Richiedi →"}
-                      </button>
-                    </div>
-                  </article>
-                ))}
+                {sec.items.map(item => {
+                  const imgUrl = imgOverrides[item.name] || SVCID_IMG[item.id];
+                  return (
+                    <article key={item.id} style={p.card} className="ls-card">
+                      {imgUrl && (
+                        <div style={{
+                          backgroundImage: `url(${imgUrl})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          height: "155px",
+                          width: "calc(100% + 44px)",
+                          margin: "-26px -22px 16px",
+                          flexShrink: 0,
+                        }} />
+                      )}
+                      <div style={p.cardMeta}>
+                        <span style={item.type === "direct" ? p.dotG : p.dotO} />
+                        <span style={p.metaTxt}>{item.type === "direct" ? "Prenotazione diretta" : "Su richiesta"}</span>
+                      </div>
+                      <h3 style={p.cardName}>{item.name}</h3>
+                      <div style={p.cardFoot}>
+                        <span style={p.cardPrice}>{item.price}</span>
+                        <button
+                          style={item.type === "direct" ? p.btnDark : p.btnBorder}
+                          className={item.type === "direct" ? "ls-btn-dark" : "ls-btn-border"}
+                          onClick={() => item.type === "direct" ? handleDirectBook(item) : setSelected(item)}
+                        >
+                          {item.type === "direct" ? "Prenota ora" : "Richiedi →"}
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           ))}
