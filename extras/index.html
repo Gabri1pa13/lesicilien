@@ -57,6 +57,7 @@ main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
 .card{background:var(--cream);padding:26px 22px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .25s,transform .25s}
+.card-img{width:calc(100% + 44px);margin:-26px -22px 16px;height:155px;background-size:cover;background-position:center;flex-shrink:0}
 .card:hover{box-shadow:0 12px 40px rgba(0,0,0,.12);transform:translateY(-2px)}
 .card-meta{display:flex;align-items:center;gap:8px}
 .meta-txt{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
@@ -396,6 +397,9 @@ function renderMain() {
       ${sec.items.map(item => {
         const tKey = item.name ? IT_NAME_TO_TKEY[item.name] : null;
         const name = tKey ? t(tKey) : (item.name || t('svc_' + item.id) || item.id);
+        const svcId = tKey ? tKey.replace('svc_', '') : item.id;
+        const imgUrl = item.image_url || SVCID_IMG[svcId] || null;
+        const cardImgHtml = imgUrl ? `<div class="card-img" style="background-image:url('${imgUrl}')"></div>` : '';
         const safeName = name.replace(/'/g, "\\'");
         const btnClass = item.type === 'direct' ? 'btn-dark' : 'btn-border';
         const btnLabel = item.type === 'direct' ? t('book_direct') : t('book_request');
@@ -407,6 +411,7 @@ function renderMain() {
         const popBadge = popularIds.includes(item.id) ? `<span class="badge-pop">Più richiesto</span>` : '';
         return `
         <article class="card">
+          ${cardImgHtml}
           <div class="card-meta">
             <span class="${dotClass}"></span>
             <span class="meta-txt">${badgeLabel}</span>
@@ -482,6 +487,59 @@ function setLang(lang) {
   renderAll();
 }
 
+/* ── DEFAULT SERVICE IMAGES (Unsplash) ──────────────────────────────────── */
+const SVCID_IMG = {
+  transfer_one:'https://source.unsplash.com/uPpHANGHIUY/800x500',
+  transfer_ar:'https://source.unsplash.com/LJYwKEBAhho/800x500',
+  bagagli:'https://source.unsplash.com/JjhNVeC8w8g/800x500',
+  early_checkin:'https://source.unsplash.com/2XpaA2Cxq5c/800x500',
+  late_checkin:'https://source.unsplash.com/d_qcnd3CB20/800x500',
+  late_checkout:'https://source.unsplash.com/hlkmA5Tw3Gk/800x500',
+  kit_base:'https://source.unsplash.com/8XiksUkK2dM/800x500',
+  kit_premium:'https://source.unsplash.com/kzYzTA_B6K4/800x500',
+  frigo_base:'https://source.unsplash.com/3A0qRjOesX4/800x500',
+  frigo_premium:'https://source.unsplash.com/ZUhM8LE_HGc/800x500',
+  kit_bebe:'https://source.unsplash.com/AbVt7IT2PeE/800x500',
+  biancheria_extra:'https://source.unsplash.com/NngNVT74o6s/800x500',
+  cambio_biancheria:'https://source.unsplash.com/sFJUhpTsD0U/800x500',
+  lavanderia:'https://source.unsplash.com/C5Zpy8QF1-k/800x500',
+  stireria:'https://source.unsplash.com/gma1zfS3_6E/800x500',
+  colazione:'https://source.unsplash.com/s3asO_8GWWI/800x500',
+  chef_4:'https://source.unsplash.com/6jVutqtcgQs/800x500',
+  chef_8:'https://source.unsplash.com/bhoHDqroF14/800x500',
+  ristorante:'https://source.unsplash.com/3edGjj--6kc/800x500',
+  streetfood:'https://source.unsplash.com/ziY-tPmCW2g/800x500',
+  cucina:'https://source.unsplash.com/DgUbU4y4lNU/800x500',
+  aperitivo_app:'https://source.unsplash.com/_qZOwG2oaj4/800x500',
+  tour_centro:'https://source.unsplash.com/sD1g_ogRIh8/800x500',
+  etna:'https://source.unsplash.com/2mMMEVUdXcs/800x500',
+  templi:'https://source.unsplash.com/4k8OuBDNAW8/800x500',
+  scala_turchi:'https://source.unsplash.com/QbDkhVZ80To/800x500',
+  cantina:'https://source.unsplash.com/qZp9ixAouI4/800x500',
+  mercati:'https://source.unsplash.com/ziY-tPmCW2g/800x500',
+  mercato_pesce:'https://source.unsplash.com/zNuA1ikK0aA/800x500',
+  whale_aperitivo_nav:'https://source.unsplash.com/Y_YSuBfQCmI/800x500',
+  whale_aperitivo_orm:'https://source.unsplash.com/P4yIqMuHah0/800x500',
+  whale_cena_orm:'https://source.unsplash.com/bgvn4Ft288k/800x500',
+  whale_cena_nav:'https://source.unsplash.com/j8xBZuBmTiY/800x500',
+  whale_giornata:'https://source.unsplash.com/7qDBBjDZp0k/800x500',
+  whale_2giorni:'https://source.unsplash.com/6iH-qD2kPLk/800x500',
+  whale_weekly:'https://source.unsplash.com/mYBHnqbyHuY/800x500',
+  massaggio_relax:'https://source.unsplash.com/bBmupPTAHyw/800x500',
+  massaggio_dec:'https://source.unsplash.com/aQWmCH_b3MU/800x500',
+  massaggio_coppia:'https://source.unsplash.com/5acMVJm3JQc/800x500',
+  personal_trainer:'https://source.unsplash.com/owhL84uD1S0/800x500',
+  yoga:'https://source.unsplash.com/2hKNq2rX93g/800x500',
+  babysitter:'https://source.unsplash.com/uAkVQ0ZgQP8/800x500',
+  guida_mezza:'https://source.unsplash.com/xV4DzJFJalM/800x500',
+  guida_intera:'https://source.unsplash.com/4k8OuBDNAW8/800x500',
+  interprete:'https://source.unsplash.com/pncxxTAOsPA/800x500',
+  foto_1h:'https://source.unsplash.com/G7p0DlHz0Mw/800x500',
+  foto_2h:'https://source.unsplash.com/nX0rylVn3Vc/800x500',
+  proposta:'https://source.unsplash.com/mfWQegglrIs/800x500',
+  luna_miele:'https://source.unsplash.com/AD3k4pko7wo/800x500',
+};
+
 /* ── INITIAL RENDER ───────────────────────────────────────────────────────── */
 // Fallback map: service id → type from hardcoded data
 // Map translation key (svc_*) → type from hardcoded data
@@ -508,7 +566,7 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
           catKey:  m.catKey,
           icon:    m.icon,
           noteKey: m.noteKey,
-          items:   byCat[k].map(s => { const tKey = s.name ? IT_NAME_TO_TKEY[s.name] : null; return { id: s.id, name: s.name, price: s.price, type: s.type || (tKey ? TKEY_TYPE_MAP[tKey] : null) || 'request' }; }),
+          items:   byCat[k].map(s => { const tKey = s.name ? IT_NAME_TO_TKEY[s.name] : null; return { id: s.id, name: s.name, price: s.price, type: s.type || (tKey ? TKEY_TYPE_MAP[tKey] : null) || 'request', image_url: s.image_url || null }; }),
         });
       });
     }
