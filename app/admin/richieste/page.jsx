@@ -185,15 +185,34 @@ function ServiceModal({ service, onClose, onSaved }) {
     mode:           service?.mode           || "request",
     sort_order:     service?.sort_order     != null ? String(service.sort_order) : "0",
     active:         service?.active         !== false,
+    image_url:      service?.image_url      || null,
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState("");
+  const [loading, setLoading]       = useState(false);
+  const [error, setError]           = useState("");
+  const [imgUploading, setImgUploading] = useState(false);
+  const [imgError, setImgError]     = useState("");
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
 
   const handleCategoryChange = (slug) => {
     const cat = CATEGORIES.find(c => c.slug === slug) || catDefault;
     setForm(p => ({ ...p, category: cat.slug, category_label: cat.label }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImgUploading(true); setImgError("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/services/image", { method: "POST", body: fd });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Errore upload");
+      set("image_url", json.url);
+    } catch (err) { setImgError(err.message); }
+    setImgUploading(false);
+    e.target.value = "";
   };
 
   const handleSave = async () => {
@@ -288,6 +307,32 @@ function ServiceModal({ service, onClose, onSaved }) {
             <textarea style={{ ...inputStyle, resize: "vertical" }} rows={2}
               value={form.description} onChange={e => set("description", e.target.value)}
               placeholder="Dettagli aggiuntivi mostrati al cliente..." />
+          </div>
+
+          {/* Immagine */}
+          <div>
+            <label style={labelStyle}>Immagine del servizio</label>
+            {form.image_url ? (
+              <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                <img src={form.image_url} alt="" style={{ width: "120px", height: "76px", objectFit: "cover", border: `1px solid ${BRAND.border}`, display: "block" }} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <label style={{ display: "inline-block", padding: "6px 14px", fontSize: "10px", letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer", background: "transparent", color: BRAND.textMuted, border: `1px solid ${BRAND.border}`, fontFamily: "'Jost',sans-serif" }}>
+                    ↑ Cambia
+                    <input type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} disabled={imgUploading} />
+                  </label>
+                  <button type="button" style={{ padding: "6px 14px", fontSize: "10px", letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer", background: "#FFEBEE", color: "#C62828", border: "1px solid #EF9A9A", fontFamily: "'Jost',sans-serif" }}
+                    onClick={() => set("image_url", null)}>✕ Rimuovi</button>
+                </div>
+              </div>
+            ) : (
+              <label style={{ display: "flex", alignItems: "center", gap: "10px", padding: "16px", border: `1px dashed ${BRAND.border}`, cursor: imgUploading ? "wait" : "pointer", background: "#fff" }}>
+                <span style={{ fontSize: "12px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif" }}>
+                  {imgUploading ? "Caricamento in corso..." : "📎 Clicca per caricare un'immagine (JPG, PNG, WebP)"}
+                </span>
+                <input type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} disabled={imgUploading} />
+              </label>
+            )}
+            {imgError && <p style={{ fontSize: "11px", color: "#C62828", marginTop: "6px", fontFamily: "'Jost',sans-serif" }}>{imgError}</p>}
           </div>
 
           {/* Ordine + Attivo */}
