@@ -500,28 +500,18 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 (async () => {
   try {
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
-    const { data, error } = await sb.from('services').select('*').eq('active', true);
-    if (!error && data && data.length) {
-      const byCat = {};
-      CAT_ORDER.forEach(k => { byCat[k] = []; });
-      data.forEach(s => {
-        const key = s.category || 'altro';
-        if (!byCat[key]) byCat[key] = [];
-        byCat[key].push(s);
-      });
-      SERVICES_DATA.length = 0;
-      CAT_ORDER.forEach(k => {
-        if (!byCat[k] || !byCat[k].length) return;
-        const m = CAT_MAP[k] || { catKey: k, icon: '✦', noteKey: null };
-        SERVICES_DATA.push({
-          catKey:  m.catKey,
-          icon:    m.icon,
-          noteKey: m.noteKey,
-          items:   byCat[k].map(s => { const tKey = s.name ? IT_NAME_TO_TKEY[s.name] : null; return { id: s.id, name: s.name, price: s.price, type: s.type || (tKey ? TKEY_TYPE_MAP[tKey] : null) || 'request', image_url: s.image_url || null }; }),
+    const { data, error } = await sb.from('services').select('name, image_url');
+    if (!error && data) {
+      const imgMap = {};
+      data.forEach(s => { if (s.image_url) imgMap[s.name] = s.image_url; });
+      SERVICES_DATA.forEach(sec => {
+        sec.items.forEach(item => {
+          const itName = T.it['svc_' + item.id] || '';
+          if (itName && imgMap[itName]) item.image_url = imgMap[itName];
         });
       });
     }
-  } catch (_) { /* fallback to hardcoded */ }
+  } catch (_) {}
   renderAll();
 })();
 

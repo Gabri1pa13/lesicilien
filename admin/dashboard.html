@@ -289,13 +289,15 @@ async function handleImgUpload(e) {
   const txt = document.getElementById('img-upload-txt');
   if (txt) txt.textContent = 'Caricamento...';
   try {
-    const fd = new FormData();
-    fd.append('file', file);
-    const res = await fetch('/api/admin/services/image', { method: 'POST', body: fd });
-    const json = await res.json();
-    if (!res.ok || !json.url) throw new Error(json.error || 'Upload fallito');
-    currentImageUrl = json.url;
-    showImgPreview(json.url);
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error: upErr } = await sb.storage
+      .from('service-images')
+      .upload(fileName, file, { contentType: file.type, upsert: true });
+    if (upErr) throw upErr;
+    const { data: { publicUrl } } = sb.storage.from('service-images').getPublicUrl(fileName);
+    currentImageUrl = publicUrl;
+    showImgPreview(publicUrl);
   } catch (err) {
     alert('Errore upload immagine: ' + err.message);
     if (txt) txt.textContent = '📎 Carica foto (JPG, PNG, WebP)';
