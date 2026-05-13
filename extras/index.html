@@ -483,6 +483,10 @@ function setLang(lang) {
 }
 
 /* ── INITIAL RENDER ───────────────────────────────────────────────────────── */
+// Fallback map: service id → type from hardcoded data
+const ID_TYPE_MAP = {};
+SERVICES_DATA.forEach(sec => sec.items.forEach(it => { ID_TYPE_MAP[it.id] = it.type; }));
+
 (async () => {
   try {
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
@@ -503,7 +507,7 @@ function setLang(lang) {
           catKey:  m.catKey,
           icon:    m.icon,
           noteKey: m.noteKey,
-          items:   byCat[k].map(s => ({ id: s.id, name: s.name, price: s.price, type: s.type })),
+          items:   byCat[k].map(s => ({ id: s.id, name: s.name, price: s.price, type: s.type || ID_TYPE_MAP[s.id] || 'request' })),
         });
       });
     }
