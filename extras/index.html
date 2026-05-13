@@ -484,8 +484,9 @@ function setLang(lang) {
 
 /* ── INITIAL RENDER ───────────────────────────────────────────────────────── */
 // Fallback map: service id → type from hardcoded data
-const ID_TYPE_MAP = {};
-SERVICES_DATA.forEach(sec => sec.items.forEach(it => { ID_TYPE_MAP[it.id] = it.type; }));
+// Map translation key (svc_*) → type from hardcoded data
+const TKEY_TYPE_MAP = {};
+SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it.id] = it.type; }));
 
 (async () => {
   try {
@@ -507,7 +508,7 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { ID_TYPE_MAP[it.id] = it.t
           catKey:  m.catKey,
           icon:    m.icon,
           noteKey: m.noteKey,
-          items:   byCat[k].map(s => ({ id: s.id, name: s.name, price: s.price, type: s.type || ID_TYPE_MAP[s.id] || 'request' })),
+          items:   byCat[k].map(s => { const tKey = s.name ? IT_NAME_TO_TKEY[s.name] : null; return { id: s.id, name: s.name, price: s.price, type: s.type || (tKey ? TKEY_TYPE_MAP[tKey] : null) || 'request' }; }),
         });
       });
     }
