@@ -502,12 +502,13 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
     const { data, error } = await sb.from('services').select('name, image_url, price');
     if (!error && data) {
+      const norm = s => s.toLowerCase().replace(/[\s ]+/g, ' ').replace(/[–—]/g, '-').trim();
       const dbMap = {};
-      data.forEach(s => { if (s.name) dbMap[s.name] = s; });
+      data.forEach(s => { if (s.name) dbMap[norm(s.name)] = s; });
       SERVICES_DATA.forEach(sec => {
         sec.items.forEach(item => {
           const itName = T.it['svc_' + item.id] || '';
-          const db = itName && dbMap[itName];
+          const db = itName && dbMap[norm(itName)];
           if (db) {
             if (db.image_url) item.image_url = db.image_url;
             if (db.price) item.price = db.price;
