@@ -234,6 +234,24 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
       <input type="text" id="svc-price" placeholder="es. Da &euro;120 / notte"/>
       <label>Descrizione breve</label>
       <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
+      <label>Immagine del servizio</label>
+      <div id="img-preview-wrap" style="display:none;margin-bottom:16px">
+        <img id="img-preview" src="" alt="" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:8px;border:1px solid #E0D9CC"/>
+        <div style="display:flex;gap:8px">
+          <label style="flex:1;text-align:center;padding:7px;border:1px solid #E0D9CC;cursor:pointer;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#5A5550;font-family:'Jost',sans-serif">
+            ↑ Cambia foto
+            <input type="file" accept="image/*" style="display:none" onchange="handleImgUpload(event)"/>
+          </label>
+          <button type="button" onclick="removeImg()" style="padding:7px 14px;border:1px solid #EF9A9A;background:#FFEBEE;color:#C62828;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif">✕ Rimuovi</button>
+        </div>
+      </div>
+      <div id="img-upload-wrap" style="margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1px dashed #E0D9CC;cursor:pointer;background:#fff">
+          <span id="img-upload-txt" style="font-size:12px;color:#8A8278;font-family:'Jost',sans-serif">📎 Carica foto (JPG, PNG, WebP)</span>
+          <input type="file" accept="image/*" style="display:none" onchange="handleImgUpload(event)"/>
+        </label>
+      </div>
+
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <input type="checkbox" id="svc-booking-only" style="width:auto;margin-bottom:0"/>
         Solo su prenotazione
@@ -262,6 +280,42 @@ let currentFilter  = 'all';
 let allRequests    = [];
 let activeRequest  = null;
 let editServiceId  = null;
+let currentImageUrl = null;
+
+async function handleImgUpload(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  e.target.value = '';
+  const txt = document.getElementById('img-upload-txt');
+  if (txt) txt.textContent = 'Caricamento...';
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await fetch('/api/admin/services/image', { method: 'POST', body: fd });
+    const json = await res.json();
+    if (!res.ok || !json.url) throw new Error(json.error || 'Upload fallito');
+    currentImageUrl = json.url;
+    showImgPreview(json.url);
+  } catch (err) {
+    alert('Errore upload immagine: ' + err.message);
+    if (txt) txt.textContent = '📎 Carica foto (JPG, PNG, WebP)';
+  }
+}
+
+function showImgPreview(url) {
+  document.getElementById('img-preview').src = url;
+  document.getElementById('img-preview-wrap').style.display = 'block';
+  document.getElementById('img-upload-wrap').style.display = 'none';
+}
+
+function removeImg() {
+  currentImageUrl = null;
+  document.getElementById('img-preview').src = '';
+  document.getElementById('img-preview-wrap').style.display = 'none';
+  document.getElementById('img-upload-wrap').style.display = 'block';
+  const txt = document.getElementById('img-upload-txt');
+  if (txt) txt.textContent = '📎 Carica foto (JPG, PNG, WebP)';
+}
 
 async function init() {
   const { data: { session } } = await sb.auth.getSession();
@@ -539,6 +593,7 @@ async function deleteService(id) {
 
 async function openServiceModal(id) {
   editServiceId = id || null;
+  removeImg();
   const tag   = document.getElementById('svc-modal-tag');
   const title = document.getElementById('svc-modal-title');
   if (id) {
@@ -551,6 +606,7 @@ async function openServiceModal(id) {
     document.getElementById('svc-desc').value           = data.description || '';
     document.getElementById('svc-booking-only').checked = !!data.booking_only;
     document.getElementById('svc-active').checked       = data.active !== false;
+    if (data.image_url) { currentImageUrl = data.image_url; showImgPreview(data.image_url); }
   } else {
     tag.textContent   = 'Nuovo servizio';
     title.textContent = 'Aggiungi servizio';
@@ -572,6 +628,7 @@ async function saveService() {
     description:  document.getElementById('svc-desc').value.trim(),
     booking_only: document.getElementById('svc-booking-only').checked,
     active:       document.getElementById('svc-active').checked,
+    image_url:    currentImageUrl || null,
   };
   if (!payload.name || !payload.price) {
     alert('Nome e prezzo sono obbligatori');
