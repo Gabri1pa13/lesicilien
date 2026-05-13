@@ -129,6 +129,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
 <div class="tabs">
   <div class="tab active" onclick="showTab('richieste')">Richieste</div>
   <div class="tab" onclick="showTab('servizi')">Servizi</div>
+  <div class="tab" onclick="showTab('foto')">Foto Servizi</div>
 </div>
 
 <!-- TAB: RICHIESTE -->
@@ -168,6 +169,14 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
   <div id="services-list">
     <div class="loading">Caricamento...</div>
   </div>
+</div>
+
+<!-- TAB: FOTO SERVIZI -->
+<div class="tab-panel" id="tab-foto">
+  <p style="font-family:'Jost',sans-serif;font-size:13px;color:#8A8278;margin-bottom:24px">
+    Carica o sostituisci le foto del catalogo servizi. Le immagini vengono mostrate sulla pagina Servizi del sito.
+  </p>
+  <div id="foto-list"><div class="loading">Caricamento...</div></div>
 </div>
 
 <!-- MODAL: CONFIRM -->
@@ -334,10 +343,176 @@ async function logout() {
 
 function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', ['richieste','servizi'][i] === name);
+    t.classList.toggle('active', ['richieste','servizi','foto'][i] === name);
   });
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'foto') loadFoto();
+}
+
+/* ── FOTO SERVIZI ──────────────────────────────────────────────────────────── */
+const FOTO_CATALOG = [
+  { id:'transfer_one',        name:'Transfer aeroporto — solo andata',                       cat:'Trasporti & Logistica',   slug:'trasporti' },
+  { id:'transfer_ar',         name:'Transfer aeroporto/stazione — A/R',                       cat:'Trasporti & Logistica',   slug:'trasporti' },
+  { id:'bagagli',             name:'Servizio bagagli — deposito & consegna',                  cat:'Trasporti & Logistica',   slug:'trasporti' },
+  { id:'early_checkin',       name:'Early check-in (dalle 10:00)',                            cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'late_checkin',        name:'Late check-in (dalle 23:00 in poi)',                      cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'late_checkout',       name:'Late check-out (fino alle 18:00)',                        cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'kit_base',            name:'Kit benvenuto — vino & prodotti locali',                  cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'kit_premium',         name:'Kit benvenuto premium — champagne & dolci',               cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'frigo_base',          name:'Frigorifero pre-rifornito — spesa base',                  cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'frigo_premium',       name:'Frigorifero pre-rifornito — spesa premium',               cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'kit_bebe',            name:'Kit bebè — lettino, seggiolone & vasca',                  cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'biancheria_extra',    name:'Biancheria extra',                                        cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'cambio_biancheria',   name:'Cambio biancheria mid-stay',                              cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'lavanderia',          name:'Servizio lavanderia',                                     cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'stireria',            name:'Servizio stireria',                                       cat:'Comfort in Villa',        slug:'comfort' },
+  { id:'colazione',           name:'Colazione consegnata in villa',                           cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'chef_4',              name:'Private chef — cena per 2–4 persone',                    cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'chef_8',              name:'Private chef — cena per 5–8 persone',                    cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'ristorante',          name:'Prenotazione ristorante — corsia preferenziale',          cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'streetfood',          name:'Street food tour guidato (2h)',                           cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'cucina',              name:'Corso di cucina siciliana (3h, pranzo incluso)',          cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'aperitivo_app',       name:'Aperitivo di benvenuto in villa',                        cat:'Private Chef & Dining',   slug:'chef' },
+  { id:'tour_centro',         name:'Tour privato centro storico (3h · fino a 6 persone)',    cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'etna',                name:'Escursione Etna — giornata intera con transfer',          cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'templi',              name:'Escursione Valle dei Templi',                             cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'scala_turchi',        name:'Scala dei Turchi & Agrigento — giornata',                cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'cantina',             name:'Visita cantina con degustazione',                        cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'mercati',             name:'Tour mercati storici — Ballarò & Vucciria',              cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'mercato_pesce',       name:'Esperienza mattutina mercato del pesce',                 cat:'Esperienze & Tour Privati',slug:'esperienze' },
+  { id:'whale_aperitivo_nav', name:'Aperitivo al Tramonto in Navigazione · 2.5h · max 12 pax', cat:'Yacht Charter',         slug:'yacht' },
+  { id:'whale_aperitivo_orm', name:'Aperitivo Esclusivo Ormeggiata · 2.5h · max 12 pax',    cat:'Yacht Charter',           slug:'yacht' },
+  { id:'whale_cena_orm',      name:'Cena Gourmet Ormeggiata · 3.5h · max 8 pax',            cat:'Yacht Charter',           slug:'yacht' },
+  { id:'whale_cena_nav',      name:'Cena Panoramica in Navigazione · 4h · max 8 pax',       cat:'Yacht Charter',           slug:'yacht' },
+  { id:'whale_giornata',      name:'Giornata Completa in Catamarano · 10h · max 12 pax',    cat:'Yacht Charter',           slug:'yacht' },
+  { id:'whale_2giorni',       name:'Luxury 2 Giorni · 39h · max 12 pax',                    cat:'Yacht Charter',           slug:'yacht' },
+  { id:'whale_weekly',        name:'Weekly Charter · 7 giorni / 6 notti · max 12 pax',      cat:'Yacht Charter',           slug:'yacht' },
+  { id:'massaggio_relax',     name:'Massaggio rilassante in villa (60 min)',                 cat:'Wellness & Benessere',    slug:'wellness' },
+  { id:'massaggio_dec',       name:'Massaggio decontratturante in villa (60 min)',           cat:'Wellness & Benessere',    slug:'wellness' },
+  { id:'massaggio_coppia',    name:'Massaggio coppia — simultaneo (60 min)',                 cat:'Wellness & Benessere',    slug:'wellness' },
+  { id:'personal_trainer',    name:'Personal trainer (sessione 60 min)',                     cat:'Wellness & Benessere',    slug:'wellness' },
+  { id:'yoga',                name:'Yoga privato in villa (60 min)',                         cat:'Wellness & Benessere',    slug:'wellness' },
+  { id:'babysitter',          name:'Babysitter certificata',                                 cat:'Famiglia & Assistenza',   slug:'famiglia' },
+  { id:'guida_mezza',         name:'Guida turistica privata — mezza giornata (4h)',          cat:'Famiglia & Assistenza',   slug:'famiglia' },
+  { id:'guida_intera',        name:'Guida turistica privata — giornata intera',              cat:'Famiglia & Assistenza',   slug:'famiglia' },
+  { id:'interprete',          name:'Assistente & interprete per pratiche',                   cat:'Famiglia & Assistenza',   slug:'famiglia' },
+  { id:'foto_1h',             name:'Servizio fotografico professionale (1h)',                cat:'Momenti Indimenticabili',  slug:'momenti' },
+  { id:'foto_2h',             name:'Servizio fotografico premium — editing incluso (2h)',    cat:'Momenti Indimenticabili',  slug:'momenti' },
+  { id:'proposta',            name:'Organizzazione proposta di matrimonio',                  cat:'Momenti Indimenticabili',  slug:'momenti' },
+  { id:'luna_miele',          name:'Pacchetto luna di miele — kit, esperienze & foto',       cat:'Momenti Indimenticabili',  slug:'momenti' },
+];
+const FOTO_CAT_ORDER = ['Trasporti & Logistica','Comfort in Villa','Private Chef & Dining','Esperienze & Tour Privati','Yacht Charter','Wellness & Benessere','Famiglia & Assistenza','Momenti Indimenticabili'];
+
+let fotoImgMap = {};
+let fotoDbIdMap = {};
+let fotoUploading = {};
+
+async function loadFoto() {
+  const container = document.getElementById('foto-list');
+  container.innerHTML = '<div class="loading">Caricamento...</div>';
+  const { data } = await sb.from('services').select('id, name, image_url');
+  fotoImgMap = {};
+  fotoDbIdMap = {};
+  if (data) {
+    const nm = {};
+    data.forEach(s => { if (s.name) nm[s.name] = s; });
+    FOTO_CATALOG.forEach(item => {
+      const db = nm[item.name];
+      if (db) {
+        fotoDbIdMap[item.id] = db.id;
+        if (db.image_url) fotoImgMap[item.id] = db.image_url;
+      }
+    });
+  }
+  renderFoto();
+}
+
+function renderFoto() {
+  const container = document.getElementById('foto-list');
+  const groups = {};
+  FOTO_CATALOG.forEach(item => {
+    if (!groups[item.cat]) groups[item.cat] = [];
+    groups[item.cat].push(item);
+  });
+  container.innerHTML = FOTO_CAT_ORDER.map(cat => {
+    const items = groups[cat] || [];
+    return `<div style="margin-bottom:36px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:#1A1814;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #E0D9CC">${escHtml(cat)}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px">
+        ${items.map(item => {
+          const imgUrl = fotoImgMap[item.id];
+          const isUp   = fotoUploading[item.id];
+          const safeName = item.name.replace(/&/g,'&amp;').replace(/'/g,'&#39;');
+          return `<div style="background:#fff;border:1px solid #E0D9CC;overflow:hidden">
+            ${imgUrl
+              ? `<img src="${imgUrl}" alt="" style="width:100%;height:110px;object-fit:cover;display:block">`
+              : `<div style="width:100%;height:110px;background:#FAF8F3;display:flex;align-items:center;justify-content:center;border-bottom:1px dashed #E0D9CC"><span style="font-size:11px;color:#8A8278;font-family:'Jost',sans-serif">Nessuna foto</span></div>`
+            }
+            <div style="padding:8px 10px">
+              <p style="font-size:10px;color:#1A1814;font-family:'Jost',sans-serif;line-height:1.4;margin-bottom:8px;word-break:break-word">${safeName}</p>
+              <label style="display:block;text-align:center;padding:5px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:${isUp?'wait':'pointer'};background:#1A1814;color:#BFA05A;font-family:'Jost',sans-serif">
+                ${isUp ? '...' : imgUrl ? '↑ Cambia' : '+ Carica foto'}
+                <input type="file" accept="image/*" style="display:none" ${isUp?'disabled':''} onchange="handleFotoUpload(event,'${item.id}')">
+              </label>
+              ${imgUrl ? `<button onclick="removeFoto('${item.id}')" style="width:100%;margin-top:4px;padding:4px;font-size:9px;cursor:pointer;background:#FFEBEE;color:#C62828;border:1px solid #EF9A9A;font-family:'Jost',sans-serif">✕ Rimuovi</button>` : ''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function handleFotoUpload(e, id) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  e.target.value = '';
+  fotoUploading[id] = true;
+  renderFoto();
+  try {
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g,'') || 'jpg';
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error: upErr } = await sb.storage.from('service-images').upload(fileName, file, { contentType: file.type, upsert: true });
+    if (upErr) throw upErr;
+    const { data: { publicUrl } } = sb.storage.from('service-images').getPublicUrl(fileName);
+    const item = FOTO_CATALOG.find(i => i.id === id);
+    const dbId = fotoDbIdMap[id];
+    if (dbId) {
+      const { error } = await sb.from('services').update({ image_url: publicUrl }).eq('id', dbId);
+      if (error) throw error;
+    } else {
+      const { data: ins, error } = await sb.from('services').insert({
+        name: item.name, category: item.slug, price: '—', active: true, image_url: publicUrl
+      }).select('id').single();
+      if (error) throw error;
+      fotoDbIdMap[id] = ins.id;
+    }
+    fotoImgMap[id] = publicUrl;
+  } catch (err) {
+    alert('Errore upload: ' + (err.message || 'Riprova'));
+  }
+  fotoUploading[id] = false;
+  renderFoto();
+}
+
+async function removeFoto(id) {
+  if (!confirm('Rimuovere la foto da questo servizio?')) return;
+  const imgUrl = fotoImgMap[id];
+  const dbId   = fotoDbIdMap[id];
+  try {
+    if (imgUrl) {
+      const fileName = imgUrl.split('/').pop().split('?')[0];
+      await sb.storage.from('service-images').remove([fileName]);
+    }
+    if (dbId) {
+      await sb.from('services').update({ image_url: null }).eq('id', dbId);
+    }
+    delete fotoImgMap[id];
+    renderFoto();
+  } catch (err) {
+    alert('Errore rimozione: ' + err.message);
+  }
 }
 
 async function loadRequests() {
