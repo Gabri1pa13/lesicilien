@@ -500,14 +500,18 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 (async () => {
   try {
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
-    const { data, error } = await sb.from('services').select('name, image_url');
+    const { data, error } = await sb.from('services').select('name, image_url, price');
     if (!error && data) {
-      const imgMap = {};
-      data.forEach(s => { if (s.image_url) imgMap[s.name] = s.image_url; });
+      const dbMap = {};
+      data.forEach(s => { if (s.name) dbMap[s.name] = s; });
       SERVICES_DATA.forEach(sec => {
         sec.items.forEach(item => {
           const itName = T.it['svc_' + item.id] || '';
-          if (itName && imgMap[itName]) item.image_url = imgMap[itName];
+          const db = itName && dbMap[itName];
+          if (db) {
+            if (db.image_url) item.image_url = db.image_url;
+            if (db.price) item.price = db.price;
+          }
         });
       });
     }
