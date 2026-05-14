@@ -9,18 +9,27 @@ export async function middleware(request) {
 
   // Per tutte le altre rotte /admin/* controlla la sessione
   if (pathname.startsWith("/admin")) {
-    const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    try {
+      const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      global: {
-        headers: { cookie: request.headers.get("cookie") || "" },
-      },
-    });
+      if (!supabaseUrl || !supabaseKey) {
+        return NextResponse.redirect(new URL("/admin/login", request.url));
+      }
 
-    const { data: { session } } = await supabase.auth.getSession();
+      const supabase = createClient(supabaseUrl, supabaseKey, {
+        global: {
+          headers: { cookie: request.headers.get("cookie") || "" },
+        },
+      });
 
-    if (!session) {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        return NextResponse.redirect(new URL("/admin/login", request.url));
+      }
+    } catch (e) {
+      console.error("Middleware auth error:", e);
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }
