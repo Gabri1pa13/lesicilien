@@ -729,16 +729,26 @@ function RequestsTab() {
 
   const fetchRequests = async () => {
     setLoading(true);
-    const { data } = await getSupabase()
-      .from("requests").select("*").order("created_at", { ascending: false });
-    setRequests(data || []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/requests");
+      const { data } = await res.json();
+      setRequests(data || []);
+    } catch (e) {
+      console.error("Errore fetch requests:", e);
+      setRequests([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleConfirmed = (id) => setRequests(p => p.map(r => r.id === id ? { ...r, status: "confirmed" } : r));
   const handleRejected  = (id) => setRequests(p => p.map(r => r.id === id ? { ...r, status: "rejected"  } : r));
   const markPaid = async (id) => {
-    await getSupabase().from("requests").update({ status: "paid" }).eq("id", id);
+    await fetch("/api/admin/mark-paid", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
     setRequests(p => p.map(r => r.id === id ? { ...r, status: "paid" } : r));
   };
 
