@@ -1,3 +1,5 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -9,6 +11,29 @@ Deno.serve(async (req) => {
   try {
     const { service_name, service_price, nome, email, telefono, data, orario, persone, note } = await req.json();
 
+    // 1. Salva nel DB
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+    );
+
+    const { error: dbError } = await supabase.from('requests').insert([{
+      service_id:      service_name || 'direct',
+      service_name:    service_name,
+      service_price:   service_price,
+      nome:            nome,
+      email:           email,
+      telefono:        (telefono && telefono !== '—') ? telefono : null,
+      data_desiderata: (data && data !== '—') ? data : null,
+      orario:          (orario && orario !== '—') ? orario : null,
+      persone:         parseInt(persone) || 1,
+      note:            (note && note !== '—') ? note : null,
+      status:          'pending',
+    }]);
+
+    if (dbError) console.error('Errore DB:', dbError.message);
+
+    // 2. Manda email admin (non bloccante)
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1A1814">
         <div style="background:#1A1814;padding:24px;text-align:center;margin-bottom:24px">
@@ -30,26 +55,29 @@ Deno.serve(async (req) => {
         </div>
       </div>`;
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'Le Sicilien Concierge <onboarding@resend.dev>',
-        to: ['gabrielecostanzo2002@gmail.com'],
-        subject: `🛒 Nuova prenotazione: ${service_name} — ${nome}`,
-        html,
-      }),
-    });
-
-    const data2 = await res.json();
-    if (!res.ok) throw new Error(data2.message || JSON.stringify(data2));
+    try {
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Le Sicilien Concierge <onboarding@resend.dev>',
+          to: ['gabrielecostanzo2002@gmail.com'],
+          subject: `🛒 Nuova prenotazione: ${service_name} — ${nome}`,
+          html,
+        }),
+      });
+      const data2 = await res.json();
+      if (!res.ok) console.error('Email error:', data2.message || JSON.stringify(data2));
+    } catch (emailErr) {
+      console.error('Email error:', emailErr.message);
+    }
 
     return new Response(JSON.stringify({ ok: true }), { headers: { ...CORS, 'Content-Type': 'application/json' } });
   } catch (err) {
-    console.error('Email error:', err.message);
+    console.error('Error:', err.message);
     return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: { ...CORS, 'Content-Type': 'application/json' } });
   }
 });
