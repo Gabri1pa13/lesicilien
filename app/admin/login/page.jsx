@@ -17,7 +17,9 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setError("Email o password errati.");
