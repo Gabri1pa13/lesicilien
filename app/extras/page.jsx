@@ -254,9 +254,73 @@ function RequestModal({ service, onClose, onSubmit }) {
   );
 }
 
+// ─── MODAL PRENOTAZIONE DIRETTA ─────────────────────────────────────────────
+function DirectBookModal({ service, onClose, onSubmit }) {
+  const [form, setForm] = useState({ nome: "", email: "", telefono: "", data: "" });
+  const [loading, setLoading] = useState(false);
+  const canSubmit = form.nome && form.email;
+
+  const handleSubmit = async () => {
+    if (!canSubmit) return;
+    setLoading(true);
+    await onSubmit({ service, form });
+    setLoading(false);
+    onClose();
+  };
+
+  return (
+    <div style={m.overlay} onClick={onClose}>
+      <div style={m.modal} onClick={e => e.stopPropagation()}>
+        <div style={m.header}>
+          <button style={m.closeBtn} onClick={onClose}>✕</button>
+          <p style={m.label}>PRENOTAZIONE DIRETTA</p>
+          <h3 style={m.title}>{service.name}</h3>
+          <div style={m.price}>{service.price}</div>
+        </div>
+        <div style={m.divider} />
+        <div style={m.body}>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "300", color: BRAND.textMuted, marginBottom: "20px", lineHeight: "1.7" }}>
+            Inserisci i tuoi dati per completare la prenotazione. Verrai reindirizzato al pagamento Revolut.
+          </p>
+          <div style={m.row}>
+            <div style={m.group}>
+              <label style={m.label2}>Nome e cognome *</label>
+              <input style={m.input} type="text" placeholder="Mario Rossi" value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })} />
+            </div>
+            <div style={m.group}>
+              <label style={m.label2}>Email *</label>
+              <input style={m.input} type="email" placeholder="mario@email.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+            </div>
+          </div>
+          <div style={m.row}>
+            <div style={m.group}>
+              <label style={m.label2}>Telefono</label>
+              <input style={m.input} type="text" placeholder="+39 333 000 0000" value={form.telefono} onChange={e => setForm({ ...form, telefono: e.target.value })} />
+            </div>
+            <div style={m.group}>
+              <label style={m.label2}>Data desiderata</label>
+              <input style={m.input} type="date" value={form.data} onChange={e => setForm({ ...form, data: e.target.value })} />
+            </div>
+          </div>
+        </div>
+        <div style={m.footer}>
+          <button style={m.btnOutline} onClick={onClose}>Annulla</button>
+          <button
+            style={{ ...m.btnGold, opacity: canSubmit ? 1 : 0.4, cursor: canSubmit ? "pointer" : "not-allowed" }}
+            onClick={handleSubmit} disabled={loading || !canSubmit}
+          >
+            {loading ? "..." : "Continua al pagamento →"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN ───────────────────────────────────────────────────────────────────
 export default function ExtrasPage() {
   const [selected, setSelected] = useState(null);
+  const [directSelected, setDirectSelected] = useState(null);
   const [imgOverrides, setImgOverrides] = useState({});
 
   useEffect(() => {
@@ -271,9 +335,19 @@ export default function ExtrasPage() {
       .catch(() => {});
   }, []);
 
-  // Per i servizi diretti usa il link Revolut con importo precompilato
   const handleDirectBook = (item) => {
-    const link = CONFIG.revolut[item.id] || CONFIG.revolut.default;
+    setDirectSelected(item);
+  };
+
+  const handleDirectSubmit = async ({ service, form }) => {
+    try {
+      await fetch("/api/send-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service, form }),
+      });
+    } catch (e) { console.error(e); }
+    const link = CONFIG.revolut[service.id] || CONFIG.revolut.default;
     window.open(link, "_blank");
   };
 
@@ -417,6 +491,9 @@ export default function ExtrasPage() {
 
       {selected && (
         <RequestModal service={selected} onClose={() => setSelected(null)} onSubmit={handleSubmitRequest} />
+      )}
+      {directSelected && (
+        <DirectBookModal service={directSelected} onClose={() => setDirectSelected(null)} onSubmit={handleDirectSubmit} />
       )}
     </>
   );
