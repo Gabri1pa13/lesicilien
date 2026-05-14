@@ -10,26 +10,41 @@ const DARK = "#1A1814";
 const CREAM = "#FAF8F3";
 
 export async function POST(req) {
-  const resend   = new Resend(process.env.RESEND_API_KEY);
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  let body;
   try {
-    const { service, form } = await req.json();
+    body = await req.json();
+  } catch {
+    return Response.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  }
 
-    // 1. Salva su Supabase
-    await supabase.from("requests").insert([{
-      service_id:       service.id,
-      service_name:     service.name,
-      service_price:    service.price,
-      nome:             form.nome,
-      email:            form.email,
-      telefono:         form.telefono || null,
-      data_desiderata:  form.data || null,
-      persone:          parseInt(form.persone) || 1,
-      note:             form.note || null,
-      status:           "pending",
-    }]);
+  const { service, form } = body;
 
-    // 2. Email notifica all'admin
+  // 1. Salva su Supabase — priorità massima, errore bloccante
+  const { error: dbError } = await supabase.from("requests").insert([{
+    service_id:       service.id,
+    service_name:     service.name,
+    service_price:    service.price,
+    nome:             form.nome,
+    email:            form.email,
+    telefono:         form.telefono || null,
+    data_desiderata:  form.data || null,
+    persone:          parseInt(form.persone) || 1,
+    note:             form.note || null,
+    status:           "pending",
+  }]);
+
+  if (dbError) {
+    console.error("Errore insert Supabase:", dbError);
+    return Response.json({ ok: false, error: dbError.message }, { status: 500 });
+  }
+
+  // 2. Email notifica all'admin — errore non bloccante, il record è già salvato
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: `Le Sicilien System <noreply@lesicilien.it>`,
       to: ADMIN_EMAIL,
@@ -66,10 +81,9 @@ export async function POST(req) {
         </div>
       `,
     });
-
-    return Response.json({ ok: true });
-  } catch (error) {
-    console.error("Errore send-request:", error);
-    return Response.json({ ok: false, error: error.message }, { status: 500 });
+  } catch (emailError) {
+    console.error("Errore email admin (record già salvato):", emailError);
   }
+
+  return Response.json({ ok: true });
 }
