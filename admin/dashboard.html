@@ -252,6 +252,12 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
         </label>
       </div>
 
+      <label>Pagamento parziale — Acconto (€)</label>
+      <input type="number" id="svc-deposit" placeholder="es. 500 — lascia vuoto se non previsto"/>
+      <label>Pagamento parziale — Totale (€)</label>
+      <input type="number" id="svc-total" placeholder="es. 3000 — lascia vuoto se non previsto"/>
+      <p id="svc-saldo-preview" style="display:none;font-size:11px;color:#8A8278;font-family:'Jost',sans-serif;margin-top:-8px;margin-bottom:12px"></p>
+
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <input type="checkbox" id="svc-booking-only" style="width:auto;margin-bottom:0"/>
         Solo su prenotazione
@@ -606,6 +612,8 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = data.category || 'trasporti';
     document.getElementById('svc-price').value          = data.price || '';
     document.getElementById('svc-desc').value           = data.description || '';
+    document.getElementById('svc-deposit').value         = data.deposit_amount != null ? data.deposit_amount : '';
+    document.getElementById('svc-total').value           = data.total_amount   != null ? data.total_amount   : '';
     document.getElementById('svc-booking-only').checked = !!data.booking_only;
     document.getElementById('svc-active').checked       = data.active !== false;
     if (data.image_url) { currentImageUrl = data.image_url; showImgPreview(data.image_url); }
@@ -616,21 +624,40 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = 'trasporti';
     document.getElementById('svc-price').value          = '';
     document.getElementById('svc-desc').value           = '';
+    document.getElementById('svc-deposit').value        = '';
+    document.getElementById('svc-total').value          = '';
     document.getElementById('svc-booking-only').checked = false;
     document.getElementById('svc-active').checked       = true;
   }
+  updateSaldoPreview();
   openModal('modal-service');
 }
 
+function updateSaldoPreview() {
+  const dep = parseFloat(document.getElementById('svc-deposit').value);
+  const tot = parseFloat(document.getElementById('svc-total').value);
+  const el  = document.getElementById('svc-saldo-preview');
+  if (!isNaN(dep) && !isNaN(tot) && tot > dep) {
+    el.textContent = `Saldo rimanente: ${(tot - dep).toFixed(0)}€ — da saldare all'erogazione del servizio`;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
 async function saveService() {
+  const depRaw = document.getElementById('svc-deposit').value.trim();
+  const totRaw = document.getElementById('svc-total').value.trim();
   const payload = {
-    name:         document.getElementById('svc-name').value.trim(),
-    category:     document.getElementById('svc-category').value,
-    price:        document.getElementById('svc-price').value.trim(),
-    description:  document.getElementById('svc-desc').value.trim(),
-    booking_only: document.getElementById('svc-booking-only').checked,
-    active:       document.getElementById('svc-active').checked,
-    image_url:    currentImageUrl || null,
+    name:           document.getElementById('svc-name').value.trim(),
+    category:       document.getElementById('svc-category').value,
+    price:          document.getElementById('svc-price').value.trim(),
+    description:    document.getElementById('svc-desc').value.trim(),
+    deposit_amount: depRaw ? parseFloat(depRaw) : null,
+    total_amount:   totRaw ? parseFloat(totRaw) : null,
+    booking_only:   document.getElementById('svc-booking-only').checked,
+    active:         document.getElementById('svc-active').checked,
+    image_url:      currentImageUrl || null,
   };
   if (!payload.name || !payload.price) {
     alert('Nome e prezzo sono obbligatori');
@@ -651,6 +678,9 @@ async function saveService() {
   closeModal('modal-service');
   await loadServices();
 }
+
+document.getElementById('svc-deposit').addEventListener('input', updateSaldoPreview);
+document.getElementById('svc-total').addEventListener('input', updateSaldoPreview);
 
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
