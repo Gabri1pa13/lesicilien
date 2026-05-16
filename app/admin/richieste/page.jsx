@@ -242,6 +242,8 @@ function ServiceModal({ service, onClose, onSaved }) {
     description:    service?.description    || "",
     price:          service?.price          || "",
     revolut_amount: service?.revolut_amount != null ? String(service.revolut_amount) : "",
+    deposit_amount: service?.deposit_amount != null ? String(service.deposit_amount) : "",
+    total_amount:   service?.total_amount   != null ? String(service.total_amount)   : "",
     mode:           service?.mode           || "request",
     sort_order:     service?.sort_order     != null ? String(service.sort_order) : "0",
     active:         service?.active         !== false,
@@ -282,7 +284,9 @@ function ServiceModal({ service, onClose, onSaved }) {
     try {
       const payload = {
         ...form,
-        revolut_amount: form.revolut_amount ? parseInt(form.revolut_amount) : null,
+        revolut_amount: form.revolut_amount ? parseInt(form.revolut_amount)   : null,
+        deposit_amount: form.deposit_amount ? parseFloat(form.deposit_amount) : null,
+        total_amount:   form.total_amount   ? parseFloat(form.total_amount)   : null,
         sort_order:     parseInt(form.sort_order) || 0,
         ...(isEdit ? { id: service.id } : {}),
       };
@@ -363,10 +367,32 @@ function ServiceModal({ service, onClose, onSaved }) {
 
           {/* Descrizione */}
           <div>
-            <label style={labelStyle}>Descrizione (opzionale)</label>
+            <label style={labelStyle}>Descrizione (mostrata all'ospite al momento della prenotazione)</label>
             <textarea style={{ ...inputStyle, resize: "vertical" }} rows={2}
               value={form.description} onChange={e => set("description", e.target.value)}
               placeholder="Dettagli aggiuntivi mostrati al cliente..." />
+          </div>
+
+          {/* Pagamento parziale */}
+          <div>
+            <label style={labelStyle}>Pagamento parziale (opzionale)</label>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div>
+                <label style={{ ...labelStyle, marginBottom: "5px" }}>Acconto (€)</label>
+                <input style={inputStyle} type="number" value={form.deposit_amount}
+                  onChange={e => set("deposit_amount", e.target.value)} placeholder="es. 500" />
+              </div>
+              <div>
+                <label style={{ ...labelStyle, marginBottom: "5px" }}>Totale (€)</label>
+                <input style={inputStyle} type="number" value={form.total_amount}
+                  onChange={e => set("total_amount", e.target.value)} placeholder="es. 3000" />
+              </div>
+            </div>
+            {form.deposit_amount && form.total_amount && parseFloat(form.total_amount) > parseFloat(form.deposit_amount) && (
+              <p style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginTop: "7px" }}>
+                Saldo rimanente: {(parseFloat(form.total_amount) - parseFloat(form.deposit_amount)).toFixed(0)}€ — da saldare all'erogazione del servizio
+              </p>
+            )}
           </div>
 
           {/* Immagine */}

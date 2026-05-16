@@ -405,9 +405,12 @@ function renderMain() {
         const btnLabel = item.type === 'direct' ? t('book_direct') : t('book_request');
         const badgeLabel = item.type === 'direct' ? t('badge_direct') : t('badge_request');
         const dotClass = item.type === 'direct' ? 'dot-g' : 'dot-o';
+        const dep = item.deposit_amount != null ? item.deposit_amount : 'null';
+        const tot = item.total_amount   != null ? item.total_amount   : 'null';
+        const safeDesc = (item.description || '').replace(/'/g, "\\'");
         const onclickFn = item.type === 'direct'
-          ? `directBook('${item.id}','${safeName}','${item.price}')`
-          : `openModal('${item.id}','${safeName}','${item.price}')`;
+          ? `directBook('${item.id}','${safeName}','${item.price}',${dep},${tot},'${safeDesc}')`
+          : `openModal('${item.id}','${safeName}','${item.price}','${safeDesc}',${dep},${tot})`;
         const popBadge = popularIds.includes(item.id) ? `<span class="badge-pop">Più richiesto</span>` : '';
         return `
         <article class="card">
@@ -500,7 +503,7 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 (async () => {
   try {
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
-    const { data, error } = await sb.from('services').select('name, image_url, price, service_id');
+    const { data, error } = await sb.from('services').select('name, image_url, price, service_id, description, deposit_amount, total_amount');
     if (!error && data) {
       const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
       const byId = {}, byName = {};
@@ -513,8 +516,11 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
           const itName = T.it['svc_' + item.id] || '';
           const db = byId[item.id] || (itName && byName[norm(itName)]);
           if (db) {
-            if (db.image_url) item.image_url = db.image_url;
-            if (db.price) item.price = db.price;
+            if (db.image_url)             item.image_url     = db.image_url;
+            if (db.price)                 item.price         = db.price;
+            if (db.description)           item.description   = db.description;
+            if (db.deposit_amount != null) item.deposit_amount = db.deposit_amount;
+            if (db.total_amount   != null) item.total_amount   = db.total_amount;
           }
         });
       });
@@ -524,15 +530,21 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 })();
 
 /* ── MODAL FUNCTIONS ──────────────────────────────────────────────────────── */
-function directBook(id, name, price) {
+function directBook(id, name, price, deposit_amount, total_amount, description) {
   const modal = document.getElementById('modal');
   const content = document.getElementById('modalContent');
+  const saldo = (deposit_amount != null && total_amount != null) ? (total_amount - deposit_amount) : null;
+  const descHtml = description ? `<p style="font-size:13px;font-weight:300;color:#8A8278;margin:8px 0 0;line-height:1.6;font-family:'Jost',sans-serif">${description}</p>` : '';
+  const priceHtml = (deposit_amount != null && total_amount != null)
+    ? `<div class="modal-price">Acconto: ${deposit_amount}€</div><p style="font-size:12px;color:#8A8278;margin:4px 0 0;font-family:'Jost',sans-serif">Saldo rimanente: ${saldo}€ all'erogazione · Totale: ${total_amount}€</p>`
+    : `<div class="modal-price">${price}</div>`;
   content.innerHTML = `
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <span class="modal-label">${t('modal_book_tag')}</span>
       <h3 class="modal-title">${name}</h3>
-      <div class="modal-price">${price}</div>
+      ${descHtml}
+      ${priceHtml}
     </div>
     <div class="modal-divider"></div>
     <div class="modal-body">
@@ -551,12 +563,12 @@ function directBook(id, name, price) {
     </div>
     <div class="modal-footer">
       <button class="btn-outline" onclick="closeModal()">${t('btn_cancel')}</button>
-      <button class="btn-gold" id="btn-pay-now" onclick="confirmDirectBook('${id}','${name.replace(/'/g,"\\'")}','${price}')">${t('btn_pay')}</button>
+      <button class="btn-gold" id="btn-pay-now" onclick="confirmDirectBook('${id}','${name.replace(/'/g,"\\'")}','${price}',${deposit_amount != null ? deposit_amount : 'null'},${total_amount != null ? total_amount : 'null'})">${t('btn_pay')}</button>
     </div>`;
   modal.classList.remove('hidden');
 }
 
-async function confirmDirectBook(id, name, price) {
+async function confirmDirectBook(id, name, price, deposit_amount, total_amount) {
   const nome = document.getElementById('f_nome').value.trim();
   const email = document.getElementById('f_email').value.trim();
   const data = document.getElementById('f_data').value;
@@ -592,22 +604,26 @@ async function confirmDirectBook(id, name, price) {
   }
 
   // Save to Supabase + email notification
-  const sb = supabase.createClient('https://amixnhmgxbxuiykqndxi.supabase.co', SUMUP_ANON);
-  sb.from('requests').insert({ service_id: id, service_name: name, service_price: price, nome, email, telefono: tel || null, data_desiderata: data, orario, persone: parseInt(persone), note: null, status: 'confirmed' }).catch(() => {});
-  fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` }, body: JSON.stringify({ service_name: name, service_price: price, nome, email, telefono: tel || '—', data, orario, persone, note: '—' }) }).catch(() => {});
+  fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` }, body: JSON.stringify({ service_name: name, service_price: price, deposit_amount: deposit_amount != null ? deposit_amount : null, total_amount: total_amount != null ? total_amount : null, nome, email, telefono: tel || '—', data, orario, persone, note: '—' }) }).catch(() => {});
 
   closeModal();
 }
 
-function openModal(id, name, price) {
+function openModal(id, name, price, description, deposit_amount, total_amount) {
   const modal = document.getElementById('modal');
   const content = document.getElementById('modalContent');
+  const saldo = (deposit_amount != null && total_amount != null) ? (total_amount - deposit_amount) : null;
+  const descHtml = description ? `<p style="font-size:13px;font-weight:300;color:#8A8278;margin:8px 0 0;line-height:1.6;font-family:'Jost',sans-serif">${description}</p>` : '';
+  const priceHtml = (deposit_amount != null && total_amount != null)
+    ? `<div class="modal-price">Acconto: ${deposit_amount}€</div><p style="font-size:12px;color:#8A8278;margin:4px 0 0;font-family:'Jost',sans-serif">Saldo rimanente: ${saldo}€ all'erogazione · Totale: ${total_amount}€</p>`
+    : `<div class="modal-price">${price}</div>`;
   content.innerHTML = `
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <span class="modal-label">${t('modal_req_tag')}</span>
       <h3 class="modal-title">${name}</h3>
-      <div class="modal-price">${price}</div>
+      ${descHtml}
+      ${priceHtml}
     </div>
     <div class="modal-divider"></div>
     <div class="modal-body">
@@ -627,7 +643,7 @@ function openModal(id, name, price) {
     </div>
     <div class="modal-footer">
       <button class="btn-outline" onclick="closeModal()">${t('btn_cancel')}</button>
-      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")}','${price}')">${t('btn_send')}</button>
+      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")}','${price}',${deposit_amount != null ? deposit_amount : 'null'},${total_amount != null ? total_amount : 'null'})">${t('btn_send')}</button>
     </div>`;
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -638,7 +654,7 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-async function submitRequest(id, name, price) {
+async function submitRequest(id, name, price, deposit_amount, total_amount) {
   const nome = document.getElementById('f_nome').value.trim();
   const email = document.getElementById('f_email').value.trim();
   const data = document.getElementById('f_data').value;
@@ -651,7 +667,7 @@ async function submitRequest(id, name, price) {
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`, '_blank');
   // Save to DB and send email via Edge Function
   try {
-    await fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk'},body:JSON.stringify({service_name:name,service_price:price,nome,email,telefono:tel||'—',data,orario,persone,note:note||'—'})});
+    await fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk'},body:JSON.stringify({service_name:name,service_price:price,deposit_amount:deposit_amount!=null?deposit_amount:null,total_amount:total_amount!=null?total_amount:null,nome,email,telefono:tel||'—',data,orario,persone,note:note||'—'})});
   } catch(e) {}
   document.getElementById('modalContent').innerHTML = `
     <div class="sent-box">

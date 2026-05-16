@@ -219,7 +219,19 @@ function RequestModal({ service, onClose, onSubmit }) {
               <button style={m.closeBtn} onClick={onClose}>✕</button>
               <p style={m.label}>RICHIESTA DI DISPONIBILITÀ</p>
               <h3 style={m.title}>{service.name}</h3>
-              <div style={m.price}>{service.price}</div>
+              {service.description && (
+                <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "300", color: "#8A8278", lineHeight: "1.6", marginTop: "8px" }}>{service.description}</p>
+              )}
+              {service.deposit_amount != null && service.total_amount != null ? (
+                <div style={{ marginTop: "10px" }}>
+                  <div style={m.price}>Acconto: {service.deposit_amount}€</div>
+                  <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "12px", color: "#8A8278", marginTop: "4px" }}>
+                    Saldo rimanente: {(service.total_amount - service.deposit_amount).toFixed(0)}€ all'erogazione · Totale: {service.total_amount}€
+                  </p>
+                </div>
+              ) : (
+                <div style={m.price}>{service.price}</div>
+              )}
             </div>
             <div style={m.divider} />
             <div style={m.body}>
@@ -275,7 +287,19 @@ function DirectBookModal({ service, onClose, onSubmit }) {
           <button style={m.closeBtn} onClick={onClose}>✕</button>
           <p style={m.label}>PRENOTAZIONE DIRETTA</p>
           <h3 style={m.title}>{service.name}</h3>
-          <div style={m.price}>{service.price}</div>
+          {service.description && (
+            <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "300", color: "#8A8278", lineHeight: "1.6", marginTop: "8px" }}>{service.description}</p>
+          )}
+          {service.deposit_amount != null && service.total_amount != null ? (
+            <div style={{ marginTop: "10px" }}>
+              <div style={m.price}>Acconto: {service.deposit_amount}€</div>
+              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "12px", color: "#8A8278", marginTop: "4px" }}>
+                Saldo rimanente: {(service.total_amount - service.deposit_amount).toFixed(0)}€ all'erogazione · Totale: {service.total_amount}€
+              </p>
+            </div>
+          ) : (
+            <div style={m.price}>{service.price}</div>
+          )}
         </div>
         <div style={m.divider} />
         <div style={m.body}>
@@ -321,22 +345,31 @@ function DirectBookModal({ service, onClose, onSubmit }) {
 export default function ExtrasPage() {
   const [selected, setSelected] = useState(null);
   const [directSelected, setDirectSelected] = useState(null);
-  const [imgOverrides, setImgOverrides]     = useState({});
-  const [priceOverrides, setPriceOverrides] = useState({});
+  const [imgOverrides,     setImgOverrides]     = useState({});
+  const [priceOverrides,   setPriceOverrides]   = useState({});
+  const [descOverrides,    setDescOverrides]     = useState({});
+  const [depositOverrides, setDepositOverrides] = useState({});
+  const [totalOverrides,   setTotalOverrides]   = useState({});
 
   useEffect(() => {
     fetch("/api/admin/services")
       .then(r => r.json())
       .then(({ data }) => {
         if (!data) return;
-        const imgs = {}, prices = {};
+        const imgs = {}, prices = {}, descs = {}, deposits = {}, totals = {};
         data.forEach(svc => {
           const key = svc.service_id || svc.name;
-          if (svc.image_url) imgs[key]  = svc.image_url;
-          if (svc.price)     prices[key] = svc.price;
+          if (svc.image_url)             imgs[key]     = svc.image_url;
+          if (svc.price)                 prices[key]   = svc.price;
+          if (svc.description)           descs[key]    = svc.description;
+          if (svc.deposit_amount != null) deposits[key] = svc.deposit_amount;
+          if (svc.total_amount   != null) totals[key]   = svc.total_amount;
         });
         setImgOverrides(imgs);
         setPriceOverrides(prices);
+        setDescOverrides(descs);
+        setDepositOverrides(deposits);
+        setTotalOverrides(totals);
       })
       .catch(() => {});
   }, []);
@@ -445,9 +478,12 @@ export default function ExtrasPage() {
               </div>
               <div style={p.grid} className="ls-grid">
                 {sec.items.map(item => {
-                  const imgUrl       = imgOverrides[item.id] || imgOverrides[item.name] || SVCID_IMG[item.id];
-                  const effectivePrice = priceOverrides[item.id] || priceOverrides[item.name] || item.price;
-                  const effectiveItem  = effectivePrice !== item.price ? { ...item, price: effectivePrice } : item;
+                  const imgUrl         = imgOverrides[item.id]  || imgOverrides[item.name]  || SVCID_IMG[item.id];
+                  const effectivePrice   = priceOverrides[item.id]   || priceOverrides[item.name]   || item.price;
+                  const effectiveDesc    = descOverrides[item.id]    || descOverrides[item.name]    || "";
+                  const effectiveDeposit = depositOverrides[item.id] ?? depositOverrides[item.name] ?? null;
+                  const effectiveTotal   = totalOverrides[item.id]   ?? totalOverrides[item.name]   ?? null;
+                  const effectiveItem = { ...item, price: effectivePrice, description: effectiveDesc, deposit_amount: effectiveDeposit, total_amount: effectiveTotal };
                   return (
                     <article key={item.id} style={p.card} className="ls-card">
                       {imgUrl && (
