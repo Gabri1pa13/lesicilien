@@ -502,7 +502,7 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
     const { data, error } = await sb.from('services').select('name, image_url, price');
     if (!error && data) {
-      const norm = s => s.toLowerCase().replace(/[\s ]+/g, ' ').replace(/[–—]/g, '-').trim();
+      const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
       const dbMap = {};
       data.forEach(s => { if (s.name) dbMap[norm(s.name)] = s; });
       SERVICES_DATA.forEach(sec => {
