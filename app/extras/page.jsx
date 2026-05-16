@@ -321,16 +321,21 @@ function DirectBookModal({ service, onClose, onSubmit }) {
 export default function ExtrasPage() {
   const [selected, setSelected] = useState(null);
   const [directSelected, setDirectSelected] = useState(null);
-  const [imgOverrides, setImgOverrides] = useState({});
+  const [imgOverrides, setImgOverrides]     = useState({});
+  const [priceOverrides, setPriceOverrides] = useState({});
 
   useEffect(() => {
     fetch("/api/admin/services")
       .then(r => r.json())
       .then(({ data }) => {
         if (!data) return;
-        const map = {};
-        data.forEach(svc => { if (svc.image_url) map[svc.name] = svc.image_url; });
-        setImgOverrides(map);
+        const imgs = {}, prices = {};
+        data.forEach(svc => {
+          if (svc.image_url) imgs[svc.name]  = svc.image_url;
+          if (svc.price)     prices[svc.name] = svc.price;
+        });
+        setImgOverrides(imgs);
+        setPriceOverrides(prices);
       })
       .catch(() => {});
   }, []);
@@ -439,7 +444,9 @@ export default function ExtrasPage() {
               </div>
               <div style={p.grid} className="ls-grid">
                 {sec.items.map(item => {
-                  const imgUrl = imgOverrides[item.name] || SVCID_IMG[item.id];
+                  const imgUrl       = imgOverrides[item.name]  || SVCID_IMG[item.id];
+                  const effectivePrice = priceOverrides[item.name] || item.price;
+                  const effectiveItem  = effectivePrice !== item.price ? { ...item, price: effectivePrice } : item;
                   return (
                     <article key={item.id} style={p.card} className="ls-card">
                       {imgUrl && (
@@ -459,11 +466,11 @@ export default function ExtrasPage() {
                       </div>
                       <h3 style={p.cardName}>{item.name}</h3>
                       <div style={p.cardFoot}>
-                        <span style={p.cardPrice}>{item.price}</span>
+                        <span style={p.cardPrice}>{effectivePrice}</span>
                         <button
                           style={item.type === "direct" ? p.btnDark : p.btnBorder}
                           className={item.type === "direct" ? "ls-btn-dark" : "ls-btn-border"}
-                          onClick={() => item.type === "direct" ? handleDirectBook(item) : setSelected(item)}
+                          onClick={() => item.type === "direct" ? handleDirectBook(effectiveItem) : setSelected(effectiveItem)}
                         >
                           {item.type === "direct" ? "Prenota ora" : "Richiedi →"}
                         </button>
