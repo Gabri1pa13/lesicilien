@@ -9,7 +9,11 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
 
   try {
-    const { service_name, service_price, nome, email, telefono, data, orario, persone, note } = await req.json();
+    const { service_name, service_price, deposit_amount, total_amount, nome, email, telefono, data, orario, persone, note } = await req.json();
+
+    const saldo = (deposit_amount != null && total_amount != null)
+      ? (total_amount - deposit_amount)
+      : null;
 
     // 1. Salva nel DB
     const supabase = createClient(
@@ -33,7 +37,14 @@ Deno.serve(async (req) => {
 
     if (dbError) console.error('Errore DB:', dbError.message);
 
-    // 2. Manda email admin (non bloccante)
+    // 2. Riga pagamento per l'email
+    const paymentRows = deposit_amount != null && total_amount != null ? `
+          <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278;width:140px">Acconto</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#BFA05A;font-weight:600">${deposit_amount}€</td></tr>
+          <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Totale</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;font-weight:500">${total_amount}€</td></tr>
+          <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Saldo rimanente</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;font-weight:500">${saldo}€ — da saldare all'erogazione</td></tr>` : `
+          <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Prezzo</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#BFA05A;font-weight:500">${service_price}</td></tr>`;
+
+    // 3. Manda email admin
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1A1814">
         <div style="background:#1A1814;padding:24px;text-align:center;margin-bottom:24px">
@@ -42,7 +53,7 @@ Deno.serve(async (req) => {
         </div>
         <table style="width:100%;border-collapse:collapse">
           <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278;width:140px">Servizio</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;font-weight:500">${service_name}</td></tr>
-          <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Prezzo</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#BFA05A;font-weight:500">${service_price}</td></tr>
+          ${paymentRows}
           <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Nome</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px">${nome}</td></tr>
           <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Email</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px">${email}</td></tr>
           <tr><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px;color:#8A8278">Telefono</td><td style="padding:10px 0;border-bottom:1px solid #E0D9CC;font-size:13px">${telefono}</td></tr>
