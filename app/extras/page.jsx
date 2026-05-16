@@ -331,8 +331,9 @@ export default function ExtrasPage() {
         if (!data) return;
         const imgs = {}, prices = {};
         data.forEach(svc => {
-          if (svc.image_url) imgs[svc.name]  = svc.image_url;
-          if (svc.price)     prices[svc.name] = svc.price;
+          const key = svc.service_id || svc.name;
+          if (svc.image_url) imgs[key]  = svc.image_url;
+          if (svc.price)     prices[key] = svc.price;
         });
         setImgOverrides(imgs);
         setPriceOverrides(prices);
@@ -444,8 +445,8 @@ export default function ExtrasPage() {
               </div>
               <div style={p.grid} className="ls-grid">
                 {sec.items.map(item => {
-                  const imgUrl       = imgOverrides[item.name]  || SVCID_IMG[item.id];
-                  const effectivePrice = priceOverrides[item.name] || item.price;
+                  const imgUrl       = imgOverrides[item.id] || imgOverrides[item.name] || SVCID_IMG[item.id];
+                  const effectivePrice = priceOverrides[item.id] || priceOverrides[item.name] || item.price;
                   const effectiveItem  = effectivePrice !== item.price ? { ...item, price: effectivePrice } : item;
                   return (
                     <article key={item.id} style={p.card} className="ls-card">
