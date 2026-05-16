@@ -94,7 +94,7 @@ const SERVICES = [
     ],
   },
   {
-    category: "Comfort in Villa", icon: "✦",
+    category: "Comfort", icon: "✦",
     items: [
       { id: "early_checkin",    name: "Early check-in (dalle 10:00)",               price: "25€",           type: "direct" },
       { id: "late_checkin",     name: "Late check-in (dalle 23:00 in poi)",         price: "20€",           type: "direct" },
