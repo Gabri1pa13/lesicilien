@@ -441,11 +441,16 @@ function CatalogPhotosTab() {
     const services = data || [];
     setDbServices(services);
     const nm = {};
-    services.forEach(s => { nm[s.name] = s; });
+    const bySlug = {};
+    services.forEach(s => {
+      nm[s.name] = s;
+      if (s.service_id) bySlug[s.service_id] = s;
+    });
     setNameToDb(nm);
     const im = {};
     CATALOG_FLAT.forEach(item => {
-      if (nm[item.name]?.image_url) im[item.id] = nm[item.name].image_url;
+      const svc = bySlug[item.id] || nm[item.name];
+      if (svc?.image_url) im[item.id] = svc.image_url;
     });
     setImgMap(im);
   };
@@ -465,10 +470,12 @@ function CatalogPhotosTab() {
 
       const existing = nameToDb[item.name];
       if (existing) {
+        const updates = { image_url: url };
+        if (!existing.service_id) updates.service_id = item.id;
         const r = await fetch("/api/admin/services", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: existing.id, image_url: url }),
+          body: JSON.stringify({ id: existing.id, ...updates }),
         });
         if (!r.ok) throw new Error("Salvataggio fallito");
       } else {
@@ -476,6 +483,7 @@ function CatalogPhotosTab() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            service_id: item.id,
             name: item.name, category: item.category, category_label: item.category_label,
             price: item.price, mode: item.mode, revolut_amount: item.revolut_amount,
             sort_order: item.sort_order, active: true, image_url: url,
