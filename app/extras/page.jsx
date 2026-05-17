@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 // ─── CONFIG — REVOLUT REALE ─────────────────────────────────────────────────
 const CONFIG = {
-  whatsappNumber: "393888005083",
+  whatsappNumber: "393273751480",
   adminEmail: "info@lesicilien.com",
   revolut: {
     // Link con importo precompilato per i servizi a prenotazione diretta
