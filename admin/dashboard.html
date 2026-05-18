@@ -235,8 +235,11 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
       <label>Descrizione breve</label>
       <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
       <p style="font-size:10px;color:#8A8278;font-family:'Jost',sans-serif;margin-top:-10px;margin-bottom:16px">La descrizione viene tradotta automaticamente in EN, FR, DE, PL, ZH al salvataggio.</p>
-      <label>Messaggio WhatsApp personalizzato (opzionale)</label>
-      <textarea id="svc-wa-message" rows="4" placeholder="Se vuoi personalizzare il messaggio WA per questo servizio, scrivilo qui.&#10;Se lasciato vuoto viene usato il template standard con tutti i dati dell'ospite."></textarea>
+      <label>Messaggio WhatsApp</label>
+      <p style="font-size:10px;color:#8A8278;font-family:'Jost',sans-serif;margin-top:-4px;margin-bottom:8px">Le variabili in <span style="color:#0891b2;font-weight:600">celeste</span> vengono sostituite con i dati dell'ospite.</p>
+      <textarea id="svc-wa-message" rows="9" style="font-family:monospace;font-size:12px" oninput="updateWaPreview()"></textarea>
+      <p style="font-size:9px;color:#8A8278;letter-spacing:.14em;text-transform:uppercase;font-family:'Jost',sans-serif;margin-top:6px;margin-bottom:4px">Anteprima</p>
+      <div id="svc-wa-preview" style="font-family:monospace;font-size:12px;color:#3A3530;background:#F7F4EE;border:1px solid #E0D9CC;padding:10px 13px;white-space:pre-wrap;line-height:1.7;margin-bottom:16px"></div>
       <label>Immagine del servizio</label>
       <div id="img-preview-wrap" style="display:none;margin-bottom:16px">
         <img id="img-preview" src="" alt="" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:8px;border:1px solid #E0D9CC"/>
@@ -283,6 +286,7 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
 const SUPABASE_URL  = 'https://amixnhmgxbxuiykqndxi.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const WA_NUMBER     = '393273751480';
+const WA_DEFAULT_TEMPLATE = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* {servizio}\n*Prezzo:* {prezzo}\n*Nome:* {nome}\n*Email:* {email}\n*Tel:* {telefono}\n*Data:* {data} ore {orario}\n*Persone:* {persone}\n*Note:* {note}`;
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -616,7 +620,7 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = data.category || 'trasporti';
     document.getElementById('svc-price').value          = data.price || '';
     document.getElementById('svc-desc').value           = data.description || '';
-    document.getElementById('svc-wa-message').value     = data.wa_message || '';
+    document.getElementById('svc-wa-message').value     = data.wa_message || WA_DEFAULT_TEMPLATE;
     document.getElementById('svc-deposit').value         = data.deposit_amount != null ? data.deposit_amount : '';
     document.getElementById('svc-total').value           = data.total_amount   != null ? data.total_amount   : '';
     document.getElementById('svc-booking-only').checked = !!data.booking_only;
@@ -629,14 +633,22 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = 'trasporti';
     document.getElementById('svc-price').value          = '';
     document.getElementById('svc-desc').value           = '';
-    document.getElementById('svc-wa-message').value     = '';
+    document.getElementById('svc-wa-message').value     = WA_DEFAULT_TEMPLATE;
     document.getElementById('svc-deposit').value        = '';
     document.getElementById('svc-total').value          = '';
     document.getElementById('svc-booking-only').checked = false;
     document.getElementById('svc-active').checked       = true;
   }
   updateSaldoPreview();
+  updateWaPreview();
   openModal('modal-service');
+}
+
+function updateWaPreview() {
+  const raw = document.getElementById('svc-wa-message').value;
+  const escaped = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const highlighted = escaped.replace(/\{([a-z]+)\}/g, '<span style="color:#0891b2;font-weight:600">{$1}</span>');
+  document.getElementById('svc-wa-preview').innerHTML = highlighted;
 }
 
 function updateSaldoPreview() {
@@ -659,7 +671,7 @@ async function saveService() {
     category:       document.getElementById('svc-category').value,
     price:          document.getElementById('svc-price').value.trim(),
     description:    document.getElementById('svc-desc').value.trim(),
-    wa_message:     document.getElementById('svc-wa-message').value.trim() || null,
+    wa_message:     (document.getElementById('svc-wa-message').value.trim() !== WA_DEFAULT_TEMPLATE) ? document.getElementById('svc-wa-message').value.trim() || null : null,
     deposit_amount: depRaw ? parseFloat(depRaw) : null,
     total_amount:   totRaw ? parseFloat(totRaw) : null,
     booking_only:   document.getElementById('svc-booking-only').checked,
