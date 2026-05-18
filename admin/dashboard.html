@@ -234,6 +234,9 @@ input:checked+.toggle-slider:before{transform:translateX(16px)}
       <input type="text" id="svc-price" placeholder="es. Da &euro;120 / notte"/>
       <label>Descrizione breve</label>
       <textarea id="svc-desc" placeholder="Descrizione del servizio..."></textarea>
+      <p style="font-size:10px;color:#8A8278;font-family:'Jost',sans-serif;margin-top:-10px;margin-bottom:16px">La descrizione viene tradotta automaticamente in EN, FR, DE, PL, ZH al salvataggio.</p>
+      <label>Messaggio WhatsApp personalizzato (opzionale)</label>
+      <textarea id="svc-wa-message" rows="4" placeholder="Se vuoi personalizzare il messaggio WA per questo servizio, scrivilo qui.&#10;Se lasciato vuoto viene usato il template standard con tutti i dati dell'ospite."></textarea>
       <label>Immagine del servizio</label>
       <div id="img-preview-wrap" style="display:none;margin-bottom:16px">
         <img id="img-preview" src="" alt="" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:8px;border:1px solid #E0D9CC"/>
@@ -613,6 +616,7 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = data.category || 'trasporti';
     document.getElementById('svc-price').value          = data.price || '';
     document.getElementById('svc-desc').value           = data.description || '';
+    document.getElementById('svc-wa-message').value     = data.wa_message || '';
     document.getElementById('svc-deposit').value         = data.deposit_amount != null ? data.deposit_amount : '';
     document.getElementById('svc-total').value           = data.total_amount   != null ? data.total_amount   : '';
     document.getElementById('svc-booking-only').checked = !!data.booking_only;
@@ -625,6 +629,7 @@ async function openServiceModal(id) {
     document.getElementById('svc-category').value       = 'trasporti';
     document.getElementById('svc-price').value          = '';
     document.getElementById('svc-desc').value           = '';
+    document.getElementById('svc-wa-message').value     = '';
     document.getElementById('svc-deposit').value        = '';
     document.getElementById('svc-total').value          = '';
     document.getElementById('svc-booking-only').checked = false;
@@ -654,6 +659,7 @@ async function saveService() {
     category:       document.getElementById('svc-category').value,
     price:          document.getElementById('svc-price').value.trim(),
     description:    document.getElementById('svc-desc').value.trim(),
+    wa_message:     document.getElementById('svc-wa-message').value.trim() || null,
     deposit_amount: depRaw ? parseFloat(depRaw) : null,
     total_amount:   totRaw ? parseFloat(totRaw) : null,
     booking_only:   document.getElementById('svc-booking-only').checked,
