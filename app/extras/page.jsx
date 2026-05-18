@@ -395,16 +395,18 @@ export default function ExtrasPage() {
 
   const handleSubmitRequest = async ({ service, form }) => {
     // 1. Notifica WhatsApp
-    const defaultMsg =
-      `🛎 *Richiesta Concierge — Le Sicilien*\n\n` +
-      `*Servizio:* ${service.name}\n*Prezzo:* ${service.price}\n` +
-      `*Nome:* ${form.nome}\n*Email:* ${form.email}\n` +
-      `*Tel:* ${form.telefono || "—"}\n*Data:* ${form.data}\n` +
-      `*Persone:* ${form.persone}\n*Note:* ${form.note || "—"}`;
-    const customMsg = service.wa_message
-      ? `${service.wa_message}\n\n---\n*Nome:* ${form.nome}\n*Email:* ${form.email}\n*Tel:* ${form.telefono || "—"}\n*Data:* ${form.data}\n*Persone:* ${form.persone}\n*Note:* ${form.note || "—"}`
-      : null;
-    const waText = encodeURIComponent(customMsg || defaultMsg);
+    const WA_DEFAULT = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* {servizio}\n*Prezzo:* {prezzo}\n*Nome:* {nome}\n*Email:* {email}\n*Tel:* {telefono}\n*Data:* {data} ore {orario}\n*Persone:* {persone}\n*Note:* {note}`;
+    const applyTmpl = (tmpl) => tmpl
+      .replace(/\{servizio\}/g, service.name || '')
+      .replace(/\{prezzo\}/g,   service.price || '')
+      .replace(/\{nome\}/g,     form.nome || '')
+      .replace(/\{email\}/g,    form.email || '')
+      .replace(/\{telefono\}/g, form.telefono || '—')
+      .replace(/\{data\}/g,     form.data || '')
+      .replace(/\{orario\}/g,   form.orario || '')
+      .replace(/\{persone\}/g,  form.persone || '')
+      .replace(/\{note\}/g,     form.note || '—');
+    const waText = encodeURIComponent(applyTmpl(service.wa_message || WA_DEFAULT));
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`, "_blank");
     // 2. Salva su DB + notifica email admin
     try {

@@ -3,6 +3,22 @@
 export const dynamic = "force-dynamic";
 
 import { useState, useEffect } from "react";
+
+const WA_DEFAULT_TEMPLATE = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* {servizio}\n*Prezzo:* {prezzo}\n*Nome:* {nome}\n*Email:* {email}\n*Tel:* {telefono}\n*Data:* {data} ore {orario}\n*Persone:* {persone}\n*Note:* {note}`;
+
+function WaPreview({ text }) {
+  if (!text) return null;
+  const parts = text.split(/(\{[a-z]+\})/g);
+  return (
+    <div style={{ fontFamily: "monospace", fontSize: "12px", color: "#3A3530", background: "#F7F4EE", border: "1px solid #E0D9CC", padding: "10px 13px", whiteSpace: "pre-wrap", lineHeight: "1.7", marginTop: "6px" }}>
+      {parts.map((part, i) =>
+        /^\{[a-z]+\}$/.test(part)
+          ? <span key={i} style={{ color: "#0891b2", fontWeight: "600" }}>{part}</span>
+          : part
+      )}
+    </div>
+  );
+}
 import { createClient } from "@supabase/supabase-js";
 
 const getSupabase = () =>
@@ -240,7 +256,7 @@ function ServiceModal({ service, onClose, onSaved }) {
     category:       service?.category       || catDefault.slug,
     category_label: service?.category_label || catDefault.label,
     description:    service?.description    || "",
-    wa_message:     service?.wa_message     || "",
+    wa_message:     service?.wa_message     || WA_DEFAULT_TEMPLATE,
     price:          service?.price          || "",
     revolut_amount: service?.revolut_amount != null ? String(service.revolut_amount) : "",
     deposit_amount: service?.deposit_amount != null ? String(service.deposit_amount) : "",
@@ -288,7 +304,7 @@ function ServiceModal({ service, onClose, onSaved }) {
         revolut_amount: form.revolut_amount ? parseInt(form.revolut_amount)   : null,
         deposit_amount: form.deposit_amount ? parseFloat(form.deposit_amount) : null,
         total_amount:   form.total_amount   ? parseFloat(form.total_amount)   : null,
-        wa_message:     form.wa_message.trim() || null,
+        wa_message:     (form.wa_message.trim() && form.wa_message.trim() !== WA_DEFAULT_TEMPLATE) ? form.wa_message.trim() : null,
         sort_order:     parseInt(form.sort_order) || 0,
         ...(isEdit ? { id: service.id } : {}),
       };
@@ -380,13 +396,14 @@ function ServiceModal({ service, onClose, onSaved }) {
 
           {/* Messaggio WhatsApp */}
           <div>
-            <label style={labelStyle}>Messaggio WhatsApp personalizzato (opzionale)</label>
-            <textarea style={{ ...inputStyle, resize: "vertical" }} rows={4}
-              value={form.wa_message} onChange={e => set("wa_message", e.target.value)}
-              placeholder={`Se vuoi personalizzare il messaggio WA per questo servizio, scrivilo qui.\nAltrimenti verrà usato il template standard:\n\n🛒 Richiesta Concierge — Le Sicilien\nServizio: [nome]\nNome: [ospite]\nEmail: [email] · Tel: [telefono]\nData: [data] ore [orario] · Persone: [n]\nNote: [note]`} />
-            <p style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginTop: "-10px" }}>
-              Se lasciato vuoto, viene usato il template standard con tutti i dati dell'ospite.
+            <label style={labelStyle}>Messaggio WhatsApp</label>
+            <p style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginBottom: "8px" }}>
+              Le variabili in <span style={{ color: "#0891b2", fontWeight: "600" }}>celeste</span> vengono sostituite automaticamente con i dati inseriti dall'ospite.
             </p>
+            <textarea style={{ ...inputStyle, resize: "vertical", fontFamily: "monospace", fontSize: "12px" }} rows={9}
+              value={form.wa_message} onChange={e => set("wa_message", e.target.value)} />
+            <p style={{ fontSize: "10px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginTop: "6px", marginBottom: "4px" }}>ANTEPRIMA</p>
+            <WaPreview text={form.wa_message} />
           </div>
 
           {/* Pagamento parziale */}
