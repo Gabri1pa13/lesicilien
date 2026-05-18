@@ -199,6 +199,7 @@ main{max-width:1280px;margin:0 auto;padding:80px 32px 40px}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 const WA = "393273751480";
+const WA_MESSAGES = {}; // service_id → custom wa_message from DB
 const SUMUP_FN  = 'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout';
 const SUMUP_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const SUPABASE_URL = 'https://amixnhmgxbxuiykqndxi.supabase.co';
@@ -407,7 +408,8 @@ function renderMain() {
         const dotClass = item.type === 'direct' ? 'dot-g' : 'dot-o';
         const dep = item.deposit_amount != null ? item.deposit_amount : 'null';
         const tot = item.total_amount   != null ? item.total_amount   : 'null';
-        const safeDesc = (item.description || '').replace(/'/g, "\\'");
+        const langDesc = item['description_' + currentLang] || item.description_en || item.description || '';
+        const safeDesc = langDesc.replace(/'/g, "\\'");
         const onclickFn = item.type === 'direct'
           ? `directBook('${item.id}','${safeName}','${item.price}',${dep},${tot},'${safeDesc}')`
           : `openModal('${item.id}','${safeName}','${item.price}','${safeDesc}',${dep},${tot})`;
@@ -503,7 +505,7 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 (async () => {
   try {
     const sb = supabase.createClient(SUPABASE_URL, SUMUP_ANON);
-    const { data, error } = await sb.from('services').select('name, image_url, price, service_id, description, deposit_amount, total_amount');
+    const { data, error } = await sb.from('services').select('name, image_url, price, service_id, description, description_en, description_fr, description_de, description_pl, description_zh, deposit_amount, total_amount, wa_message');
     if (!error && data) {
       const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
       const byId = {}, byName = {};
@@ -516,11 +518,17 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
           const itName = T.it['svc_' + item.id] || '';
           const db = byId[item.id] || (itName && byName[norm(itName)]);
           if (db) {
-            if (db.image_url)             item.image_url     = db.image_url;
-            if (db.price)                 item.price         = db.price;
-            if (db.description)           item.description   = db.description;
+            if (db.image_url)              item.image_url      = db.image_url;
+            if (db.price)                  item.price          = db.price;
+            if (db.description)            item.description    = db.description;
+            if (db.description_en)         item.description_en = db.description_en;
+            if (db.description_fr)         item.description_fr = db.description_fr;
+            if (db.description_de)         item.description_de = db.description_de;
+            if (db.description_pl)         item.description_pl = db.description_pl;
+            if (db.description_zh)         item.description_zh = db.description_zh;
             if (db.deposit_amount != null) item.deposit_amount = db.deposit_amount;
             if (db.total_amount   != null) item.total_amount   = db.total_amount;
+            if (db.wa_message)             WA_MESSAGES[item.id] = db.wa_message;
           }
         });
       });
@@ -663,7 +671,11 @@ async function submitRequest(id, name, price, deposit_amount, total_amount) {
   const tel = document.getElementById('f_tel').value.trim();
   const persone = document.getElementById('f_persone').value;
   const note = document.getElementById('f_note').value.trim();
-  const txt = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data} ore ${orario}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
+  const defaultTxt = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* ${name}\n*Prezzo:* ${price}\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data} ore ${orario}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`;
+  const customWA = WA_MESSAGES[id];
+  const txt = customWA
+    ? `${customWA}\n\n---\n*Nome:* ${nome}\n*Email:* ${email}\n*Tel:* ${tel||'—'}\n*Data:* ${data} ore ${orario}\n*Persone:* ${persone}\n*Note:* ${note||'—'}`
+    : defaultTxt;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`, '_blank');
   // Save to DB and send email via Edge Function
   try {

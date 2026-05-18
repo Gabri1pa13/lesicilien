@@ -350,13 +350,14 @@ export default function ExtrasPage() {
   const [descOverrides,    setDescOverrides]     = useState({});
   const [depositOverrides, setDepositOverrides] = useState({});
   const [totalOverrides,   setTotalOverrides]   = useState({});
+  const [waOverrides,      setWaOverrides]      = useState({});
 
   useEffect(() => {
     fetch("/api/admin/services")
       .then(r => r.json())
       .then(({ data }) => {
         if (!data) return;
-        const imgs = {}, prices = {}, descs = {}, deposits = {}, totals = {};
+        const imgs = {}, prices = {}, descs = {}, deposits = {}, totals = {}, was = {};
         data.forEach(svc => {
           const key = svc.service_id || svc.name;
           if (svc.image_url)             imgs[key]     = svc.image_url;
@@ -364,12 +365,14 @@ export default function ExtrasPage() {
           if (svc.description)           descs[key]    = svc.description;
           if (svc.deposit_amount != null) deposits[key] = svc.deposit_amount;
           if (svc.total_amount   != null) totals[key]   = svc.total_amount;
+          if (svc.wa_message)            was[key]      = svc.wa_message;
         });
         setImgOverrides(imgs);
         setPriceOverrides(prices);
         setDescOverrides(descs);
         setDepositOverrides(deposits);
         setTotalOverrides(totals);
+        setWaOverrides(was);
       })
       .catch(() => {});
   }, []);
@@ -392,13 +395,16 @@ export default function ExtrasPage() {
 
   const handleSubmitRequest = async ({ service, form }) => {
     // 1. Notifica WhatsApp
-    const waText = encodeURIComponent(
+    const defaultMsg =
       `🛎 *Richiesta Concierge — Le Sicilien*\n\n` +
       `*Servizio:* ${service.name}\n*Prezzo:* ${service.price}\n` +
       `*Nome:* ${form.nome}\n*Email:* ${form.email}\n` +
       `*Tel:* ${form.telefono || "—"}\n*Data:* ${form.data}\n` +
-      `*Persone:* ${form.persone}\n*Note:* ${form.note || "—"}`
-    );
+      `*Persone:* ${form.persone}\n*Note:* ${form.note || "—"}`;
+    const customMsg = service.wa_message
+      ? `${service.wa_message}\n\n---\n*Nome:* ${form.nome}\n*Email:* ${form.email}\n*Tel:* ${form.telefono || "—"}\n*Data:* ${form.data}\n*Persone:* ${form.persone}\n*Note:* ${form.note || "—"}`
+      : null;
+    const waText = encodeURIComponent(customMsg || defaultMsg);
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`, "_blank");
     // 2. Salva su DB + notifica email admin
     try {
@@ -483,7 +489,8 @@ export default function ExtrasPage() {
                   const effectiveDesc    = descOverrides[item.id]    || descOverrides[item.name]    || "";
                   const effectiveDeposit = depositOverrides[item.id] ?? depositOverrides[item.name] ?? null;
                   const effectiveTotal   = totalOverrides[item.id]   ?? totalOverrides[item.name]   ?? null;
-                  const effectiveItem = { ...item, price: effectivePrice, description: effectiveDesc, deposit_amount: effectiveDeposit, total_amount: effectiveTotal };
+                  const effectiveWA      = waOverrides[item.id]      || waOverrides[item.name]      || null;
+                  const effectiveItem = { ...item, price: effectivePrice, description: effectiveDesc, deposit_amount: effectiveDeposit, total_amount: effectiveTotal, wa_message: effectiveWA };
                   return (
                     <article key={item.id} style={p.card} className="ls-card">
                       {imgUrl && (
