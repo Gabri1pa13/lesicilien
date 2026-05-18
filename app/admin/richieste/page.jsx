@@ -240,6 +240,7 @@ function ServiceModal({ service, onClose, onSaved }) {
     category:       service?.category       || catDefault.slug,
     category_label: service?.category_label || catDefault.label,
     description:    service?.description    || "",
+    wa_message:     service?.wa_message     || "",
     price:          service?.price          || "",
     revolut_amount: service?.revolut_amount != null ? String(service.revolut_amount) : "",
     deposit_amount: service?.deposit_amount != null ? String(service.deposit_amount) : "",
@@ -287,6 +288,7 @@ function ServiceModal({ service, onClose, onSaved }) {
         revolut_amount: form.revolut_amount ? parseInt(form.revolut_amount)   : null,
         deposit_amount: form.deposit_amount ? parseFloat(form.deposit_amount) : null,
         total_amount:   form.total_amount   ? parseFloat(form.total_amount)   : null,
+        wa_message:     form.wa_message.trim() || null,
         sort_order:     parseInt(form.sort_order) || 0,
         ...(isEdit ? { id: service.id } : {}),
       };
@@ -371,6 +373,20 @@ function ServiceModal({ service, onClose, onSaved }) {
             <textarea style={{ ...inputStyle, resize: "vertical" }} rows={2}
               value={form.description} onChange={e => set("description", e.target.value)}
               placeholder="Dettagli aggiuntivi mostrati al cliente..." />
+            <p style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginTop: "-10px" }}>
+              La descrizione viene tradotta automaticamente in tutte le lingue (EN, FR, DE, PL, ZH) al salvataggio.
+            </p>
+          </div>
+
+          {/* Messaggio WhatsApp */}
+          <div>
+            <label style={labelStyle}>Messaggio WhatsApp personalizzato (opzionale)</label>
+            <textarea style={{ ...inputStyle, resize: "vertical" }} rows={4}
+              value={form.wa_message} onChange={e => set("wa_message", e.target.value)}
+              placeholder={`Se vuoi personalizzare il messaggio WA per questo servizio, scrivilo qui.\nAltrimenti verrà usato il template standard:\n\n🛒 Richiesta Concierge — Le Sicilien\nServizio: [nome]\nNome: [ospite]\nEmail: [email] · Tel: [telefono]\nData: [data] ore [orario] · Persone: [n]\nNote: [note]`} />
+            <p style={{ fontSize: "11px", color: BRAND.textMuted, fontFamily: "'Jost',sans-serif", marginTop: "-10px" }}>
+              Se lasciato vuoto, viene usato il template standard con tutti i dati dell'ospite.
+            </p>
           </div>
 
           {/* Pagamento parziale */}
