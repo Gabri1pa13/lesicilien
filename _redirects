@@ -12,3 +12,19 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 /stays/moncada-de-luna/                     /stays/moncada-de-luna-exclusive-stay/  301
 /stays/villa-harmony-relax-a-mondello/      /stays/villa-harmony-relax/             301
 /stays/tilde-sunset-bay/                    /stays/tilde-sunset-bay-villa/          301
+
+# Redirect articoli blog vuoti (property-manager focused) → blog index
+/en/blog/how-much-do-property-managers-charge-in-palermo/              /en/blog/  301
+/en/blog/how-to-choose-the-best-property-manager-in-palermo/           /en/blog/  301
+/en/blog/how-to-list-property-on-airbnb-booking-and-other-platforms/   /en/blog/  301
+/en/blog/how-to-prepare-apartment-for-luxury-short-term-rental/        /en/blog/  301
+/en/blog/how-to-protect-property-from-damage-by-short-term-guests/     /en/blog/  301
+/en/blog/is-short-term-rental-more-profitable-than-long-term-in-sicily/ /en/blog/ 301
+/en/blog/legal-requirements-to-rent-apartment-in-sicily/               /en/blog/  301
+/en/blog/how-short-term-rental-income-is-taxed-in-italy-cedolare-secca/ /en/blog/ 301
+/en/blog/what-does-a-property-manager-do-for-short-term-rentals-in-sicily/ /en/blog/ 301
+/en/blog/what-makes-le-sicilien-different-from-other-property-managers-in-palermo/ /en/blog/ 301
+/en/blog/what-amenities-do-luxury-rentals-in-sicily-include/           /en/blog/  301
+/en/blog/what-do-real-guests-say-about-staying-in-palermo-rentals/     /en/blog/  301
+/en/blog/what-is-the-cancellation-policy-for-luxury-rentals-in-sicily/ /en/blog/  301
+/en/blog/what-is-the-minimum-stay-at-luxury-rentals-in-palermo/        /en/blog/  301
