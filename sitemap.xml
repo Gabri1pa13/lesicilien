@@ -1285,4 +1285,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/how-to-get-from-palermo-airport-to-city-centre/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/is-sicily-safe-for-tourists/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/how-much-does-it-cost-to-rent-a-luxury-villa-in-palermo/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/is-it-cheaper-to-rent-a-villa-or-stay-in-a-hotel-in-palermo/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/en/blog/when-is-the-cheapest-time-to-visit-sicily-and-rent-a-villa/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
