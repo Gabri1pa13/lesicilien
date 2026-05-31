@@ -13,6 +13,29 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 /stays/villa-harmony-relax-a-mondello/      /stays/villa-harmony-relax/             301
 /stays/tilde-sunset-bay/                    /stays/tilde-sunset-bay-villa/          301
 
+# Fix: blog IT linkano a /it/stays/ che non esiste → /stays/ corretto
+/it/stays/moncada-de-luna-exclusive-stay/   /stays/moncada-de-luna-exclusive-stay/  301
+/it/stays/tilde-sunset-bay-villa/           /stays/tilde-sunset-bay-villa/          301
+/it/stays/fior-di-sicilia/                  /stays/fior-di-sicilia/                 301
+/it/stays/villa-harmony-relax/              /stays/villa-harmony-relax/             301
+/it/stays/palermo-centro/                   /stays/moncada-de-luna-exclusive-stay/  301
+/it/stays/eleonora-daragona-home-suites/    /stays/eleonora-daragona-home-suites/   301
+
+# Fix: pagina yacht francese con URL errato
+/fr/charter-yacht-palerme/                  /fr/location-yacht-palerme/             301
+
+# Fix: guide polacche con slug errato (URL tedesco nelle guide PL)
+/pl/przewodniki/wo-uebernachten-palermo-altstadt-vs-mondello/           /pl/         301
+/pl/przewodniki/bnb-in-palermo-lagen-preise-buchung/                    /pl/         301
+/pl/przewodniki/nahe-am-meer-uebernachten-in-palermo-mondello-umgebung/ /pl/         301
+/pl/przewodniki/wo-uebernachten-in-palermo-mit-kindern/                 /pl/         301
+
+# Fix: guide cinesi con slug errato
+/zh/zhinan/wo-uebernachten-palermo-altstadt-vs-mondello/                /zh/         301
+/zh/zhinan/bnb-in-palermo-lagen-preise-buchung/                         /zh/         301
+/zh/zhinan/nahe-am-meer-uebernachten-in-palermo-mondello-umgebung/      /zh/         301
+/zh/zhinan/wo-uebernachten-in-palermo-mit-kindern/                      /zh/         301
+
 # Redirect articoli blog vuoti (property-manager focused) → blog index
 /en/blog/how-much-do-property-managers-charge-in-palermo/              /en/blog/  301
 /en/blog/how-to-choose-the-best-property-manager-in-palermo/           /en/blog/  301
