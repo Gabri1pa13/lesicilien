@@ -176,36 +176,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.lesicilien.it/de/stays/fior-di-sicilia/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/de/stays/moncada-de-luna-exclusive-stay/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/de/stays/tilde-sunset-bay-villa/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/de/stays/villa-harmony-relax/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.lesicilien.it/de/villa-mondello-mit-pool/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -374,36 +344,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.lesicilien.it/en/stays/fior-di-sicilia/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/en/stays/moncada-de-luna-exclusive-stay/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/en/stays/tilde-sunset-bay-villa/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/en/stays/villa-harmony-relax/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.lesicilien.it/en/villa-mondello-with-pool/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -570,36 +510,6 @@
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/fr/stays/fior-di-sicilia/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/fr/stays/moncada-de-luna-exclusive-stay/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/fr/stays/tilde-sunset-bay-villa/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/fr/stays/villa-harmony-relax/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lesicilien.it/fr/villa-mondello-piscine/</loc>
@@ -974,36 +884,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.lesicilien.it/pl/stays/fior-di-sicilia/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/pl/stays/moncada-de-luna-exclusive-stay/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/pl/stays/tilde-sunset-bay-villa/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/pl/stays/villa-harmony-relax/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.lesicilien.it/pl/willa-mondello-z-basenem/</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -1122,36 +1002,6 @@
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/zh/stays/fior-di-sicilia/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/zh/stays/moncada-de-luna-exclusive-stay/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/zh/stays/tilde-sunset-bay-villa/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/zh/stays/villa-harmony-relax/</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lesicilien.it/zh/yongchi-bieshu-balemo/</loc>
