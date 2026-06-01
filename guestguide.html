@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guida per gli ospiti Le Sicilien: informazioni essenziali, servizi concierge e consigli per il tuo soggiorno nelle nostre case vacanze a Palermo." />
@@ -391,7 +408,7 @@
 
       <div class="topbar-site-links notranslate">
         <a href="https://www.lesicilien.it/#properties" class="topbar-site-link">Proprietà</a>
-        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="topbar-site-link topbar-site-cta">Prenota</a>
+        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="topbar-site-link topbar-site-cta" onclick="return gtag_report_conversion(this.href);">Prenota</a>
       </div>
 
       <div class="topbar-row">

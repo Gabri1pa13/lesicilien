@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luxury Apartments Palermo Historic Center | Boutique Stays | Le Sicilien</title>
@@ -196,7 +213,7 @@
           <p class="site-booking-title">Book Direct with Le Sicilien</p>
           <p class="site-booking-text">Live availability for our historic center apartments. Best rate guaranteed.</p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Book now</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book now</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
@@ -245,7 +262,7 @@
       <p>Our team can enhance your stay with curated activities designed to show you the true Palermo: from private market tours with a chef to sunset rooftop aperitivos.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Check availability<small>Best rate guaranteed — Book direct</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Check availability<small>Best rate guaranteed — Book direct</small></a>
         <a class="cta" href="/en/guides/palermo-historic-center-neighborhoods-where-to-stay/">Neighborhood guide<small>Discover the best areas to stay in the center</small></a>
       </div>
 

@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prywatny kucharz w Palermo | Kuchnia sycylijska | Le Sicilien</title>
@@ -258,12 +275,12 @@
           <p class="site-booking-title">Zarezerwuj bezpośrednio w Le Sicilien</p>
           <p class="site-booking-text">Sprawdź dostępność na żywo. Bez prowizji OTA — oszczędź do 15%.</p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Zarezerwuj teraz</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Zarezerwuj teraz</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
       </div>
-      <p class="site-booking-fallback">Jeśli widget się nie ładuje, zarezerwuj bezpośrednio: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">lesicilien.kross.travel</a></p>
+      <p class="site-booking-fallback">Jeśli widget się nie ładuje, zarezerwuj bezpośrednio: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">lesicilien.kross.travel</a></p>
     </section>
 
     <article>
@@ -333,7 +350,7 @@
       <p>Skorzystaj z naszego systemu rezerwacji bezpośredniej, aby sprawdzić dostępność i potwierdzić terminy — bez platformy OTA, bez dodatkowych opłat. W przypadku zapytań o pobyty na zamówienie, spersonalizowane trasy lub pobyty w wielu nieruchomościach skontaktuj się bezpośrednio z naszym zespołem.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Sprawdź dostępność<small>Rezerwacja bezpośrednia — gwarancja najlepszej ceny</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Sprawdź dostępność<small>Rezerwacja bezpośrednia — gwarancja najlepszej ceny</small></a>
         <a class="cta" href="/stays/tilde-sunset-bay-villa/">Willa nad morzem<small>Prywatność nad morzem na sycylijskim wybrzeżu</small></a>
         <a class="cta" href="/stays/villa-harmony-relax/">Willa w Mondello<small>Dostęp do plaży, widoki na morze, pełny concierge</small></a>
       </div>
@@ -377,6 +394,6 @@
       </div>
     </div>
   </footer>
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Zarezerwuj teraz</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Zarezerwuj teraz</a>
 </body>
 </html>

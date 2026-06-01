@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Villas de luxe à Palerme | Propriétés privées &amp; conciergerie | Le Sicilien</title>
@@ -259,12 +276,12 @@
           <p class="site-booking-title">Réservez en direct avec Le Sicilien</p>
           <p class="site-booking-text">Vérifiez les disponibilités en temps réel. Sans frais OTA — meilleur tarif garanti.</p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Réserver</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Réserver</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
       </div>
-      <p class="site-booking-fallback">Si le widget ne se charge pas, réservez directement : <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">lesicilien.kross.travel</a></p>
+      <p class="site-booking-fallback">Si le widget ne se charge pas, réservez directement : <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">lesicilien.kross.travel</a></p>
     </section>
 
     <article>
@@ -296,13 +313,13 @@
           <div class="prop-tag">Front de mer · Province de Palerme</div>
           <h3>Tilde 1 (1er étage)</h3>
           <p>Appartement exclusif en bord de mer avec vue panoramique. Grande terrasse face au coucher de soleil, design raffiné et accès direct à la mer.</p>
-          <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" style="color: var(--gold); font-weight:600; text-decoration:none;">Voir l'appartement →</a>
+          <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" style="color: var(--gold); font-weight:600; text-decoration:none;" onclick="return gtag_report_conversion(this.href);">Voir l'appartement →</a>
         </div>
         <div class="prop-card">
           <div class="prop-tag">Front de mer · Province de Palerme</div>
           <h3>Tilde (Rez-de-chaussée)</h3>
           <p>Appartement de luxe en rez-de-chaussée avec accès immédiat à la mer. Idéal pour les familles, avec espace extérieur privé et vues imprenables.</p>
-          <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" style="color: var(--gold); font-weight:600; text-decoration:none;">Voir l'appartement →</a>
+          <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" style="color: var(--gold); font-weight:600; text-decoration:none;" onclick="return gtag_report_conversion(this.href);">Voir l'appartement →</a>
         </div>
       </div>
 
@@ -340,9 +357,9 @@
       <p>Utilisez notre moteur de réservation directe pour vérifier les disponibilités et confirmer vos dates — sans plateforme OTA, sans frais supplémentaires. Pour des demandes personnalisées, des itinéraires sur mesure ou des séjours multi-propriétés, contactez directement notre équipe.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Vérifier les disponibilités<small>Réservation directe — meilleur tarif garanti</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano">Tilde 1 (1er étage)<small>Vue mer exclusive</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra">Tilde (Rez-de-chaussée)<small>Accès direct mer</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Vérifier les disponibilités<small>Réservation directe — meilleur tarif garanti</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" onclick="return gtag_report_conversion(this.href);">Tilde 1 (1er étage)<small>Vue mer exclusive</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" onclick="return gtag_report_conversion(this.href);">Tilde (Rez-de-chaussée)<small>Accès direct mer</small></a>
         <a class="cta" href="/stays/villa-harmony-relax/">Villa à Mondello<small>Accès plage, vue mer, conciergerie complète</small></a>
       </div>
 
@@ -386,6 +403,6 @@
       </div>
     </div>
   </footer>
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Réserver</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Réserver</a>
 </body>
 </html>

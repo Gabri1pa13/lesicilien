@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luxury Villas Palermo Sicily | Private Pools & Sea Views | Le Sicilien</title>
@@ -196,7 +213,7 @@
           <p class="site-booking-title">Book Direct with Le Sicilien</p>
           <p class="site-booking-text">Check live availability for our luxury villas. Best rate guaranteed.</p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Book now</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book now</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
@@ -215,8 +232,8 @@
           <h3>Tilde Sunset Bay · Apartments</h3>
           <p>Two extraordinary waterfront apartments offering total privacy and panoramic sunset views. Choose between the panoramic Tilde 1 (First Floor) or the spacious Ground Floor unit with direct garden and sea access.</p>
           <div style="margin-top: 10px; display: flex; gap: 10px;">
-            <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" style="color: var(--gold); font-weight:600; text-decoration:none;">Book First Floor →</a>
-            <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" style="color: var(--gold); font-weight:600; text-decoration:none;">Book Ground Floor →</a>
+            <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" style="color: var(--gold); font-weight:600; text-decoration:none;" onclick="return gtag_report_conversion(this.href);">Book First Floor →</a>
+            <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" style="color: var(--gold); font-weight:600; text-decoration:none;" onclick="return gtag_report_conversion(this.href);">Book Ground Floor →</a>
           </div>
         </div>
         <div class="prop-card">
@@ -242,7 +259,7 @@
       <p>By booking your luxury villa in Palermo directly through our site, you ensure the best possible rate and a direct line of communication with our team. We are here to help you plan every detail of your stay.</p>
 
       <div class="cta-grid">
-        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Check availability<small>Direct booking — no extra fees</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Check availability<small>Direct booking — no extra fees</small></a>
         <a class="cta" href="/en/guides/stay-near-the-sea-in-palermo-mondello-surroundings/">Seafront guide<small>Learn more about our coastal locations</small></a>
       </div>
 

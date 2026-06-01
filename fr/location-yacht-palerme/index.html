@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Location de yacht à Palerme | Charter privé &amp; Expériences en mer | Le Sicilien</title>
@@ -348,8 +365,8 @@
 
       <div class="cta-grid">
         <a class="cta cta-gold" href="/fr/villas-luxe-palerme/">Villas de Luxe Palerme<small>Votre base idéale</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano">Tilde 1 (Premier étage)<small>Idéal pour partir en charter</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra">Tilde (Rez-de-chaussée)<small>Idéal pour partir en charter</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" onclick="return gtag_report_conversion(this.href);">Tilde 1 (Premier étage)<small>Idéal pour partir en charter</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" onclick="return gtag_report_conversion(this.href);">Tilde (Rez-de-chaussée)<small>Idéal pour partir en charter</small></a>
         <a class="cta" href="/fr/chef-prive-palerme/">Chef Privé<small>Emportez le chef à bord</small></a>
       </div>
 

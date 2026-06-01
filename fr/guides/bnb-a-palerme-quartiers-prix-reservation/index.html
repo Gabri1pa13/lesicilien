@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B&B a Palerme : quartiers, prix et reservation</title>
@@ -276,12 +293,12 @@
           <p class="site-booking-title">Reservez en direct avec Le Sicilien</p>
           <p class="site-booking-text">Consultez disponibilites et tarifs en temps reel via notre moteur officiel. · <strong>Forte demande — réservez tôt pour les meilleures dates</strong></p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Reserver</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Reserver</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
       </div>
-      <p class="site-booking-fallback">Si le widget ne se charge pas, ouvrez la reservation directe: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">https://lesicilien.kross.travel/</a></p>
+      <p class="site-booking-fallback">Si le widget ne se charge pas, ouvrez la reservation directe: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">https://lesicilien.kross.travel/</a></p>
     </section>
 
     <article class="wrap">
@@ -363,6 +380,6 @@
     </div>
   </footer>
 
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Reserver</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Reserver</a>
 </body>
 </html>

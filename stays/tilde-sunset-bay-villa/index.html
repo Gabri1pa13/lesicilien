@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -524,16 +541,14 @@
               href="https://lesicilien.kross.travel/appartamento-tilde-1-piano"
               class="btn-book"
               target="_blank" rel="noopener"
-              onclick="gtag('event','booking_click',{event_category:'stays',event_label:'tilde_1_piano'});"
-            >
+             onclick="return gtag_report_conversion(this.href);">
               Prenota 1° Piano
             </a>
             <a
               href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra"
               class="btn-book"
               target="_blank" rel="noopener"
-              onclick="gtag('event','booking_click',{event_category:'stays',event_label:'tilde_piano_terra'});"
-            >
+             onclick="return gtag_report_conversion(this.href);">
               Prenota Piano Terra
             </a>
           </div>
@@ -691,8 +706,7 @@
         href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=tilde_sunset_bay"
         class="btn-book-light"
         target="_blank" rel="noopener"
-        onclick="gtag('event','booking_click_cta',{event_category:'stays',event_label:'tilde_sunset_bay'});"
-      >
+       onclick="return gtag_report_conversion(this.href);">
         Verifica disponibilità
       </a>
       <a

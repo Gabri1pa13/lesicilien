@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -153,7 +170,7 @@
         <div class="booking-bar-title">Fior di Sicilia</div>
         <div class="booking-bar-price"><span class="booking-bar-price-label">ab </span>€85<span class="booking-bar-price-label"> / Nacht</span></div>
       </div>
-      <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?utm_source=seo&utm_medium=stays_page&utm_campaign=fior_di_sicilia" class="btn-book" target="_blank" rel="noopener">Jetzt buchen</a>
+      <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?utm_source=seo&utm_medium=stays_page&utm_campaign=fior_di_sicilia" class="btn-book" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Jetzt buchen</a>
     </div>
 
     <div class="features">
@@ -193,7 +210,7 @@
       <div class="section-kicker">Direktbuchung</div>
       <h2 class="section-title">Sparen Sie durch direkte Buchung</h2>
       <p>Keine Provision, bester Preis garantiert, sizilianisches Willkommenspaket inklusive.</p>
-      <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?utm_source=seo&utm_medium=stays_page&utm_campaign=fior_di_sicilia" class="btn-book-light" target="_blank" rel="noopener">Jetzt buchen</a>
+      <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?utm_source=seo&utm_medium=stays_page&utm_campaign=fior_di_sicilia" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Jetzt buchen</a>
     </div>
   </div>
 

@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover luxury villas in Palermo and Mondello with concierge services, private chefs and exclusive experiences. Book direct with Le Sicilien and save.">
@@ -2108,7 +2125,7 @@
             </div>
         </nav>
         <!-- Pulsante Prenota: porta alla home del booking engine (KrossBooking) -->
-        <a href="https://lesicilien.kross.travel/" class="btn-reserve" target="_blank" rel="noopener" style="margin-left: 16px;">
+        <a href="https://lesicilien.kross.travel/" class="btn-reserve" target="_blank" rel="noopener" style="margin-left: 16px;" onclick="return gtag_report_conversion(this.href);">
             Book now
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Open or close menu" aria-expanded="false">
@@ -2145,7 +2162,7 @@
 
                 <!-- CTA Buttons -->
                 <div class="hero-cta-buttons">
-                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Book your stay</a>
+                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" onclick="return gtag_report_conversion(this.href);">Book your stay</a>
                     <a href="#properties" class="hero-btn hero-btn-secondary">Explore our estates</a>
                 </div>
             </div>
@@ -2173,7 +2190,7 @@
                     <article id="moncada" class="prop-card" role="listitem">
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
-                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
+                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">
                                 <picture><source srcset="/moncada.webp" type="image/webp"><img src="/moncada.jpeg" alt="Moncada de Luna Exclusive Stay, historic facade and carriage" loading="lazy" width="800" height="554"></picture>
                             </a>
                         </div>
@@ -2190,7 +2207,7 @@
                                 <li>2 bedrooms</li>
                                 <li>Historic views</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta" onclick="return gtag_report_conversion(this.href);">
                                 Check availability <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2200,7 +2217,7 @@
                     <article id="fiordisicilia" class="prop-card" role="listitem">
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
-                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
+                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">
                                 <picture><source srcset="/fiordisicilia.webp" type="image/webp"><img src="/fiordisicilia.jpeg" alt="Fior di Sicilia apartment with private terrace, outdoor dining" loading="lazy" width="800" height="531"></picture>
                             </a>
                         </div>
@@ -2217,7 +2234,7 @@
                                 <li>Private terrace</li>
                                 <li>Modern kitchen</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta" onclick="return gtag_report_conversion(this.href);">
                                 Check availability <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2241,10 +2258,10 @@
                                 <li>Panoramic Terraces</li>
                             </ul>
                             <div class="cta-group" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                                <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="prop-cta" style="flex: 1; min-width: 140px; font-size: 0.85rem; padding: 10px;">
+                                <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="prop-cta" style="flex: 1; min-width: 140px; font-size: 0.85rem; padding: 10px;" onclick="return gtag_report_conversion(this.href);">
                                     First Floor <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="prop-cta" style="flex: 1; min-width: 140px; font-size: 0.85rem; padding: 10px;">
+                                <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="prop-cta" style="flex: 1; min-width: 140px; font-size: 0.85rem; padding: 10px;" onclick="return gtag_report_conversion(this.href);">
                                     Ground Floor <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -2255,7 +2272,7 @@
                     <article id="villa-harmony" class="prop-card" role="listitem">
                         <div class="prop-image">
                             <!-- Rendiamo cliccabile l'immagine per aprire direttamente la pagina del booking -->
-                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener">
+                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">
                                 <picture><source srcset="/villa harmony.webp" type="image/webp"><img src="/villa harmony.JPG" alt="Villa Harmony Mondello, white facade with garden" loading="lazy" width="800" height="533"></picture>
                             </a>
                         </div>
@@ -2272,7 +2289,7 @@
                                 <li>Garden &amp; terraces</li>
                                 <li>Near the beach</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?guests_rooms=2,0;?guests_rooms=2,0" class="prop-cta" onclick="return gtag_report_conversion(this.href);">
                                 Check availability <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2298,7 +2315,7 @@
                                 <li>Regal atmosphere</li>
                                 <li>Historic centre</li>
                             </ul>
-                            <a href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_eleonora_daragona" class="prop-cta">
+                            <a href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?guests_rooms=2,0&utm_source=lesicilien.it&utm_medium=website&utm_campaign=direct_booking&utm_content=property_eleonora_daragona" class="prop-cta" onclick="return gtag_report_conversion(this.href);">
                                 Check availability <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -2322,8 +2339,8 @@
                         Choose between two exclusive independent apartments: the panoramic <strong>Tilde 1</strong> on the first floor or the spacious <strong>Tilde Ground Floor</strong> with direct garden and sea access.
                     </p>
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-gold" target="_blank" rel="noopener">Book First Floor</a>
-                        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-gold" target="_blank" rel="noopener">Book Ground Floor</a>
+                        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-gold" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book First Floor</a>
+                        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-gold" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book Ground Floor</a>
                     </div>
                 </div>
             </div>
@@ -2567,7 +2584,7 @@
                 <div class="best-price-banner" role="note">
                     <i class="fas fa-shield-halved" aria-hidden="true"></i>
                     <span><strong>Best price guaranteed.</strong> Book directly on lesicilien.it and save on Airbnb and Booking.com commissions.</span>
-                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="best-price-cta" onclick="gtag('event','best_price_click',{event_category:'trust',event_label:'homepage'});">Book now</a>
+                    <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="best-price-cta" onclick="return gtag_report_conversion(this.href);">Book now</a>
                 </div>
 
                 <!-- Review carousel -->
@@ -2704,7 +2721,7 @@
                             </div>
                             <div class="price-savings">Save up to € 120</div>
                             <div style="margin-top: 20px;">
-                                <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="font-size: 0.72rem;" onclick="gtag('event','book_direct_cta',{event_category:'conversion',event_label:'price_compare'});">
+                                <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="font-size: 0.72rem;" onclick="return gtag_report_conversion(this.href);">
                                     Book at the best price
                                 </a>
                             </div>
@@ -3046,7 +3063,7 @@
 
     <!-- Mobile Sticky Booking CTA Bar -->
     <div class="mobile-booking-bar" id="mobileBookingBar" aria-label="Book your stay">
-        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="mobile-booking-btn" onclick="gtag('event','mobile_sticky_booking_click',{event_category:'cta',event_label:'mobile_bar'});">
+        <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="mobile-booking-btn" onclick="return gtag_report_conversion(this.href);">
             Book now
         </a>
         <a href="https://wa.me/393273751480?text=Hi%2C%20I%27d%20like%20to%20book%20a%20stay%20in%20Palermo.%20Can%20you%20help%20me%20check%20availability%3F" target="_blank" rel="noopener" class="mobile-whatsapp-btn" aria-label="Contact us via WhatsApp" onclick="gtag('event','mobile_sticky_whatsapp_click',{event_category:'cta',event_label:'mobile_bar'});">
