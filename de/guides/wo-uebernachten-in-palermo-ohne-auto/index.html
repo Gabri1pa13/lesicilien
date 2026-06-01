@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wo ubernachten in Palermo ohne Auto</title>
@@ -148,10 +165,10 @@
           <p class="site-booking-title">Direkt bei Le Sicilien buchen</p>
           <p class="site-booking-text">Prufen Sie Verfugbarkeit und Preise live im offiziellen Booking-Tool. · <strong>Hohe Nachfrage — buchen Sie frühzeitig für die besten Termine</strong></p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Jetzt buchen</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Jetzt buchen</a>
       </div>
       <div class="site-booking-widget"><div class="kross-container"></div></div>
-      <p class="site-booking-fallback">Wenn das Widget nicht geladen wird, offnen Sie die Direktbuchung: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">https://lesicilien.kross.travel/</a></p>
+      <p class="site-booking-fallback">Wenn das Widget nicht geladen wird, offnen Sie die Direktbuchung: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">https://lesicilien.kross.travel/</a></p>
     </section>
 
     <article class="wrap">
@@ -230,6 +247,6 @@
     </div>
   </footer>
 
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Jetzt buchen</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Jetzt buchen</a>
 </body>
 </html>

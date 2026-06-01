@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8" />
   <!-- mobile-first viewport + safe area (iPhone notch) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -375,7 +392,7 @@
         <a href="https://www.lesicilien.it/guestguide.html">Guest Guide</a>
         <a href="https://www.lesicilien.it/Asset-Management.html">Gestione</a>
       </div>
-      <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="site-nav-cta">Prenota ora</a>
+      <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" class="site-nav-cta" onclick="return gtag_report_conversion(this.href);">Prenota ora</a>
     </div>
   </nav>
 

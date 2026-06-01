@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosa fare a Palermo: 15 esperienze imperdibili nel 2026 | Le Sicilien</title>
@@ -275,12 +292,12 @@
           <p class="site-booking-title">Prenota direttamente con Le Sicilien</p>
           <p class="site-booking-text">Risparmi fino al 15% vs Airbnb e Booking.com · Miglior prezzo garantito · Welcome kit siciliano in omaggio · <strong>Alta richiesta — prenota presto per le date migliori</strong></p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Prenota ora</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Prenota ora</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
       </div>
-      <p class="site-booking-fallback">Se il widget non si carica, apri la prenotazione diretta: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">https://lesicilien.kross.travel/</a></p>
+      <p class="site-booking-fallback">Se il widget non si carica, apri la prenotazione diretta: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">https://lesicilien.kross.travel/</a></p>
     </section>
 
     <article class="wrap">
@@ -343,8 +360,8 @@
       <div class="cta-grid">
         <a class="cta" href="/stays/moncada-de-luna-exclusive-stay">Moncada de Luna · Centro Storico<small>Appartamento di design · 2 camere · da €95/notte</small></a>
         <a class="cta" href="/stays/fior-di-sicilia">Fior di Sicilia · Terrazza Privata<small>Appartamento con terrazza · 2 camere · da €85/notte</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano">Tilde 1 · Fronte Mare Panorama<small>Primo piano · 2 camere · prenota diretto</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra">Tilde · Piano Terra e Giardino<small>Piano terra · 2 camere · prenota diretto</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" onclick="return gtag_report_conversion(this.href);">Tilde 1 · Fronte Mare Panorama<small>Primo piano · 2 camere · prenota diretto</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" onclick="return gtag_report_conversion(this.href);">Tilde · Piano Terra e Giardino<small>Piano terra · 2 camere · prenota diretto</small></a>
         <a class="cta" href="/stays/villa-harmony-relax">Villa Harmony · Mondello<small>Villa con giardino · 3 camere · da €120/notte</small></a>
       </div>
 
@@ -392,6 +409,6 @@
     </div>
   </footer>
 
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Prenota adesso</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Prenota adesso</a>
 </body>
 </html>

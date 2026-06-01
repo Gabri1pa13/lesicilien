@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>巴勒莫景点与活动指南：区域、价格与预订</title>
@@ -276,12 +293,12 @@
           <p class="site-booking-title">通过 Le Sicilien 直接预订</p>
           <p class="site-booking-text">使用官方预订引擎实时查看房态与价格。</p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">立即预订</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">立即预订</a>
       </div>
       <div class="site-booking-widget">
         <div class="kross-container"></div>
       </div>
-      <p class="site-booking-fallback">如果小部件未加载，请打开直订链接: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">https://lesicilien.kross.travel/</a></p>
+      <p class="site-booking-fallback">如果小部件未加载，请打开直订链接: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">https://lesicilien.kross.travel/</a></p>
     </section>
 
     <article class="wrap">
@@ -364,6 +381,6 @@
     </div>
   </footer>
 
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">马上预订</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">马上预订</a>
 </body>
 </html>

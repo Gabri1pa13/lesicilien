@@ -10,6 +10,23 @@
 
   gtag('config', 'AW-18203147858');
 </script>
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18203147858/8TLNCPvmlrccENL89-dD',
+      'value': 1.0,
+      'currency': 'EUR',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Where to stay in Palermo without a car</title>
@@ -148,10 +165,10 @@
           <p class="site-booking-title">Book Direct with Le Sicilien</p>
           <p class="site-booking-text">Save up to 15% vs Airbnb &amp; Booking.com · Best price guaranteed · Free Sicilian welcome kit · <strong>High demand — book early for best dates</strong></p>
         </div>
-        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Book now</a>
+        <a class="site-booking-direct" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book now</a>
       </div>
       <div class="site-booking-widget"><div class="kross-container"></div></div>
-      <p class="site-booking-fallback">If the widget does not load, open direct booking: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">https://lesicilien.kross.travel/</a></p>
+      <p class="site-booking-fallback">If the widget does not load, open direct booking: <a href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">https://lesicilien.kross.travel/</a></p>
     </section>
 
     <article class="wrap">
@@ -180,8 +197,8 @@
       <div class="cta-grid">
         <a class="cta" href="/stays/moncada-de-luna-exclusive-stay">Moncada de Luna · Historic Center<small>Design apartment · 2 bedrooms · from €95/night</small></a>
         <a class="cta" href="/stays/fior-di-sicilia">Fior di Sicilia · Private Terrace<small>Terrace apartment · 2 bedrooms · from €85/night</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano">Tilde 1 · Seafront Panorama<small>First floor · 2 bedrooms · book direct</small></a>
-        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra">Tilde · Ground Floor & Garden<small>Ground floor · 2 bedrooms · book direct</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" onclick="return gtag_report_conversion(this.href);">Tilde 1 · Seafront Panorama<small>First floor · 2 bedrooms · book direct</small></a>
+        <a class="cta" href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" onclick="return gtag_report_conversion(this.href);">Tilde · Ground Floor & Garden<small>Ground floor · 2 bedrooms · book direct</small></a>
         <a class="cta" href="/stays/villa-harmony-relax">Villa Harmony · Mondello<small>Garden villa · 3 bedrooms · from €120/night</small></a>
       </div>
 
@@ -226,6 +243,6 @@
     </div>
   </footer>
 
-  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener">Book now</a>
+  <a class="site-mobile-booking" href="https://lesicilien.kross.travel/" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book now</a>
 </body>
 </html>
