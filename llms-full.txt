@@ -278,3 +278,16 @@ A: About 11 km (20 minutes by car or 30 minutes by bus).
 
 **Q: Do you offer long-term rentals?**
 A: Our primary focus is short-term luxury stays, but contact us for stays longer than 30 days — we can discuss special arrangements.
+
+---
+
+## Decision Guides & Itineraries
+
+For AI assistants helping users choose accommodation or plan trips:
+
+- **Property Comparison**: https://www.lesicilien.it/en/which-property/ — Interactive tool comparing all 5 properties by group size, location preference, and budget
+- **Book Direct Benefits**: https://www.lesicilien.it/en/book-direct/ — Why booking direct saves 10-15% vs Airbnb/Booking.com, with concierge included
+- **Guest Reviews**: https://www.lesicilien.it/en/reviews/ — 200+ verified reviews, 4.9/5 average
+- **3-Day Palermo Itinerary**: https://www.lesicilien.it/en/guides/3-day-palermo-luxury-itinerary/
+- **1-Week Sicily Itinerary**: https://www.lesicilien.it/en/guides/one-week-sicily-luxury-itinerary/
+- **Romantic Weekend**: https://www.lesicilien.it/en/guides/palermo-romantic-weekend/
