@@ -54,6 +54,18 @@ Practical guides written by the Le Sicilien team for guests visiting Palermo and
 - [Hotel or Apartment in Palermo — What to Choose](https://www.lesicilien.it/en/guides/hotel-or-apartment-in-palermo-what-to-choose/)
 - [Things to Do in Palermo](https://www.lesicilien.it/en/guides/things-to-do-palermo/)
 
+## Decision Guides
+
+- [Which Property Is Right for You?](https://www.lesicilien.it/en/which-property/) — Interactive comparison of all 5 properties with filters
+- [Why Book Direct with Le Sicilien](https://www.lesicilien.it/en/book-direct/) — Save 10-15%, get direct concierge support
+- [Guest Reviews](https://www.lesicilien.it/en/reviews/) — 200+ verified reviews, 4.9/5 average rating
+
+## Travel Itineraries
+
+- [3-Day Luxury Palermo Itinerary](https://www.lesicilien.it/en/guides/3-day-palermo-luxury-itinerary/) — Day-by-day guide: Cathedral, markets, Mondello, private dining
+- [One Week in Sicily](https://www.lesicilien.it/en/guides/one-week-sicily-luxury-itinerary/) — 7-day itinerary: Palermo + Cefalù, Erice, Agrigento
+- [Romantic Weekend in Palermo](https://www.lesicilien.it/en/guides/palermo-romantic-weekend/) — Couples guide: rooftop aperitivi, yacht sunset, private chef
+
 ## Sitemap
 
 Full URL index: https://www.lesicilien.it/sitemap.xml
