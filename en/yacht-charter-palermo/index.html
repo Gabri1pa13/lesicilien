@@ -58,7 +58,7 @@ function gtag_report_conversion(url) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="/yacht-mare.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/yacht-mare.webp" type="image/webp" fetchpriority="high">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="all">
   <script type="text/javascript" defer="defer" src="https://data.krossbooking.com/widget/v6/lesicilien/2.js"></script>
@@ -124,7 +124,8 @@ function gtag_report_conversion(url) {
     }
     .header-bg {
       position: absolute; inset: 0;
-      background: url('/yacht-mare.png') center/cover no-repeat;
+      background: url('/yacht-mare.webp') center/cover no-repeat;
+      background: image-set(url('/yacht-mare.webp') type('image/webp'), url('/yacht-mare.png') type('image/png')) center/cover no-repeat;
     }
     .header-overlay {
       position: absolute; inset: 0;
@@ -267,9 +268,9 @@ function gtag_report_conversion(url) {
 
       <div class="photo-grid">
         <img src="/yacht.jpeg" alt="Private yacht hire Palermo" class="photo-wide" loading="eager">
-        <img src="/aperitivo-yacht.png" alt="Sunset aperitivo on a yacht in Palermo" loading="lazy">
-        <img src="/cena-yacht.png" alt="Gourmet dinner on board a yacht in Palermo" loading="lazy">
-        <img src="/letto-yacht .png" alt="Luxury cabin on board a private yacht" loading="lazy">
+        <picture><source srcset="/aperitivo-yacht.webp" type="image/webp"><img src="/aperitivo-yacht.png" alt="Sunset aperitivo on a yacht in Palermo" loading="lazy"></picture>
+        <picture><source srcset="/cena-yacht.webp" type="image/webp"><img src="/cena-yacht.png" alt="Gourmet dinner on board a yacht in Palermo" loading="lazy"></picture>
+        <picture><source srcset="/letto-yacht.webp" type="image/webp"><img src="/letto-yacht .png" alt="Luxury cabin on board a private yacht" loading="lazy"></picture>
       </div>
 
       <h2>Experiences We Arrange</h2>
@@ -277,7 +278,7 @@ function gtag_report_conversion(url) {
 
       <div class="exp-grid">
         <div class="exp-card">
-          <img src="/cena-yacht.png" alt="Gourmet dinner with private chef on a yacht in Palermo" loading="lazy">
+          <picture><source srcset="/cena-yacht.webp" type="image/webp"><img src="/cena-yacht.png" alt="Gourmet dinner with private chef on a yacht in Palermo" loading="lazy"></picture>
           <div class="exp-body">
             <div class="exp-tag">Exclusive experience</div>
             <h3>Gourmet Dinner with Private Chef</h3>
@@ -285,7 +286,7 @@ function gtag_report_conversion(url) {
           </div>
         </div>
         <div class="exp-card">
-          <img src="/aperitivo-yacht.png" alt="Sunset aperitivo on a yacht in Palermo" loading="lazy">
+          <picture><source srcset="/aperitivo-yacht.webp" type="image/webp"><img src="/aperitivo-yacht.png" alt="Sunset aperitivo on a yacht in Palermo" loading="lazy"></picture>
           <div class="exp-body">
             <div class="exp-tag">Romantic experience</div>
             <h3>Sunset Aperitivo</h3>
@@ -293,7 +294,7 @@ function gtag_report_conversion(url) {
           </div>
         </div>
         <div class="exp-card">
-          <img src="/yacht-mare.png" alt="Private excursion to the Egadi Islands from Palermo" loading="lazy">
+          <picture><source srcset="/yacht-mare.webp" type="image/webp"><img src="/yacht-mare.png" alt="Private excursion to the Egadi Islands from Palermo" loading="lazy"></picture>
           <div class="exp-body">
             <div class="exp-tag">Full day</div>
             <h3>Egadi Islands Excursion</h3>
@@ -309,7 +310,7 @@ function gtag_report_conversion(url) {
           </div>
         </div>
         <div class="exp-card">
-          <img src="/letto-yacht .png" alt="Private cruise to Ustica island from Palermo" loading="lazy">
+          <picture><source srcset="/letto-yacht.webp" type="image/webp"><img src="/letto-yacht .png" alt="Private cruise to Ustica island from Palermo" loading="lazy"></picture>
           <div class="exp-body">
             <div class="exp-tag">Adventure &amp; discovery</div>
             <h3>Ustica — Volcanic Island</h3>
@@ -317,7 +318,7 @@ function gtag_report_conversion(url) {
           </div>
         </div>
         <div class="exp-card">
-          <img src="/yacht-interni.png" alt="Custom itinerary private yacht charter Palermo" loading="lazy">
+          <picture><source srcset="/yacht-interni.webp" type="image/webp"><img src="/yacht-interni.png" alt="Custom itinerary private yacht charter Palermo" loading="lazy"></picture>
           <div class="exp-body">
             <div class="exp-tag">Bespoke</div>
             <h3>Personalised Itinerary</h3>

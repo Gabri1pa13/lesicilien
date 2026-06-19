@@ -57,7 +57,7 @@ function gtag_report_conversion(url) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="/cena-yacht.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/cena-yacht.webp" type="image/webp" fetchpriority="high">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-62PCQP1DCW"></script>
   <script>
@@ -107,7 +107,8 @@ function gtag_report_conversion(url) {
     }
     .header-bg {
       position: absolute; inset: 0;
-      background: url('/cena-yacht.png') center/cover no-repeat;
+      background: url('/cena-yacht.webp') center/cover no-repeat;
+      background: image-set(url('/cena-yacht.webp') type('image/webp'), url('/cena-yacht.png') type('image/png')) center/cover no-repeat;
     }
     .header-overlay {
       position: absolute; inset: 0;
@@ -241,7 +242,7 @@ function gtag_report_conversion(url) {
 
       <!-- ── 1. CENA GOURMET ── -->
       <div class="exp-section">
-        <img src="/cena-yacht.png" alt="Cena gourmet con chef privato a bordo yacht Palermo" loading="eager">
+        <picture><source srcset="/cena-yacht.webp" type="image/webp"><img src="/cena-yacht.png" alt="Cena gourmet con chef privato a bordo yacht Palermo" loading="eager"></picture>
         <div class="exp-content">
           <div class="tag">Esperienza esclusiva</div>
           <h3>Cena Gourmet con Chef Privato</h3>
@@ -268,7 +269,7 @@ function gtag_report_conversion(url) {
 
       <!-- ── 2. APERITIVO AL TRAMONTO ── -->
       <div class="exp-section reverse">
-        <img src="/aperitivo-yacht.png" alt="Aperitivo al tramonto sullo yacht Palermo Mondello" loading="lazy">
+        <picture><source srcset="/aperitivo-yacht.webp" type="image/webp"><img src="/aperitivo-yacht.png" alt="Aperitivo al tramonto sullo yacht Palermo Mondello" loading="lazy"></picture>
         <div class="exp-content">
           <div class="tag">Esperienza romantica</div>
           <h3>Aperitivo al Tramonto</h3>
@@ -294,7 +295,7 @@ function gtag_report_conversion(url) {
 
       <!-- ── 3. ISOLE EGADI ── -->
       <div class="exp-section">
-        <img src="/yacht-mare.png" alt="Escursione privata Isole Egadi da Palermo in barca" loading="lazy">
+        <picture><source srcset="/yacht-mare.webp" type="image/webp"><img src="/yacht-mare.png" alt="Escursione privata Isole Egadi da Palermo in barca" loading="lazy"></picture>
         <div class="exp-content">
           <div class="tag">Giornata intera</div>
           <h3>Escursione alle Isole Egadi</h3>
@@ -345,7 +346,7 @@ function gtag_report_conversion(url) {
 
       <!-- ── 5. USTICA ── -->
       <div class="exp-section">
-        <img src="/letto-yacht .png" alt="Crociera privata Ustica Palermo barca" loading="lazy">
+        <picture><source srcset="/letto-yacht.webp" type="image/webp"><img src="/letto-yacht .png" alt="Crociera privata Ustica Palermo barca" loading="lazy"></picture>
         <div class="exp-content">
           <div class="tag">Avventura &amp; scoperta</div>
           <h3>Ustica &mdash; Isola Vulcanica</h3>
@@ -371,7 +372,7 @@ function gtag_report_conversion(url) {
 
       <!-- ── 6. ITINERARIO PERSONALIZZATO ── -->
       <div class="exp-section reverse">
-        <img src="/yacht-interni.png" alt="Itinerario personalizzato charter yacht Palermo" loading="lazy">
+        <picture><source srcset="/yacht-interni.webp" type="image/webp"><img src="/yacht-interni.png" alt="Itinerario personalizzato charter yacht Palermo" loading="lazy"></picture>
         <div class="exp-content">
           <div class="tag">Su misura</div>
           <h3>Itinerario Completamente Personalizzato</h3>
