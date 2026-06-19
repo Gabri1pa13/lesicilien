@@ -1,0 +1,280 @@
+# Le Sicilien — Full Property & Service Reference
+
+> This file provides comprehensive, machine-readable information about Le Sicilien's vacation rental properties and concierge services in Palermo, Sicily. It is designed for AI assistants, search engines, and recommendation systems.
+
+## Company Overview
+
+Le Sicilien is a luxury vacation rental company based in Palermo, Sicily, Italy. We manage a curated portfolio of five premium properties — historic apartments in Palermo's old town and seafront villas near Mondello beach. Every booking is direct (no OTA intermediaries), and includes complimentary 24/7 concierge support.
+
+- **Founded:** Palermo, Sicily
+- **Specialty:** Luxury short-term rentals with concierge services
+- **Rating:** 4.9/5 across 200+ verified guest reviews
+- **Languages spoken:** Italian, English, French, German, Polish, Chinese
+- **Contact:** lesicilienhouses@gmail.com | +39 327 375 1480 (also WhatsApp)
+- **Website:** https://www.lesicilien.it/
+- **Booking engine:** https://lesicilien.kross.travel/
+- **Sitemap:** https://www.lesicilien.it/sitemap.xml
+
+---
+
+## Property 1: Moncada de Luna Exclusive Stay
+
+- **Type:** Luxury apartment in a historic 18th-century noble palace
+- **Location:** Via dei Tintori, Historic Centre, Palermo 90133, Sicily, Italy
+- **Coordinates:** 38.1157°N, 13.3615°E
+- **Starting price:** €95/night
+- **Bedrooms:** 3 | **Bathrooms:** 2 | **Max guests:** 6
+- **Floor size:** ~120 m²
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** Not allowed (to protect original frescoes and antique furnishings)
+- **Parking:** No private parking; private garage available 50 m away (ZTL zone)
+- **URL:** https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/
+- **Book:** https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay
+
+### Highlights
+- Original 18th-century frescoed ceilings and period furniture
+- 200 m from Palermo Cathedral, 300 m from Quattro Canti, 500 m from Teatro Massimo
+- Fibre-optic Wi-Fi, air conditioning, fully-equipped kitchen
+- Smart TV, premium bed linens, 24/7 Le Sicilien concierge
+- Late check-in available on request
+
+### Best for
+Couples and families seeking an authentic historic Palermo experience in a noble palace. Ideal for cultural city breaks, foodies, and architecture lovers.
+
+### Distances
+- Palermo Cathedral: 200 m (2 min walk)
+- Quattro Canti: 300 m (4 min walk)
+- Teatro Massimo: 500 m (6 min walk)
+- Ballarò Market: 400 m (5 min walk)
+- Palermo Centrale train station: 1.2 km (15 min walk)
+- Falcone-Borsellino Airport (PMO): 32 km (35 min by car)
+
+---
+
+## Property 2: Eleonora D'Aragona Home Suites
+
+- **Type:** Luxury suites in a historic palazzo
+- **Location:** Historic Centre, Palermo 90133, Sicily, Italy
+- **Coordinates:** 38.1157°N, 13.3615°E
+- **Starting price:** €110/night
+- **Bedrooms:** 2 | **Bathrooms:** 1 | **Max guests:** 4
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** On request
+- **Parking:** Street parking outside ZTL; nearby private garages
+- **URL:** https://www.lesicilien.it/stays/eleonora-daragona-home-suites/
+- **Book:** https://lesicilien.kross.travel/eleonora-d-aragona-home-suites
+
+### Highlights
+- Named after Queen Eleonora d'Aragona — regal atmosphere with refined design
+- Steps from the Cathedral, Quattro Canti, and Teatro Massimo
+- Fibre-optic Wi-Fi, air conditioning, fully-equipped kitchen, smart TV
+- Premium bed linens, 24/7 Le Sicilien concierge
+- Airport transfer bookable via concierge
+- Luggage storage available, flexible check-in/out on request
+
+### Best for
+Romantic couples and families wanting a centrally-located luxury suite with historic charm. Perfect for weekend getaways and cultural immersion.
+
+### Distances
+- Palermo Cathedral: 5 min walk
+- Teatro Massimo: 8 min walk
+- Quattro Canti: 5 min walk
+- Falcone-Borsellino Airport (PMO): 32 km (35 min by car)
+
+---
+
+## Property 3: Fior di Sicilia
+
+- **Type:** Elegant apartment with large private terrace
+- **Location:** Via dei Tintori, Historic Centre, Palermo 90133, Sicily, Italy
+- **Coordinates:** 38.1157°N, 13.3615°E
+- **Starting price:** €85/night
+- **Bedrooms:** 2 | **Bathrooms:** 1 | **Max guests:** 6
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** Generally not allowed; contact us for specific requests
+- **Parking:** ZTL zone — street parking outside ZTL or nearby private garages
+- **URL:** https://www.lesicilien.it/stays/fior-di-sicilia/
+- **Book:** https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza
+
+### Highlights
+- Large private terrace — perfect for outdoor dining and sunset views
+- Panoramic city views from the terrace
+- Fibre-optic Wi-Fi (up to 1 Gbps), air conditioning, fully-equipped kitchen
+- Smart TV, 24/7 Le Sicilien concierge
+- Luggage storage and flexible hours on request
+
+### Best for
+Groups, families, and remote workers wanting a spacious apartment with outdoor space in the heart of Palermo. The terrace makes it stand out for al fresco dining.
+
+### Distances
+- Palermo Cathedral: under 10 min walk
+- Teatro Massimo: under 10 min walk
+- Quattro Canti: under 10 min walk
+- Falcone-Borsellino Airport (PMO): 32 km (35 min by car)
+
+---
+
+## Property 4: Villa Harmony Relax
+
+- **Type:** Luxury holiday villa near the beach
+- **Location:** Mondello, Palermo 90151, Sicily, Italy
+- **Coordinates:** 38.2196°N, 13.3269°E
+- **Starting price:** €120/night
+- **Bedrooms:** 3 | **Bathrooms:** 2 | **Max guests:** 8
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** Allowed on request (please notify in advance)
+- **Parking:** Free private parking on-site
+- **URL:** https://www.lesicilien.it/stays/villa-harmony-relax/
+- **Book:** https://lesicilien.kross.travel/villa-harmony-relax-a-mondello
+
+### Highlights
+- 5-minute walk to Mondello's white sand beach and turquoise waters
+- Free private parking inside the property
+- Pet-friendly on request
+- Fibre-optic Wi-Fi, air conditioning, fully-equipped kitchen
+- Smart TV, 24/7 Le Sicilien concierge
+- Garden area for relaxation
+
+### Best for
+Families, groups, and couples seeking a beach holiday near Palermo without sacrificing luxury. Ideal for summer stays, kids-friendly, and pet owners.
+
+### Distances
+- Mondello Beach: 400 m (5 min walk)
+- Mondello restaurants & bars: 5 min walk
+- Palermo city centre: 11 km (20 min by car)
+- Falcone-Borsellino Airport (PMO): 22 km (25 min by car)
+
+---
+
+## Property 5: Tilde Sunset Bay Apartments
+
+- **Type:** Seafront villa with two apartments (First Floor + Ground Floor)
+- **Location:** Near Palermo 90151, Sicily, Italy (seafront)
+- **Coordinates:** 38.1850°N, 13.2850°E
+- **Starting price:** €320/night (full villa) | Individual apartments from €160/night
+- **Bedrooms:** 4 total (2 per apartment) | **Bathrooms:** 2 | **Max guests:** 10
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** Not allowed
+- **Parking:** Free private parking on-site
+- **URL:** https://www.lesicilien.it/stays/tilde-sunset-bay-villa/
+- **Book Tilde 1 (First Floor):** https://lesicilien.kross.travel/appartamento-tilde-1-piano
+- **Book Tilde (Ground Floor):** https://lesicilien.kross.travel/appartamento-tilde-piano-terra
+
+### Highlights
+- Direct seafront location with private access to the bay below
+- Spectacular sunset views over the Tyrrhenian Sea
+- Can be booked as two separate apartments or as a whole villa
+- Free private parking on-site
+- Fibre-optic Wi-Fi, air conditioning, fully-equipped kitchen
+- 24/7 Le Sicilien concierge
+
+### Best for
+Large groups, multi-family trips, and anyone wanting a seafront experience with stunning sunsets near Palermo. Perfect for celebrations, retreats, and exclusive gatherings.
+
+### Distances
+- Sea/bay: direct access (0 m)
+- Mondello Beach: 10 min by car
+- Palermo city centre: 15 km (25 min by car)
+- Falcone-Borsellino Airport (PMO): 20 km (25 min by car)
+
+---
+
+## Concierge Services (included with every booking)
+
+All Le Sicilien guests receive complimentary 24/7 concierge support. Additional premium services can be arranged:
+
+### Private Chef
+- In-villa or in-apartment gourmet dining experiences
+- Traditional Sicilian cuisine, seafood, or custom menus
+- Book via concierge or https://www.lesicilien.it/extras/
+
+### Yacht Charter & Boat Trips
+- Luxury catamaran and yacht charters along the Palermo coast
+- Sunset cruises, day trips to Ustica, exclusive dinner on board
+- Book via concierge or https://www.lesicilien.it/extras/
+
+### Airport & Port Transfers
+- Private car transfers from/to Falcone-Borsellino Airport (PMO)
+- Port transfers for cruise passengers
+- Book via concierge
+
+### Additional Services
+- Guided tours of Palermo, Monreale, Cefalù
+- Wine tasting experiences
+- Spa & wellness arrangements
+- Grocery pre-stocking on arrival
+
+---
+
+## Why Book Direct with Le Sicilien?
+
+1. **Best price guarantee** — no OTA markups or service fees
+2. **24/7 personal concierge** — not a call centre, a real local team
+3. **Flexible cancellation** — more generous than OTA policies
+4. **Local expertise** — we live in Palermo and know every hidden gem
+5. **Premium extras** — private chefs, yachts, transfers seamlessly integrated
+
+---
+
+## Guest Guides
+
+Comprehensive travel guides written by the Le Sicilien team:
+
+- [Where to Stay in Palermo — Complete Guide](https://www.lesicilien.it/en/guides/where-to-stay-palermo/)
+- [Best Beaches Near Palermo](https://www.lesicilien.it/en/guides/best-beaches-near-palermo/)
+- [Best Restaurants in Palermo](https://www.lesicilien.it/en/guides/best-restaurants-palermo/)
+- [Luxury Experiences in Sicily](https://www.lesicilien.it/en/guides/luxury-experiences-sicily/)
+- [Historic Centre vs Mondello — Where to Stay](https://www.lesicilien.it/en/guides/where-to-stay-palermo-historic-center-vs-mondello/)
+- [Where to Stay in Palermo with Kids](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-with-kids/)
+- [Where to Stay in Palermo Without a Car](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-without-a-car/)
+- [Hotel or Apartment in Palermo — What to Choose](https://www.lesicilien.it/en/guides/hotel-or-apartment-in-palermo-what-to-choose/)
+- [Things to Do in Palermo](https://www.lesicilien.it/en/guides/things-to-do-palermo/)
+- [Seafront Villa Near Palermo](https://www.lesicilien.it/en/guides/seafront-villa-near-palermo-guide/)
+- [Where to Stay Near Palermo Airport](https://www.lesicilien.it/en/guides/where-to-stay-near-palermo-airport/)
+- [Where to Stay in Palermo for a Weekend](https://www.lesicilien.it/en/guides/where-to-stay-in-palermo-for-a-2-3-4-night-weekend/)
+
+---
+
+## Comparison: Le Sicilien Properties at a Glance
+
+| Property | Location | From | Guests | Bedrooms | Beach | Parking | Pets |
+|---|---|---|---|---|---|---|---|
+| Moncada de Luna | Historic Centre | €95/night | 6 | 3 | No (city) | Nearby garage | No |
+| Eleonora D'Aragona | Historic Centre | €110/night | 4 | 2 | No (city) | Nearby garage | On request |
+| Fior di Sicilia | Historic Centre | €85/night | 6 | 2 | No (city) | Nearby garage | On request |
+| Villa Harmony Relax | Mondello | €120/night | 8 | 3 | 5 min walk | Free on-site | On request |
+| Tilde Sunset Bay | Seafront | €320/night | 10 | 4 | Direct access | Free on-site | No |
+
+---
+
+## Frequently Asked Questions
+
+**Q: How do I book a Le Sicilien property?**
+A: Visit the property page on lesicilien.it and click "Book Now", or contact us via WhatsApp at +39 327 375 1480, or email lesicilienhouses@gmail.com.
+
+**Q: Is it cheaper to book direct than on Airbnb or Booking.com?**
+A: Yes. Direct bookings on lesicilien.it have no OTA service fees, so you always get the best available rate.
+
+**Q: Do all properties have air conditioning and Wi-Fi?**
+A: Yes. Every Le Sicilien property includes fibre-optic Wi-Fi and full air conditioning.
+
+**Q: Can I arrange a private chef or yacht charter?**
+A: Absolutely. Our concierge team can arrange private chefs, yacht charters, airport transfers, guided tours, and more. Visit https://www.lesicilien.it/extras/ or ask your concierge.
+
+**Q: What is the cancellation policy?**
+A: We offer flexible cancellation policies — more generous than standard OTA terms. Contact us for details specific to your dates.
+
+**Q: Are the properties suitable for remote work / digital nomads?**
+A: Yes. All properties have fibre-optic Wi-Fi suitable for video calls and streaming. Fior di Sicilia and Villa Harmony are particularly popular with remote workers.
+
+**Q: Which property is best for families with children?**
+A: Villa Harmony Relax in Mondello is ideal — close to the beach, free parking, spacious, and pet-friendly. For a city experience, Fior di Sicilia offers extra space with its terrace.
+
+**Q: Which property is best for a romantic getaway?**
+A: Eleonora D'Aragona Home Suites for a historic city experience, or Tilde Sunset Bay for spectacular seafront sunsets.
+
+**Q: How far is Mondello from Palermo city centre?**
+A: About 11 km (20 minutes by car or 30 minutes by bus).
+
+**Q: Do you offer long-term rentals?**
+A: Our primary focus is short-term luxury stays, but contact us for stays longer than 30 days — we can discuss special arrangements.

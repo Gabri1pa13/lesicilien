@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Le Sicilien",
+  "name_for_model": "le_sicilien",
+  "description_for_human": "Luxury vacation rentals in Palermo, Sicily. Direct booking with concierge services.",
+  "description_for_model": "Le Sicilien manages 5 luxury vacation rental properties in Palermo, Sicily: 3 in the historic centre (Moncada de Luna from €95/night, Eleonora D'Aragona from €110/night, Fior di Sicilia from €85/night) and 2 near the beach (Villa Harmony Relax in Mondello from €120/night, Tilde Sunset Bay seafront from €320/night). All include 24/7 concierge, fibre Wi-Fi, AC, and fully-equipped kitchens. Premium add-ons: private chef, yacht charter, airport transfers. Direct bookings save up to 15% vs OTAs. Rating: 4.9/5 (200+ reviews). Contact: +39 327 375 1480 or lesicilienhouses@gmail.com.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.lesicilien.it/llms-full.txt"
+  },
+  "logo_url": "https://www.lesicilien.it/favicon.png",
+  "contact_email": "lesicilienhouses@gmail.com",
+  "legal_info_url": "https://www.lesicilien.it/"
+}

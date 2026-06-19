@@ -2,6 +2,8 @@
 
 > Le Sicilien is a luxury vacation rental company offering private villas and estates in Palermo and Sicily, Italy. We specialize in direct bookings without OTA intermediaries, paired with bespoke concierge services including private chefs, yacht charters, and airport transfers.
 
+> For comprehensive property details (prices, room counts, amenities, distances, booking links), see: https://www.lesicilien.it/llms-full.txt
+
 ## About
 
 Le Sicilien manages a curated collection of historic residences and luxury villas in Palermo and the surrounding Sicilian coast. All properties are in the premium segment (€€€) with full concierge support.
