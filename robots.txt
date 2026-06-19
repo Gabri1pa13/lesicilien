@@ -17,10 +17,26 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Googlebot
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 Sitemap: https://www.lesicilien.it/sitemap.xml
+
+# AI-readable content
+# llms.txt: https://www.lesicilien.it/llms.txt
+# llms-full.txt: https://www.lesicilien.it/llms-full.txt
 
 Disallow: /private/
 Disallow: /admin/
