@@ -42,3 +42,4 @@ Disallow: /private/
 Disallow: /admin/
 Disallow: /tmp/
 Disallow: /README.md
+Disallow: /SEO_CONTENT_STRATEGY.html
