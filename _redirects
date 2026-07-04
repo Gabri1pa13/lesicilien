@@ -55,3 +55,17 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 /en/blog/what-do-real-guests-say-about-staying-in-palermo-rentals/     /en/blog/  301
 /en/blog/what-is-the-cancellation-policy-for-luxury-rentals-in-sicily/ /en/blog/  301
 /en/blog/what-is-the-minimum-stay-at-luxury-rentals-in-palermo/        /en/blog/  301
+
+# Riposizionamento pagine piscina -> fronte mare (nessuna proprieta con piscina in portfolio)
+/it/ville-con-piscina-palermo/               /it/ville-fronte-mare-palermo/  301
+/en/villas-with-pool-palermo/                /en/seafront-villas-palermo/  301
+/fr/villas-piscine-palerme/                  /fr/villas-bord-de-mer-palerme/  301
+/de/villen-mit-pool-palermo/                 /de/villen-am-meer-palermo/  301
+/pl/wille-z-basenem-palermo/                 /pl/wille-nad-morzem-palermo/  301
+/zh/yongchi-bieshu-balemo/                   /zh/haijing-bieshu-balemo/  301
+/it/villa-mondello-con-piscina/              /it/villa-mondello-vista-mare/  301
+/en/villa-mondello-with-pool/                /en/villa-mondello-near-beach/  301
+/fr/villa-mondello-piscine/                  /fr/villa-mondello-bord-de-mer/  301
+/de/villa-mondello-mit-pool/                 /de/villa-mondello-am-meer/  301
+/pl/willa-mondello-z-basenem/                /pl/willa-mondello-nad-morzem/  301
+/zh/mengdele-yongchi-bieshu/                 /zh/mengdele-haibian-bieshu/  301
