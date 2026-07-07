@@ -73,51 +73,58 @@ function gtag_report_conversion(url) {
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Tilde Sunset Bay Apartments",
-    "description": "Tilde Sunset Bay: dwa luksusowe apartamenty nad morzem z widokiem na zachód słońca koło Palermo. Rezerwacja bezpośrednia w Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
-    "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Palermo",
-      "addressRegion": "Sicilia",
-      "addressCountry": "IT"
-    },
-    "priceRange": "€€€",
-    "starRating": {"@type": "Rating", "ratingValue": "5"},
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "47"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "320",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "Niesamowita lokalizacja nad morzem z bezpośrednim dostępem do prywatnej zatoki. Spektakularne zachody słońca."
-      }
-    ]
+{
+ "@context": "https://schema.org",
+ "@type": [
+  "LodgingBusiness",
+  "VacationRental"
+ ],
+ "name": "Tilde Sunset Bay Apartments",
+ "description": "Tilde Sunset Bay: dwa luksusowe apartamenty nad morzem z widokiem na zachód słońca koło Palermo. Rezerwacja bezpośrednia w Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
+ "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "Costa Palermitana",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "addressCountry": "IT",
+  "postalCode": "90149"
+ },
+ "priceRange": "€€€",
+ "starRating": {
+  "@type": "Rating",
+  "ratingValue": "5"
+ },
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "320",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-tilde-sunset-bay-villa",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 4
   }
-  </script>
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.175,
+  "longitude": 13.3
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

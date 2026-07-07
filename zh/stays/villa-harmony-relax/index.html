@@ -73,51 +73,58 @@ function gtag_report_conversion(url) {
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Villa Harmony Relax",
-    "description": "和谐放松别墅位于蒙代洛：巴勒莫最美海滩附近的豪华度假别墅。3间卧室，花园，清澈海水。直接通过Le Sicilien预订。",
-    "url": "https://www.lesicilien.it/stays/villa-harmony-relax/",
-    "image": "https://www.lesicilien.it/villa harmony.webp",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Palermo",
-      "addressRegion": "Sicilia",
-      "addressCountry": "IT"
-    },
-    "priceRange": "€€€",
-    "starRating": {"@type": "Rating", "ratingValue": "5"},
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "83"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "120",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "距蒙代洛海滩仅5分钟路程的精美别墅。私人停车场、休闲花园，礼宾服务随时可用。"
-      }
-    ]
+{
+ "@context": "https://schema.org",
+ "@type": [
+  "LodgingBusiness",
+  "VacationRental"
+ ],
+ "name": "Villa Harmony Relax",
+ "description": "和谐放松别墅位于蒙代洛：巴勒莫最美海滩附近的豪华度假别墅。3间卧室，花园，清澈海水。直接通过Le Sicilien预订。",
+ "url": "https://www.lesicilien.it/stays/villa-harmony-relax/",
+ "image": "https://www.lesicilien.it/villa harmony.webp",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "Mondello",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "addressCountry": "IT",
+  "postalCode": "90151"
+ },
+ "priceRange": "€€€",
+ "starRating": {
+  "@type": "Rating",
+  "ratingValue": "5"
+ },
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "120",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-villa-harmony-relax",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 4
   }
-  </script>
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.202,
+  "longitude": 13.3233
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
