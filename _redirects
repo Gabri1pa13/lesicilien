@@ -69,3 +69,38 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 /de/villa-mondello-mit-pool/                 /de/villa-mondello-am-meer/  301
 /pl/willa-mondello-z-basenem/                /pl/willa-mondello-nad-morzem/  301
 /zh/mengdele-yongchi-bieshu/                 /zh/mengdele-haibian-bieshu/  301
+
+# Fix: 404 rilevati da Search Console (report indicizzazione 30/06)
+
+# /it/ non esiste come path — l'homepage italiana è la root
+/it/                                         /                               301
+
+# Vecchi target hreflang EN mai esistiti (corretti nella sorgente, ora anche redirect diretto)
+/en/vacation-rentals-palermo/                /en/villas-palermo/             301
+/en/vacation-apartments-palermo-center/      /en/luxury-apartments-palermo-historic-center/  301
+/en/holiday-apartments-palermo-centre/       /en/luxury-apartments-palermo-historic-center/  301
+
+# Vecchi slug proprietà (mondello/palermo-centro/villa-fronte-mare) nelle versioni EN/DE/FR
+# — pl/zh già coperti sopra da /pl/stays/:splat e /zh/stays/:splat
+/en/stays/mondello/                          /en/stays/villa-harmony-relax/            301
+/en/stays/palermo-centro/                    /en/stays/moncada-de-luna-exclusive-stay/ 301
+/en/stays/villa-fronte-mare/                 /en/stays/tilde-sunset-bay-villa/         301
+/de/stays/mondello/                          /de/stays/villa-harmony-relax/            301
+/de/stays/palermo-centro/                    /de/stays/moncada-de-luna-exclusive-stay/ 301
+/de/stays/villa-fronte-mare/                 /de/stays/tilde-sunset-bay-villa/         301
+/fr/stays/mondello/                          /fr/stays/villa-harmony-relax/            301
+/fr/stays/palermo-centro/                    /fr/stays/moncada-de-luna-exclusive-stay/ 301
+/fr/stays/villa-fronte-mare/                 /fr/stays/tilde-sunset-bay-villa/         301
+
+# Link storico con virgolette curve residue nell'URL (bug già corretto in Asset-Management.html)
+/%E2%80%9Dkeycasestudy.html%E2%80%9D          /keycasestudy.html              301
+
+# Contatti — la homepage non ha una pagina /contact dedicata, ma un'ancora nella sezione footer
+/contact*                                    /#contact                       301
+
+# Vecchie deep-link del motore di prenotazione precedente (root domain), ora su kross.travel
+# Assunzione: "deluxe two bedroom apartment" e "moncada...palazzo nobile" = Moncada de Luna (2 camere, palazzo storico)
+/room/deluxe-two-bedroom-apartment*          /stays/moncada-de-luna-exclusive-stay/  301
+/it/camera/moncada-de-luna-appartamento-in-palazzo-nobile* /stays/moncada-de-luna-exclusive-stay/  301
+# Nessuna proprietà attuale ha una vasca idromassaggio in descrizione: redirect alla pagina di confronto
+/it/camera/camera-king-con-vasca-idromassaggio*  /it/quale-proprieta/  301
