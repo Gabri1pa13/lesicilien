@@ -121,67 +121,90 @@ function gtag_report_conversion(url) {
   </script>
 
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "VacationRental",
+ "name": "Tilde Sunset Bay Villa",
+ "description": "Villa di lusso fronte mare nei pressi di Palermo: accesso diretto alla baia, tramonti spettacolari e servizi esclusivi. Gestita da Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
+ "image": [
+  "https://www.lesicilien.it/tildesunsetbay.jpg",
+  "https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"
+ ],
+ "telephone": "+39-327-375-1480",
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "postalCode": "90151",
+  "addressCountry": "IT"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.185,
+  "longitude": 13.285
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 4,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 10
+ },
+ "petsAllowed": "No",
+ "amenityFeature": [
   {
-    "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "name": "Tilde Sunset Bay Villa",
-    "description": "Villa di lusso fronte mare nei pressi di Palermo: accesso diretto alla baia, tramonti spettacolari e servizi esclusivi. Gestita da Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
-    "image": [
-      "https://www.lesicilien.it/tildesunsetbay.jpg",
-      "https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"
-    ],
-    "telephone": "+39-327-375-1480",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Palermo",
-      "addressRegion": "Sicilia",
-      "postalCode": "90151",
-      "addressCountry": "IT"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 38.1850,
-      "longitude": 13.2850
-    },
-    "checkinTime": "15:00",
-    "checkoutTime": "10:00",
-    "numberOfRooms": 4,
-    "occupancy": {
-      "@type": "QuantitativeValue",
-      "maxValue": 10
-    },
-    "petsAllowed": "No",
-    "amenityFeature": [
-      { "@type": "LocationFeatureSpecification", "name": "Accesso diretto al mare", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Vista mare frontale", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true }
-    ],
-    "priceRange": "€€€€",
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "320",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "42"
-    }
+   "@type": "LocationFeatureSpecification",
+   "name": "Accesso diretto al mare",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Vista mare frontale",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Parcheggio privato",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Wi-Fi Fibra",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Aria condizionata",
+   "value": true
   }
-  </script>
+ ],
+ "priceRange": "€€€€",
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "320",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-tilde-sunset-bay-villa",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 10
+  },
+  "numberOfBedrooms": 4
+ }
+}
+</script>
 
   <link rel="icon" href="../../favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />

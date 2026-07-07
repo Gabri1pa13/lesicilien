@@ -90,53 +90,91 @@ function gtag_report_conversion(url) {
   }
   </script>
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "VacationRental",
+ "name": "Moncada de Luna Exclusive Stay",
+ "description": "Luxuswohnung in einem Adelspalazzo aus dem 18. Jahrhundert im Herzen der Altstadt von Palermo. Freskierte Decken, antike Möbel und moderner Komfort. Betrieben von Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/",
+ "image": [
+  "https://www.lesicilien.it/moncada.jpeg",
+  "https://www.lesicilien.it/camerapalazzomoncada.jpg"
+ ],
+ "telephone": "+39-327-375-1480",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "Via dei Tintori",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "postalCode": "90133",
+  "addressCountry": "IT"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.1157,
+  "longitude": 13.3615
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 3,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 6
+ },
+ "petsAllowed": "No",
+ "amenityFeature": [
   {
-    "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "name": "Moncada de Luna Exclusive Stay",
-    "description": "Luxuswohnung in einem Adelspalazzo aus dem 18. Jahrhundert im Herzen der Altstadt von Palermo. Freskierte Decken, antike Möbel und moderner Komfort. Betrieben von Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/",
-    "image": ["https://www.lesicilien.it/moncada.jpeg","https://www.lesicilien.it/camerapalazzomoncada.jpg"],
-    "telephone": "+39-327-375-1480",
-    "address": {"@type":"PostalAddress","streetAddress":"Via dei Tintori","addressLocality":"Palermo","addressRegion":"Sicilia","postalCode":"90133","addressCountry":"IT"},
-    "geo": {"@type":"GeoCoordinates","latitude":38.1157,"longitude":13.3615},
-    "checkinTime": "15:00",
-    "checkoutTime": "10:00",
-    "numberOfRooms": 3,
-    "occupancy": {"@type":"QuantitativeValue","maxValue":6},
-    "petsAllowed": "No",
-    "amenityFeature": [
-      {"@type":"LocationFeatureSpecification","name":"Historischer Palazzo","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Originale Fresken","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Glasfaser-WLAN","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Klimaanlage","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Vollausgestattete Küche","value":true}
-    ],
-    "priceRange": "€€€",
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"4.9","bestRating":"5","worstRating":"1","ratingCount":"127"},
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "95",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "Historischer Palast aus dem 18. Jahrhundert mit atemberaubenden Originalfresken. Ultrazentrale Lage, 200m vom Dom."
-      }
-    ]
+   "@type": "LocationFeatureSpecification",
+   "name": "Historischer Palazzo",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Originale Fresken",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Glasfaser-WLAN",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Klimaanlage",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Vollausgestattete Küche",
+   "value": true
   }
-  </script>
+ ],
+ "priceRange": "€€€",
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "95",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-moncada-de-luna-exclusive-stay",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 6
+  },
+  "numberOfBedrooms": 3
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
