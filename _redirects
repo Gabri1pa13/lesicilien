@@ -13,9 +13,10 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 /stays/villa-harmony-relax-a-mondello/      /stays/villa-harmony-relax/             301
 /stays/tilde-sunset-bay/                    /stays/tilde-sunset-bay-villa/          301
 
-# Fix: pagine stays PL/ZH non ancora tradotte → canonical /stays/
+# Fix: pagine stays PL/ZH/ES non ancora tradotte → canonical /stays/
 /pl/stays/:splat  /stays/:splat  301
 /zh/stays/:splat  /stays/:splat  301
+/es/stays/:splat  /stays/:splat  301
 
 # Fix: blog IT linkano a /it/stays/ che non esiste → /stays/ corretto
 /it/stays/moncada-de-luna-exclusive-stay/   /stays/moncada-de-luna-exclusive-stay/  301
