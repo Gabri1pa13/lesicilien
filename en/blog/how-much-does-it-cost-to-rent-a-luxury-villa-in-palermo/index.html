@@ -28,7 +28,8 @@ function gtag_report_conversion(url) {
       'value': 1.0,
       'currency': 'EUR',
       'transaction_id': '',
-      'event_callback': callback
+      'event_callback': callback,
+      'event_timeout': 2000
   });
   return false;
 }
