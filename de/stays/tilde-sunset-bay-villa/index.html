@@ -90,53 +90,90 @@ function gtag_report_conversion(url) {
   }
   </script>
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "VacationRental",
+ "name": "Tilde Sunset Bay Villa",
+ "description": "Luxusvilla direkt am Meer bei Palermo: direkter Zugang zur Bucht, spektakuläre Sonnenuntergänge und exklusive Services. Betrieben von Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
+ "image": [
+  "https://www.lesicilien.it/tildesunsetbay.jpg",
+  "https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"
+ ],
+ "telephone": "+39-327-375-1480",
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "postalCode": "90151",
+  "addressCountry": "IT"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.185,
+  "longitude": 13.285
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 4,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 10
+ },
+ "petsAllowed": "No",
+ "amenityFeature": [
   {
-    "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "name": "Tilde Sunset Bay Villa",
-    "description": "Luxusvilla direkt am Meer bei Palermo: direkter Zugang zur Bucht, spektakuläre Sonnenuntergänge und exklusive Services. Betrieben von Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
-    "image": ["https://www.lesicilien.it/tildesunsetbay.jpg","https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"],
-    "telephone": "+39-327-375-1480",
-    "address": {"@type":"PostalAddress","addressLocality":"Palermo","addressRegion":"Sicilia","postalCode":"90151","addressCountry":"IT"},
-    "geo": {"@type":"GeoCoordinates","latitude":38.1850,"longitude":13.2850},
-    "checkinTime": "15:00",
-    "checkoutTime": "10:00",
-    "numberOfRooms": 4,
-    "occupancy": {"@type":"QuantitativeValue","maxValue":10},
-    "petsAllowed": "No",
-    "amenityFeature": [
-      {"@type":"LocationFeatureSpecification","name":"Direkter Meereszugang","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Frontaler Meerblick","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Privatparkplatz","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Glasfaser-WLAN","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Klimaanlage","value":true}
-    ],
-    "priceRange": "€€€€",
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5.0","bestRating":"5","worstRating":"1","ratingCount":"42"},
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "320",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "Unglaubliche Lage direkt am Meer mit direktem Zugang zu einer privaten Bucht. Spektakuläre Sonnenuntergänge."
-      }
-    ]
+   "@type": "LocationFeatureSpecification",
+   "name": "Direkter Meereszugang",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Frontaler Meerblick",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Privatparkplatz",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Glasfaser-WLAN",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Klimaanlage",
+   "value": true
   }
-  </script>
+ ],
+ "priceRange": "€€€€",
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "320",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/appartamento-tilde-1-piano"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-tilde-sunset-bay-villa",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 10
+  },
+  "numberOfBedrooms": 4
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

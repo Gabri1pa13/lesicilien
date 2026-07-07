@@ -121,67 +121,90 @@ function gtag_report_conversion(url) {
   </script>
 
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "VacationRental",
+ "name": "Villa Harmony Relax a Mondello",
+ "description": "Villa di lusso a Mondello, la rinomata spiaggia di Palermo: relax, sabbia bianca, acque cristalline e tutti i comfort di un soggiorno esclusivo. Gestita da Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/villa-harmony-relax/",
+ "image": [
+  "https://www.lesicilien.it/villa harmony.webp",
+  "https://www.lesicilien.it/villa%20harmony.JPG"
+ ],
+ "telephone": "+39-327-375-1480",
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Mondello",
+  "addressRegion": "Palermo, Sicilia",
+  "postalCode": "90151",
+  "addressCountry": "IT"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.2196,
+  "longitude": 13.3269
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 3,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 8
+ },
+ "petsAllowed": "On request",
+ "amenityFeature": [
   {
-    "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "name": "Villa Harmony Relax a Mondello",
-    "description": "Villa di lusso a Mondello, la rinomata spiaggia di Palermo: relax, sabbia bianca, acque cristalline e tutti i comfort di un soggiorno esclusivo. Gestita da Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/villa-harmony-relax/",
-    "image": [
-      "https://www.lesicilien.it/villa harmony.webp",
-      "https://www.lesicilien.it/villa%20harmony.JPG"
-    ],
-    "telephone": "+39-327-375-1480",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Mondello",
-      "addressRegion": "Palermo, Sicilia",
-      "postalCode": "90151",
-      "addressCountry": "IT"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 38.2196,
-      "longitude": 13.3269
-    },
-    "checkinTime": "15:00",
-    "checkoutTime": "10:00",
-    "numberOfRooms": 3,
-    "occupancy": {
-      "@type": "QuantitativeValue",
-      "maxValue": 8
-    },
-    "petsAllowed": "On request",
-    "amenityFeature": [
-      { "@type": "LocationFeatureSpecification", "name": "Vicinanza alla spiaggia", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi Fibra", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata", "value": true }
-    ],
-    "priceRange": "€€€€",
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "120",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "127"
-    }
+   "@type": "LocationFeatureSpecification",
+   "name": "Vicinanza alla spiaggia",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Parcheggio privato",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Wi-Fi Fibra",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Aria condizionata",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Cucina attrezzata",
+   "value": true
   }
-  </script>
+ ],
+ "priceRange": "€€€€",
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "120",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-villa-harmony-relax",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 8
+  },
+  "numberOfBedrooms": 3
+ }
+}
+</script>
 
   <link rel="icon" href="../../favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />

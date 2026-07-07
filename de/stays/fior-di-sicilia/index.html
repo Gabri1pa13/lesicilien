@@ -90,53 +90,90 @@ function gtag_report_conversion(url) {
   }
   </script>
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "VacationRental",
+ "name": "Fior di Sicilia | Wohnung mit Privatterrasse Palermo",
+ "description": "Elegante Wohnung mit exklusiver Privatterrasse in Palermo. Ideal für alle, die Komfort, Stil und eine perfekte Lage zur Stadterkundung suchen. Betrieben von Le Sicilien.",
+ "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
+ "image": [
+  "https://www.lesicilien.it/fiordisicilia.jpeg",
+  "https://www.lesicilien.it/fiordisicilia.webp"
+ ],
+ "telephone": "+39-327-375-1480",
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "postalCode": "90133",
+  "addressCountry": "IT"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.1157,
+  "longitude": 13.3615
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 2,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 6
+ },
+ "petsAllowed": "Auf Anfrage",
+ "amenityFeature": [
   {
-    "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "name": "Fior di Sicilia | Wohnung mit Privatterrasse Palermo",
-    "description": "Elegante Wohnung mit exklusiver Privatterrasse in Palermo. Ideal für alle, die Komfort, Stil und eine perfekte Lage zur Stadterkundung suchen. Betrieben von Le Sicilien.",
-    "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
-    "image": ["https://www.lesicilien.it/fiordisicilia.jpeg","https://www.lesicilien.it/fiordisicilia.webp"],
-    "telephone": "+39-327-375-1480",
-    "address": {"@type":"PostalAddress","addressLocality":"Palermo","addressRegion":"Sicilia","postalCode":"90133","addressCountry":"IT"},
-    "geo": {"@type":"GeoCoordinates","latitude":38.1157,"longitude":13.3615},
-    "checkinTime": "15:00",
-    "checkoutTime": "10:00",
-    "numberOfRooms": 2,
-    "occupancy": {"@type":"QuantitativeValue","maxValue":6},
-    "petsAllowed": "Auf Anfrage",
-    "amenityFeature": [
-      {"@type":"LocationFeatureSpecification","name":"Privatterrasse","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Glasfaser-WLAN","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Klimaanlage","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Vollausgestattete Küche","value":true},
-      {"@type":"LocationFeatureSpecification","name":"ZTL-Zugang","value":true}
-    ],
-    "priceRange": "€€€",
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","worstRating":"1","ratingCount":"28"},
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "85",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "Die private Terrasse ist unglaublich für Abendessen im Freien mit Blick über die Dächer von Palermo."
-      }
-    ]
+   "@type": "LocationFeatureSpecification",
+   "name": "Privatterrasse",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Glasfaser-WLAN",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Klimaanlage",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "Vollausgestattete Küche",
+   "value": true
+  },
+  {
+   "@type": "LocationFeatureSpecification",
+   "name": "ZTL-Zugang",
+   "value": true
   }
-  </script>
+ ],
+ "priceRange": "€€€",
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "85",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-fior-di-sicilia",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 6
+  },
+  "numberOfBedrooms": 2
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
