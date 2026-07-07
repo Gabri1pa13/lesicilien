@@ -73,51 +73,58 @@ function gtag_report_conversion(url) {
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "VacationRental"],
-    "name": "Fior di Sicilia",
-    "description": "Fior di Sicilia: elegancki apartament z ekskluzywnym prywatnym tarasem w Palermo. Śródziemnomorskie wschody i zachody słońca z własnej przestrzeni zewnętrznej.",
-    "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
-    "image": "https://www.lesicilien.it/fiordisicilia.jpeg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Palermo",
-      "addressRegion": "Sicilia",
-      "addressCountry": "IT"
-    },
-    "priceRange": "€€€",
-    "starRating": {"@type": "Rating", "ratingValue": "5"},
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "92"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "85",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza"
-    },
-    "containedInPlace": {
-      "@type": "City",
-      "name": "Palermo",
-      "sameAs": "https://www.wikidata.org/wiki/Q3156"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Guest" },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-        "reviewBody": "Prywatny taras jest niesamowity do jedzenia na świeżym powietrzu z widokiem na dachy Palermo."
-      }
-    ]
+{
+ "@context": "https://schema.org",
+ "@type": [
+  "LodgingBusiness",
+  "VacationRental"
+ ],
+ "name": "Fior di Sicilia",
+ "description": "Fior di Sicilia: elegancki apartament z ekskluzywnym prywatnym tarasem w Palermo. Śródziemnomorskie wschody i zachody słońca z własnej przestrzeni zewnętrznej.",
+ "url": "https://www.lesicilien.it/stays/fior-di-sicilia/",
+ "image": "https://www.lesicilien.it/fiordisicilia.jpeg",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "Centro Storico",
+  "addressLocality": "Palermo",
+  "addressRegion": "Sicilia",
+  "addressCountry": "IT",
+  "postalCode": "90100"
+ },
+ "priceRange": "€€€",
+ "starRating": {
+  "@type": "Rating",
+  "ratingValue": "5"
+ },
+ "offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "85",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza"
+ },
+ "containedInPlace": {
+  "@type": "City",
+  "name": "Palermo",
+  "sameAs": "https://www.wikidata.org/wiki/Q3156"
+ },
+ "identifier": "lesicilien-fior-di-sicilia",
+ "containsPlace": {
+  "@type": "Accommodation",
+  "additionalType": "EntirePlace",
+  "occupancy": {
+   "@type": "QuantitativeValue",
+   "maxValue": 4
   }
-  </script>
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.1157,
+  "longitude": 13.3615
+ }
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
