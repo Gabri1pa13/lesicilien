@@ -120,7 +120,8 @@ function gtag_report_conversion(url) {
  "numberOfRooms": 4,
  "occupancy": {
   "@type": "QuantitativeValue",
-  "maxValue": 10
+  "maxValue": 10,
+  "value": 10
  },
  "petsAllowed": "No",
  "amenityFeature": [
@@ -170,9 +171,37 @@ function gtag_report_conversion(url) {
   "additionalType": "EntirePlace",
   "occupancy": {
    "@type": "QuantitativeValue",
-   "maxValue": 10
+   "maxValue": 10,
+   "value": 10
   },
-  "numberOfBedrooms": 4
+  "numberOfBedrooms": 4,
+  "amenityFeature": [
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Accès direct à la mer",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Vue frontale sur la mer",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Parking privé",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Wi-Fi Fibre",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Climatisation",
+    "value": true
+   }
+  ]
  }
 }
 </script>
