@@ -120,7 +120,8 @@ function gtag_report_conversion(url) {
  "numberOfRooms": 3,
  "occupancy": {
   "@type": "QuantitativeValue",
-  "maxValue": 8
+  "maxValue": 8,
+  "value": 8
  },
  "petsAllowed": "Auf Anfrage",
  "amenityFeature": [
@@ -170,9 +171,37 @@ function gtag_report_conversion(url) {
   "additionalType": "EntirePlace",
   "occupancy": {
    "@type": "QuantitativeValue",
-   "maxValue": 8
+   "maxValue": 8,
+   "value": 8
   },
-  "numberOfBedrooms": 3
+  "numberOfBedrooms": 3,
+  "amenityFeature": [
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Strandnähe",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Privatparkplatz",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Glasfaser-WLAN",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Klimaanlage",
+    "value": true
+   },
+   {
+    "@type": "LocationFeatureSpecification",
+    "name": "Vollausgestattete Küche",
+    "value": true
+   }
+  ]
  }
 }
 </script>
