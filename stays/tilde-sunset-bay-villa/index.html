@@ -135,7 +135,14 @@ function gtag_report_conversion(url) {
  "url": "https://www.lesicilien.it/stays/tilde-sunset-bay-villa/",
  "image": [
   "https://www.lesicilien.it/tildesunsetbay.jpg",
-  "https://www.lesicilien.it/exclusive%20yacht%20dinner.jpg"
+  "https://www.lesicilien.it/tilde-pergola.jpg",
+  "https://www.lesicilien.it/tilde-giardino-mare.jpg",
+  "https://www.lesicilien.it/tilde-cucina.jpg",
+  "https://www.lesicilien.it/tilde-terrazza.jpg",
+  "https://www.lesicilien.it/tilde-tramonto.jpg",
+  "https://www.lesicilien.it/tilde-camera-mare.jpg",
+  "https://www.lesicilien.it/tilde-camera-libreria.jpg",
+  "https://www.lesicilien.it/tilde-camera-soppalco.jpg"
  ],
  "telephone": "+39-327-375-1480",
  "address": {
@@ -575,6 +582,26 @@ function gtag_report_conversion(url) {
       color: var(--muted);
       line-height: 1.5;
     }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      display: block;
+    }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 140px; }
+    }
   </style>
 </head>
 <body>
@@ -692,6 +719,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="section-text">
         Ideale per famiglie, gruppi di amici o coppie in cerca di un'esperienza di lusso autentica. La villa si trova in posizione strategica, a breve distanza da Palermo e dalle sue attrazioni culturali, pur mantenendo quella quiete e quella bellezza naturale che solo il mare siciliano sa offrire.
       </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Foto</p>
+      <h2 id="gallery-title" class="section-title">Gli spazi di Tilde Sunset Bay Villa</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/tilde-tramonto.webp" type="image/webp"><img src="/tilde-tramonto.jpg" alt="Tramonto dalla terrazza di Tilde Sunset Bay Villa" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/tilde-giardino-mare.webp" type="image/webp"><img src="/tilde-giardino-mare.jpg" alt="Giardino vista mare Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-pergola.webp" type="image/webp"><img src="/tilde-pergola.jpg" alt="Pergola esterna Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-terrazza.webp" type="image/webp"><img src="/tilde-terrazza.jpg" alt="Terrazza al tramonto Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-mare.webp" type="image/webp"><img src="/tilde-camera-mare.jpg" alt="Camera con vista mare Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-libreria.webp" type="image/webp"><img src="/tilde-camera-libreria.jpg" alt="Camera con libreria Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-soppalco.webp" type="image/webp"><img src="/tilde-camera-soppalco.jpg" alt="Camera con letto a soppalco Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-cucina.webp" type="image/webp"><img src="/tilde-cucina.jpg" alt="Cucina Tilde Sunset Bay Villa" loading="lazy"></picture>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="highlights-title">
