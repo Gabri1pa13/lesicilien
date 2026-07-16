@@ -46,26 +46,31 @@ function gtag_report_conversion(url) {
   <meta property="og:title" content="Private Chef Palermo | In-Villa Dining | Le Sicilien">
   <meta property="og:description" content="Private chef in Palermo for villa guests — Sicilian cuisine, market dinners and bespoke menus arranged by Le Sicilien.">
   <meta property="og:url" content="https://www.lesicilien.it/en/private-chef-palermo/">
-  <meta property="og:image" content="https://www.lesicilien.it/22.jpeg">
+  <meta property="og:image" content="https://www.lesicilien.it/private%20chef.jpg">
   <meta property="og:site_name" content="Le Sicilien">
   <meta property="og:locale" content="en_GB">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Private Chef Palermo | Le Sicilien">
   <meta name="twitter:description" content="In-villa private chef in Palermo — authentic Sicilian cuisine arranged by Le Sicilien concierge.">
-  <meta name="twitter:image" content="https://www.lesicilien.it/22.jpeg">
+  <meta name="twitter:image" content="https://www.lesicilien.it/private%20chef.jpg">
 
   <meta name="geo.region" content="IT-PA">
   <meta name="geo.placename" content="Palermo">
 
   <link rel="alternate" hreflang="en" href="https://www.lesicilien.it/en/private-chef-palermo/">
   <link rel="alternate" hreflang="es" href="https://www.lesicilien.it/es/chef-privado-palermo/">
+  <link rel="alternate" hreflang="it" href="https://www.lesicilien.it/it/chef-privato-palermo/">
+  <link rel="alternate" hreflang="fr" href="https://www.lesicilien.it/fr/chef-prive-palerme/">
+  <link rel="alternate" hreflang="de" href="https://www.lesicilien.it/de/privatkoch-palermo/">
+  <link rel="alternate" hreflang="pl" href="https://www.lesicilien.it/pl/prywatny-kucharz-palermo/">
   <link rel="alternate" hreflang="x-default" href="https://www.lesicilien.it/en/private-chef-palermo/">
 
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/private%20chef.webp" type="image/webp" fetchpriority="high">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="all">
   <script type="text/javascript" defer="defer" src="https://data.krossbooking.com/widget/v6/lesicilien/2.js"></script>
@@ -107,11 +112,34 @@ function gtag_report_conversion(url) {
     :root { --bg: #F7F4ED; --paper: #fff; --ink: #181818; --muted: #626262; --gold: #BFA05A; --gold-hover: #9e844a; --sand: #e6ddcf; }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Montserrat", sans-serif; line-height: 1.72; }
-    header { padding: 74px 20px 38px; color: #fff; background: linear-gradient(140deg, rgba(7,38,47,.88), rgba(20,20,20,.82)); }
+    header {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      overflow: hidden;
+    }
+    .header-bg {
+      position: absolute; inset: 0;
+      background: url('/private%20chef.webp') center/cover no-repeat;
+      background: image-set(url('/private%20chef.webp') type('image/webp'), url('/private%20chef.jpg') type('image/png')) center/cover no-repeat;
+    }
+    .header-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(20,10,4,.75) 0%, rgba(10,10,10,.68) 100%);
+    }
+    .header-inner {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 44px;
+    }
     .wrap { max-width: 960px; margin: 0 auto; }
     .crumbs { font-size: .86rem; opacity: .9; }
     .crumbs a { color: #fff; text-decoration: none; }
-    .kicker { margin-top: 12px; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; opacity: .8; }
+    .kicker { margin-top: 12px; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; opacity: .8; color: var(--gold); }
     h1, h2, h3 { font-family: "Cinzel", serif; line-height: 1.2; }
     h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 14px 0 12px; }
     h2 { margin-top: 46px; font-size: clamp(1.5rem, 3vw, 2rem); }
@@ -122,6 +150,22 @@ function gtag_report_conversion(url) {
     .lead { font-size: 1.08rem; color: #262626; }
     ul { padding-left: 20px; }
     li { margin: 8px 0; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 30px 0;
+    }
+    .photo-grid img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+    .photo-grid .photo-wide {
+      grid-column: span 2;
+      height: 220px;
+    }
     .highlight { margin: 26px 0; padding: 16px 18px; border-radius: 12px; background: #f5f0e8; border-left: 4px solid var(--gold); }
     .cta-grid { margin-top: 16px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
     .cta { display: block; text-decoration: none; background: #202020; color: #fff; padding: 14px 16px; border-radius: 14px; font-weight: 600; }
@@ -138,10 +182,17 @@ function gtag_report_conversion(url) {
     .footer-title { font-family: "Cinzel", serif; font-size: 1.5rem; margin-bottom: 8px; }
     .footer-links a { color: #f0f0f0; text-decoration: none; display: block; margin: 7px 0; }
     @media (max-width: 900px) {
-      header { padding: 72px 16px 30px; }
+      header { min-height: 320px; }
+      .header-inner { padding: 30px 16px 36px; }
       main { padding: 24px 14px 58px; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid .photo-wide { grid-column: span 2; height: 200px; }
       .site-mobile-booking { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 999; padding: 14px 16px; border-radius: 999px; background: var(--gold); color: #111; text-decoration: none; justify-content: center; align-items: center; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 14px 30px rgba(0,0,0,.28); }
       body { padding-bottom: 84px; }
+    }
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid .photo-wide { grid-column: span 1; height: 200px; }
     }
   </style>
 </head>
@@ -152,17 +203,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
   <header>
-    <div class="wrap">
+    <div class="header-bg"></div>
+    <div class="header-overlay"></div>
+    <div class="header-inner">
       <div class="crumbs"><a href="/en/">Home</a> / Private Chef Palermo</div>
       <div class="kicker">Le Sicilien · Concierge Services</div>
       <h1>Private Chef in Palermo — In-Villa Sicilian Dining</h1>
-      <p>Authentic Sicilian cuisine prepared in your villa by a private chef. Market-sourced ingredients, tailored menus, zero restaurant queues.</p>
+      <p style="max-width:620px; opacity:.92; font-size:1.05rem;">Authentic Sicilian cuisine prepared in your villa by a private chef. Market-sourced ingredients, tailored menus, zero restaurant queues.</p>
     </div>
   </header>
 
   <main>
     <article>
       <p class="lead">Sicilian food is one of the most celebrated regional cuisines in Italy — built on exceptional raw ingredients, centuries of cultural influence and an obsessive respect for simplicity. Having a private chef prepare it in your villa, using produce sourced that morning from Palermo's historic markets, is one of the defining luxury experiences the island offers.</p>
+
+      <div class="photo-grid">
+        <picture><source srcset="/private%20chef.webp" type="image/webp"><img src="/private%20chef.jpg" alt="Private chef preparing a gourmet dinner in a luxury villa in Palermo" class="photo-wide" loading="eager"></picture>
+        <img src="/cucinappartamentodilusso.jpg" alt="Luxury villa kitchen in Palermo ready for the private chef" loading="lazy">
+      </div>
 
       <h2>What a Private Chef Experience in Palermo Includes</h2>
       <p>Le Sicilien's concierge team arranges private chef services for villa guests across all properties. Each experience is designed around your preferences — not a fixed menu.</p>

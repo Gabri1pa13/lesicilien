@@ -71,6 +71,7 @@ function gtag_report_conversion(url) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/private%20chef.webp" type="image/webp" fetchpriority="high">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://data.krossbooking.com/widget/v6/lesicilien/2.css" media="all">
   <script type="text/javascript" defer="defer" src="https://data.krossbooking.com/widget/v6/lesicilien/2.js"></script>
@@ -86,25 +87,12 @@ function gtag_report_conversion(url) {
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "LodgingBusiness",
- "name": "Le Sicilien – Chef Privado en Palermo",
- "description": "Chef privado en Palermo para tu villa o apartamento: auténtica cocina siciliana, menús personalizados y experiencias gastronómicas exclusivas con Le Sicilien.",
- "url": "https://www.lesicilien.it/es/chef-privado-palermo/",
- "telephone": "+39-327-375-1480",
- "email": "lesicilienhouses@gmail.com",
- "address": {
-  "@type": "PostalAddress",
-  "addressLocality": "Palermo",
-  "addressRegion": "Sicilia",
-  "addressCountry": "IT"
- },
- "aggregateRating": {
-  "@type": "AggregateRating",
-  "ratingValue": "4.9",
-  "bestRating": "5",
-  "ratingCount": "200"
- },
- "priceRange": "€€€"
+ "@type": "Service",
+ "name": "Chef Privado en Palermo – Le Sicilien",
+ "description": "Servicio de chef privado en villa en Palermo. Auténtica cocina siciliana, ingredientes de mercado y menús personalizados para los huéspedes.",
+ "provider": {"@type": "Organization", "name": "Le Sicilien", "url": "https://www.lesicilien.it/", "telephone": "+39-327-375-1480"},
+ "areaServed": {"@type": "City", "name": "Palermo"},
+ "serviceType": "Chef Privado"
 }
   </script>
 
@@ -166,11 +154,34 @@ function gtag_report_conversion(url) {
     :root { --bg: #F7F4ED; --paper: #fff; --ink: #181818; --muted: #626262; --gold: #BFA05A; --gold-hover: #9e844a; --sand: #e6ddcf; --accent: #2f6f7a; }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Montserrat", sans-serif; line-height: 1.72; }
-    header { padding: 74px 20px 38px; color: #fff; background: linear-gradient(140deg, rgba(7,38,47,.88), rgba(20,20,20,.82)); }
+    header {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      overflow: hidden;
+    }
+    .header-bg {
+      position: absolute; inset: 0;
+      background: url('/private%20chef.webp') center/cover no-repeat;
+      background: image-set(url('/private%20chef.webp') type('image/webp'), url('/private%20chef.jpg') type('image/png')) center/cover no-repeat;
+    }
+    .header-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(20,10,4,.75) 0%, rgba(10,10,10,.68) 100%);
+    }
+    .header-inner {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 44px;
+    }
     .wrap { max-width: 960px; margin: 0 auto; }
     .crumbs { font-size: .86rem; opacity: .9; }
     .crumbs a { color: #fff; text-decoration: none; }
-    .kicker { margin-top: 12px; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; opacity: .8; }
+    .kicker { margin-top: 12px; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; opacity: .8; color: var(--gold); }
     h1, h2, h3 { font-family: "Cinzel", serif; line-height: 1.2; }
     h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 14px 0 12px; }
     h2 { margin-top: 46px; font-size: clamp(1.5rem, 3vw, 2rem); }
@@ -181,6 +192,9 @@ function gtag_report_conversion(url) {
     .lead { font-size: 1.08rem; color: #262626; }
     ul { padding-left: 20px; }
     li { margin: 8px 0; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 30px 0; }
+    .photo-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 14px; display: block; }
+    .photo-grid .photo-wide { grid-column: span 2; height: 220px; }
     .highlight { margin: 26px 0; padding: 16px 18px; border-radius: 12px; background: #f5f0e8; border-left: 4px solid var(--gold); }
     .prop-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 26px 0; }
     .prop-card { background: var(--bg); border-radius: 16px; border: 1px solid var(--sand); padding: 22px 20px; }
@@ -211,10 +225,17 @@ function gtag_report_conversion(url) {
     .footer-langs { margin-top: 14px; font-size: .85rem; opacity: .8; }
     .footer-langs a { display: inline; margin-right: 10px; color: #f0f0f0; }
     @media (max-width: 900px) {
-      header { padding: 72px 16px 30px; }
+      header { min-height: 320px; }
+      .header-inner { padding: 30px 16px 36px; }
       main { padding: 24px 14px 58px; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid .photo-wide { grid-column: span 2; height: 200px; }
       .site-mobile-booking { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 999; padding: 14px 16px; border-radius: 999px; background: var(--gold); color: #111; text-decoration: none; justify-content: center; align-items: center; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 14px 30px rgba(0,0,0,.28); }
       body { padding-bottom: 84px; }
+    }
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid .photo-wide { grid-column: span 1; height: 200px; }
     }
   </style>
 </head>
@@ -225,11 +246,13 @@ function gtag_report_conversion(url) {
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   <header>
-    <div class="wrap">
+    <div class="header-bg"></div>
+    <div class="header-overlay"></div>
+    <div class="header-inner">
       <div class="crumbs"><a href="/es/">Inicio</a> / Chef privado en Palermo</div>
       <div class="kicker">Le Sicilien &middot; Reserva directa</div>
       <h1>Chef Privado en Palermo</h1>
-      <p>Aut&eacute;ntica cocina siciliana preparada en tu villa &mdash; del desayuno a la cena de gala.</p>
+      <p style="max-width:620px; opacity:.92; font-size:1.05rem;">Aut&eacute;ntica cocina siciliana preparada en tu villa &mdash; del desayuno a la cena de gala.</p>
     </div>
   </header>
 
@@ -248,6 +271,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <article>
       <p class="lead">Un chef seleccionado por Le Sicilien llega a tu villa con los mejores productos de los mercados de Palermo &mdash; Ballar&ograve;, Capo, el puerto pesquero &mdash; y cocina para ti. Men&uacute;s personalizados, servicio a la mesa y la aut&eacute;ntica cocina siciliana sin salir de casa.</p>
+
+      <div class="photo-grid">
+        <picture><source srcset="/private%20chef.webp" type="image/webp"><img src="/private%20chef.jpg" alt="Chef privado preparando una cena de lujo en una villa en Palermo" class="photo-wide" loading="eager"></picture>
+        <img src="/cucinappartamentodilusso.jpg" alt="Cocina de lujo en villa en Palermo lista para el chef privado" loading="lazy">
+      </div>
 
       <h2>C&oacute;mo funciona</h2>
       <ul>
