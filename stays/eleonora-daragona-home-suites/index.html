@@ -136,7 +136,15 @@ function gtag_report_conversion(url) {
  "url": "https://www.lesicilien.it/stays/eleonora-daragona-home-suites/",
  "image": [
   "https://www.lesicilien.it/eleonoradaragona.jpeg",
-  "https://www.lesicilien.it/eleonoradaragona.webp"
+  "https://www.lesicilien.it/eleonoradaragona.webp",
+  "https://www.lesicilien.it/eleonora-soggiorno.jpg",
+  "https://www.lesicilien.it/eleonora-camera-verde.jpg",
+  "https://www.lesicilien.it/eleonora-bagno-1.jpg",
+  "https://www.lesicilien.it/eleonora-cucina.jpg",
+  "https://www.lesicilien.it/eleonora-bagno-2.jpg",
+  "https://www.lesicilien.it/eleonora-camera-rossa.jpg",
+  "https://www.lesicilien.it/eleonora-vista-piazza.jpg",
+  "https://www.lesicilien.it/eleonora-vista-monte.jpg"
  ],
  "telephone": "+39-327-375-1480",
  "address": {
@@ -325,6 +333,26 @@ function gtag_report_conversion(url) {
     .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 11px; color: rgba(30,30,30,0.42); }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } .hero-content { padding: 20px; } }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      display: block;
+    }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 140px; }
+    }
   </style>
 </head>
 <body>
@@ -405,6 +433,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="section-text">
         La posizione, nel cuore pulsante della città, permette di raggiungere a piedi i principali monumenti: la Cattedrale, il Teatro Massimo, i Quattro Canti e i mercati storici della Vucciria e di Ballarò. Per pianificare il tuo soggiorno consulta le nostre guide su <a href="/it/guide/cosa-fare-a-palermo/" style="text-decoration:underline;">cosa fare a Palermo</a> e <a href="/it/guide/dove-dormire-a-palermo-guida-completa/" style="text-decoration:underline;">dove alloggiare</a>.
       </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Foto</p>
+      <h2 id="gallery-title" class="section-title">Gli spazi di Eleonora D'Aragona</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/eleonora-soggiorno.webp" type="image/webp"><img src="/eleonora-soggiorno.jpg" alt="Soggiorno Eleonora D'Aragona Home Suites" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-rossa.webp" type="image/webp"><img src="/eleonora-camera-rossa.jpg" alt="Camera con parete rossa Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-verde.webp" type="image/webp"><img src="/eleonora-camera-verde.jpg" alt="Camera con parete verde Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-cucina.webp" type="image/webp"><img src="/eleonora-cucina.jpg" alt="Cucina Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-1.webp" type="image/webp"><img src="/eleonora-bagno-1.jpg" alt="Bagno Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-2.webp" type="image/webp"><img src="/eleonora-bagno-2.jpg" alt="Secondo bagno Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-piazza.webp" type="image/webp"><img src="/eleonora-vista-piazza.jpg" alt="Vista sulla piazza storica dal balcone Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-monte.webp" type="image/webp"><img src="/eleonora-vista-monte.jpg" alt="Vista su Monte Pellegrino dal balcone Eleonora D'Aragona" loading="lazy"></picture>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="highlights-title">
