@@ -584,6 +584,26 @@ function gtag_report_conversion(url) {
       color: var(--muted);
       line-height: 1.5;
     }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      display: block;
+    }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 140px; }
+    }
   </style>
 </head>
 <body>
@@ -692,6 +712,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="section-text">
         La posizione centrale garantisce facile accesso ai principali monumenti di Palermo, ai mercati storici e ai migliori ristoranti della città. Per pianificare al meglio il tuo viaggio, consulta le nostre guide su <a href="/it/guide/cosa-fare-a-palermo/" style="text-decoration:underline;">cosa fare a Palermo</a> e su <a href="/it/guide/dove-dormire-a-palermo-guida-completa/" style="text-decoration:underline;">dove alloggiare</a>.
       </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Foto</p>
+      <h2 id="gallery-title" class="section-title">Gli spazi di Fior di Sicilia</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/fior-di-sicilia-terrazza.webp" type="image/webp"><img src="/fior-di-sicilia-terrazza.jpg" alt="Terrazzo privato Fior di Sicilia" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-soggiorno.webp" type="image/webp"><img src="/fior-di-sicilia-soggiorno.jpg" alt="Soggiorno Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-camera-1.webp" type="image/webp"><img src="/fior-di-sicilia-camera-1.jpg" alt="Camera da letto Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-camera-2.webp" type="image/webp"><img src="/fior-di-sicilia-camera-2.jpg" alt="Seconda camera da letto Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-cucina.webp" type="image/webp"><img src="/fior-di-sicilia-cucina.jpg" alt="Cucina Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-tavolo.webp" type="image/webp"><img src="/fior-di-sicilia-tavolo.jpg" alt="Zona pranzo Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-bagno.webp" type="image/webp"><img src="/fior-di-sicilia-bagno.jpg" alt="Bagno Fior di Sicilia" loading="lazy"></picture>
+        <picture><source srcset="/fior-di-sicilia-scale.webp" type="image/webp"><img src="/fior-di-sicilia-scale.jpg" alt="Scale del palazzo Fior di Sicilia" loading="lazy"></picture>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="highlights-title">
