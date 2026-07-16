@@ -97,6 +97,9 @@ https://lesicilien.it/* https://www.lesicilien.it/:splat 301!
 # Link storico con virgolette curve residue nell'URL (bug già corretto in Asset-Management.html)
 /%E2%80%9Dkeycasestudy.html%E2%80%9D          /keycasestudy.html              301
 
+# Migrazione pagina gestione proprietà: URL pulito con keyword, coerente con il resto del sito
+/Asset-Management.html                       /it/gestione-case-vacanze-lusso-palermo/  301
+
 # Contatti — la homepage non ha una pagina /contact dedicata, ma un'ancora nella sezione footer
 /contact*                                    /#contact                       301
 
