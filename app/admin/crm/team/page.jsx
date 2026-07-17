@@ -4,8 +4,14 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { apiFetch, Badge, BRAND, Field, Modal, roleLabel, ui } from "../_lib";
+import { useToast } from "../_ui";
 
 const ROLES = ["admin", "manager", "sales", "accountant", "cleaning"];
+
+function initials(name) {
+  if (!name) return "?";
+  return name.split(" ").filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+}
 
 function InviteModal({ onClose, onCreated }) {
   const [form, setForm] = useState({ full_name: "", email: "", role: "sales" });
@@ -57,6 +63,7 @@ function InviteModal({ onClose, onCreated }) {
 }
 
 export default function TeamPage() {
+  const toast = useToast();
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inviteModal, setInviteModal] = useState(false);
@@ -70,12 +77,12 @@ export default function TeamPage() {
   };
 
   const updateRole = async (member, role) => {
-    try { const json = await apiFetch("/api/crm/team", { method: "PUT", body: { id: member.id, role } }); setTeam(p => p.map(m => m.id === json.data.id ? json.data : m)); }
-    catch (e) { console.error(e); }
+    try { const json = await apiFetch("/api/crm/team", { method: "PUT", body: { id: member.id, role } }); setTeam(p => p.map(m => m.id === json.data.id ? json.data : m)); toast.success("Ruolo aggiornato"); }
+    catch (e) { toast.error("Errore: " + e.message); }
   };
   const toggleActive = async (member) => {
-    try { const json = await apiFetch("/api/crm/team", { method: "PUT", body: { id: member.id, active: !member.active } }); setTeam(p => p.map(m => m.id === json.data.id ? json.data : m)); }
-    catch (e) { console.error(e); }
+    try { const json = await apiFetch("/api/crm/team", { method: "PUT", body: { id: member.id, active: !member.active } }); setTeam(p => p.map(m => m.id === json.data.id ? json.data : m)); toast.success(json.data.active ? "Membro riattivato" : "Membro disattivato"); }
+    catch (e) { toast.error("Errore: " + e.message); }
   };
 
   return (
@@ -100,7 +107,12 @@ export default function TeamPage() {
             <tbody>
               {team.map(m => (
                 <tr key={m.id}>
-                  <td style={ui.td}>{m.full_name}</td>
+                  <td style={ui.td}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "rgba(191,160,90,.14)", color: "#92702A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: "11px", fontWeight: 500, flexShrink: 0 }}>{initials(m.full_name)}</div>
+                      <span style={{ fontWeight: 500 }}>{m.full_name}</span>
+                    </div>
+                  </td>
                   <td style={ui.td}>{m.email}</td>
                   <td style={ui.td}>
                     <select style={{ ...ui.input, width: "auto", padding: "5px 8px", fontSize: "12px" }} value={m.role} onChange={e => updateRole(m, e.target.value)}>

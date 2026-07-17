@@ -4,6 +4,8 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useMemo, useState } from "react";
 import { apiFetch, Badge, BRAND, Field, fmtDate, fmtEUR, Modal, ui } from "../_lib";
+import { DataTable, useToast } from "../_ui";
+import { IconCalendar, IconList, IconSearch } from "../_icons";
 
 const CHANNELS = [
   { value: "diretta", label: "Diretta" }, { value: "airbnb", label: "Airbnb" },
@@ -97,11 +99,81 @@ function BookingModal({ booking, properties, onClose, onSaved }) {
   );
 }
 
+const WEEKDAYS = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
+
+function CalendarView({ bookings, onSelect }) {
+  const [cursor, setCursor] = useState(() => { const d = new Date(); d.setDate(1); return d; });
+
+  const monthLabel = cursor.toLocaleDateString("it-IT", { month: "long", year: "numeric" });
+  const year = cursor.getFullYear(), month = cursor.getMonth();
+  const firstDow = (new Date(year, month, 1).getDay() + 6) % 7; // lun=0
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const cells = [...Array(firstDow).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
+
+  const byDay = useMemo(() => {
+    const map = {};
+    bookings.forEach(b => {
+      if (!b.check_in) return;
+      const [by, bm, bd] = b.check_in.split("-").map(Number);
+      if (by === year && bm === month + 1) {
+        map[bd] = map[bd] || [];
+        map[bd].push(b);
+      }
+    });
+    return map;
+  }, [bookings, year, month]);
+
+  return (
+    <div style={{ background: "#fff", border: `1px solid ${BRAND.border}` }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", borderBottom: `1px solid ${BRAND.border}` }}>
+        <button style={ui.ghostBtn} onClick={() => setCursor(d => new Date(d.getFullYear(), d.getMonth() - 1, 1))}>← Prec</button>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "20px", color: BRAND.dark, textTransform: "capitalize" }}>{monthLabel}</p>
+        <button style={ui.ghostBtn} onClick={() => setCursor(d => new Date(d.getFullYear(), d.getMonth() + 1, 1))}>Succ →</button>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", borderBottom: `1px solid ${BRAND.border}` }}>
+        {WEEKDAYS.map(d => (
+          <div key={d} style={{ padding: "8px", textAlign: "center", fontFamily: "'Jost',sans-serif", fontSize: "10px", letterSpacing: ".08em", textTransform: "uppercase", color: BRAND.textMuted }}>{d}</div>
+        ))}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)" }}>
+        {cells.map((day, i) => {
+          const items = day ? byDay[day] || [] : [];
+          const isToday = day && new Date().toDateString() === new Date(year, month, day).toDateString();
+          return (
+            <div key={i} style={{ minHeight: "92px", borderRight: `1px solid ${BRAND.border}`, borderBottom: `1px solid ${BRAND.border}`, padding: "6px", background: day ? "#fff" : BRAND.cream }}>
+              {day && (
+                <>
+                  <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "11px", color: isToday ? BRAND.gold : BRAND.textMuted, fontWeight: isToday ? 600 : 400, marginBottom: "4px" }}>{day}</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                    {items.slice(0, 3).map(b => {
+                      const st = STATUS[b.status] || STATUS.confermata;
+                      return (
+                        <div key={b.id} onClick={() => onSelect(b)} title={`${b.properties?.name || ""} · ${b.guest_name || ""}`}
+                          style={{ background: st.bg, color: st.color, fontSize: "10px", padding: "2px 5px", cursor: "pointer", fontFamily: "'Jost',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                          {b.properties?.name || "—"}
+                        </div>
+                      );
+                    })}
+                    {items.length > 3 && <p style={{ fontSize: "10px", color: BRAND.textMuted }}>+{items.length - 3} altre</p>}
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function PrenotazioniPage() {
+  const toast = useToast();
   const [bookings, setBookings] = useState([]);
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  const [view, setView] = useState("list");
   const [editModal, setEditModal] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
 
@@ -116,14 +188,38 @@ export default function PrenotazioniPage() {
     setLoading(false);
   };
 
-  const handleSaved = (data, isNew) => setBookings(p => isNew ? [data, ...p] : p.map(b => b.id === data.id ? data : b));
+  const handleSaved = (data, isNew) => {
+    setBookings(p => isNew ? [data, ...p] : p.map(b => b.id === data.id ? data : b));
+    toast.success(isNew ? "Prenotazione creata" : "Prenotazione aggiornata");
+  };
   const handleDelete = async () => {
-    try { await apiFetch("/api/crm/bookings", { method: "DELETE", body: { id: deleteTarget.id } }); setBookings(p => p.filter(b => b.id !== deleteTarget.id)); }
-    catch (e) { console.error(e); }
+    try { await apiFetch("/api/crm/bookings", { method: "DELETE", body: { id: deleteTarget.id } }); setBookings(p => p.filter(b => b.id !== deleteTarget.id)); toast.success("Prenotazione eliminata"); }
+    catch (e) { toast.error("Errore: " + e.message); }
     setDeleteTarget(null);
   };
 
-  const filtered = filter === "all" ? bookings : bookings.filter(b => b.status === filter);
+  const bulkSetStatus = async (ids, status) => {
+    try {
+      await Promise.all(ids.map(id => apiFetch("/api/crm/bookings", { method: "PUT", body: { id, status } })));
+      setBookings(p => p.map(b => ids.includes(b.id) ? { ...b, status } : b));
+      toast.success(`${ids.length} prenotazioni aggiornate`);
+    } catch (e) { toast.error("Errore: " + e.message); }
+  };
+  const bulkDelete = async (ids) => {
+    try {
+      await Promise.all(ids.map(id => apiFetch("/api/crm/bookings", { method: "DELETE", body: { id } })));
+      setBookings(p => p.filter(b => !ids.includes(b.id)));
+      toast.success(`${ids.length} prenotazioni eliminate`);
+    } catch (e) { toast.error("Errore: " + e.message); }
+  };
+
+  const filtered = useMemo(() => {
+    let list = filter === "all" ? bookings : bookings.filter(b => b.status === filter);
+    const q = search.trim().toLowerCase();
+    if (q) list = list.filter(b => [b.guest_name, b.guest_email, b.properties?.name].filter(Boolean).some(v => v.toLowerCase().includes(q)));
+    return list;
+  }, [bookings, filter, search]);
+
   const counts = useMemo(() => ({
     all: bookings.length,
     confermata: bookings.filter(b => b.status === "confermata").length,
@@ -155,45 +251,52 @@ export default function PrenotazioniPage() {
         ))}
       </div>
 
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "#fff", border: `1px solid ${BRAND.border}`, padding: "9px 12px", minWidth: "260px" }}>
+          <IconSearch size={15} style={{ color: BRAND.textMuted, flexShrink: 0 }} />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Cerca per ospite o immobile..." style={{ border: "none", outline: "none", fontFamily: "'Jost',sans-serif", fontSize: "13px", width: "100%" }} />
+        </div>
+        <div style={{ display: "flex", marginLeft: "auto" }}>
+          <button onClick={() => setView("list")} style={{ ...ui.ghostBtn, padding: "9px 11px", background: view === "list" ? BRAND.dark : "transparent", color: view === "list" ? BRAND.gold : BRAND.textMuted, borderColor: view === "list" ? BRAND.dark : BRAND.border }}><IconList size={14} /></button>
+          <button onClick={() => setView("calendar")} style={{ ...ui.ghostBtn, padding: "9px 11px", borderLeft: "none", background: view === "calendar" ? BRAND.dark : "transparent", color: view === "calendar" ? BRAND.gold : BRAND.textMuted, borderColor: view === "calendar" ? BRAND.dark : BRAND.border }}><IconCalendar size={14} /></button>
+        </div>
+      </div>
+
       {loading ? (
         <div style={ui.empty}>Caricamento...</div>
       ) : filtered.length === 0 ? (
         <div style={ui.empty}>Nessuna prenotazione trovata.</div>
+      ) : view === "calendar" ? (
+        <CalendarView bookings={filtered} onSelect={setEditModal} />
       ) : (
-        <div style={ui.tableWrap}>
-          <table style={ui.table}>
-            <thead><tr>{["Immobile", "Ospite", "Check-in / out", "Canale", "Importo", "Commissione", "Payout stimato", "Stato", ""].map(h => <th key={h} style={ui.th}>{h}</th>)}</tr></thead>
-            <tbody>
-              {filtered.map(b => {
-                const st = STATUS[b.status] || STATUS.confermata;
-                const pct = commissionPct(b);
-                const commission = (Number(b.total_amount) * pct) / 100;
-                const payout = Number(b.total_amount) - commission;
-                return (
-                  <tr key={b.id}>
-                    <td style={ui.td}>{b.properties?.name || "—"}</td>
-                    <td style={ui.td}>
-                      <div>{b.guest_name || "—"}</div>
-                      {b.guest_email && <div style={{ fontSize: "11px", color: BRAND.textMuted }}>{b.guest_email}</div>}
-                    </td>
-                    <td style={ui.td}>{fmtDate(b.check_in)} → {fmtDate(b.check_out)}</td>
-                    <td style={ui.td}>{CHANNELS.find(c => c.value === b.channel)?.label || b.channel}</td>
-                    <td style={ui.td}>{fmtEUR(b.total_amount)}</td>
-                    <td style={ui.td}>{fmtEUR(commission)} ({pct}%)</td>
-                    <td style={ui.td}>{fmtEUR(payout)}</td>
-                    <td style={ui.td}><Badge color={st.color} bg={st.bg}>{st.label}</Badge></td>
-                    <td style={ui.td}>
-                      <div style={ui.actions}>
-                        <button style={ui.linkBtn} onClick={() => setEditModal(b)}>Modifica</button>
-                        <button style={{ ...ui.linkBtn, color: "#C62828" }} onClick={() => setDeleteTarget(b)}>Elimina</button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          getRowId={(b) => b.id}
+          data={filtered}
+          selectable
+          bulkActions={[
+            { label: "Segna completate", onClick: (ids) => bulkSetStatus(ids, "completata") },
+            { label: "Segna cancellate", onClick: (ids) => bulkSetStatus(ids, "cancellata") },
+            { label: "Elimina", danger: true, onClick: (ids) => { if (confirm(`Eliminare ${ids.length} prenotazioni?`)) bulkDelete(ids); } },
+          ]}
+          columns={[
+            { key: "property", label: "Immobile", sortable: true, sortValue: (b) => b.properties?.name || "", render: (b) => b.properties?.name || "—" },
+            { key: "guest", label: "Ospite", render: (b) => (<>
+              <div>{b.guest_name || "—"}</div>
+              {b.guest_email && <div style={{ fontSize: "11px", color: BRAND.textMuted }}>{b.guest_email}</div>}
+            </>) },
+            { key: "check_in", label: "Check-in / out", sortable: true, render: (b) => `${fmtDate(b.check_in)} → ${fmtDate(b.check_out)}` },
+            { key: "channel", label: "Canale", render: (b) => CHANNELS.find(c => c.value === b.channel)?.label || b.channel },
+            { key: "total_amount", label: "Importo", sortable: true, sortValue: (b) => Number(b.total_amount || 0), render: (b) => fmtEUR(b.total_amount) },
+            { key: "payout", label: "Payout stimato", render: (b) => { const pct = commissionPct(b); return fmtEUR(Number(b.total_amount) - (Number(b.total_amount) * pct) / 100); } },
+            { key: "status", label: "Stato", sortable: true, render: (b) => { const st = STATUS[b.status] || STATUS.confermata; return <Badge color={st.color} bg={st.bg}>{st.label}</Badge>; } },
+            { key: "actions", label: "", stopRowClick: true, render: (b) => (
+              <div style={ui.actions}>
+                <button style={ui.linkBtn} onClick={() => setEditModal(b)}>Modifica</button>
+                <button style={{ ...ui.linkBtn, color: "#C62828" }} onClick={() => setDeleteTarget(b)}>Elimina</button>
+              </div>
+            ) },
+          ]}
+        />
       )}
 
       {editModal !== null && (

@@ -12,6 +12,7 @@ CRM interno per gestire la crescita del portfolio (obiettivo: 100+ immobili), in
    update profiles set role = 'admin' where email = 'tuo@email.it';
    ```
    Da lì potrai invitare il resto del team direttamente da `/admin/crm/team`.
+4. **Storage bucket per le foto immobili**: crea un bucket pubblico chiamato `property-images` in Supabase Storage (stesso pattern del bucket `service-images` già in uso per i servizi concierge), altrimenti l'upload della foto copertina in `/admin/crm/immobili` fallirà.
 
 ## Struttura
 
@@ -35,3 +36,12 @@ CRM interno per gestire la crescita del portfolio (obiettivo: 100+ immobili), in
 | `cleaning` | solo i propri task, può aggiornarne lo stato |
 
 I permessi sono verificati sia lato client (per mostrare/nascondere le sezioni) sia lato server in ogni endpoint `/api/crm/*` (vedi `lib/crmAuth.js`).
+
+## Design system
+
+- `_icons.jsx` — set di icone SVG a tratto usate in sidebar, topbar e azioni
+- `_ui.jsx` — componenti condivisi: `ToastProvider`/`useToast` (feedback su ogni azione), `DataTable` (tabelle ordinabili con selezione multipla e azioni bulk), `CommandPalette` (ricerca globale con `⌘K`/`Ctrl K`, endpoint `/api/crm/search`), `NotificationBell` (check-in imminenti, task in ritardo, payout in attesa — endpoint `/api/crm/notifications`)
+- `_charts.jsx` — grafici (recharts) con palette validata per accessibilità/daltonismo (vedi skill `dataviz`): andamento ricavi, funnel pipeline, mix canali, top immobili
+- Proprietari e Task hanno una board con drag-and-drop nativo tra colonne
+- Prenotazioni ha una vista calendario mensile oltre alla lista
+- Immobili supporta foto copertina (upload) e vista griglia/lista

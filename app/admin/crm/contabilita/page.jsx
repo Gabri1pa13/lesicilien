@@ -4,6 +4,9 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { apiFetch, Badge, BRAND, Field, fmtDate, fmtEUR, Modal, ui } from "../_lib";
+import { DataTable, useToast } from "../_ui";
+import { ChartCard, CHART } from "../_charts";
+import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const STATUS = {
   bozza:   { label: "Bozza",   color: "#8A8278", bg: "#F1EEE8" },
@@ -50,6 +53,7 @@ function GeneratePayoutModal({ owners, onClose, onGenerated }) {
 }
 
 export default function ContabilitaPage() {
+  const toast = useToast();
   const [payouts, setPayouts] = useState([]);
   const [owners, setOwners] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -72,18 +76,27 @@ export default function ContabilitaPage() {
     try {
       const json = await apiFetch("/api/crm/payouts", { method: "PUT", body: { id: payout.id, status: next } });
       setPayouts(p => p.map(x => x.id === json.data.id ? json.data : x));
-    } catch (e) { console.error(e); }
+      toast.success(`Rendiconto segnato come "${STATUS[next].label}"`);
+    } catch (e) { toast.error("Errore: " + e.message); }
   };
 
   const remove = async (payout) => {
-    try { await apiFetch("/api/crm/payouts", { method: "DELETE", body: { id: payout.id } }); setPayouts(p => p.filter(x => x.id !== payout.id)); }
-    catch (e) { console.error(e); }
+    try { await apiFetch("/api/crm/payouts", { method: "DELETE", body: { id: payout.id } }); setPayouts(p => p.filter(x => x.id !== payout.id)); toast.success("Rendiconto eliminato"); }
+    catch (e) { toast.error("Errore: " + e.message); }
   };
 
   const totals = payouts.reduce((acc, p) => ({
     gross: acc.gross + Number(p.gross_revenue), net: acc.net + Number(p.net_payout),
+    commission: acc.commission + Number(p.commission_amount || 0), expenses: acc.expenses + Number(p.expenses_amount || 0),
     pending: acc.pending + (p.status !== "pagato" ? Number(p.net_payout) : 0),
-  }), { gross: 0, net: 0, pending: 0 });
+  }), { gross: 0, net: 0, commission: 0, expenses: 0, pending: 0 });
+
+  const breakdown = [
+    { key: "gross", label: "Ricavi lordi", value: totals.gross, color: CHART.blue },
+    { key: "commission", label: "Commissioni", value: totals.commission, color: CHART.orange },
+    { key: "expenses", label: "Spese", value: totals.expenses, color: CHART.red },
+    { key: "net", label: "Payout netto", value: totals.net, color: CHART.green },
+  ];
 
   return (
     <div style={ui.page}>
@@ -104,40 +117,49 @@ export default function ContabilitaPage() {
         <div style={ui.stat}><span style={ui.statNum}>{fmtEUR(totals.pending)}</span><span style={ui.statLabel}>Da pagare</span></div>
       </div>
 
+      {payouts.length > 0 && (
+        <div style={{ marginBottom: "24px" }}>
+          <ChartCard title="Riepilogo economico" subtitle="Somma di tutti i rendiconti generati">
+            <ResponsiveContainer width="100%" height={140}>
+              <BarChart data={breakdown} layout="vertical" margin={{ top: 0, right: 60, left: 0, bottom: 0 }}>
+                <XAxis type="number" hide />
+                <YAxis type="category" dataKey="label" width={100} tick={{ fontSize: 11, fill: CHART.ink, fontFamily: "Jost,sans-serif" }} axisLine={false} tickLine={false} />
+                <Tooltip content={({ active, payload }) => {
+                  if (!active || !payload?.length) return null;
+                  return <div style={{ background: "#fff", border: `1px solid ${BRAND.border}`, padding: "8px 12px", fontFamily: "'Jost',sans-serif", fontSize: "12px" }}>{payload[0].payload.label}: <strong>{fmtEUR(payload[0].value)}</strong></div>;
+                }} cursor={{ fill: BRAND.cream }} />
+                <Bar dataKey="value" radius={[0, 3, 3, 0]} barSize={18} label={{ position: "right", fontSize: 11, fill: CHART.ink, fontFamily: "Jost,sans-serif", formatter: (v) => fmtEUR(v) }}>
+                  {breakdown.map(d => <Cell key={d.key} fill={d.color} />)}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+        </div>
+      )}
+
       {loading ? (
         <div style={ui.empty}>Caricamento...</div>
-      ) : payouts.length === 0 ? (
-        <div style={ui.empty}>Nessun rendiconto generato.</div>
       ) : (
-        <div style={ui.tableWrap}>
-          <table style={ui.table}>
-            <thead><tr>{["Proprietario", "Periodo", "Ricavi lordi", "Commissione", "Spese", "Payout netto", "Stato", ""].map(h => <th key={h} style={ui.th}>{h}</th>)}</tr></thead>
-            <tbody>
-              {payouts.map(p => {
-                const st = STATUS[p.status];
-                return (
-                  <tr key={p.id}>
-                    <td style={ui.td}>{p.owners?.name || "—"}</td>
-                    <td style={ui.td}>{fmtDate(p.period_start)} → {fmtDate(p.period_end)}</td>
-                    <td style={ui.td}>{fmtEUR(p.gross_revenue)}</td>
-                    <td style={ui.td}>{fmtEUR(p.commission_amount)}</td>
-                    <td style={ui.td}>{fmtEUR(p.expenses_amount)}</td>
-                    <td style={{ ...ui.td, fontWeight: "500" }}>{fmtEUR(p.net_payout)}</td>
-                    <td style={ui.td}><Badge color={st.color} bg={st.bg}>{st.label}</Badge></td>
-                    <td style={ui.td}>
-                      <div style={ui.actions}>
-                        {NEXT_STATUS[p.status] && (
-                          <button style={ui.linkBtn} onClick={() => advance(p)}>→ {STATUS[NEXT_STATUS[p.status]].label}</button>
-                        )}
-                        {p.status === "bozza" && <button style={{ ...ui.linkBtn, color: "#C62828" }} onClick={() => remove(p)}>Elimina</button>}
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          getRowId={(p) => p.id}
+          data={payouts}
+          emptyMessage="Nessun rendiconto generato."
+          columns={[
+            { key: "owner", label: "Proprietario", sortable: true, sortValue: (p) => p.owners?.name || "", render: (p) => p.owners?.name || "—" },
+            { key: "period", label: "Periodo", sortable: true, sortValue: (p) => p.period_start, render: (p) => `${fmtDate(p.period_start)} → ${fmtDate(p.period_end)}` },
+            { key: "gross_revenue", label: "Ricavi lordi", sortable: true, sortValue: (p) => Number(p.gross_revenue || 0), render: (p) => fmtEUR(p.gross_revenue) },
+            { key: "commission_amount", label: "Commissione", render: (p) => fmtEUR(p.commission_amount) },
+            { key: "expenses_amount", label: "Spese", render: (p) => fmtEUR(p.expenses_amount) },
+            { key: "net_payout", label: "Payout netto", sortable: true, sortValue: (p) => Number(p.net_payout || 0), render: (p) => <strong>{fmtEUR(p.net_payout)}</strong> },
+            { key: "status", label: "Stato", sortable: true, render: (p) => { const st = STATUS[p.status]; return <Badge color={st.color} bg={st.bg}>{st.label}</Badge>; } },
+            { key: "actions", label: "", stopRowClick: true, render: (p) => (
+              <div style={ui.actions}>
+                {NEXT_STATUS[p.status] && <button style={ui.linkBtn} onClick={() => advance(p)}>→ {STATUS[NEXT_STATUS[p.status]].label}</button>}
+                {p.status === "bozza" && <button style={{ ...ui.linkBtn, color: "#C62828" }} onClick={() => remove(p)}>Elimina</button>}
+              </div>
+            ) },
+          ]}
+        />
       )}
 
       {genModal && (
