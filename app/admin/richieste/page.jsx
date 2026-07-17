@@ -936,6 +936,7 @@ export default function AdminPanel() {
             <h1 style={s.title}>Pannello Admin</h1>
           </div>
           <div style={{ display: "flex", gap: "0", alignItems: "center" }}>
+            <a href="/admin/crm" style={{ ...s.refreshBtn, textDecoration: "none", marginRight: "12px", display: "inline-block" }}>CRM →</a>
             <button
               style={{ ...s.tabBtn, ...(tab === "richieste" ? s.tabActive : {}) }}
               onClick={() => setTab("richieste")}>Richieste</button>
