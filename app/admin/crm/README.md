@@ -4,7 +4,13 @@ CRM interno per gestire la crescita del portfolio (obiettivo: 100+ immobili), in
 
 ## Setup
 
-1. **Schema database**: esegui `supabase/crm_schema.sql` nel SQL Editor di Supabase (dopo `schema.sql`, già in uso per le richieste concierge).
+1. **Schema database**: esegui `supabase/crm_schema.sql` nel SQL Editor di Supabase (dopo `schema.sql`, già in uso per le richieste concierge). Se l'avevi già eseguito in precedenza, il file non è pensato per essere rilanciato per intero (le `create policy` non sono idempotenti) — esegui solo queste righe per aggiungere i nuovi campi ai proprietari:
+   ```sql
+   alter table owners add column if not exists estimated_value numeric(10,2);
+   alter table owners add column if not exists next_follow_up date;
+   alter table owners add column if not exists lost_reason text;
+   create index if not exists owners_follow_up_idx on owners(next_follow_up);
+   ```
 2. **Variabili d'ambiente**: sono già quelle usate dal resto del progetto —
    `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY` (quest'ultima necessaria per la creazione di nuovi utenti team da `/admin/crm/team`).
 3. **Primo utente admin**: crea un utente da Supabase Studio (Authentication → Users → Add user) oppure via SQL, poi aggiorna il suo ruolo:
@@ -17,7 +23,7 @@ CRM interno per gestire la crescita del portfolio (obiettivo: 100+ immobili), in
 ## Struttura
 
 - `/admin/crm` — dashboard con KPI (immobili, pipeline, prenotazioni, task, payout)
-- `/admin/crm/proprietari` — pipeline di acquisizione proprietari (lead → attivo), con timeline attività
+- `/admin/crm/proprietari` — pipeline di acquisizione proprietari (lead → attivo), con timeline attività, valore stimato per lead, follow-up programmati, invio email tracciato in automatico e motivo di perdita per i lead persi
 - `/admin/crm/immobili` — portfolio immobili, con spese collegate
 - `/admin/crm/prenotazioni` — prenotazioni per immobile, con calcolo automatico di commissione e payout stimato
 - `/admin/crm/ospiti` — CRM ospiti (creato automaticamente anche dalle prenotazioni)

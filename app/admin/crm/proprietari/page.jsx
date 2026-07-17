@@ -3,9 +3,14 @@
 export const dynamic = "force-dynamic";
 
 import { useEffect, useMemo, useState } from "react";
-import { apiFetch, BRAND, Field, fmtDate, Modal, ui, useCrm } from "../_lib";
+import { apiFetch, BRAND, Field, fmtDate, fmtEUR, Modal, ui, useCrm } from "../_lib";
 import { useToast } from "../_ui";
 import { IconDrag, IconSearch } from "../_icons";
+
+function isDueToday(dateStr) {
+  if (!dateStr) return false;
+  return dateStr <= new Date().toISOString().slice(0, 10);
+}
 
 const STAGES = [
   { key: "lead",               label: "Lead",              color: "#8A8278" },
@@ -25,12 +30,60 @@ const ACTIVITY_TYPES = [
   { value: "meeting",label: "Incontro" },
 ];
 
+function LostReasonModal({ ownerName, onClose, onConfirm }) {
+  const [reason, setReason] = useState("");
+  return (
+    <Modal maxWidth="420px" tag="LEAD PERSO" title={`Perché "${ownerName}" è perso?`} sub="Aiuta ad analizzare cosa non ha funzionato nella trattativa." onClose={onClose}
+      footer={<>
+        <button style={ui.ghostBtn} onClick={onClose}>Annulla</button>
+        <button style={{ ...ui.primaryBtn, background: "#C62828" }} onClick={() => onConfirm(reason)}>Conferma</button>
+      </>}>
+      <Field label="Motivo (opzionale)">
+        <textarea style={{ ...ui.input, resize: "vertical" }} rows={3} value={reason} onChange={e => setReason(e.target.value)}
+          placeholder="es. prezzo troppo alto, ha scelto un concorrente, non risponde più..." autoFocus />
+      </Field>
+    </Modal>
+  );
+}
+
+function EmailOwnerModal({ owner, onClose, onSent }) {
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const send = async () => {
+    if (!subject.trim() || !body.trim()) { setError("Oggetto e testo sono obbligatori"); return; }
+    setLoading(true); setError("");
+    try {
+      const json = await apiFetch("/api/crm/owners/email", { method: "POST", body: { owner_id: owner.id, subject, body } });
+      onSent(json.data);
+      onClose();
+    } catch (e) { setError(e.message); }
+    setLoading(false);
+  };
+
+  return (
+    <Modal tag="INVIA EMAIL" title={`Scrivi a ${owner.name}`} sub={owner.email} onClose={onClose}
+      footer={<>
+        <button style={ui.ghostBtn} onClick={onClose}>Annulla</button>
+        <button style={ui.primaryBtn} onClick={send} disabled={loading}>{loading ? "Invio..." : "✓ Invia"}</button>
+      </>}>
+      <Field label="Oggetto *"><input style={ui.input} value={subject} onChange={e => setSubject(e.target.value)} placeholder="es. Proposta di collaborazione per la sua proprietà" /></Field>
+      <Field label="Messaggio *"><textarea style={{ ...ui.input, resize: "vertical" }} rows={7} value={body} onChange={e => setBody(e.target.value)} placeholder="Scrivi il messaggio... (ogni riga diventa un paragrafo nell'email)" /></Field>
+      {error && <p style={ui.error}>{error}</p>}
+    </Modal>
+  );
+}
+
 function OwnerModal({ owner, onClose, onSaved }) {
   const isEdit = !!owner;
   const [form, setForm] = useState({
     name: owner?.name || "", company: owner?.company || "", email: owner?.email || "",
     phone: owner?.phone || "", source: owner?.source || "", stage: owner?.stage || "lead",
     commission_pct: owner?.commission_pct != null ? String(owner.commission_pct) : "20",
+    estimated_value: owner?.estimated_value != null ? String(owner.estimated_value) : "",
+    next_follow_up: owner?.next_follow_up || "",
     notes: owner?.notes || "",
   });
   const [loading, setLoading] = useState(false);
@@ -41,7 +94,12 @@ function OwnerModal({ owner, onClose, onSaved }) {
     if (!form.name.trim()) { setError("Il nome è obbligatorio"); return; }
     setLoading(true); setError("");
     try {
-      const payload = { ...form, commission_pct: parseFloat(form.commission_pct) || 0, ...(isEdit ? { id: owner.id } : {}) };
+      const payload = {
+        ...form, commission_pct: parseFloat(form.commission_pct) || 0,
+        estimated_value: form.estimated_value ? parseFloat(form.estimated_value) : null,
+        next_follow_up: form.next_follow_up || null,
+        ...(isEdit ? { id: owner.id } : {}),
+      };
       const json = await apiFetch("/api/crm/owners", { method: isEdit ? "PUT" : "POST", body: payload });
       onSaved(json.data, !isEdit);
       onClose();
@@ -72,6 +130,10 @@ function OwnerModal({ owner, onClose, onSaved }) {
         </Field>
         <Field label="Commissione (%)"><input style={ui.input} type="number" step="0.5" value={form.commission_pct} onChange={e => set("commission_pct", e.target.value)} /></Field>
       </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+        <Field label="Valore stimato annuo (€)"><input style={ui.input} type="number" value={form.estimated_value} onChange={e => set("estimated_value", e.target.value)} placeholder="es. 40000" /></Field>
+        <Field label="Prossimo follow-up"><input style={ui.input} type="date" value={form.next_follow_up} onChange={e => set("next_follow_up", e.target.value)} /></Field>
+      </div>
       <Field label="Note"><textarea style={{ ...ui.input, resize: "vertical" }} rows={3} value={form.notes} onChange={e => set("notes", e.target.value)} /></Field>
       {error && <p style={ui.error}>{error}</p>}
     </Modal>
@@ -80,12 +142,15 @@ function OwnerModal({ owner, onClose, onSaved }) {
 
 function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
   const { profile } = useCrm();
+  const toast = useToast();
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [type, setType] = useState("note");
   const [content, setContent] = useState("");
   const [posting, setPosting] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [lostModal, setLostModal] = useState(false);
+  const [emailModal, setEmailModal] = useState(false);
 
   useEffect(() => { load(); }, [owner.id]);
   const load = async () => {
@@ -108,12 +173,13 @@ function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
     setPosting(false);
   };
 
-  const changeStage = async (stage) => {
+  const changeStage = async (stage, lost_reason) => {
+    if (stage === "perso" && lost_reason === undefined) { setLostModal(true); return; }
     try {
-      const json = await apiFetch("/api/crm/owners", { method: "PUT", body: { id: owner.id, stage } });
+      const json = await apiFetch("/api/crm/owners", { method: "PUT", body: { id: owner.id, stage, ...(lost_reason ? { lost_reason } : {}) } });
       onUpdated(json.data);
       load();
-    } catch (e) { console.error(e); }
+    } catch (e) { toast.error("Errore: " + e.message); }
   };
 
   const del = async () => {
@@ -134,6 +200,7 @@ function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
           ? <button style={{ ...ui.primaryBtn, background: "#C62828" }} onClick={del}>Confermi eliminazione?</button>
           : <button style={{ ...ui.ghostBtn, color: "#C62828", borderColor: "#EF9A9A" }} onClick={() => setConfirmDelete(true)}>Elimina</button>
         )}
+        {owner.email && <button style={ui.ghostBtn} onClick={() => setEmailModal(true)}>✉ Invia email</button>}
         <button style={ui.ghostBtn} onClick={() => onEdit(owner)}>✎ Modifica</button>
         <button style={ui.ghostBtn} onClick={onClose}>Chiudi</button>
         {owner.stage === "attivo" && (
@@ -159,7 +226,19 @@ function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
         <div><strong>Telefono:</strong> {owner.phone || "—"}</div>
         <div><strong>Fonte:</strong> {owner.source || "—"}</div>
         <div><strong>Commissione:</strong> {owner.commission_pct}%</div>
+        <div><strong>Valore stimato:</strong> {owner.estimated_value ? fmtEUR(owner.estimated_value) : "—"}</div>
+        <div>
+          <strong>Follow-up:</strong>{" "}
+          <span style={{ color: isDueToday(owner.next_follow_up) ? "#C62828" : "inherit", fontWeight: isDueToday(owner.next_follow_up) ? 500 : 400 }}>
+            {owner.next_follow_up ? fmtDate(owner.next_follow_up) : "—"}
+          </span>
+        </div>
       </div>
+      {owner.stage === "perso" && owner.lost_reason && (
+        <p style={{ fontSize: "13px", color: "#C62828", background: "#FFEBEE", padding: "10px 12px", border: "1px solid #EF9A9A" }}>
+          <strong>Motivo perdita:</strong> {owner.lost_reason}
+        </p>
+      )}
       {owner.notes && <p style={{ fontSize: "13px", color: BRAND.textMuted, whiteSpace: "pre-wrap" }}>{owner.notes}</p>}
 
       <div style={ui.mDivider} />
@@ -186,6 +265,15 @@ function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
             </div>
           ))}
       </div>
+
+      {lostModal && (
+        <LostReasonModal ownerName={owner.name} onClose={() => setLostModal(false)}
+          onConfirm={(reason) => { setLostModal(false); changeStage("perso", reason || ""); }} />
+      )}
+      {emailModal && (
+        <EmailOwnerModal owner={owner} onClose={() => setEmailModal(false)}
+          onSent={(activity) => { setActivities(p => [activity, ...p]); toast.success("Email inviata"); }} />
+      )}
     </Modal>
   );
 }
@@ -199,6 +287,7 @@ export default function ProprietariPage() {
   const [search, setSearch] = useState("");
   const [dragId, setDragId] = useState(null);
   const [overStage, setOverStage] = useState(null);
+  const [lostDrop, setLostDrop] = useState(null);
 
   useEffect(() => { load(); }, []);
   const load = async () => {
@@ -221,22 +310,29 @@ export default function ProprietariPage() {
     return owners.filter(o => [o.name, o.company, o.email].filter(Boolean).some(v => v.toLowerCase().includes(q)));
   }, [owners, search]);
 
-  const dropOnStage = async (stageKey) => {
-    const id = dragId;
-    setDragId(null); setOverStage(null);
-    if (!id) return;
+  const commitStageChange = async (id, stageKey, lost_reason) => {
     const owner = owners.find(o => o.id === id);
-    if (!owner || owner.stage === stageKey) return;
+    if (!owner) return;
     const prevStage = owner.stage;
     setOwners(p => p.map(o => o.id === id ? { ...o, stage: stageKey } : o));
     try {
-      const json = await apiFetch("/api/crm/owners", { method: "PUT", body: { id, stage: stageKey } });
+      const json = await apiFetch("/api/crm/owners", { method: "PUT", body: { id, stage: stageKey, ...(lost_reason ? { lost_reason } : {}) } });
       handleUpdated(json.data);
       toast.success(`${owner.name} spostato in "${stageInfo(stageKey).label}"`);
     } catch (e) {
       setOwners(p => p.map(o => o.id === id ? { ...o, stage: prevStage } : o));
       toast.error("Impossibile aggiornare la fase: " + e.message);
     }
+  };
+
+  const dropOnStage = (stageKey) => {
+    const id = dragId;
+    setDragId(null); setOverStage(null);
+    if (!id) return;
+    const owner = owners.find(o => o.id === id);
+    if (!owner || owner.stage === stageKey) return;
+    if (stageKey === "perso") { setLostDrop({ id, name: owner.name }); return; }
+    commitStageChange(id, stageKey);
   };
 
   return (
@@ -265,26 +361,31 @@ export default function ProprietariPage() {
           {STAGES.map(stage => {
             const items = filtered.filter(o => o.stage === stage.key);
             const isOver = overStage === stage.key;
+            const stageValue = items.reduce((s, o) => s + Number(o.estimated_value || 0), 0);
             return (
               <div key={stage.key}
                 onDragOver={(e) => { e.preventDefault(); setOverStage(stage.key); }}
                 onDragLeave={() => setOverStage(p => p === stage.key ? null : p)}
                 onDrop={(e) => { e.preventDefault(); dropOnStage(stage.key); }}
                 style={{ minWidth: "260px", flex: "0 0 260px", background: isOver ? "rgba(191,160,90,.08)" : "transparent", transition: "background .12s", padding: "4px", border: isOver ? `1px dashed ${BRAND.gold}` : "1px dashed transparent" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", padding: "0 4px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "2px", padding: "0 4px" }}>
                   <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: stage.color, display: "inline-block" }} />
                   <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "12px", letterSpacing: ".05em", color: BRAND.dark, fontWeight: "500" }}>{stage.label}</p>
                   <span style={{ fontSize: "11px", color: BRAND.textMuted }}>{items.length}</span>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {items.map(o => (
+                {stageValue > 0 && <p style={{ fontSize: "10px", color: BRAND.textMuted, padding: "0 4px", marginBottom: "8px" }}>{fmtEUR(stageValue)} stimati</p>}
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: stageValue > 0 ? 0 : "10px" }}>
+                  {items.map(o => {
+                    const due = isDueToday(o.next_follow_up) && !["attivo", "perso"].includes(o.stage);
+                    return (
                     <div key={o.id}
                       draggable
                       onDragStart={(e) => { setDragId(o.id); e.dataTransfer.effectAllowed = "move"; }}
                       onDragEnd={() => { setDragId(null); setOverStage(null); }}
                       onClick={() => setDetailOwner(o)}
                       style={{
-                        background: "#fff", border: `1px solid ${BRAND.border}`, padding: "12px 14px", cursor: "grab",
+                        background: "#fff", border: `1px solid ${due ? "#EF9A9A" : BRAND.border}`, borderLeft: due ? "3px solid #C62828" : `1px solid ${BRAND.border}`,
+                        padding: "12px 14px", cursor: "grab",
                         opacity: dragId === o.id ? 0.4 : 1, display: "flex", gap: "8px", alignItems: "flex-start",
                         boxShadow: "0 1px 2px rgba(26,24,20,.04)", transition: "box-shadow .15s, opacity .15s",
                       }}
@@ -295,16 +396,26 @@ export default function ProprietariPage() {
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "500", color: BRAND.dark }}>{o.name}</p>
                         {o.company && <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "2px" }}>{o.company}</p>}
-                        <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "6px" }}>{o.commission_pct}% commissione</p>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: "6px" }}>
+                          <p style={{ fontSize: "11px", color: BRAND.textMuted }}>{o.commission_pct}% commissione</p>
+                          {o.estimated_value > 0 && <p style={{ fontSize: "11px", color: BRAND.gold, fontWeight: 500 }}>{fmtEUR(o.estimated_value)}</p>}
+                        </div>
+                        {due && <p style={{ fontSize: "10px", color: "#C62828", fontWeight: 500, marginTop: "4px" }}>↻ Da ricontattare</p>}
                       </div>
                     </div>
-                  ))}
+                  );
+                  })}
                   {items.length === 0 && <div style={{ fontSize: "11px", color: BRAND.textMuted, fontStyle: "italic", padding: "8px 4px" }}>Vuoto</div>}
                 </div>
               </div>
             );
           })}
         </div>
+      )}
+
+      {lostDrop && (
+        <LostReasonModal ownerName={lostDrop.name} onClose={() => setLostDrop(null)}
+          onConfirm={(reason) => { commitStageChange(lostDrop.id, "perso", reason || ""); setLostDrop(null); }} />
       )}
 
       {editModal !== null && (

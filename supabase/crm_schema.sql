@@ -70,15 +70,24 @@ create table if not exists owners (
                                check (stage in ('lead','contattato','in_trattativa','contratto_inviato','attivo','in_pausa','perso')),
   commission_pct  numeric(5,2) default 20,
   notes           text,
+  estimated_value numeric(10,2), -- ricavo annuo stimato dell'immobile, per dare priorità alla pipeline
+  next_follow_up  date,          -- prossimo richiamo/contatto programmato
+  lost_reason     text,          -- motivo quando stage = 'perso'
   assigned_to     uuid        references profiles(id) on delete set null,
   created_by      uuid        references profiles(id) on delete set null
 );
+
+-- Se la tabella owners esiste già da un'installazione precedente:
+alter table owners add column if not exists estimated_value numeric(10,2);
+alter table owners add column if not exists next_follow_up date;
+alter table owners add column if not exists lost_reason text;
 
 alter table owners enable row level security;
 create policy "Authenticated full access owners" on owners
   for all using (auth.role() = 'authenticated');
 
 create index if not exists owners_stage_idx on owners(stage);
+create index if not exists owners_follow_up_idx on owners(next_follow_up);
 
 drop trigger if exists owners_set_updated_at on owners;
 create trigger owners_set_updated_at before update on owners

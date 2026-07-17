@@ -20,6 +20,19 @@ export async function GET(request) {
     }));
   }
 
+  if (canAccess(profile, "owners")) {
+    const { data } = await supabase
+      .from("owners").select("id, name, next_follow_up")
+      .not("stage", "in", "(attivo,perso)").not("next_follow_up", "is", null).lte("next_follow_up", today)
+      .order("next_follow_up", { ascending: true }).limit(5);
+    (data || []).forEach(o => items.push({
+      id: `owner-${o.id}`, type: "owner", urgency: o.next_follow_up < today ? "critical" : "warning",
+      title: `Da ricontattare: ${o.name}`,
+      subtitle: o.next_follow_up < today ? `Follow-up previsto il ${new Date(o.next_follow_up).toLocaleDateString("it-IT")}` : "Follow-up previsto oggi",
+      href: "/admin/crm/proprietari",
+    }));
+  }
+
   if (canAccess(profile, "bookings")) {
     const { data } = await supabase
       .from("bookings").select("id, guest_name, check_in, properties:property_id(name)")

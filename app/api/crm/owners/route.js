@@ -26,6 +26,8 @@ export async function POST(request) {
       stage: body.stage || "lead",
       commission_pct: body.commission_pct ?? 20,
       notes: body.notes || null,
+      estimated_value: body.estimated_value || null,
+      next_follow_up: body.next_follow_up || null,
       assigned_to: body.assigned_to || auth.profile.id,
       created_by: auth.profile.id,
     })
@@ -43,9 +45,10 @@ export async function PUT(request) {
   if (!id) return Response.json({ ok: false, error: "id mancante" }, { status: 400 });
 
   if (rest.stage) {
+    const reasonNote = rest.stage === "perso" && rest.lost_reason ? ` — motivo: ${rest.lost_reason}` : "";
     await auth.supabase.from("owner_activities").insert({
       owner_id: id, type: "stage_change",
-      content: `Fase aggiornata a "${rest.stage}"`,
+      content: `Fase aggiornata a "${rest.stage}"${reasonNote}`,
       created_by: auth.profile.id,
     });
   }
