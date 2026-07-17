@@ -920,6 +920,25 @@ function RequestsTab() {
 // ─── PANNELLO PRINCIPALE ──────────────────────────────────────────────────────
 export default function AdminPanel() {
   const [tab, setTab] = useState("foto");
+  const [authChecked, setAuthChecked] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    getSupabase().auth.getSession().then(({ data: { session } }) => {
+      if (!mounted) return;
+      if (!session) { window.location.href = "/admin/login"; return; }
+      setAuthChecked(true);
+    });
+    return () => { mounted = false; };
+  }, []);
+
+  if (!authChecked) {
+    return (
+      <div style={{ minHeight: "100vh", background: BRAND.cream, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", color: BRAND.textMuted }}>
+        Caricamento...
+      </div>
+    );
+  }
 
   return (
     <>
