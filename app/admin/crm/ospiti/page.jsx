@@ -4,6 +4,20 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useMemo, useState } from "react";
 import { apiFetch, Badge, BRAND, Field, fmtDate, fmtEUR, Modal, ui } from "../_lib";
+import { DataTable, useToast } from "../_ui";
+import { IconSearch } from "../_icons";
+
+function initials(name) {
+  if (!name) return "?";
+  return name.split(" ").filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+}
+function Avatar({ name }) {
+  return (
+    <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "rgba(191,160,90,.14)", color: "#92702A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: "11px", fontWeight: 500, flexShrink: 0 }}>
+      {initials(name)}
+    </div>
+  );
+}
 
 function GuestModal({ guest, onClose, onSaved }) {
   const isEdit = !!guest;
@@ -94,6 +108,7 @@ function GuestDetail({ guest, onClose, onEdit }) {
 }
 
 export default function OspitiPage() {
+  const toast = useToast();
   const [guests, setGuests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -108,7 +123,10 @@ export default function OspitiPage() {
     setLoading(false);
   };
 
-  const handleSaved = (data, isNew) => setGuests(p => isNew ? [data, ...p] : p.map(g => g.id === data.id ? { ...g, ...data } : g));
+  const handleSaved = (data, isNew) => {
+    setGuests(p => isNew ? [data, ...p] : p.map(g => g.id === data.id ? { ...g, ...data } : g));
+    toast.success(isNew ? "Ospite aggiunto" : "Ospite aggiornato");
+  };
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -129,36 +147,35 @@ export default function OspitiPage() {
         </div>
       </div>
 
-      <div style={{ marginBottom: "20px" }}>
-        <input style={{ ...ui.input, maxWidth: "320px" }} placeholder="Cerca per nome, email, telefono..." value={search} onChange={e => setSearch(e.target.value)} />
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px", maxWidth: "320px", background: "#fff", border: `1px solid ${BRAND.border}`, padding: "9px 12px" }}>
+        <IconSearch size={15} style={{ color: BRAND.textMuted, flexShrink: 0 }} />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Cerca per nome, email, telefono..."
+          style={{ border: "none", outline: "none", fontFamily: "'Jost',sans-serif", fontSize: "13px", width: "100%" }} />
       </div>
 
       {loading ? (
         <div style={ui.empty}>Caricamento...</div>
-      ) : filtered.length === 0 ? (
-        <div style={ui.empty}>Nessun ospite trovato. Gli ospiti vengono creati automaticamente anche dalle prenotazioni.</div>
       ) : (
-        <div style={ui.tableWrap}>
-          <table style={ui.table}>
-            <thead><tr>{["Nome", "Contatti", "Prenotazioni", "Tag", ""].map(h => <th key={h} style={ui.th}>{h}</th>)}</tr></thead>
-            <tbody>
-              {filtered.map(g => (
-                <tr key={g.id} style={{ cursor: "pointer" }} onClick={() => setDetailGuest(g)}>
-                  <td style={ui.td}>{g.name}</td>
-                  <td style={ui.td}>
-                    <div>{g.email || "—"}</div>
-                    {g.phone && <div style={{ fontSize: "11px", color: BRAND.textMuted }}>{g.phone}</div>}
-                  </td>
-                  <td style={ui.td}>{(g.bookings || []).length}</td>
-                  <td style={ui.td}>{(g.tags || []).join(", ") || "—"}</td>
-                  <td style={ui.td} onClick={e => e.stopPropagation()}>
-                    <button style={ui.linkBtn} onClick={() => setEditModal(g)}>Modifica</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          getRowId={(g) => g.id}
+          data={filtered}
+          onRowClick={setDetailGuest}
+          emptyMessage="Nessun ospite trovato. Gli ospiti vengono creati automaticamente anche dalle prenotazioni."
+          columns={[
+            { key: "name", label: "Nome", sortable: true, render: (g) => (
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Avatar name={g.name} /><span style={{ fontWeight: 500 }}>{g.name}</span>
+              </div>
+            ) },
+            { key: "contact", label: "Contatti", render: (g) => (<>
+              <div>{g.email || "—"}</div>
+              {g.phone && <div style={{ fontSize: "11px", color: BRAND.textMuted }}>{g.phone}</div>}
+            </>) },
+            { key: "bookings", label: "Prenotazioni", sortable: true, sortValue: (g) => (g.bookings || []).length, render: (g) => (g.bookings || []).length },
+            { key: "tags", label: "Tag", render: (g) => (g.tags || []).join(", ") || "—" },
+            { key: "actions", label: "", stopRowClick: true, render: (g) => <button style={ui.linkBtn} onClick={() => setEditModal(g)}>Modifica</button> },
+          ]}
+        />
       )}
 
       {editModal !== null && (

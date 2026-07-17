@@ -4,6 +4,10 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { apiFetch, BRAND, Field, fmtDate, Modal, ui, useCrm } from "../_lib";
+import { useToast } from "../_ui";
+import { IconDrag, IconPlus } from "../_icons";
+
+const isOverdue = (t) => t.due_date && t.status !== "fatto" && t.due_date < new Date().toISOString().slice(0, 10);
 
 const STATUSES = [
   { key: "da_fare",  label: "Da fare",   color: "#8A8278" },
@@ -75,12 +79,16 @@ function TaskModal({ task, properties, team, onClose, onSaved }) {
 
 export default function TaskPage() {
   const { profile } = useCrm();
+  const toast = useToast();
   const canManage = profile?.role !== "cleaning";
   const [tasks, setTasks] = useState([]);
   const [properties, setProperties] = useState([]);
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState(null);
+  const [quickAdd, setQuickAdd] = useState("");
+  const [dragId, setDragId] = useState(null);
+  const [overStatus, setOverStatus] = useState(null);
 
   useEffect(() => { load(); }, []);
   const load = async () => {
@@ -98,13 +106,31 @@ export default function TaskPage() {
   const handleSaved = (data, isNew) => setTasks(p => isNew ? [data, ...p] : p.map(t => t.id === data.id ? data : t));
 
   const changeStatus = async (task, status) => {
+    setTasks(p => p.map(t => t.id === task.id ? { ...t, status } : t));
     try { const json = await apiFetch("/api/crm/tasks", { method: "PUT", body: { id: task.id, status } }); handleSaved(json.data, false); }
-    catch (e) { console.error(e); }
+    catch (e) { setTasks(p => p.map(t => t.id === task.id ? { ...t, status: task.status } : t)); toast.error("Errore: " + e.message); }
   };
 
   const remove = async (task) => {
-    try { await apiFetch("/api/crm/tasks", { method: "DELETE", body: { id: task.id } }); setTasks(p => p.filter(t => t.id !== task.id)); }
-    catch (e) { console.error(e); }
+    try { await apiFetch("/api/crm/tasks", { method: "DELETE", body: { id: task.id } }); setTasks(p => p.filter(t => t.id !== task.id)); toast.success("Task eliminato"); }
+    catch (e) { toast.error("Errore: " + e.message); }
+  };
+
+  const quickAddTask = async () => {
+    if (!quickAdd.trim()) return;
+    try {
+      const json = await apiFetch("/api/crm/tasks", { method: "POST", body: { title: quickAdd.trim() } });
+      handleSaved(json.data, true);
+      setQuickAdd("");
+      toast.success("Task aggiunto");
+    } catch (e) { toast.error("Errore: " + e.message); }
+  };
+
+  const dropOnStatus = (status) => {
+    const task = tasks.find(t => t.id === dragId);
+    setDragId(null); setOverStatus(null);
+    if (!task || task.status === status) return;
+    changeStatus(task, status);
   };
 
   return (
@@ -126,38 +152,66 @@ export default function TaskPage() {
         <div style={{ display: "flex", gap: "14px", overflowX: "auto", paddingBottom: "12px" }}>
           {STATUSES.map(st => {
             const items = tasks.filter(t => t.status === st.key);
+            const isOver = overStatus === st.key;
             return (
-              <div key={st.key} style={{ minWidth: "280px", flex: "0 0 280px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+              <div key={st.key}
+                onDragOver={(e) => { e.preventDefault(); setOverStatus(st.key); }}
+                onDragLeave={() => setOverStatus(p => p === st.key ? null : p)}
+                onDrop={(e) => { e.preventDefault(); dropOnStatus(st.key); }}
+                style={{ minWidth: "280px", flex: "0 0 280px", background: isOver ? "rgba(191,160,90,.08)" : "transparent", padding: "4px", border: isOver ? `1px dashed ${BRAND.gold}` : "1px dashed transparent" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", padding: "0 4px" }}>
                   <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: st.color, display: "inline-block" }} />
                   <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "12px", letterSpacing: ".05em", color: BRAND.dark, fontWeight: "500" }}>{st.label}</p>
                   <span style={{ fontSize: "11px", color: BRAND.textMuted }}>{items.length}</span>
                 </div>
+
+                {st.key === "da_fare" && canManage && (
+                  <div style={{ display: "flex", gap: "6px", marginBottom: "8px" }}>
+                    <input value={quickAdd} onChange={e => setQuickAdd(e.target.value)} onKeyDown={e => e.key === "Enter" && quickAddTask()}
+                      placeholder="Aggiungi rapido..." style={{ ...ui.input, fontSize: "12px", padding: "8px 10px" }} />
+                    <button onClick={quickAddTask} style={{ ...ui.primaryBtn, padding: "0 10px" }}><IconPlus size={13} /></button>
+                  </div>
+                )}
+
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {items.map(t => (
-                    <div key={t.id} style={{ background: "#fff", border: `1px solid ${BRAND.border}`, padding: "12px 14px" }}>
-                      <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "500", color: BRAND.dark }}>{t.title}</p>
-                      <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "4px" }}>
-                        {TYPES.find(x => x.value === t.type)?.label} {t.properties?.name ? `· ${t.properties.name}` : ""}
-                      </p>
-                      {t.due_date && <p style={{ fontSize: "11px", color: BRAND.textMuted }}>Scadenza: {fmtDate(t.due_date)}</p>}
-                      {t.assignee?.full_name && <p style={{ fontSize: "11px", color: BRAND.gold, marginTop: "2px" }}>{t.assignee.full_name}</p>}
-                      <div style={{ display: "flex", gap: "6px", marginTop: "10px", flexWrap: "wrap" }}>
-                        {STATUSES.filter(s => s.key !== t.status).map(s => (
-                          <button key={s.key} onClick={() => changeStatus(t, s.key)} style={{ ...ui.ghostBtn, padding: "4px 8px", fontSize: "10px" }}>
-                            → {s.label}
-                          </button>
-                        ))}
-                        {canManage && (
-                          <>
-                            <button onClick={() => setEditModal(t)} style={{ ...ui.linkBtn, fontSize: "10px" }}>Modifica</button>
-                            <button onClick={() => remove(t)} style={{ ...ui.linkBtn, fontSize: "10px", color: "#C62828" }}>Elimina</button>
-                          </>
-                        )}
+                  {items.map(t => {
+                    const overdue = isOverdue(t);
+                    return (
+                      <div key={t.id}
+                        draggable
+                        onDragStart={(e) => { setDragId(t.id); e.dataTransfer.effectAllowed = "move"; }}
+                        onDragEnd={() => { setDragId(null); setOverStatus(null); }}
+                        style={{
+                          background: "#fff", border: `1px solid ${overdue ? "#EF9A9A" : BRAND.border}`, borderLeft: overdue ? "3px solid #C62828" : `1px solid ${BRAND.border}`,
+                          padding: "12px 14px", cursor: "grab", opacity: dragId === t.id ? 0.4 : 1,
+                          display: "flex", gap: "8px", boxShadow: "0 1px 2px rgba(26,24,20,.04)",
+                        }}>
+                        <IconDrag size={13} style={{ color: BRAND.border, marginTop: "2px", flexShrink: 0 }} />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "500", color: BRAND.dark }}>{t.title}</p>
+                          <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "4px" }}>
+                            {TYPES.find(x => x.value === t.type)?.label} {t.properties?.name ? `· ${t.properties.name}` : ""}
+                          </p>
+                          {t.due_date && <p style={{ fontSize: "11px", color: overdue ? "#C62828" : BRAND.textMuted, fontWeight: overdue ? 500 : 400 }}>{overdue ? "In ritardo dal" : "Scadenza"}: {fmtDate(t.due_date)}</p>}
+                          {t.assignee?.full_name && <p style={{ fontSize: "11px", color: BRAND.gold, marginTop: "2px" }}>{t.assignee.full_name}</p>}
+                          <div style={{ display: "flex", gap: "6px", marginTop: "10px", flexWrap: "wrap" }}>
+                            {STATUSES.filter(s => s.key !== t.status).map(s => (
+                              <button key={s.key} onClick={() => changeStatus(t, s.key)} style={{ ...ui.ghostBtn, padding: "4px 8px", fontSize: "10px" }}>
+                                → {s.label}
+                              </button>
+                            ))}
+                            {canManage && (
+                              <>
+                                <button onClick={() => setEditModal(t)} style={{ ...ui.linkBtn, fontSize: "10px" }}>Modifica</button>
+                                <button onClick={() => remove(t)} style={{ ...ui.linkBtn, fontSize: "10px", color: "#C62828" }}>Elimina</button>
+                              </>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                  {items.length === 0 && <div style={{ fontSize: "11px", color: BRAND.textMuted, fontStyle: "italic", padding: "8px 0" }}>Vuoto</div>}
+                    );
+                  })}
+                  {items.length === 0 && <div style={{ fontSize: "11px", color: BRAND.textMuted, fontStyle: "italic", padding: "8px 4px" }}>Vuoto</div>}
                 </div>
               </div>
             );

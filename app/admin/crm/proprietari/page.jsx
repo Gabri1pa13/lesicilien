@@ -2,8 +2,10 @@
 
 export const dynamic = "force-dynamic";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiFetch, BRAND, Field, fmtDate, Modal, ui, useCrm } from "../_lib";
+import { useToast } from "../_ui";
+import { IconDrag, IconSearch } from "../_icons";
 
 const STAGES = [
   { key: "lead",               label: "Lead",              color: "#8A8278" },
@@ -189,10 +191,14 @@ function OwnerDetail({ owner, onClose, onUpdated, onDeleted, onEdit }) {
 }
 
 export default function ProprietariPage() {
+  const toast = useToast();
   const [owners, setOwners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState(null);
   const [detailOwner, setDetailOwner] = useState(null);
+  const [search, setSearch] = useState("");
+  const [dragId, setDragId] = useState(null);
+  const [overStage, setOverStage] = useState(null);
 
   useEffect(() => { load(); }, []);
   const load = async () => {
@@ -204,9 +210,34 @@ export default function ProprietariPage() {
 
   const handleSaved = (data, isNew) => {
     setOwners(p => isNew ? [data, ...p] : p.map(o => o.id === data.id ? data : o));
+    toast.success(isNew ? "Lead aggiunto alla pipeline" : "Proprietario aggiornato");
   };
   const handleUpdated = (data) => setOwners(p => p.map(o => o.id === data.id ? data : o));
-  const handleDeleted = (id) => setOwners(p => p.filter(o => o.id !== id));
+  const handleDeleted = (id) => { setOwners(p => p.filter(o => o.id !== id)); toast.success("Proprietario eliminato"); };
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return owners;
+    return owners.filter(o => [o.name, o.company, o.email].filter(Boolean).some(v => v.toLowerCase().includes(q)));
+  }, [owners, search]);
+
+  const dropOnStage = async (stageKey) => {
+    const id = dragId;
+    setDragId(null); setOverStage(null);
+    if (!id) return;
+    const owner = owners.find(o => o.id === id);
+    if (!owner || owner.stage === stageKey) return;
+    const prevStage = owner.stage;
+    setOwners(p => p.map(o => o.id === id ? { ...o, stage: stageKey } : o));
+    try {
+      const json = await apiFetch("/api/crm/owners", { method: "PUT", body: { id, stage: stageKey } });
+      handleUpdated(json.data);
+      toast.success(`${owner.name} spostato in "${stageInfo(stageKey).label}"`);
+    } catch (e) {
+      setOwners(p => p.map(o => o.id === id ? { ...o, stage: prevStage } : o));
+      toast.error("Impossibile aggiornare la fase: " + e.message);
+    }
+  };
 
   return (
     <div style={ui.page}>
@@ -221,28 +252,54 @@ export default function ProprietariPage() {
         </div>
       </div>
 
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px", maxWidth: "320px", background: "#fff", border: `1px solid ${BRAND.border}`, padding: "9px 12px" }}>
+        <IconSearch size={15} style={{ color: BRAND.textMuted, flexShrink: 0 }} />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Cerca per nome, azienda, email..."
+          style={{ border: "none", outline: "none", fontFamily: "'Jost',sans-serif", fontSize: "13px", width: "100%" }} />
+      </div>
+
       {loading ? (
         <div style={ui.empty}>Caricamento...</div>
       ) : (
         <div style={{ display: "flex", gap: "14px", overflowX: "auto", paddingBottom: "12px" }}>
           {STAGES.map(stage => {
-            const items = owners.filter(o => o.stage === stage.key);
+            const items = filtered.filter(o => o.stage === stage.key);
+            const isOver = overStage === stage.key;
             return (
-              <div key={stage.key} style={{ minWidth: "260px", flex: "0 0 260px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+              <div key={stage.key}
+                onDragOver={(e) => { e.preventDefault(); setOverStage(stage.key); }}
+                onDragLeave={() => setOverStage(p => p === stage.key ? null : p)}
+                onDrop={(e) => { e.preventDefault(); dropOnStage(stage.key); }}
+                style={{ minWidth: "260px", flex: "0 0 260px", background: isOver ? "rgba(191,160,90,.08)" : "transparent", transition: "background .12s", padding: "4px", border: isOver ? `1px dashed ${BRAND.gold}` : "1px dashed transparent" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", padding: "0 4px" }}>
                   <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: stage.color, display: "inline-block" }} />
                   <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "12px", letterSpacing: ".05em", color: BRAND.dark, fontWeight: "500" }}>{stage.label}</p>
                   <span style={{ fontSize: "11px", color: BRAND.textMuted }}>{items.length}</span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                   {items.map(o => (
-                    <div key={o.id} onClick={() => setDetailOwner(o)} style={{ background: "#fff", border: `1px solid ${BRAND.border}`, padding: "12px 14px", cursor: "pointer" }}>
-                      <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "500", color: BRAND.dark }}>{o.name}</p>
-                      {o.company && <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "2px" }}>{o.company}</p>}
-                      <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "6px" }}>{o.commission_pct}% commissione</p>
+                    <div key={o.id}
+                      draggable
+                      onDragStart={(e) => { setDragId(o.id); e.dataTransfer.effectAllowed = "move"; }}
+                      onDragEnd={() => { setDragId(null); setOverStage(null); }}
+                      onClick={() => setDetailOwner(o)}
+                      style={{
+                        background: "#fff", border: `1px solid ${BRAND.border}`, padding: "12px 14px", cursor: "grab",
+                        opacity: dragId === o.id ? 0.4 : 1, display: "flex", gap: "8px", alignItems: "flex-start",
+                        boxShadow: "0 1px 2px rgba(26,24,20,.04)", transition: "box-shadow .15s, opacity .15s",
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.boxShadow = "0 4px 14px rgba(26,24,20,.1)"}
+                      onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 2px rgba(26,24,20,.04)"}
+                    >
+                      <IconDrag size={13} style={{ color: BRAND.border, marginTop: "2px", flexShrink: 0 }} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "500", color: BRAND.dark }}>{o.name}</p>
+                        {o.company && <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "2px" }}>{o.company}</p>}
+                        <p style={{ fontSize: "11px", color: BRAND.textMuted, marginTop: "6px" }}>{o.commission_pct}% commissione</p>
+                      </div>
                     </div>
                   ))}
-                  {items.length === 0 && <div style={{ fontSize: "11px", color: BRAND.textMuted, fontStyle: "italic", padding: "8px 0" }}>Vuoto</div>}
+                  {items.length === 0 && <div style={{ fontSize: "11px", color: BRAND.textMuted, fontStyle: "italic", padding: "8px 4px" }}>Vuoto</div>}
                 </div>
               </div>
             );
