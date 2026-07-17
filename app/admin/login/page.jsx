@@ -17,16 +17,31 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      setError("Email o password errati.");
-      setLoading(false);
-    } else {
-      window.location.href = "/admin/richieste";
+    try {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+      if (!supabaseUrl || !supabaseKey) {
+        throw new Error("Configurazione mancante: variabili d'ambiente Supabase non impostate su questo deployment.");
+      }
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Timeout: nessuna risposta dal server (progetto Supabase in pausa?)")), 10000)
+      );
+      const { error } = await Promise.race([supabase.auth.signInWithPassword({ email, password }), timeout]);
+      if (error) {
+        setError(
+          /invalid login credentials/i.test(error.message || "")
+            ? "Email o password errati."
+            : (error.message || "Email o password errati.")
+        );
+      } else {
+        window.location.href = "/admin/richieste";
+        return;
+      }
+    } catch (e) {
+      setError(e.message || "Errore imprevisto durante l'accesso.");
     }
+    setLoading(false);
   };
 
   return (

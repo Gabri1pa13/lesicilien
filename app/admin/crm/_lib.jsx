@@ -46,19 +46,20 @@ const ROLE_LABELS = {
 export function roleLabel(role) { return ROLE_LABELS[role] || role; }
 
 export function CrmAuthGuard({ children }) {
-  const [state, setState] = useState({ loading: true, profile: null, allowed: [] });
+  const [state, setState] = useState({ loading: true, profile: null, allowed: [], error: null });
 
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const { data: { session } } = await getSupabase().auth.getSession();
-      if (!session) { window.location.href = "/admin/login"; return; }
       try {
+        const { data: { session } } = await getSupabase().auth.getSession();
+        if (!session) { window.location.href = "/admin/login"; return; }
         const json = await apiFetch("/api/crm/me");
         if (!mounted) return;
-        setState({ loading: false, profile: json.profile, allowed: json.allowed || [] });
+        setState({ loading: false, profile: json.profile, allowed: json.allowed || [], error: null });
       } catch (e) {
-        window.location.href = "/admin/login";
+        if (!mounted) return;
+        setState({ loading: false, profile: null, allowed: [], error: e.message || "Errore di autenticazione." });
       }
     })();
     return () => { mounted = false; };
@@ -68,6 +69,15 @@ export function CrmAuthGuard({ children }) {
     return (
       <div style={{ minHeight: "100vh", background: BRAND.cream, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", color: BRAND.textMuted }}>
         Caricamento...
+      </div>
+    );
+  }
+
+  if (state.error) {
+    return (
+      <div style={{ minHeight: "100vh", background: BRAND.cream, display: "flex", flexDirection: "column", gap: "14px", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", padding: "24px", textAlign: "center" }}>
+        <p style={{ color: "#C62828", fontWeight: 500, maxWidth: "420px" }}>{state.error}</p>
+        <a href="/admin/login" style={{ color: BRAND.gold }}>Torna al login</a>
       </div>
     );
   }
