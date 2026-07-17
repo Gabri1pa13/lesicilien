@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { apiFetch, BRAND, fmtDate, fmtEUR, ui, useCrm } from "./_lib";
-import { ChannelMixChart, PipelineFunnelChart, RevenueTrendChart, TopPropertiesChart } from "./_charts";
+import { ChannelMixChart, PipelineFunnelChart, RevenueTrendChart, SourcePerformanceChart, TopPropertiesChart } from "./_charts";
 import { IconAccounting, IconArrowRight, IconBookings, IconOwners, IconProperties, IconTasks } from "./_icons";
 import { DataTable } from "./_ui";
 
@@ -73,6 +73,9 @@ export default function DashboardPage() {
           <div style={{ ...ui.statGrid, display: "flex", flexWrap: "wrap" }}>
             {data.properties && <StatTile icon={IconProperties} value={data.properties.active} label="Immobili attivi" accent />}
             {data.owners && <StatTile icon={IconOwners} value={data.owners.inPipeline} label="Lead in pipeline" />}
+            {data.owners && <StatTile icon={IconOwners} value={fmtEUR(data.owners.pipelineValue)} label="Valore stimato pipeline" accent />}
+            {data.owners && data.owners.conversionRate != null && <StatTile icon={IconOwners} value={`${data.owners.conversionRate}%`} label="Tasso di conversione" />}
+            {data.owners && data.owners.avgDaysToClose != null && <StatTile icon={IconOwners} value={`${data.owners.avgDaysToClose}g`} label="Giorni medi alla chiusura" />}
             {data.bookings && <StatTile icon={IconBookings} value={fmtEUR(data.bookings.revenueThisMonth)} label="Ricavi questo mese" accent />}
             {data.tasks && <StatTile icon={IconTasks} value={data.tasks.open} label="Task aperti" />}
             {data.payouts && <StatTile icon={IconAccounting} value={fmtEUR(data.payouts.pendingAmount)} label="Payout da versare" />}
@@ -81,6 +84,7 @@ export default function DashboardPage() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", margin: "24px 0" }}>
             {data.bookings && <RevenueTrendChart data={data.bookings.revenueTrend} />}
             {data.owners && <PipelineFunnelChart data={data.owners.byStage} />}
+            {data.owners && <SourcePerformanceChart data={data.owners.bySource} />}
             {data.bookings && <ChannelMixChart data={data.bookings.channelMix} />}
             {data.bookings && <TopPropertiesChart data={data.bookings.topProperties} />}
           </div>

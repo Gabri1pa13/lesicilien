@@ -22,13 +22,34 @@ export async function GET(request) {
   }
 
   if (canAccess(profile, "owners")) {
-    const { data } = await supabase.from("owners").select("stage");
+    const { data } = await supabase.from("owners").select("stage, source, estimated_value, created_at, updated_at");
     const STAGES = ["lead", "contattato", "in_trattativa", "contratto_inviato", "attivo", "in_pausa", "perso"];
+    const closed = (data || []).filter(o => ["attivo", "perso"].includes(o.stage));
+    const active = (data || []).filter(o => o.stage === "attivo");
+    const closedDays = active
+      .map(o => (new Date(o.updated_at) - new Date(o.created_at)) / 86400000)
+      .filter(d => d >= 0);
+
+    const bySourceMap = {};
+    (data || []).forEach(o => {
+      const src = o.source?.trim() || "Non specificata";
+      bySourceMap[src] = bySourceMap[src] || { source: src, total: 0, active: 0 };
+      bySourceMap[src].total += 1;
+      if (o.stage === "attivo") bySourceMap[src].active += 1;
+    });
+    const bySource = Object.values(bySourceMap)
+      .map(s => ({ ...s, rate: s.total > 0 ? Math.round((s.active / s.total) * 100) : 0 }))
+      .sort((a, b) => b.rate - a.rate || b.total - a.total);
+
     out.owners = {
       total: data?.length || 0,
-      inPipeline: data?.filter(o => !["attivo", "perso"].includes(o.stage)).length || 0,
-      active: data?.filter(o => o.stage === "attivo").length || 0,
-      byStage: STAGES.map(stage => ({ stage, count: data?.filter(o => o.stage === stage).length || 0 })),
+      inPipeline: (data || []).filter(o => !["attivo", "perso"].includes(o.stage)).length,
+      active: active.length,
+      byStage: STAGES.map(stage => ({ stage, count: (data || []).filter(o => o.stage === stage).length })),
+      pipelineValue: (data || []).filter(o => !["attivo", "perso"].includes(o.stage)).reduce((s, o) => s + Number(o.estimated_value || 0), 0),
+      conversionRate: closed.length > 0 ? Math.round((active.length / closed.length) * 100) : null,
+      avgDaysToClose: closedDays.length > 0 ? Math.round(closedDays.reduce((s, d) => s + d, 0) / closedDays.length) : null,
+      bySource: bySource.slice(0, 5),
     };
   }
 

@@ -128,6 +128,27 @@ export function ChannelMixChart({ data }) {
   );
 }
 
+export function SourcePerformanceChart({ data }) {
+  const hasData = data && data.length > 0 && data.some(d => d.total > 0);
+  return (
+    <ChartCard title="Conversione per fonte" subtitle="% di lead diventati proprietari attivi, per provenienza" empty={!hasData}>
+      <ResponsiveContainer width="100%" height={Math.max(120, (data?.length || 0) * 38)}>
+        <BarChart data={data} layout="vertical" margin={{ top: 0, right: 50, left: 0, bottom: 0 }}>
+          <CartesianGrid horizontal={false} stroke={CHART.grid} />
+          <XAxis type="number" hide domain={[0, 100]} />
+          <YAxis type="category" dataKey="source" width={110} tick={{ fontSize: 11, fill: CHART.ink, fontFamily: "Jost,sans-serif" }} axisLine={false} tickLine={false} />
+          <Tooltip cursor={{ fill: BRAND.cream }} content={({ active, payload }) => {
+            if (!active || !payload?.length) return null;
+            const d = payload[0].payload;
+            return <div style={tooltipBox}>{d.source}: <strong>{d.rate}%</strong> ({d.active}/{d.total})</div>;
+          }} />
+          <Bar dataKey="rate" fill={CHART.blue} radius={[0, 3, 3, 0]} barSize={14} label={{ position: "right", fontSize: 11, fill: CHART.ink, fontFamily: "Jost,sans-serif", formatter: (v) => `${v}%` }} />
+        </BarChart>
+      </ResponsiveContainer>
+    </ChartCard>
+  );
+}
+
 export function TopPropertiesChart({ data }) {
   const hasData = data && data.length > 0;
   return (
