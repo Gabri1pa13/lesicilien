@@ -7,7 +7,7 @@ import { BRAND, CrmAuthGuard, getSupabase, roleLabel, useCrm } from "./_lib";
 import { CommandPalette, NotificationBell, SearchTrigger, ToastProvider } from "./_ui";
 import {
   IconAccounting, IconBookings, IconDashboard, IconGuests, IconLogout,
-  IconOwners, IconProperties, IconTasks, IconTeam,
+  IconOwners, IconProperties, IconSparkle, IconTasks, IconTeam,
 } from "./_icons";
 
 const NAV = [
@@ -74,6 +74,15 @@ function Shell({ children }) {
               );
             })}
           </nav>
+          <div style={{ padding: "10px 12px 4px", borderTop: "1px solid #2E2A22" }}>
+            <a href="/admin/richieste" className="crm-navlink" style={{
+              display: "flex", alignItems: "center", gap: "11px", padding: "10px 12px", fontFamily: "'Jost',sans-serif",
+              fontSize: "13px", letterSpacing: ".02em", color: "#C9C2B4",
+            }}>
+              <IconSparkle size={16} />
+              Servizi extra
+            </a>
+          </div>
           <div style={{ padding: "16px 20px", borderTop: "1px solid #2E2A22", display: "flex", alignItems: "center", gap: "10px" }}>
             <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "rgba(191,160,90,.18)", color: BRAND.gold, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: "12px", fontWeight: 500, flexShrink: 0 }}>
               {initials(profile?.full_name || profile?.email)}
