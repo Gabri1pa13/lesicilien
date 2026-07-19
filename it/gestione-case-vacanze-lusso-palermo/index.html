@@ -463,20 +463,21 @@ function gtag_report_conversion(url) {
     .lightbox img { max-width: 100%; max-height: 80vh; border-radius: 8px; }
     .lb-close { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 30px; cursor: pointer; }
 
-    /* SEZIONE INVESTITORI — VIDEO SCROLL-SCRUB */
-    .investors-section{
+    /* SEZIONE INVESTITORI — HERO VIDEO SCROLL-SCRUB + DETTAGLI SOTTO */
+    .investors-hero-wrap{
       position: relative;
-      overflow: hidden;
-      max-width: none;
-      margin: 0;
-      padding: 80px 20px;
-      background: #0c1220;
+      height: 240vh; /* budget di scroll per lo scrub, tutto contenuto qui */
     }
-    .investors-inner{
-      position: relative;
-      z-index: 2;
-      max-width: var(--maxw);
-      margin: 0 auto;
+    .investors-hero{
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #0c1220;
     }
     .investors-media{
       position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #12181f;
@@ -501,7 +502,7 @@ function gtag_report_conversion(url) {
     }
     .investors-overlay{
       position: absolute; inset: 0; z-index: 2;
-      background: rgba(0,0,0,.45);
+      background: rgba(0,0,0,.3);
     }
     .investors-loading{
       position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
@@ -520,34 +521,18 @@ function gtag_report_conversion(url) {
       40% { transform: scale(1); opacity: 1; }
     }
 
-    /* Testo bianco leggibile sopra al video su tutte le zone */
-    .investors-inner{
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0,0,0,.55);
+    .investors-hero-inner{
+      position: relative; z-index: 4;
+      max-width: 720px; margin: 0 auto; padding: 0 20px;
     }
-    .investors-inner h2,
-    .investors-inner h3,
-    .investors-inner .label{
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0,0,0,.55);
+    .investors-hero-inner h2{
+      color: #fff; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.5);
     }
-    .investors-inner .card,
-    .investors-inner .method-card{
-      background: rgba(12,18,30,.35);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .investors-inner .method-head{
-      background: rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.14);
-    }
-    .investors-inner .method-head i{ color: var(--accent); }
-    .investors-inner .quote-box{
-      background: rgba(255,255,255,.1);
-      border-left-color: var(--accent);
-      color: #fff;
+    .investors-hero-inner p{
+      color: rgba(255,255,255,.92); font-size: 1.1rem; margin: 0 auto;
+      text-shadow: 0 1px 6px rgba(0,0,0,.5);
     }
 
     .investors-progress{
@@ -562,8 +547,10 @@ function gtag_report_conversion(url) {
       background: rgba(255,255,255,.6);
     }
 
+    .investors-details{ background: var(--bg-soft); border-top: 1px solid rgba(0,0,0,0.05); }
+
     @media (max-width: 900px){
-      .investors-section{ padding: 50px 20px; }
+      .investors-hero-wrap{ height: 220vh; }
     }
 
   </style>
@@ -906,103 +893,109 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- SEZIONE INVESTITORI — VIDEO SCROLL-SCRUB -->
-  <section id="investitori" class="investors-section">
-    <div class="investors-media" aria-hidden="true">
-      <video id="investorsVideo" class="investors-video" muted playsinline preload="auto" poster="/investitori-scrub-poster.jpg">
-        <source src="/investitori-scrub.mp4" type="video/mp4">
-        <source src="/investitori-scrub.webm" type="video/webm">
-      </video>
-      <div id="investorsPoster" class="investors-poster" style="background-image:url('/investitori-scrub-poster-blur.jpg')"></div>
-      <div class="investors-overlay"></div>
-      <div id="investorsLoading" class="investors-loading"><span></span><span></span><span></span></div>
+  <!-- SEZIONE INVESTITORI — HERO VIDEO SCROLL-SCRUB + DETTAGLI SOTTO -->
+  <div id="investitori">
+
+    <div class="investors-hero-wrap">
+      <div class="investors-hero">
+        <div class="investors-media" aria-hidden="true">
+          <video id="investorsVideo" class="investors-video" muted playsinline preload="auto" poster="/investitori-scrub-poster.jpg">
+            <source src="/investitori-scrub.mp4" type="video/mp4">
+            <source src="/investitori-scrub.webm" type="video/webm">
+          </video>
+          <div id="investorsPoster" class="investors-poster" style="background-image:url('/investitori-scrub-poster-blur.jpg')"></div>
+          <div class="investors-overlay"></div>
+          <div id="investorsLoading" class="investors-loading"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="investors-hero-inner">
+          <h2>Progetti chiavi in mano per ville da ripensare</h2>
+          <p>Lavoriamo con investitori che vogliono creare o riposizionare ville e dimore in Sicilia nel segmento alto. Dall'analisi dell'asset alla ristrutturazione, fino alla gestione a reddito.</p>
+        </div>
+      </div>
+
+      <div id="investorsProgress" class="investors-progress"><div id="investorsProgressFill" class="investors-progress-fill"></div></div>
     </div>
 
-    <div class="investors-inner">
-      <div class="section-title">
-        <span class="label">Per investitori</span>
-        <h2>Progetti chiavi in mano per ville da ripensare</h2>
-        <div class="line"></div>
-        <p>Lavoriamo con investitori che vogliono creare o riposizionare ville e dimore in Sicilia nel segmento alto. Dall'analisi dell'asset alla ristrutturazione, fino alla gestione a reddito.</p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Scouting &amp; Due Diligence</h3>
-          <p>Supporto nella selezione di immobili con reale potenziale turistico, valutando layout, contesto, vincoli e domanda internazionale. Identifichiamo asset sottovalutati nel segmento lusso in Sicilia, con accesso a opportunità off-market.</p>
-          <ul style="padding-left: 20px; margin-top: 14px; font-size: 0.95rem;">
-            <li style="margin-bottom: 8px;"><strong>Analisi di mercato locale:</strong> domanda internazionale, occupazione media, stagionalità.</li>
-            <li style="margin-bottom: 8px;"><strong>Valutazione immobile:</strong> layout, stato, vincoli paesaggistici e potenziale di trasformazione.</li>
-            <li style="margin-bottom: 8px;"><strong>Business plan:</strong> proiezione realistica di ROI e tempi di rientro.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="quote-box">
-            "Trasformiamo un immobile sottoutilizzato in un asset di fascia alta: concept, brand, ristrutturazione e gestione operativa sotto un unico coordinamento."
-          </div>
-          <div style="margin-top: 20px; font-size: 0.95rem;">
-            <strong>Interventi per fasi:</strong> Lavoriamo con un approccio modulare che permette di attivare la struttura gradualmente, ottimizzando i flussi di cassa durante la ristrutturazione.<br><br>
-            <strong>Domanda internazionale:</strong> Posizionamento diretto sui mercati europei e nordamericani di alto profilo, con occupazione media oltre l'80% nelle alte stagioni.
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 40px;" class="methods-grid">
-        <div class="method-card">
-          <div class="method-head">
-            <h3><i class="fa-solid fa-ruler-combined"></i> Design orientato ai ricavi</h3>
-          </div>
-          <div class="method-body">
-            <ul>
-              <li><strong>Progetto ospitalità:</strong> Analisi di camere, spazi comuni e flussi per un layout da villa di lusso, non solo da casa.</li>
-              <li><strong>Interior design:</strong> Scelte estetiche che aumentano il valore percepito per notte e le recensioni a lungo termine.</li>
-              <li><strong>Fotografia &amp; storytelling:</strong> Identità visiva che posiziona la struttura nel segmento premium internazionale.</li>
+    <div class="investors-details">
+      <section>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Scouting &amp; Due Diligence</h3>
+            <p>Supporto nella selezione di immobili con reale potenziale turistico, valutando layout, contesto, vincoli e domanda internazionale. Identifichiamo asset sottovalutati nel segmento lusso in Sicilia, con accesso a opportunità off-market.</p>
+            <ul style="padding-left: 20px; margin-top: 14px; font-size: 0.95rem;">
+              <li style="margin-bottom: 8px;"><strong>Analisi di mercato locale:</strong> domanda internazionale, occupazione media, stagionalità.</li>
+              <li style="margin-bottom: 8px;"><strong>Valutazione immobile:</strong> layout, stato, vincoli paesaggistici e potenziale di trasformazione.</li>
+              <li style="margin-bottom: 8px;"><strong>Business plan:</strong> proiezione realistica di ROI e tempi di rientro.</li>
             </ul>
           </div>
-        </div>
-
-        <div class="method-card">
-          <div class="method-head">
-            <h3><i class="fa-solid fa-building"></i> Ristrutturazione &amp; Concept</h3>
-          </div>
-          <div class="method-body">
-            <ul>
-              <li><strong>Coordinamento lavori:</strong> Collaboriamo con il team tecnico dell'investitore o proponiamo una rete di architetti e imprese locali.</li>
-              <li><strong>Brand &amp; concept:</strong> Definizione del posizionamento, narrativa del brand e servizi concierge su misura.</li>
-              <li><strong>Gestione operativa:</strong> Dalla prima stagione in poi, gestiamo tutto come per le nostre proprietà dirette.</li>
-            </ul>
+          <div class="card">
+            <div class="quote-box">
+              "Trasformiamo un immobile sottoutilizzato in un asset di fascia alta: concept, brand, ristrutturazione e gestione operativa sotto un unico coordinamento."
+            </div>
+            <div style="margin-top: 20px; font-size: 0.95rem; color: var(--muted);">
+              <strong>Interventi per fasi:</strong> Lavoriamo con un approccio modulare che permette di attivare la struttura gradualmente, ottimizzando i flussi di cassa durante la ristrutturazione.<br><br>
+              <strong>Domanda internazionale:</strong> Posizionamento diretto sui mercati europei e nordamericani di alto profilo, con occupazione media oltre l'80% nelle alte stagioni.
+            </div>
           </div>
         </div>
 
-        <div class="method-card">
-          <div class="method-head">
-            <h3><i class="fa-solid fa-chart-line"></i> Revenue &amp; Exit Strategy</h3>
+        <div style="margin-top: 40px;" class="methods-grid">
+          <div class="method-card">
+            <div class="method-head">
+              <h3><i class="fa-solid fa-ruler-combined"></i> Design orientato ai ricavi</h3>
+            </div>
+            <div class="method-body">
+              <ul>
+                <li><strong>Progetto ospitalità:</strong> Analisi di camere, spazi comuni e flussi per un layout da villa di lusso, non solo da casa.</li>
+                <li><strong>Interior design:</strong> Scelte estetiche che aumentano il valore percepito per notte e le recensioni a lungo termine.</li>
+                <li><strong>Fotografia &amp; storytelling:</strong> Identità visiva che posiziona la struttura nel segmento premium internazionale.</li>
+              </ul>
+            </div>
           </div>
-          <div class="method-body">
-            <ul>
-              <li><strong>Revenue management:</strong> Pricing dinamico e distribuzione OTA ottimizzata dal primo giorno di apertura.</li>
-              <li><strong>Reportistica investitore:</strong> Dashboard mensile con occupazione, ricavi, ROI progressivo e benchmark di mercato.</li>
-              <li><strong>Valorizzazione asset:</strong> Gestiamo la struttura per massimizzare sia i ricavi correnti che il valore di exit a medio termine.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
 
-      <div style="text-align: center; margin-top: 50px;">
-        <p style="font-size: 1.05rem; max-width: 600px; margin: 0 auto 24px;">Hai un immobile o un'idea di progetto? Parliamo del potenziale in una call senza impegno.</p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20un%20investitore%20e%20vorrei%20parlare%20di%20un%20progetto%20in%20Sicilia." class="btn-hero gold" style="padding: 12px 24px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #d4af37, #b88f2b); color: #000; text-decoration: none;">
-            <i class="fa-brands fa-whatsapp"></i> Parla con noi del tuo progetto
-          </a>
-          <a href="mailto:lesicilienhouses@gmail.com?subject=Progetto%20investimento%20Sicilia" class="btn-hero ghost" style="padding: 12px 24px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px; background: rgba(15,33,51,0.08); border: 1px solid rgba(15,33,51,0.2); color: var(--primary); text-decoration: none;">
-            <i class="fa-solid fa-envelope"></i> Scrivi una email
-          </a>
+          <div class="method-card">
+            <div class="method-head">
+              <h3><i class="fa-solid fa-building"></i> Ristrutturazione &amp; Concept</h3>
+            </div>
+            <div class="method-body">
+              <ul>
+                <li><strong>Coordinamento lavori:</strong> Collaboriamo con il team tecnico dell'investitore o proponiamo una rete di architetti e imprese locali.</li>
+                <li><strong>Brand &amp; concept:</strong> Definizione del posizionamento, narrativa del brand e servizi concierge su misura.</li>
+                <li><strong>Gestione operativa:</strong> Dalla prima stagione in poi, gestiamo tutto come per le nostre proprietà dirette.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="method-card">
+            <div class="method-head">
+              <h3><i class="fa-solid fa-chart-line"></i> Revenue &amp; Exit Strategy</h3>
+            </div>
+            <div class="method-body">
+              <ul>
+                <li><strong>Revenue management:</strong> Pricing dinamico e distribuzione OTA ottimizzata dal primo giorno di apertura.</li>
+                <li><strong>Reportistica investitore:</strong> Dashboard mensile con occupazione, ricavi, ROI progressivo e benchmark di mercato.</li>
+                <li><strong>Valorizzazione asset:</strong> Gestiamo la struttura per massimizzare sia i ricavi correnti che il valore di exit a medio termine.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+          <p style="font-size: 1.05rem; color: var(--muted); max-width: 600px; margin: 0 auto 24px;">Hai un immobile o un'idea di progetto? Parliamo del potenziale in una call senza impegno.</p>
+          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/393273751480?text=Ciao%2C%20sono%20un%20investitore%20e%20vorrei%20parlare%20di%20un%20progetto%20in%20Sicilia." class="btn-hero gold" style="padding: 12px 24px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #d4af37, #b88f2b); color: #000; text-decoration: none;">
+              <i class="fa-brands fa-whatsapp"></i> Parla con noi del tuo progetto
+            </a>
+            <a href="mailto:lesicilienhouses@gmail.com?subject=Progetto%20investimento%20Sicilia" class="btn-hero ghost" style="padding: 12px 24px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px; background: rgba(15,33,51,0.08); border: 1px solid rgba(15,33,51,0.2); color: var(--primary); text-decoration: none;">
+              <i class="fa-solid fa-envelope"></i> Scrivi una email
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <div id="investorsProgress" class="investors-progress"><div id="investorsProgressFill" class="investors-progress-fill"></div></div>
-  </section>
+  </div>
 
   <footer id="contact">
     <h2>Contattaci</h2>
@@ -1074,7 +1067,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
   // Sezione Investitori — video scroll-scrub (no autoplay, muted, guidato dallo scroll)
   (function(){
-    const section = document.getElementById('investitori');
+    const section = document.querySelector('.investors-hero-wrap');
     const video = document.getElementById('investorsVideo');
     const poster = document.getElementById('investorsPoster');
     const loading = document.getElementById('investorsLoading');
