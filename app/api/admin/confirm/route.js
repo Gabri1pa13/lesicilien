@@ -133,7 +133,7 @@ function buildConfirmEmail({ nome, serviceName, servicePrice, dataDesiderata, pe
       <!-- FOOTER -->
       <tr><td style="background:${DARK};padding:28px 40px;text-align:center;">
         <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:.22em;color:rgba(191,160,90,.6);text-transform:uppercase;margin:0 0 10px;">Le Sicilien · Luxury Real Estate · Palermo, Sicilia</p>
-        <a href="https://wa.me/393888005083" style="font-family:Arial,sans-serif;font-size:11px;color:${GOLD};text-decoration:none;letter-spacing:.1em;">💬 WhatsApp Concierge</a>
+        <a href="https://wa.me/393273751480" style="font-family:Arial,sans-serif;font-size:11px;color:${GOLD};text-decoration:none;letter-spacing:.1em;">💬 WhatsApp Concierge</a>
         <p style="font-family:Arial,sans-serif;font-size:10px;color:rgba(255,255,255,.2);margin:12px 0 0;">© 2025 Le Sicilien</p>
       </td></tr>
 
