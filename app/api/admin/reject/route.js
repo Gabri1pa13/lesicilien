@@ -62,7 +62,7 @@ function buildRejectEmail({ nome, serviceName, dataDesiderata, messageExtra }) {
           Vi invitiamo a contattarci direttamente su WhatsApp — saremo felici di trovare insieme una soluzione alternativa.
         </p>
         <div style="text-align:center;margin:28px 0;">
-          <a href="https://wa.me/393888005083"
+          <a href="https://wa.me/393273751480"
              style="display:inline-block;background:${DARK};color:${GOLD};padding:14px 36px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-decoration:none;text-transform:uppercase;">
             💬 Scrivici su WhatsApp
           </a>
