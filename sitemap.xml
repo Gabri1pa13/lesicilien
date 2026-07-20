@@ -1754,6 +1754,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/es/guias/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/guias/donde-dormir-en-palermo/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/guias/que-hacer-en-palermo/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/guias/mejores-restaurantes-en-palermo/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/guias/mejores-playas-cerca-de-palermo/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/guias/experiencias-de-lujo-en-sicilia/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/es/villas-frente-al-mar-palermo/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
