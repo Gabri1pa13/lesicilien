@@ -44,3 +44,14 @@ Disallow: /admin/
 Disallow: /tmp/
 Disallow: /README.md
 Disallow: /SEO_CONTENT_STRATEGY.html
+Disallow: /ANALISI_COMPETITOR_JREADY.md
+Disallow: /ANALISI_CONCORRENZA_2026-07.md
+Disallow: /DIRECT_BOOKING_CODE_AUDIT.md
+Disallow: /KEYWORD_STRATEGY_2026-07.md
+Disallow: /SEARCH_METRICS_ANALYSIS.md
+Disallow: /SEO_AUDIT_2026-07-04.md
+Disallow: /SEO_H1_VISIBILITY_AUDIT_2026-03-30.md
+Disallow: /SEO_REPORT.md
+Disallow: /SEO_REPORT_FINALE_2026-07.md
+Disallow: /SEO_ROADMAP_Q2_2026.md
+Disallow: /STRATEGIA_CONTENUTI_2026-07.md
