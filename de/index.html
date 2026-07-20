@@ -273,7 +273,7 @@ function gtag_report_conversion(url) {
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
         }
 
         #calligraphy-animation {
@@ -2473,7 +2473,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const overlay = document.getElementById('intro-overlay');
 
             if (svgElement && paths.length) {
-                const totalAnimationTime = 2.4;
+                const totalAnimationTime = 0.4;
                 let totalLength = 0;
                 let accumulatedDelay = 0;
 
@@ -2485,7 +2485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     const duration = (length / totalLength) * totalAnimationTime;
                     path.style.animation = `
                         draw-stroke ${duration}s ease-out forwards ${accumulatedDelay}s,
-                        fade-fill 0.9s ease-out forwards ${totalAnimationTime}s
+                        fade-fill 0.3s ease-out forwards ${totalAnimationTime}s
                     `;
                     accumulatedDelay += duration;
                 });
@@ -2497,7 +2497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     setTimeout(() => {
                         overlay.style.visibility = 'hidden';
                     }, 800);
-                }, (totalAnimationTime * 1000) + 1200);
+                }, (totalAnimationTime * 1000) + 100);
             } else if (overlay) {
                 overlay.style.display = 'none';
             }
