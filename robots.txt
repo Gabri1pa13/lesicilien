@@ -33,6 +33,7 @@ User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://www.lesicilien.it/sitemap.xml
+Sitemap: https://www.lesicilien.it/image-sitemap.xml
 
 # AI-readable content
 # llms.txt: https://www.lesicilien.it/llms.txt
