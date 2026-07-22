@@ -68,7 +68,7 @@ function gtag_report_conversion(url) {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Moncada de Luna — Apartamento de Lujo Centro de Palermo" />
-  <meta name="twitter:description" content="Moncada de Luna Exclusive Stay: apartamento de lujo en el corazón del centro histórico de Palermo. Techos con frescos, mobiliario de época y comodidades modernas." />
+  <meta name="twitter:description" content="Moncada de Luna: apartamento de lujo en el corazón del centro histórico de Palermo. Reserva directa con Le Sicilien." />
   <meta name="twitter:image" content="https://www.lesicilien.it/moncada.jpeg" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-62PCQP1DCW"></script>
@@ -79,15 +79,25 @@ function gtag_report_conversion(url) {
     gtag('config', 'G-62PCQP1DCW');
   </script>
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"¿Se admiten mascotas en Moncada de Luna?","acceptedAnswer":{"@type":"Answer","text":"Para proteger los frescos originales y el mobiliario de época, no se admiten mascotas dentro de la propiedad."}},
+      {"@type":"Question","name":"¿Hay aparcamiento disponible en Moncada de Luna?","acceptedAnswer":{"@type":"Answer","text":"El apartamento está en plena zona ZTL. Recomendamos aparcar en el garaje privado concertado situado a pocos metros de la entrada del palacio."}},
+      {"@type":"Question","name":"¿A qué distancia están los principales monumentos de Palermo?","acceptedAnswer":{"@type":"Answer","text":"La ubicación es envidiable: la Catedral está a 200 m, los Quattro Canti a 300 m y el Teatro Massimo a unos 500 m. Todo se puede alcanzar con un breve paseo."}},
+      {"@type":"Question","name":"¿La conexión Wi-Fi es rápida para trabajar?","acceptedAnswer":{"@type":"Answer","text":"Sí, el apartamento cuenta con Wi-Fi de fibra óptica de alta velocidad dedicado, perfecto para teletrabajo y videollamadas."}},
+      {"@type":"Question","name":"¿Cómo funciona el check-in tardío?","acceptedAnswer":{"@type":"Answer","text":"Ofrecemos un servicio de bienvenida personalizado. Para llegadas después de las 20:00, te pedimos que nos avises con antelación para organizar mejor tu entrada."}}
+    ]
+  }
+  </script>
   <script type="application/ld+json">{
  "@context": "https://schema.org",
- "@type": [
-  "LodgingBusiness",
-  "VacationRental"
- ],
+ "@type": "VacationRental",
  "name": "Moncada de Luna Exclusive Stay",
- "description": "Moncada de Luna: apartamento de lujo en el corazón del centro histórico de Palermo. Interiores elegantes y reserva directa con Le Sicilien.",
+ "description": "Apartamento de lujo en un palacio noble del siglo XVIII en el centro histórico de Palermo. Techos con frescos, mobiliario de época y comodidades modernas. Gestionado por Le Sicilien.",
  "url": "https://www.lesicilien.it/es/stays/moncada-de-luna-exclusive-stay/",
  "image": [
   "https://www.lesicilien.it/moncada.jpeg",
@@ -102,19 +112,37 @@ function gtag_report_conversion(url) {
   "https://www.lesicilien.it/moncada-cucina.jpg",
   "https://www.lesicilien.it/moncada-scalone.jpg"
  ],
+ "telephone": "+39-327-375-1480",
  "address": {
   "@type": "PostalAddress",
-  "streetAddress": "Centro Storico",
+  "streetAddress": "Via dei Tintori",
   "addressLocality": "Palermo",
   "addressRegion": "Sicilia",
-  "addressCountry": "IT",
-  "postalCode": "90100"
+  "postalCode": "90133",
+  "addressCountry": "IT"
  },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.1157,
+  "longitude": 13.3615
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 3,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 6,
+  "value": 6
+ },
+ "petsAllowed": "No",
+ "amenityFeature": [
+  { "@type": "LocationFeatureSpecification", "name": "Palacio Histórico", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Frescos originales", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Wi-Fi de Fibra", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Aire Acondicionado", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Cocina Totalmente Equipada", "value": true }
+ ],
  "priceRange": "€€€",
- "starRating": {
-  "@type": "Rating",
-  "ratingValue": "5"
- },
  "offers": {
   "@type": "Offer",
   "priceCurrency": "EUR",
@@ -132,74 +160,18 @@ function gtag_report_conversion(url) {
  "containsPlace": {
   "@type": "Accommodation",
   "additionalType": "EntirePlace",
-  "occupancy": {
-   "@type": "QuantitativeValue",
-   "maxValue": 6,
-   "value": 6
-  },
+  "occupancy": { "@type": "QuantitativeValue", "maxValue": 6, "value": 6 },
   "numberOfBedrooms": 3,
   "amenityFeature": [
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Palazzo Histórico",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Frescos Originales",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Wi-Fi de Fibra",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Aire Acondicionado",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Cocina Totalmente Equipada",
-    "value": true
-   }
+   { "@type": "LocationFeatureSpecification", "name": "Palacio Histórico", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Frescos originales", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Wi-Fi de Fibra", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Aire Acondicionado", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Cocina Totalmente Equipada", "value": true }
   ],
   "numberOfBathroomsTotal": 2,
   "bed": "2 camas, incluido 1 sofá cama"
  },
- "geo": {
-  "@type": "GeoCoordinates",
-  "latitude": 38.1178,
-  "longitude": 13.3623
- },
- "amenityFeature": [
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Palazzo Histórico",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Frescos Originales",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Wi-Fi de Fibra",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Aire Acondicionado",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Cocina Totalmente Equipada",
-   "value": true
-  }
- ],
  "additionalType": "Apartment"
 }</script>
   <script type="application/ld+json">
@@ -210,8 +182,8 @@ function gtag_report_conversion(url) {
       "@type": "SpeakableSpecification",
       "cssSelector": [".hero-title", ".hero-sub", ".booking-bar-title", ".booking-bar-price"]
     },
-    "name": "Moncada de Luna Exclusive Stay - Apartamento de Lujo en el Centro Histórico de Palermo",
-    "description": "Apartamento de lujo en un palazzo del siglo XVIII en el centro histórico de Palermo. Techos con frescos y comodidades modernas. Desde 95 EUR por noche."
+    "name": "Moncada de Luna Exclusive Stay — Apartamento de Lujo en Palermo",
+    "description": "Apartamento de lujo en palacio noble del siglo XVIII en Palermo, techos con frescos, 3 dormitorios. Desde 95 EUR por noche. Reserva directa con Le Sicilien."
   }
   </script>
 
@@ -258,13 +230,67 @@ function gtag_report_conversion(url) {
     .section-kicker { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px,3vw,26px); font-weight: 500; line-height: 1.25; }
     .section-text { margin-top: 16px; font-size: 14px; line-height: 1.75; color: rgba(30,30,30,0.78); font-weight: 300; }
+    .section-text + .section-text { margin-top: 12px; }
     .cta-section { margin-top: 48px; padding: 40px 28px; background: linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%); border-radius: var(--radius); text-align: center; color: #fff; }
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
     .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 12px; color: rgba(30,30,30,0.42); }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+
+    /* ── RATING ── */
+    .rating-strip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; }
+    .rating-count { font-size: 11px; color: var(--muted); }
+
+    /* ── GUEST REVIEWS ── */
+    .reviews-section { margin-top: 40px; }
+    .review-card-stay { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin-top: 14px; }
+    .review-card-stay .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 10px; }
+    .review-card-stay blockquote { font-size: 13px; line-height: 1.7; color: rgba(30,30,30,0.78); font-style: italic; margin-bottom: 12px; }
+    .review-card-stay .review-author { font-size: 12px; font-weight: 600; color: var(--text); }
+    .review-card-stay .review-platform { font-size: 11px; color: var(--muted); }
+
+    /* ── HIGHLIGHTS / FAQ ── */
+    .highlights { margin-top: 22px; display: grid; gap: 10px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .highlight-text { font-size: 13px; line-height: 1.5; }
+
+    /* ── DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; }
+    .distance-value { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── DIRECT BOOKING BENEFITS ── */
+    .direct-benefits { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 600px) { .direct-benefits { grid-template-columns: 1fr; } }
+    .benefit-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; }
+    .benefit-icon { font-size: 20px; margin-bottom: 6px; }
+    .benefit-title { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
+    .benefit-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-sm); display: block; cursor: zoom-in; }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-grid img { height: 140px; } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 10, 10, 0.94); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox-overlay.is-open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 4px; user-select: none; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(255,255,255,0.12); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; }
+    @media (max-width: 600px) { .lightbox-prev, .lightbox-next { width: 40px; height: 40px; } }
   </style>
 </head>
 <body>
@@ -284,12 +310,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
   <div class="hero">
-    <img src="/moncada.jpeg" alt="Moncada de Luna Exclusive Stay – Apartamento de Lujo · Centro Histórico de Palermo" loading="eager" fetchpriority="high" />
+    <img src="/moncada.jpeg" alt="Moncada de Luna Exclusive Stay – Apartamento de lujo en el centro histórico de Palermo" loading="eager" fetchpriority="high" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge">Le Sicilien · Centro Histórico de Palermo</div>
       <h1 class="hero-title">Moncada de Luna<br>Exclusive Stay</h1>
-      <p class="hero-sub">Apartamento de Lujo · Centro Histórico de Palermo</p>
+      <p class="hero-sub">Apartamento en Palacio Noble · Palermo, Centro Histórico</p>
     </div>
   </div>
 
@@ -304,13 +330,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="features">
-            <div class="feature-card">
+      <div class="feature-card">
         <div class="feature-icon">🏛️</div>
-        <div class="feature-label">Palazzo Histórico</div>
+        <div class="feature-label">Palacio Histórico</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🛏️</div>
-        <div class="feature-label">2 Dormitorios</div>
+        <div class="feature-label">Dormitorio</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">❄️</div>
@@ -326,26 +352,291 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✨</div>
-        <div class="feature-label">Conserjería</div>
+        <div class="feature-label">Servicio de Conserjería</div>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-kicker">La propiedad</div>
-      <h2 class="section-title">Un palazzo del siglo XVIII en el corazón de Palermo</h2>
-      <p class="section-text">Moncada de Luna Exclusive Stay se encuentra en un palazzo histórico del siglo XVIII, en pleno centro antiguo de Palermo. Techos originales con frescos, suelos de parqué de época y mobiliario cuidadosamente seleccionado se combinan con todas las comodidades modernas: Wi-Fi de alta velocidad, aire acondicionado, cocina totalmente equipada.</p>
+    <!-- RATING -->
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">de 5 · 34 reseñas verificadas</span>
     </div>
 
+    <hr class="divider" />
+
+    <section class="section" aria-labelledby="desc-title">
+      <p class="section-kicker">La propiedad</p>
+      <h2 id="desc-title" class="section-title">Un palacio del siglo XVIII en el corazón de Palermo</h2>
+      <p class="section-text">
+        <strong>Moncada de Luna Exclusive Stay</strong> es un apartamento de lujo ubicado en un palacio histórico del siglo XVIII, en pleno centro histórico de Palermo. La propiedad combina la grandiosidad de la arquitectura aristocrática siciliana con las comodidades de una estancia moderna, ofreciendo una experiencia de viaje auténtica y refinada.
+      </p>
+      <p class="section-text">
+        Los espacios se caracterizan por techos altos con frescos originales, suelos de mayólica tradicional y mobiliario de época seleccionado con esmero. Cada detalle ha sido pensado para garantizar el máximo confort sin renunciar a la elegancia y a la atmósfera histórica.
+      </p>
+      <p class="section-text">
+        La ubicación es estratégica: a pocos pasos de la Catedral de Palermo, del Teatro Massimo y de los principales mercados históricos como la Vucciria y el Ballarò.
+      </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Fotos</p>
+      <h2 id="gallery-title" class="section-title">Los espacios de Moncada de Luna</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/moncada-soggiorno.webp" type="image/webp"><img src="/moncada-soggiorno.jpg" alt="Salón, Moncada de Luna Exclusive Stay" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/moncada-camera-rossa.webp" type="image/webp"><img src="/moncada-camera-rossa.jpg" alt="Dormitorio con baño en suite, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-camera-blu.webp" type="image/webp"><img src="/moncada-camera-blu.jpg" alt="Segundo dormitorio, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-camera-netflix.webp" type="image/webp"><img src="/moncada-camera-netflix.jpg" alt="Dormitorio con smart TV, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-cucina.webp" type="image/webp"><img src="/moncada-cucina.jpg" alt="Cocina y zona de comedor, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-bagno-doccia.webp" type="image/webp"><img src="/moncada-bagno-doccia.jpg" alt="Baño con ducha, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-bagno-vasca.webp" type="image/webp"><img src="/moncada-bagno-vasca.jpg" alt="Baño con bañera, Moncada de Luna" loading="lazy"></picture>
+        <picture><source srcset="/moncada-scalone.webp" type="image/webp"><img src="/moncada-scalone.jpg" alt="Escalera histórica del palacio, Moncada de Luna" class="gallery-wide" loading="lazy"></picture>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="highlights-title">
+      <p class="section-kicker">Lo que encontrarás</p>
+      <h2 id="highlights-title" class="section-title">Detalles y comodidades</h2>
+      <div class="highlights" role="list">
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Palacio del siglo XVIII con frescos originales y suelos de mayólica</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Ubicación privilegiada en el centro histórico, a pocos pasos de la Catedral y del Teatro Massimo</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Cocina totalmente equipada para cocinar platos sicilianos con productos del mercado</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Aire acondicionado, Wi-Fi de fibra y todas las comodidades modernas</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Servicio de conserjería Le Sicilien: traslados, yates privados, experiencias exclusivas</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Ropa de cama de calidad premium, cambio de sábanas incluido durante la estancia</div></div>
+      </div>
+    </section>
+
+    <!-- DISTANCES -->
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Ubicación</p>
+      <h2 id="dist-title" class="section-title">Distancias y conexiones</h2>
+      <div class="distances">
+        <div class="distance-item"><span class="distance-label">Catedral de Palermo</span><span class="distance-value">200 m a pie</span></div>
+        <div class="distance-item"><span class="distance-label">Teatro Massimo</span><span class="distance-value">500 m a pie</span></div>
+        <div class="distance-item"><span class="distance-label">Mercado de la Vucciria</span><span class="distance-value">350 m a pie</span></div>
+        <div class="distance-item"><span class="distance-label">Mercado de Ballarò</span><span class="distance-value">600 m a pie</span></div>
+        <div class="distance-item"><span class="distance-label">Puerto de Palermo</span><span class="distance-value">1,2 km</span></div>
+        <div class="distance-item"><span class="distance-label">Aeropuerto Falcone-Borsellino</span><span class="distance-value">35 min en coche</span></div>
+        <div class="distance-item"><span class="distance-label">Playa de Mondello</span><span class="distance-value">25 min en coche</span></div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section class="reviews-section" aria-labelledby="reviews-title">
+      <p class="section-kicker">Opiniones de huéspedes</p>
+      <h2 id="reviews-title" class="section-title">Lo que dicen nuestros huéspedes</h2>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Apartamento magnífico, ubicación central ideal. El personal estuvo muy disponible, nos recomendó restaurantes y organizó un traslado privado. ¡Sin duda volveremos!"</blockquote>
+        <span class="review-author">Marco y Sara</span> <span class="review-platform">· Reserva directa</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Los techos con frescos son maravillosos. Ubicación perfecta para explorar Palermo a pie. El servicio de conserjería nos organizó una cena privada que nunca olvidaremos."</blockquote>
+        <span class="review-author">James y Claire W.</span> <span class="review-platform">· Airbnb</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Reservamos directamente y ahorramos respecto a Booking. Check-in personalizado con kit de bienvenida siciliano. Una experiencia que vale cada euro."</blockquote>
+        <span class="review-author">Francesca R.</span> <span class="review-platform">· Reserva directa</span>
+      </div>
+    </section>
+
+    <!-- WHY BOOK DIRECT -->
+    <section class="section" aria-labelledby="benefits-title">
+      <p class="section-kicker">Reserva directa</p>
+      <h2 id="benefits-title" class="section-title">¿Por qué reservar con nosotros?</h2>
+      <div class="direct-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">Mejor precio</div>
+          <div class="benefit-desc">Ahorra hasta un 15% comparado con Airbnb y Booking.com</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">Kit de bienvenida</div>
+          <div class="benefit-desc">Cannoli, vino local y aceite de oliva como regalo de bienvenida</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-title">Conserjería 24/7</div>
+          <div class="benefit-desc">Asistencia personal por WhatsApp para lo que necesites</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Cancelación flexible</div>
+          <div class="benefit-desc">Políticas más flexibles que las plataformas OTA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
     <div class="cta-section">
-      <div class="section-kicker">Reserva directa</div>
-      <h2 class="section-title">Ahorra reservando directamente</h2>
-      <p>Sin comisiones, mejor precio garantizado, kit de bienvenida siciliano incluido. Contáctanos para tarifas personalizadas.</p>
-      <a href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?utm_source=seo&utm_medium=stays_page&utm_campaign=moncada_de_luna" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Reserva ahora</a>
+      <p class="section-kicker">Reserva directa</p>
+      <h2 class="section-title">Moncada de Luna Exclusive Stay</h2>
+      <p>Consulta las fechas disponibles y reserva tu estancia de lujo en el centro histórico de Palermo directamente en nuestro portal oficial.</p>
+      <a
+        href="https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=moncada_de_luna"
+        class="btn-book-light"
+        target="_blank" rel="noopener"
+       onclick="return gtag_report_conversion(this.href);">
+        Ver disponibilidad
+      </a>
+      <a
+        href="https://wa.me/393273751480?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20Moncada%20de%20Luna%20Exclusive%20Stay.%20%C2%BFPod%C3%A9is%20ayudarme%20a%20comprobar%20la%20disponibilidad%3F"
+        target="_blank" rel="noopener"
+        onclick="gtag('event','whatsapp_click',{event_category:'stays',event_label:'moncada_de_luna'});"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;padding:14px 28px;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Preguntar por WhatsApp
+      </a>
+      <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.75);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        Mejor precio garantizado al reservar directamente
+      </div>
     </div>
+
+    <section class="section" aria-labelledby="faq-title" style="margin-top:40px;">
+      <p class="section-kicker">Preguntas frecuentes</p>
+      <h2 id="faq-title" class="section-title">Moncada de Luna – FAQ</h2>
+      <div class="highlights" role="list" style="margin-top:22px;">
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Se admiten mascotas en Moncada de Luna?</div>
+            <div class="highlight-text">Para proteger los frescos originales y el mobiliario de época, no se admiten mascotas dentro de la propiedad.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Hay aparcamiento disponible en Moncada de Luna?</div>
+            <div class="highlight-text">El apartamento está en plena zona ZTL. Recomendamos aparcar en el garaje privado concertado situado a pocos metros de la entrada del palacio.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿A qué distancia están los principales monumentos de Palermo?</div>
+            <div class="highlight-text">La ubicación es envidiable: la Catedral está a 200 m, los Quattro Canti a 300 m y el Teatro Massimo a unos 500 m. Todo se puede alcanzar con un breve paseo.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿La conexión Wi-Fi es rápida para trabajar?</div>
+            <div class="highlight-text">Sí, el apartamento cuenta con Wi-Fi de fibra óptica de alta velocidad dedicado, perfecto para teletrabajo y videollamadas.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Cómo funciona el check-in tardío?</div>
+            <div class="highlight-text">Ofrecemos un servicio de bienvenida personalizado. Para llegadas después de las 20:00, te pedimos que nos avises con antelación para organizar mejor tu entrada.</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>
-    <p>© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/">IT</a> · <a href="https://www.lesicilien.it/en/stays/moncada-de-luna-exclusive-stay/">EN</a> · <a href="https://www.lesicilien.it/fr/stays/moncada-de-luna-exclusive-stay/">FR</a> · <a href="https://www.lesicilien.it/de/stays/moncada-de-luna-exclusive-stay/">DE</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/moncada-de-luna-exclusive-stay/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/es/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Volver al inicio</a></p>
+    </div>
   </footer>
+
+<script>
+  (function () {
+    var overlay, imgEl, counterEl, items = [], current = 0;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Galería de fotos');
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Cerrar">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Foto anterior">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-next" aria-label="Foto siguiente">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<img class="lightbox-img" alt="">' +
+        '<div class="lightbox-counter"></div>';
+      document.body.appendChild(overlay);
+
+      imgEl = overlay.querySelector('.lightbox-img');
+      counterEl = overlay.querySelector('.lightbox-counter');
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', close);
+      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      var touchStartX = null;
+      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+    }
+
+    function show(index) {
+      if (!items.length) return;
+      current = (index + items.length) % items.length;
+      var item = items[current];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.gallery-grid img');
+      if (!imgs.length) return;
+      build();
+      imgs.forEach(function (img, i) {
+        items.push({ src: img.currentSrc || img.src, alt: img.alt });
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Ampliar: ' + (img.alt || 'foto'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
