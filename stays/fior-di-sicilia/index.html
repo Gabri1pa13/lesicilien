@@ -605,58 +605,64 @@ function gtag_report_conversion(url) {
       .gallery-grid img { height: 140px; }
     }
 
-    /* ── LIGHTBOX ── */
+    /* ── GALLERY LIGHTBOX ── */
     .gallery-grid img { cursor: zoom-in; }
     .lightbox-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10, 10, 10, 0.94);
-      z-index: 9999;
+      z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background: rgba(10, 10, 10, 0.94);
     }
-    .lightbox-overlay.is-open { display: flex; }
-    .lightbox-img {
-      max-width: 92vw;
-      max-height: 86vh;
-      object-fit: contain;
-      border-radius: 4px;
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-overlay img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
       user-select: none;
     }
     .lightbox-close, .lightbox-prev, .lightbox-next {
       position: absolute;
-      background: rgba(255,255,255,0.12);
-      border: none;
-      color: #fff;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
       border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
       transition: background 0.2s;
     }
     .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
-      background: rgba(255,255,255,0.28);
+      background: rgba(255, 255, 255, 0.25);
     }
-    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
-    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
-    .lightbox-prev { left: 16px; }
-    .lightbox-next { right: 16px; }
+    .lightbox-close { top: 20px; right: 20px; }
+    .lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+    .lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
     .lightbox-counter {
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      padding: 4px 14px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.12);
       color: #fff;
       font-size: 13px;
-      background: rgba(255,255,255,0.12);
-      padding: 4px 12px;
-      border-radius: 20px;
+      letter-spacing: 0.02em;
     }
     @media (max-width: 600px) {
-      .lightbox-prev, .lightbox-next { width: 40px; height: 40px; }
+      .lightbox-prev, .lightbox-next { width: 38px; height: 38px; font-size: 18px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .lightbox-close { top: 10px; right: 10px; }
     }
   </style>
 </head>
@@ -963,90 +969,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-<script>
+
+  <div class="lightbox-overlay" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Galleria foto a schermo intero">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Chiudi galleria" type="button">&#10005;</button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Foto precedente" type="button">&#8249;</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-next" id="lightboxNext" aria-label="Foto successiva" type="button">&#8250;</button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+  </div>
+
+  <script>
   (function () {
-    var overlay, imgEl, counterEl, items = [], current = 0;
+    var grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+    var imgs = Array.prototype.slice.call(grid.querySelectorAll('img'));
+    if (!imgs.length) return;
 
-    function build() {
-      overlay = document.createElement('div');
-      overlay.className = 'lightbox-overlay';
-      overlay.setAttribute('role', 'dialog');
-      overlay.setAttribute('aria-modal', 'true');
-      overlay.setAttribute('aria-label', 'Galleria foto');
-      overlay.innerHTML =
-        '<button type="button" class="lightbox-close" aria-label="Chiudi">' +
-          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
-        '</button>' +
-        '<button type="button" class="lightbox-prev" aria-label="Foto precedente">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</button>' +
-        '<button type="button" class="lightbox-next" aria-label="Foto successiva">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</button>' +
-        '<img class="lightbox-img" alt="">' +
-        '<div class="lightbox-counter"></div>';
-      document.body.appendChild(overlay);
-
-      imgEl = overlay.querySelector('.lightbox-img');
-      counterEl = overlay.querySelector('.lightbox-counter');
-
-      overlay.querySelector('.lightbox-close').addEventListener('click', close);
-      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
-      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
-      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-
-      document.addEventListener('keydown', function (e) {
-        if (!overlay.classList.contains('is-open')) return;
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft') show(current - 1);
-        if (e.key === 'ArrowRight') show(current + 1);
-      });
-
-      var touchStartX = null;
-      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
-      overlay.addEventListener('touchend', function (e) {
-        if (touchStartX === null) return;
-        var dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
-        touchStartX = null;
-      }, { passive: true });
-    }
+    var overlay = document.getElementById('galleryLightbox');
+    var lbImg = document.getElementById('lightboxImg');
+    var counter = document.getElementById('lightboxCounter');
+    var closeBtn = document.getElementById('lightboxClose');
+    var prevBtn = document.getElementById('lightboxPrev');
+    var nextBtn = document.getElementById('lightboxNext');
+    var current = 0;
 
     function show(index) {
-      if (!items.length) return;
-      current = (index + items.length) % items.length;
-      var item = items[current];
-      imgEl.src = item.src;
-      imgEl.alt = item.alt;
-      counterEl.textContent = (current + 1) + ' / ' + items.length;
+      current = (index + imgs.length) % imgs.length;
+      var img = imgs[current];
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      counter.textContent = (current + 1) + ' / ' + imgs.length;
     }
-
     function open(index) {
       show(index);
-      overlay.classList.add('is-open');
+      overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-
     function close() {
-      overlay.classList.remove('is-open');
+      overlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var imgs = document.querySelectorAll('.gallery-grid img');
-      if (!imgs.length) return;
-      build();
-      imgs.forEach(function (img, i) {
-        items.push({ src: img.currentSrc || img.src, alt: img.alt });
-        img.setAttribute('tabindex', '0');
-        img.setAttribute('role', 'button');
-        img.setAttribute('aria-label', 'Ingrandisci: ' + (img.alt || 'foto'));
-        img.addEventListener('click', function () { open(i); });
-        img.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
-        });
-      });
+    imgs.forEach(function (img, i) {
+      img.addEventListener('click', function () { open(i); });
     });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function () { show(current - 1); });
+    nextBtn.addEventListener('click', function () { show(current + 1); });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(current - 1);
+      else if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    var touchStartX = null;
+    overlay.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    overlay.addEventListener('touchend', function (e) {
+      if (touchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { dx > 0 ? show(current - 1) : show(current + 1); }
+      touchStartX = null;
+    }, { passive: true });
   })();
   </script>
 </body>
