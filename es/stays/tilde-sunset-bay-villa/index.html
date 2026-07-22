@@ -79,15 +79,25 @@ function gtag_report_conversion(url) {
     gtag('config', 'G-62PCQP1DCW');
   </script>
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"¿Se admiten mascotas en Tilde Sunset Bay?","acceptedAnswer":{"@type":"Answer","text":"Para garantizar la máxima calidad e higiene de los espacios, no se admiten mascotas en la villa."}},
+      {"@type":"Question","name":"¿Hay aparcamiento privado en la villa?","acceptedAnswer":{"@type":"Answer","text":"Sí, la propiedad dispone de un amplio aparcamiento privado interior gratuito reservado para los huéspedes."}},
+      {"@type":"Question","name":"¿A qué distancia está la villa del mar?","acceptedAnswer":{"@type":"Answer","text":"La villa está situada justo frente al mar, con acceso privado y directo a la bahía."}},
+      {"@type":"Question","name":"¿Hay una conexión Wi-Fi rápida para teletrabajar?","acceptedAnswer":{"@type":"Answer","text":"Por supuesto. La villa cuenta con Wi-Fi de fibra óptica de alta velocidad, ideal para quienes necesitan trabajar en remoto disfrutando de las vistas al mar."}},
+      {"@type":"Question","name":"¿Cuáles son los horarios de entrada y salida?","acceptedAnswer":{"@type":"Answer","text":"El check-in está previsto a partir de las 15:00, mientras que el check-out debe realizarse antes de las 10:00. Intentamos atender solicitudes especiales cuando es posible."}}
+    ]
+  }
+  </script>
   <script type="application/ld+json">{
  "@context": "https://schema.org",
- "@type": [
-  "LodgingBusiness",
-  "VacationRental"
- ],
- "name": "Tilde Sunset Bay Apartments",
- "description": "Tilde Sunset Bay: dos apartamentos de lujo frente al mar con vistas al atardecer cerca de Palermo. Acceso directo a la playa — reserva en exclusiva con Le Sicilien.",
+ "@type": "VacationRental",
+ "name": "Tilde Sunset Bay Villa",
+ "description": "Villa de lujo frente al mar cerca de Palermo: acceso directo a la bahía, atardeceres espectaculares y servicios exclusivos. Gestionada por Le Sicilien.",
  "url": "https://www.lesicilien.it/es/stays/tilde-sunset-bay-villa/",
  "image": [
   "https://www.lesicilien.it/tildesunsetbay.jpg",
@@ -100,19 +110,37 @@ function gtag_report_conversion(url) {
   "https://www.lesicilien.it/tilde-camera-libreria.jpg",
   "https://www.lesicilien.it/tilde-camera-soppalco.jpg"
  ],
+ "telephone": "+39-327-375-1480",
  "address": {
   "@type": "PostalAddress",
   "streetAddress": "Costa Palermitana",
   "addressLocality": "Palermo",
   "addressRegion": "Sicilia",
-  "addressCountry": "IT",
-  "postalCode": "90149"
+  "postalCode": "90151",
+  "addressCountry": "IT"
  },
- "priceRange": "€€€",
- "starRating": {
-  "@type": "Rating",
-  "ratingValue": "5"
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.185,
+  "longitude": 13.285
  },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 4,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 10,
+  "value": 10
+ },
+ "petsAllowed": "No",
+ "amenityFeature": [
+  { "@type": "LocationFeatureSpecification", "name": "Acceso directo al mar", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Vista frontal al mar", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Aparcamiento privado", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Wi-Fi de Fibra", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Aire Acondicionado", "value": true }
+ ],
+ "priceRange": "€€€€",
  "offers": {
   "@type": "Offer",
   "priceCurrency": "EUR",
@@ -130,74 +158,18 @@ function gtag_report_conversion(url) {
  "containsPlace": {
   "@type": "Accommodation",
   "additionalType": "EntirePlace",
-  "occupancy": {
-   "@type": "QuantitativeValue",
-   "maxValue": 10,
-   "value": 10
-  },
+  "occupancy": { "@type": "QuantitativeValue", "maxValue": 10, "value": 10 },
   "numberOfBedrooms": 4,
   "amenityFeature": [
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Acceso Directo al Mar",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Vista Frontal al Mar",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Aparcamiento Privado",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Wi-Fi de Fibra",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Aire Acondicionado",
-    "value": true
-   }
+   { "@type": "LocationFeatureSpecification", "name": "Acceso directo al mar", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Vista frontal al mar", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Aparcamiento privado", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Wi-Fi de Fibra", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Aire Acondicionado", "value": true }
   ],
   "numberOfBathroomsTotal": 3,
   "bed": "4 camas, incluidos 2 sofás cama"
  },
- "geo": {
-  "@type": "GeoCoordinates",
-  "latitude": 38.175,
-  "longitude": 13.3
- },
- "amenityFeature": [
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Acceso Directo al Mar",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Vista Frontal al Mar",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Aparcamiento Privado",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Wi-Fi de Fibra",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Aire Acondicionado",
-   "value": true
-  }
- ],
  "additionalType": "Villa"
 }</script>
   <script type="application/ld+json">
@@ -208,8 +180,8 @@ function gtag_report_conversion(url) {
       "@type": "SpeakableSpecification",
       "cssSelector": [".hero-title", ".hero-sub", ".booking-bar-title", ".booking-bar-price"]
     },
-    "name": "Tilde Sunset Bay Apartments - Apartamentos de Lujo Frente al Mar cerca de Palermo",
-    "description": "Dos apartamentos independientes de lujo frente al mar con impresionantes vistas al atardecer cerca de Palermo. Acceso directo a la playa. Desde 320 EUR por noche."
+    "name": "Tilde Sunset Bay Villa — Villa Frente al Mar cerca de Palermo",
+    "description": "Villa frente al mar con acceso directo a la bahía, 4 dormitorios, hasta 10 huéspedes. Desde 320 EUR por noche. Reserva directa con Le Sicilien."
   }
   </script>
 
@@ -247,8 +219,8 @@ function gtag_report_conversion(url) {
     .booking-bar-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 500; }
     .booking-bar-price { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); font-weight: 600; }
     .booking-bar-price-label { font-size: 12px; color: var(--muted); }
-    .btn-book { display: inline-block; padding: 14px 24px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
-    .btn-book:hover { background: var(--accent-2); }
+    .btn-book { display: inline-block; padding: 14px 32px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+    .booking-btns { display: flex; gap: 12px; flex-wrap: wrap; }
     .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 14px; margin-top: 32px; }
     .feature-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
     .feature-icon { font-size: 22px; margin-bottom: 8px; }
@@ -257,15 +229,67 @@ function gtag_report_conversion(url) {
     .section-kicker { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px,3vw,26px); font-weight: 500; line-height: 1.25; }
     .section-text { margin-top: 16px; font-size: 14px; line-height: 1.75; color: rgba(30,30,30,0.78); font-weight: 300; }
+    .section-text + .section-text { margin-top: 12px; }
     .cta-section { margin-top: 48px; padding: 40px 28px; background: linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%); border-radius: var(--radius); text-align: center; color: #fff; }
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
-    .btn-book-light { display: inline-block; padding: 16px 32px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; transition: opacity 0.2s; }
-    .btn-book-light:hover { opacity: 0.9; }
+    .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 12px; color: rgba(30,30,30,0.42); }
-    .booking-btns { display: flex; gap: 12px; flex-wrap: wrap; }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .booking-btns { width: 100%; flex-direction: column; } .btn-book { width: 100%; text-align: center; } }
+
+    /* ── RATING ── */
+    .rating-strip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; }
+    .rating-count { font-size: 11px; color: var(--muted); }
+
+    /* ── GUEST REVIEWS ── */
+    .reviews-section { margin-top: 40px; }
+    .review-card-stay { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin-top: 14px; }
+    .review-card-stay .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 10px; }
+    .review-card-stay blockquote { font-size: 13px; line-height: 1.7; color: rgba(30,30,30,0.78); font-style: italic; margin-bottom: 12px; }
+    .review-card-stay .review-author { font-size: 12px; font-weight: 600; color: var(--text); }
+    .review-card-stay .review-platform { font-size: 11px; color: var(--muted); }
+
+    /* ── HIGHLIGHTS / FAQ ── */
+    .highlights { margin-top: 22px; display: grid; gap: 10px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .highlight-text { font-size: 13px; line-height: 1.5; }
+
+    /* ── DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; }
+    .distance-value { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── DIRECT BOOKING BENEFITS ── */
+    .direct-benefits { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 600px) { .direct-benefits { grid-template-columns: 1fr; } }
+    .benefit-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; }
+    .benefit-icon { font-size: 20px; margin-bottom: 6px; }
+    .benefit-title { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
+    .benefit-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-sm); display: block; cursor: zoom-in; }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-grid img { height: 140px; } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 10, 10, 0.94); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox-overlay.is-open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 4px; user-select: none; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(255,255,255,0.12); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; }
+    @media (max-width: 600px) { .lightbox-prev, .lightbox-next { width: 40px; height: 40px; } }
   </style>
 </head>
 <body>
@@ -285,12 +309,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
   <div class="hero">
-    <img src="/tildesunsetbay.jpg" alt="Tilde Sunset Bay Apartments – Apartamentos Frente al Mar · Palermo, Sicilia" loading="eager" fetchpriority="high" />
+    <img src="/tildesunsetbay.jpg" alt="Tilde Sunset Bay Villa – Villa frente al mar cerca de Palermo" loading="eager" fetchpriority="high" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">Le Sicilien · Apartamentos Frente al Mar</div>
-      <h1 class="hero-title">Tilde Sunset<br>Bay Apartments</h1>
-      <p class="hero-sub">Apartamentos Frente al Mar · Palermo, Sicilia</p>
+      <div class="hero-badge">Le Sicilien · Villa Frente al Mar</div>
+      <h1 class="hero-title">Tilde Sunset<br>Bay Villa</h1>
+      <p class="hero-sub">Villa frente al mar · Palermo, Sicilia</p>
     </div>
   </div>
 
@@ -298,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="booking-bar">
       <div class="booking-bar-text">
         <div class="booking-bar-label">Disponibilidad y tarifas</div>
-        <div class="booking-bar-title">Tilde Sunset Bay Apartments</div>
+        <div class="booking-bar-title">Tilde Sunset Bay Apartamentos</div>
         <div class="booking-bar-price"><span class="booking-bar-price-label">desde </span>€320<span class="booking-bar-price-label"> / noche</span></div>
       </div>
       <div class="booking-btns">
@@ -308,13 +332,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="features">
-            <div class="feature-card">
+      <div class="feature-card">
         <div class="feature-icon">🌊</div>
         <div class="feature-label">Frente al Mar</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🌅</div>
-        <div class="feature-label">Vistas al Atardecer</div>
+        <div class="feature-label">Vista al Atardecer</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">❄️</div>
@@ -330,29 +354,290 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✨</div>
-        <div class="feature-label">Conserjería</div>
+        <div class="feature-label">Servicio de Conserjería</div>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-kicker">La propiedad</div>
-      <h2 class="section-title">Donde el atardecer se encuentra con el mar siciliano</h2>
-      <p class="section-text">Tilde Sunset Bay se divide ahora en dos unidades independientes de lujo frente al mar, que ofrecen una de las vistas más espectaculares de la costa siciliana: Tilde 1 (Primera Planta) y Tilde Planta Baja. Con acceso directo a la playa, espacios privados y un horizonte sin obstáculos, son la elección perfecta para unas vacaciones exclusivas cerca de Palermo.</p>
+    <!-- RATING -->
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">5.0</span>
+      <span class="rating-count">de 5 · 42 reseñas verificadas</span>
     </div>
 
+    <hr class="divider" />
+
+    <section class="section" aria-labelledby="desc-title">
+      <p class="section-kicker">La propiedad</p>
+      <h2 id="desc-title" class="section-title">Una villa junto al mar, donde el cielo se une al Mediterráneo</h2>
+      <p class="section-text">
+        <strong>Tilde Sunset Bay Villa</strong> es una villa exclusiva con acceso directo al mar, inmersa en la belleza del litoral palermitano. Aquí el tiempo se dilata al ritmo de las olas y la luz de Sicilia tiñe cada atardecer de rojo y oro, regalando escenarios de extraordinaria belleza desde la comodidad de tu villa privada.
+      </p>
+      <p class="section-text">
+        La propiedad ha sido diseñada para ofrecer el máximo confort y privacidad, con amplios ventanales que enmarcan la bahía y espacios abiertos que se funden con el paisaje marino.
+      </p>
+      <p class="section-text">
+        Ideal para familias, grupos de amigos o parejas en busca de una auténtica experiencia de lujo. La villa se encuentra en una posición estratégica, a poca distancia de Palermo y sus atracciones culturales, manteniendo esa tranquilidad y belleza natural que solo el mar siciliano sabe ofrecer.
+      </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Fotos</p>
+      <h2 id="gallery-title" class="section-title">Los espacios de Tilde Sunset Bay Villa</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/tilde-tramonto.webp" type="image/webp"><img src="/tilde-tramonto.jpg" alt="Atardecer desde la terraza, Tilde Sunset Bay Villa" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/tilde-giardino-mare.webp" type="image/webp"><img src="/tilde-giardino-mare.jpg" alt="Jardín con vista al mar, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-pergola.webp" type="image/webp"><img src="/tilde-pergola.jpg" alt="Pérgola exterior, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-terrazza.webp" type="image/webp"><img src="/tilde-terrazza.jpg" alt="Terraza al atardecer, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-mare.webp" type="image/webp"><img src="/tilde-camera-mare.jpg" alt="Dormitorio con vista al mar, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-libreria.webp" type="image/webp"><img src="/tilde-camera-libreria.jpg" alt="Dormitorio con biblioteca, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-camera-soppalco.webp" type="image/webp"><img src="/tilde-camera-soppalco.jpg" alt="Dormitorio con cama en altillo, Tilde Sunset Bay Villa" loading="lazy"></picture>
+        <picture><source srcset="/tilde-cucina.webp" type="image/webp"><img src="/tilde-cucina.jpg" alt="Cocina, Tilde Sunset Bay Villa" loading="lazy"></picture>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="highlights-title">
+      <p class="section-kicker">Lo que encontrarás</p>
+      <h2 id="highlights-title" class="section-title">Detalles y comodidades</h2>
+      <div class="highlights" role="list">
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Acceso directo al mar y vista panorámica de la bahía</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Atardeceres espectaculares sobre la bahía desde el confort de la villa privada</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Espacios exteriores exclusivos para relajarse entre cielo y mar</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Cocina totalmente equipada con electrodomésticos de calidad</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Aire acondicionado, Wi-Fi de fibra y todas las comodidades modernas</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Servicio de conserjería Le Sicilien: alquiler de embarcaciones, experiencias exclusivas, traslados</div></div>
+      </div>
+    </section>
+
+    <!-- DISTANCES -->
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Ubicación</p>
+      <h2 id="dist-title" class="section-title">Distancias y conexiones</h2>
+      <div class="distances">
+        <div class="distance-item"><span class="distance-label">Playa privada</span><span class="distance-value">Acceso directo</span></div>
+        <div class="distance-item"><span class="distance-label">Aeropuerto Falcone-Borsellino</span><span class="distance-value">5 min en coche</span></div>
+        <div class="distance-item"><span class="distance-label">Centro histórico de Palermo</span><span class="distance-value">20 min en coche</span></div>
+        <div class="distance-item"><span class="distance-label">Playa de Mondello</span><span class="distance-value">15 min en coche</span></div>
+        <div class="distance-item"><span class="distance-label">Reserva de Capo Gallo</span><span class="distance-value">10 min en coche</span></div>
+        <div class="distance-item"><span class="distance-label">Puerto deportivo</span><span class="distance-value">8 min en coche</span></div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section class="reviews-section" aria-labelledby="reviews-title">
+      <p class="section-kicker">Opiniones de huéspedes</p>
+      <h2 id="reviews-title" class="section-title">Lo que dicen nuestros huéspedes</h2>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"La villa frente al mar es simplemente perfecta para unas vacaciones en familia. Jardín precioso, acceso directo a la playa y un servicio impecable. Los atardeceres desde la terraza son inolvidables."</blockquote>
+        <span class="review-author">Familie Müller</span> <span class="review-platform">· Booking.com</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Una experiencia de ensueño. La cena con el chef privado en la villa fue el momento más memorable de nuestras vacaciones. Servicio de conserjería excepcional, gestión perfecta."</blockquote>
+        <span class="review-author">James y Claire W.</span> <span class="review-platform">· Reserva directa</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Villa espectacular, a 5 minutos del aeropuerto pero parece estar en el paraíso. La bahía privada es un lujo poco común. Reservando directamente ahorramos mucho."</blockquote>
+        <span class="review-author">Andrea y Marta P.</span> <span class="review-platform">· Reserva directa</span>
+      </div>
+    </section>
+
+    <!-- WHY BOOK DIRECT -->
+    <section class="section" aria-labelledby="benefits-title">
+      <p class="section-kicker">Reserva directa</p>
+      <h2 id="benefits-title" class="section-title">¿Por qué reservar con nosotros?</h2>
+      <div class="direct-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">Mejor precio</div>
+          <div class="benefit-desc">Ahorra hasta un 15% comparado con Airbnb y Booking.com</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">Kit de bienvenida</div>
+          <div class="benefit-desc">Cannoli, vino local y aceite de oliva como regalo de bienvenida</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-title">Conserjería 24/7</div>
+          <div class="benefit-desc">Asistencia personal por WhatsApp para lo que necesites</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Cancelación flexible</div>
+          <div class="benefit-desc">Políticas más flexibles que las plataformas OTA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
     <div class="cta-section">
-      <div class="section-kicker">Reserva directa</div>
-      <h2 class="section-title">Reserva tu estancia exclusiva</h2>
-      <p>Sin comisiones, mejor precio garantizado. Elige tu unidad preferida a continuación.</p>
-      <div class="booking-btns" style="justify-content: center;">
-        <a href="https://lesicilien.kross.travel/appartamento-tilde-1-piano" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Tilde 1 (Primera Planta)</a>
-        <a href="https://lesicilien.kross.travel/appartamento-tilde-piano-terra" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Tilde (Planta Baja)</a>
+      <p class="section-kicker">Reserva directa</p>
+      <h2 class="section-title">Tilde Sunset Bay Villa</h2>
+      <p>Consulta las fechas disponibles y reserva tu villa frente al mar cerca de Palermo directamente en nuestro portal oficial.</p>
+      <a
+        href="https://lesicilien.kross.travel/tilde-sunset-bay-villa?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=tilde_sunset_bay"
+        class="btn-book-light"
+        target="_blank" rel="noopener"
+       onclick="return gtag_report_conversion(this.href);">
+        Ver disponibilidad
+      </a>
+      <a
+        href="https://wa.me/393273751480?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20Tilde%20Sunset%20Bay%20Villa.%20%C2%BFPod%C3%A9is%20ayudarme%20a%20comprobar%20la%20disponibilidad%3F"
+        target="_blank" rel="noopener"
+        onclick="gtag('event','whatsapp_click',{event_category:'stays',event_label:'tilde_sunset_bay'});"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;padding:14px 28px;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Preguntar por WhatsApp
+      </a>
+      <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.75);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        Mejor precio garantizado al reservar directamente
       </div>
     </div>
+
+    <section class="section" aria-labelledby="faq-title" style="margin-top:40px;">
+      <p class="section-kicker">Preguntas frecuentes</p>
+      <h2 id="faq-title" class="section-title">Tilde Sunset Bay Villa – FAQ</h2>
+      <div class="highlights" role="list" style="margin-top:22px;">
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Se admiten mascotas en Tilde Sunset Bay?</div>
+            <div class="highlight-text">Para garantizar la máxima calidad e higiene de los espacios, no se admiten mascotas en la villa.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Hay aparcamiento privado en la villa?</div>
+            <div class="highlight-text">Sí, la propiedad dispone de un amplio aparcamiento privado interior gratuito reservado para los huéspedes.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿A qué distancia está la villa del mar?</div>
+            <div class="highlight-text">La villa está situada justo frente al mar, con acceso privado y directo a la bahía.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Hay una conexión Wi-Fi rápida para teletrabajar?</div>
+            <div class="highlight-text">Por supuesto. La villa cuenta con Wi-Fi de fibra óptica de alta velocidad, ideal para quienes necesitan trabajar en remoto disfrutando de las vistas al mar.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">¿Cuáles son los horarios de entrada y salida?</div>
+            <div class="highlight-text">El check-in está previsto a partir de las 15:00, mientras que el check-out debe realizarse antes de las 10:00. Intentamos atender solicitudes especiales cuando es posible.</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>
-    <p>© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/tilde-sunset-bay-villa/">IT</a> · <a href="https://www.lesicilien.it/en/stays/tilde-sunset-bay-villa/">EN</a> · <a href="https://www.lesicilien.it/fr/stays/tilde-sunset-bay-villa/">FR</a> · <a href="https://www.lesicilien.it/de/stays/tilde-sunset-bay-villa/">DE</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicilia, Italia</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/tilde-sunset-bay-villa/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/es/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Volver al inicio</a></p>
+    </div>
   </footer>
+
+<script>
+  (function () {
+    var overlay, imgEl, counterEl, items = [], current = 0;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Galería de fotos');
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Cerrar">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Foto anterior">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-next" aria-label="Foto siguiente">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<img class="lightbox-img" alt="">' +
+        '<div class="lightbox-counter"></div>';
+      document.body.appendChild(overlay);
+
+      imgEl = overlay.querySelector('.lightbox-img');
+      counterEl = overlay.querySelector('.lightbox-counter');
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', close);
+      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      var touchStartX = null;
+      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+    }
+
+    function show(index) {
+      if (!items.length) return;
+      current = (index + items.length) % items.length;
+      var item = items[current];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.gallery-grid img');
+      if (!imgs.length) return;
+      build();
+      imgs.forEach(function (img, i) {
+        items.push({ src: img.currentSrc || img.src, alt: img.alt });
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Ampliar: ' + (img.alt || 'foto'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
