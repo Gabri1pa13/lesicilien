@@ -48,6 +48,9 @@ function gtag_report_conversion(url) {
   <link rel="alternate" hreflang="en" href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="fr" href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="de" href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="es" href="https://www.lesicilien.it/es/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="pl" href="https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="x-default" href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/" />
 
   <meta property="og:type" content="website" />
@@ -66,6 +69,20 @@ function gtag_report_conversion(url) {
     gtag('config', 'G-62PCQP1DCW');
   </script>
 
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Where are the suites located?","acceptedAnswer":{"@type":"Answer","text":"In Palermo's historic centre, just steps from the Cathedral, Quattro Canti and Teatro Massimo — an ideal base for exploring the city on foot."}},
+      {"@type":"Question","name":"What amenities are included?","acceptedAnswer":{"@type":"Answer","text":"Fibre Wi-Fi, air conditioning, premium linen, a fully-equipped kitchen, smart TV and access to Le Sicilien's 24/7 concierge service."}},
+      {"@type":"Question","name":"Can I book an airport transfer?","acceptedAnswer":{"@type":"Answer","text":"Yes, our concierge can arrange private airport transfers, personalised tours, a private chef and yacht charters."}},
+      {"@type":"Question","name":"What are the check-in and check-out times?","acceptedAnswer":{"@type":"Answer","text":"Check-in from 3:00 PM, check-out by 10:00 AM. Flexible timing and luggage storage are available on request."}},
+      {"@type":"Question","name":"Are the suites suitable for families?","acceptedAnswer":{"@type":"Answer","text":"Yes, they're perfect for both couples and families thanks to the refined spaces and complete amenities."}}
+    ]
+  }
+  </script>
   <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@type": [
@@ -236,13 +253,51 @@ function gtag_report_conversion(url) {
     .section-kicker { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px,3vw,26px); font-weight: 500; line-height: 1.25; }
     .section-text { margin-top: 16px; font-size: 14px; line-height: 1.75; color: rgba(30,30,30,0.78); font-weight: 300; }
+    .section-text + .section-text { margin-top: 12px; }
     .cta-section { margin-top: 48px; padding: 40px 28px; background: linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%); border-radius: var(--radius); text-align: center; color: #fff; }
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
     .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 12px; color: rgba(30,30,30,0.42); }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+
+    /* ── RATING ── */
+    .rating-strip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; }
+    .rating-count { font-size: 11px; color: var(--muted); }
+
+    /* ── HIGHLIGHTS / FAQ ── */
+    .highlights { margin-top: 22px; display: grid; gap: 10px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .highlight-text { font-size: 13px; line-height: 1.5; }
+
+    /* ── DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; }
+    .distance-value { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-sm); display: block; cursor: zoom-in; }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-grid img { height: 140px; } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 10, 10, 0.94); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox-overlay.is-open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 4px; user-select: none; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(255,255,255,0.12); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; }
+    @media (max-width: 600px) { .lightbox-prev, .lightbox-next { width: 40px; height: 40px; } }
   </style>
 </head>
 <body>
@@ -253,8 +308,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
-      <a href="https://www.lesicilien.it/" class="nav-back">
+      <a href="https://www.lesicilien.it/en/" class="nav-brand">Le Sicilien</a>
+      <a href="https://www.lesicilien.it/en/" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Home
       </a>
@@ -290,23 +345,200 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="feature-card"><div class="feature-icon">✨</div><div class="feature-label">24/7 Concierge</div></div>
     </div>
 
-    <div class="section">
-      <div class="section-kicker">The property</div>
-      <h2 class="section-title">Boutique suites in the heart of Palermo</h2>
-      <p class="section-text">Eleonora D'Aragona Home Suites is a collection of elegant boutique suites named after Eleonora of Aragon, one of the most fascinating figures in Sicilian history. Located in Palermo's historic centre, the suites blend the city's noble heritage with contemporary, refined design — an authentic and unforgettable stay in the heart of Sicily.</p>
-      <p class="section-text">Each suite is curated down to the smallest detail: selected furnishings, premium linen, studied lighting and all modern comforts for a regal stay. From Eleonora D'Aragona Home Suites you can explore Palermo's cathedral, Teatro Massimo, Quattro Canti and historic markets on foot.</p>
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">out of 5 · happy guests</span>
     </div>
 
+    <hr class="divider" />
+
+    <section class="section" aria-labelledby="desc-title">
+      <p class="section-kicker">The Property</p>
+      <h2 id="desc-title" class="section-title">Boutique suites in the heart of Palermo</h2>
+      <p class="section-text">
+        <strong>Eleonora D'Aragona Home Suites</strong> is a collection of elegant suites named after Eleonora of Aragon, one of the most fascinating women in Sicilian history. Located in Palermo's historic centre, the suites blend the city's noble heritage with refined, contemporary design, offering an authentic and unforgettable stay.
+      </p>
+      <p class="section-text">
+        Every suite has been curated down to the smallest detail: selected furnishings, premium linen, carefully designed lighting and every modern comfort for a truly regal stay. The bright, welcoming spaces strike the right balance between historic charm and functionality — ideal for couples looking for a romantic weekend and for families wanting to experience Palermo in style.
+      </p>
+      <p class="section-text">
+        Set in the vibrant heart of the city, the location puts Palermo's main landmarks within walking distance: the Cathedral, Teatro Massimo, Quattro Canti and the historic markets of Vucciria and Ballarò.
+      </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Photos</p>
+      <h2 id="gallery-title" class="section-title">Inside Eleonora D'Aragona</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/eleonora-soggiorno.webp" type="image/webp"><img src="/eleonora-soggiorno.jpg" alt="Living room, Eleonora D'Aragona Home Suites" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-rossa.webp" type="image/webp"><img src="/eleonora-camera-rossa.jpg" alt="Bedroom with red wall, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-verde.webp" type="image/webp"><img src="/eleonora-camera-verde.jpg" alt="Bedroom with green wall, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-cucina.webp" type="image/webp"><img src="/eleonora-cucina.jpg" alt="Kitchen, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-1.webp" type="image/webp"><img src="/eleonora-bagno-1.jpg" alt="Bathroom, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-2.webp" type="image/webp"><img src="/eleonora-bagno-2.jpg" alt="Second bathroom, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-piazza.webp" type="image/webp"><img src="/eleonora-vista-piazza.jpg" alt="View of the historic square from the balcony, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-monte.webp" type="image/webp"><img src="/eleonora-vista-monte.jpg" alt="View of Monte Pellegrino from the balcony, Eleonora D'Aragona" loading="lazy"></picture>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="highlights-title">
+      <p class="section-kicker">What You'll Find</p>
+      <h2 id="highlights-title" class="section-title">Details & Amenities</h2>
+      <div class="highlights" role="list">
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Elegant suites with selected furnishings and a regal atmosphere inspired by Sicilian nobility</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Located in Palermo's historic centre, just steps from the main landmarks</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Premium linen, high-quality mattresses and quality amenities</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Fully-equipped kitchen or kitchenette for maximum independence</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Air conditioning, high-speed fibre Wi-Fi and smart TV in every suite</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Le Sicilien concierge service: transfers, private chef, exclusive experiences</div></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Location</p>
+      <h2 id="dist-title" class="section-title">Distances & Connections</h2>
+      <div class="distances">
+        <div class="distance-item"><span>Palermo Cathedral</span><span class="distance-value">5 min walk</span></div>
+        <div class="distance-item"><span>Quattro Canti</span><span class="distance-value">7 min walk</span></div>
+        <div class="distance-item"><span>Teatro Massimo</span><span class="distance-value">10 min walk</span></div>
+        <div class="distance-item"><span>Vucciria Market</span><span class="distance-value">8 min walk</span></div>
+        <div class="distance-item"><span>Ballarò Market</span><span class="distance-value">10 min walk</span></div>
+        <div class="distance-item"><span>Falcone-Borsellino Airport</span><span class="distance-value">35 min drive</span></div>
+        <div class="distance-item"><span>Mondello Beach</span><span class="distance-value">25 min drive</span></div>
+      </div>
+    </section>
+
     <div class="cta-section">
-      <div class="section-kicker">Direct booking</div>
-      <h2 class="section-title">Book directly and save</h2>
-      <p>No commission, best price guaranteed, Sicilian welcome kit included.</p>
-      <a href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?utm_source=seo&utm_medium=stays_page&utm_campaign=eleonora_daragona" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book now</a>
+      <p class="section-kicker">Book Direct</p>
+      <h2 class="section-title">Eleonora D'Aragona Home Suites – A Regal Stay</h2>
+      <p>Check availability and book your luxury suite in Palermo's historic centre directly through our official portal, with no commission.</p>
+      <a
+        href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=eleonora_daragona"
+        class="btn-book-light"
+        target="_blank" rel="noopener"
+       onclick="return gtag_report_conversion(this.href);">
+        Check Availability
+      </a>
+      <a
+        href="https://wa.me/393273751480?text=Hi%2C%20I%27d%20like%20to%20book%20Eleonora%20D%27Aragona%20Home%20Suites.%20Can%20you%20help%20me%20check%20availability%3F"
+        target="_blank" rel="noopener"
+        onclick="gtag('event','whatsapp_click',{event_category:'stays',event_label:'eleonora_daragona'});"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;padding:14px 28px;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+      >
+        Ask on WhatsApp
+      </a>
     </div>
+
+    <section class="section" aria-labelledby="faq-title" style="margin-top:40px;">
+      <p class="section-kicker">Frequently Asked Questions</p>
+      <h2 id="faq-title" class="section-title">Eleonora D'Aragona Home Suites – FAQ</h2>
+      <div class="highlights" role="list" style="margin-top:22px;">
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Where are the suites located?</div><div class="highlight-text">In Palermo's historic centre, just steps from the Cathedral, Quattro Canti and Teatro Massimo — an ideal base for exploring the city on foot.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">What amenities are included?</div><div class="highlight-text">Fibre Wi-Fi, air conditioning, premium linen, a fully-equipped kitchen, smart TV and access to Le Sicilien's 24/7 concierge service.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Can I book an airport transfer?</div><div class="highlight-text">Yes, our concierge can arrange private airport transfers, personalised tours, a private chef and yacht charters.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">What are the check-in and check-out times?</div><div class="highlight-text">Check-in from 3:00 PM, check-out by 10:00 AM. Flexible timing and luggage storage are available on request.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Are the suites suitable for families?</div><div class="highlight-text">Yes, they're perfect for both couples and families thanks to the refined spaces and complete amenities.</div></div></div>
+      </div>
+    </section>
   </div>
 
   <footer>
-    <p>© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/">IT</a> · <a href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/">EN</a> · <a href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/">FR</a> · <a href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/">DE</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Palermo, Sicily, Italy</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/en/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Back to home</a></p>
+    </div>
   </footer>
+
+<script>
+  (function () {
+    var overlay, imgEl, counterEl, items = [], current = 0;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Photo gallery');
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Close">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Previous photo">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-next" aria-label="Next photo">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<img class="lightbox-img" alt="">' +
+        '<div class="lightbox-counter"></div>';
+      document.body.appendChild(overlay);
+
+      imgEl = overlay.querySelector('.lightbox-img');
+      counterEl = overlay.querySelector('.lightbox-counter');
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', close);
+      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      var touchStartX = null;
+      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+    }
+
+    function show(index) {
+      if (!items.length) return;
+      current = (index + items.length) % items.length;
+      var item = items[current];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.gallery-grid img');
+      if (!imgs.length) return;
+      build();
+      imgs.forEach(function (img, i) {
+        items.push({ src: img.currentSrc || img.src, alt: img.alt });
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Enlarge: ' + (img.alt || 'photo'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
