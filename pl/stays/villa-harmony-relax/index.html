@@ -43,7 +43,7 @@ function gtag_report_conversion(url) {
   <meta name="description" content="Villa Harmony Relax w Mondello: luksusowy dom wakacyjny w pobliżu najpiękniejszej plaży Palermo. 3 sypialnie, ogród, krystalicznie czyste morze." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://www.lesicilien.it/stays/villa-harmony-relax/" />
+  <link rel="canonical" href="https://www.lesicilien.it/pl/stays/villa-harmony-relax/" />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="it" href="https://www.lesicilien.it/stays/villa-harmony-relax/" />
@@ -74,6 +74,19 @@ function gtag_report_conversion(url) {
   </script>
 
   <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Czy zwierzęta domowe są dozwolone w Villa Harmony?","acceptedAnswer":{"@type":"Answer","text":"Tak, Villa Harmony jest przyjazna zwierzętom. Przyjmujemy zwierzęta na życzenie — prosimy o wcześniejszą informację."}},
+      {"@type":"Question","name":"Czy dostępny jest prywatny parking?","acceptedAnswer":{"@type":"Answer","text":"Tak, willa dysponuje bezpłatnym prywatnym parkingiem wewnętrznym dla gości, zapewniającym maksymalny komfort i bezpieczeństwo."}},
+      {"@type":"Question","name":"Jak daleko jest Villa Harmony od plaży Mondello?","acceptedAnswer":{"@type":"Answer","text":"Willa znajduje się w uprzywilejowanej lokalizacji, zaledwie 5 minut spacerem od promenady i piaszczystej plaży Mondello."}},
+      {"@type":"Question","name":"Czy połączenie Wi-Fi nadaje się do pracy zdalnej?","acceptedAnswer":{"@type":"Answer","text":"Tak, oferujemy szybkie światłowodowe Wi-Fi w całej posesji, idealne do pracy zdalnej i streamingu."}},
+      {"@type":"Question","name":"Jakie są godziny zameldowania i wymeldowania?","acceptedAnswer":{"@type":"Answer","text":"Zameldowanie od 15:00, wymeldowanie do 10:00. Staramy się być elastyczni w zależności od dostępności."}}
+    ]
+  }
+  </script>
   <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@type": [
@@ -106,6 +119,11 @@ function gtag_report_conversion(url) {
  "starRating": {
   "@type": "Rating",
   "ratingValue": "5"
+ },
+ "aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.9",
+  "reviewCount": "23"
  },
  "offers": {
   "@type": "Offer",
@@ -250,13 +268,68 @@ function gtag_report_conversion(url) {
     .section-kicker { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px,3vw,26px); font-weight: 500; line-height: 1.25; }
     .section-text { margin-top: 16px; font-size: 14px; line-height: 1.75; color: rgba(30,30,30,0.78); font-weight: 300; }
+    .section-text + .section-text { margin-top: 12px; }
     .cta-section { margin-top: 48px; padding: 40px 28px; background: linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%); border-radius: var(--radius); text-align: center; color: #fff; }
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
     .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 11px; color: rgba(30,30,30,0.42); }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+
+    /* ── RATING ── */
+    .rating-strip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--text); }
+    .rating-count { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+
+    /* ── GUEST REVIEWS ── */
+    .reviews-section { margin-top: 40px; }
+    .review-card-stay { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin-top: 14px; }
+    .review-card-stay .review-stars { color: #F5A623; font-size: 14px; margin-bottom: 10px; }
+    .review-card-stay blockquote { font-size: 13px; line-height: 1.7; color: rgba(30,30,30,0.78); font-style: italic; margin-bottom: 12px; }
+    .review-card-stay .review-author { font-size: 12px; font-weight: 600; color: var(--text); }
+    .review-card-stay .review-platform { font-size: 11px; color: var(--muted); }
+
+    /* ── HIGHLIGHTS / FAQ ── */
+    .highlights { margin-top: 22px; display: grid; gap: 10px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .highlight-text { font-size: 13px; line-height: 1.5; }
+
+    /* ── DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; }
+    .distance-label { color: var(--text); }
+    .distance-value { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── DIRECT BOOKING BENEFITS ── */
+    .direct-benefits { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 600px) { .direct-benefits { grid-template-columns: 1fr; } }
+    .benefit-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; }
+    .benefit-icon { font-size: 20px; margin-bottom: 6px; }
+    .benefit-title { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
+    .benefit-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-sm); display: block; cursor: zoom-in; }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-grid img { height: 140px; } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 10, 10, 0.94); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox-overlay.is-open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 4px; user-select: none; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(255,255,255,0.12); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; }
+    @media (max-width: 600px) { .lightbox-prev, .lightbox-next { width: 40px; height: 40px; } }
   </style>
 </head>
 <body>
@@ -267,8 +340,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
-      <a href="https://www.lesicilien.it/" class="nav-back">
+      <a href="https://www.lesicilien.it/pl/" class="nav-brand">Le Sicilien</a>
+      <a href="https://www.lesicilien.it/pl/" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Home
       </a>
@@ -296,13 +369,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="features">
-            <div class="feature-card">
+      <div class="feature-card">
         <div class="feature-icon">🏖️</div>
         <div class="feature-label">Blisko Plaży</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🌊</div>
-        <div class="feature-label">Krystaliczne Morze</div>
+        <div class="feature-icon">🚗</div>
+        <div class="feature-label">Prywatny Parking</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">❄️</div>
@@ -310,34 +383,298 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📶</div>
-        <div class="feature-label">Wi-Fi Fiber</div>
+        <div class="feature-label">Wi-Fi Światłowodowe</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🍳</div>
         <div class="feature-label">Wyposażona Kuchnia</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🌿</div>
-        <div class="feature-label">Ogród</div>
+        <div class="feature-icon">✨</div>
+        <div class="feature-label">Usługa Concierge</div>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-kicker">Nieruchomość</div>
-      <h2 class="section-title">Morze, relaks i sycylijska autentyczność w Mondello</h2>
-      <p class="section-text">Villa Harmony Relax to luksusowy dom wakacyjny w Mondello, najpiękniejszym kurorcie plażowym Palermo. Kilka kroków od krystalicznie czystego morza, willa łączy spokój natury z nowoczesnym komfortem.</p>
+    <!-- RATING -->
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">na 5 · 23 zweryfikowane opinie</span>
     </div>
 
+    <hr class="divider" />
+
+    <section class="section" aria-labelledby="desc-title">
+      <p class="section-kicker">Nieruchomość</p>
+      <h2 id="desc-title" class="section-title">Absolutny relaks w Mondello, perle wybrzeża Palermo</h2>
+      <p class="section-text">
+        <strong>Villa Harmony Relax</strong> to luksusowa oaza spokoju w sercu Mondello, słynnej plaży z białym piaskiem i turkusową wodą, która rozsławiła wybrzeże Palermo na całym świecie. Tutaj relaks to nie tylko obietnica — to codzienne doświadczenie, naznaczone szumem fal, złocistym światłem sycylijskiego słońca i zapachem morza.
+      </p>
+      <p class="section-text">
+        Willa została zaprojektowana z myślą o maksymalnym komforcie i prywatności: jasne, przestronne wnętrza z akcentami autentycznej Sycylii, w pełni wyposażona kuchnia i każdy szczegół dopracowany dla bezbłędnego pobytu. Bliskość plaży Mondello sprawia, że morze jest oddalone o zaledwie 5 minut spacerem.
+      </p>
+      <p class="section-text">
+        Mondello znajduje się zaledwie 20 minut od historycznego centrum Palermo, w którym znajdują się jedne z najbardziej znanych zabytków UNESCO na Sycylii.
+      </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Zdjęcia</p>
+      <h2 id="gallery-title" class="section-title">Wnętrza Villa Harmony Relax</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/harmony-soggiorno.webp" type="image/webp"><img src="/harmony-soggiorno.jpg" alt="Salon, Villa Harmony Relax" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/harmony-camera-matrimoniale.webp" type="image/webp"><img src="/harmony-camera-matrimoniale.jpg" alt="Sypialnia dwuosobowa, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-camera-vista.webp" type="image/webp"><img src="/harmony-camera-vista.jpg" alt="Sypialnia z widokiem na taras, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-camera-armadio.webp" type="image/webp"><img src="/harmony-camera-armadio.jpg" alt="Sypialnia z zabytkową szafą, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-camera-singola.webp" type="image/webp"><img src="/harmony-camera-singola.jpg" alt="Sypialnia jednoosobowa, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-giardino.webp" type="image/webp"><img src="/harmony-giardino.jpg" alt="Prywatny ogród, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-terrazzo.webp" type="image/webp"><img src="/harmony-terrazzo.jpg" alt="Zacieniony taras, Villa Harmony Relax" loading="lazy"></picture>
+        <picture><source srcset="/harmony-balcone.webp" type="image/webp"><img src="/harmony-balcone.jpg" alt="Balkon ze stolikiem, Villa Harmony Relax" loading="lazy"></picture>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="highlights-title">
+      <p class="section-kicker">Co znajdziesz</p>
+      <h2 id="highlights-title" class="section-title">Szczegóły i wyposażenie</h2>
+      <div class="highlights" role="list">
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Zaledwie 5 minut spacerem od plaży Mondello</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Prywatny parking na terenie posesji dla maksymalnego komfortu i bezpieczeństwa</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">20 minut od historycznego centrum Palermo i jego zabytków UNESCO</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">W pełni wyposażona kuchnia na obiady i kolacje w willi</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Klimatyzacja, światłowodowe Wi-Fi i wszystkie nowoczesne udogodnienia</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot" aria-hidden="true"></div><div class="highlight-text">Usługa concierge Le Sicilien: wycieczki morskie, degustacje, transfery</div></div>
+      </div>
+    </section>
+
+    <!-- DISTANCES -->
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Lokalizacja</p>
+      <h2 id="dist-title" class="section-title">Odległości i połączenia</h2>
+      <div class="distances">
+        <div class="distance-item"><span class="distance-label">Plaża Mondello</span><span class="distance-value">5 min pieszo</span></div>
+        <div class="distance-item"><span class="distance-label">Promenada Mondello</span><span class="distance-value">3 min pieszo</span></div>
+        <div class="distance-item"><span class="distance-label">Rezerwat przyrody Capo Gallo</span><span class="distance-value">10 min samochodem</span></div>
+        <div class="distance-item"><span class="distance-label">Historyczne centrum Palermo</span><span class="distance-value">20 min samochodem</span></div>
+        <div class="distance-item"><span class="distance-label">Lotnisko Falcone-Borsellino</span><span class="distance-value">30 min samochodem</span></div>
+        <div class="distance-item"><span class="distance-label">Restauracje i bary Mondello</span><span class="distance-value">2 min pieszo</span></div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section class="reviews-section" aria-labelledby="reviews-title">
+      <p class="section-kicker">Opinie gości</p>
+      <h2 id="reviews-title" class="section-title">Co mówią nasi goście</h2>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Villa Harmony to raj dla rodzin. Dzieci pokochały ogród, my ciszę i spokój. Morze zaledwie kilka minut spacerem. Będziemy wracać każdego lata."</blockquote>
+        <span class="review-author">Rodzina Rossi</span> <span class="review-platform">· Airbnb</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Willa wygląda dokładnie jak na zdjęciach, a nawet lepiej. Zadbany ogród, weranda idealna na letnie kolacje. Mondello jest przepiękne, a willa ma doskonałą lokalizację."</blockquote>
+        <span class="review-author">Thomas i Elena K.</span> <span class="review-platform">· Booking.com</span>
+      </div>
+      <div class="review-card-stay">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Rezerwując bezpośrednio, otrzymaliśmy lepszą cenę i pakiet powitalny z lokalnymi sycylijskimi produktami. Concierge zorganizował dla nas fantastyczny rejs łodzią."</blockquote>
+        <span class="review-author">Rodzina Martin</span> <span class="review-platform">· Rezerwacja bezpośrednia</span>
+      </div>
+    </section>
+
+    <!-- WHY BOOK DIRECT -->
+    <section class="section" aria-labelledby="benefits-title">
+      <p class="section-kicker">Rezerwacja bezpośrednia</p>
+      <h2 id="benefits-title" class="section-title">Dlaczego warto rezerwować u nas?</h2>
+      <div class="direct-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">Najlepsza cena</div>
+          <div class="benefit-desc">Oszczędź do 15% w porównaniu z Airbnb i Booking.com</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">Pakiet powitalny</div>
+          <div class="benefit-desc">Cannoli, lokalne wino i oliwa z oliwek na powitanie</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-title">Concierge 24/7</div>
+          <div class="benefit-desc">Osobista pomoc na WhatsApp w każdej sprawie</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Elastyczna anulacja</div>
+          <div class="benefit-desc">Bardziej elastyczne zasady niż na platformach OTA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
     <div class="cta-section">
-      <div class="section-kicker">Rezerwacja bezpośrednia</div>
-      <h2 class="section-title">Zarezerwuj Mondello dla siebie</h2>
-      <p>Bez prowizji, gwarancja najlepszej ceny, sycylijski zestaw powitalny w cenie.</p>
-      <a href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?utm_source=seo&utm_medium=stays_page&utm_campaign=villa_harmony_mondello" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Zarezerwuj teraz</a>
+      <p class="section-kicker">Rezerwacja bezpośrednia</p>
+      <h2 class="section-title">Villa Harmony Relax, Mondello</h2>
+      <p>Sprawdź dostępne terminy i zarezerwuj swoją luksusową willę w Mondello bezpośrednio na naszym oficjalnym portalu.</p>
+      <a
+        href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=villa_harmony_mondello"
+        class="btn-book-light"
+        target="_blank" rel="noopener"
+       onclick="return gtag_report_conversion(this.href);">
+        Sprawdź dostępność
+      </a>
+      <a
+        href="https://wa.me/393273751480?text=Cze%C5%9B%C4%87%2C%20chcia%C5%82(a)bym%20zarezerwowa%C4%87%20Villa%20Harmony%20Relax%20w%20Mondello.%20Czy%20mo%C5%BCecie%20pom%C3%B3c%20sprawdzi%C4%87%20dost%C4%99pno%C5%9B%C4%87%3F"
+        target="_blank" rel="noopener"
+        onclick="gtag('event','whatsapp_click',{event_category:'stays',event_label:'villa_harmony_mondello'});"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;padding:14px 28px;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Zapytaj na WhatsApp
+      </a>
+      <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.75);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        Gwarancja najlepszej ceny przy rezerwacji bezpośredniej
+      </div>
     </div>
+
+    <section class="section" aria-labelledby="faq-title" style="margin-top:40px;">
+      <p class="section-kicker">Często zadawane pytania</p>
+      <h2 id="faq-title" class="section-title">Villa Harmony Relax – FAQ</h2>
+      <div class="highlights" role="list" style="margin-top:22px;">
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Czy zwierzęta domowe są dozwolone w Villa Harmony?</div>
+            <div class="highlight-text">Tak, Villa Harmony jest przyjazna zwierzętom. Przyjmujemy zwierzęta na życzenie — prosimy o wcześniejszą informację.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Czy dostępny jest prywatny parking?</div>
+            <div class="highlight-text">Tak, willa dysponuje bezpłatnym prywatnym parkingiem wewnętrznym dla gości, zapewniającym maksymalny komfort i bezpieczeństwo.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Jak daleko jest Villa Harmony od plaży Mondello?</div>
+            <div class="highlight-text">Willa znajduje się w uprzywilejowanej lokalizacji, zaledwie 5 minut spacerem od promenady i piaszczystej plaży Mondello.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Czy połączenie Wi-Fi nadaje się do pracy zdalnej?</div>
+            <div class="highlight-text">Tak, oferujemy szybkie światłowodowe Wi-Fi w całej posesji, idealne do pracy zdalnej i streamingu.</div>
+          </div>
+        </div>
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-dot" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:5px;">Jakie są godziny zameldowania i wymeldowania?</div>
+            <div class="highlight-text">Zameldowanie od 15:00, wymeldowanie do 10:00. Staramy się być elastyczni w zależności od dostępności.</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>
-    <p>© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/villa-harmony-relax/">IT</a> · <a href="https://www.lesicilien.it/en/stays/villa-harmony-relax/">EN</a> · <a href="https://www.lesicilien.it/fr/stays/villa-harmony-relax/">FR</a> · <a href="https://www.lesicilien.it/de/stays/villa-harmony-relax/">DE</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sycylia, Włochy</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/villa-harmony-relax/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/villa-harmony-relax/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/villa-harmony-relax/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/villa-harmony-relax/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/villa-harmony-relax/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/villa-harmony-relax/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/villa-harmony-relax/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/pl/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Powrót do strony głównej</a></p>
+    </div>
   </footer>
+
+<script>
+  (function () {
+    var overlay, imgEl, counterEl, items = [], current = 0;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Galeria zdjęć');
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Zamknij">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Poprzednie zdjęcie">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-next" aria-label="Następne zdjęcie">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<img class="lightbox-img" alt="">' +
+        '<div class="lightbox-counter"></div>';
+      document.body.appendChild(overlay);
+
+      imgEl = overlay.querySelector('.lightbox-img');
+      counterEl = overlay.querySelector('.lightbox-counter');
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', close);
+      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      var touchStartX = null;
+      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+    }
+
+    function show(index) {
+      if (!items.length) return;
+      current = (index + items.length) % items.length;
+      var item = items[current];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.gallery-grid img');
+      if (!imgs.length) return;
+      build();
+      imgs.forEach(function (img, i) {
+        items.push({ src: img.currentSrc || img.src, alt: img.alt });
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Powiększ: ' + (img.alt || 'zdjęcie'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

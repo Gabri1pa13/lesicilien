@@ -47,12 +47,15 @@ function gtag_report_conversion(url) {
   <link rel="alternate" hreflang="en" href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="fr" href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="de" href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="es" href="https://www.lesicilien.it/es/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="pl" href="https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/" />
   <link rel="alternate" hreflang="x-default" href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/" />
   <meta property="og:title" content="Eleonora D'Aragona Home Suites | Luxus-Suiten Palermo" />
-  <meta property="og:description" content="Elegante Boutique-Suiten in der Altstadt von Palermo. Königliches Ambiente, raffiniertes Design und exklusiver Komfort." />
+  <meta property="og:description" content="Eleonora D'Aragona Home Suites: elegante Boutique-Suiten in der Altstadt von Palermo. Königliches Ambiente, raffiniertes Design und exklusiver Komfort." />
   <meta property="og:image" content="https://www.lesicilien.it/eleonoradaragona.jpeg" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:site_name" content="Le Sicilien" />
@@ -65,17 +68,29 @@ function gtag_report_conversion(url) {
     gtag('config', 'G-62PCQP1DCW');
   </script>
 
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Wo befinden sich die Suiten?","acceptedAnswer":{"@type":"Answer","text":"In der Altstadt von Palermo, nur wenige Schritte von der Kathedrale, den Quattro Canti und dem Teatro Massimo entfernt — ideal, um die Stadt zu Fuß zu erkunden."}},
+      {"@type":"Question","name":"Welche Ausstattung ist enthalten?","acceptedAnswer":{"@type":"Answer","text":"Glasfaser-WLAN, Klimaanlage, hochwertige Bettwäsche, eine voll ausgestattete Küche, Smart-TV und Zugang zum Concierge-Service von Le Sicilien rund um die Uhr."}},
+      {"@type":"Question","name":"Kann ich einen Flughafentransfer buchen?","acceptedAnswer":{"@type":"Answer","text":"Ja, unser Concierge kann private Flughafentransfers, individuelle Touren, einen Privatkoch und Yachtcharter organisieren."}},
+      {"@type":"Question","name":"Wie sind die Check-in- und Check-out-Zeiten?","acceptedAnswer":{"@type":"Answer","text":"Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr. Auf Anfrage bieten wir flexible Zeiten und Gepäckaufbewahrung."}},
+      {"@type":"Question","name":"Eignen sich die Suiten für Familien?","acceptedAnswer":{"@type":"Answer","text":"Ja, dank der eleganten Räume und der kompletten Ausstattung eignen sie sich perfekt sowohl für Paare als auch für Familien."}}
+    ]
+  }
+  </script>
   <script type="application/ld+json">{
  "@context": "https://schema.org",
- "@type": [
-  "LodgingBusiness",
-  "VacationRental"
- ],
- "name": "Eleonora D'Aragona Home Suites",
- "description": "Elegante Boutique-Suiten in der Altstadt von Palermo. Königliches Ambiente, raffiniertes Design und exklusiver Komfort.",
+ "@type": "VacationRental",
+ "name": "Eleonora D'Aragona Home Suites | Luxus-Suiten in Palermo",
+ "description": "Elegante Home Suites in der Altstadt von Palermo, inspiriert von Königin Eleonora d'Aragona. Königliches Ambiente, raffiniertes Design und moderner Komfort, betrieben von Le Sicilien.",
  "url": "https://www.lesicilien.it/stays/eleonora-daragona-home-suites/",
  "image": [
   "https://www.lesicilien.it/eleonoradaragona.jpeg",
+  "https://www.lesicilien.it/eleonoradaragona.webp",
   "https://www.lesicilien.it/eleonora-soggiorno.jpg",
   "https://www.lesicilien.it/eleonora-camera-verde.jpg",
   "https://www.lesicilien.it/eleonora-bagno-1.jpg",
@@ -85,19 +100,37 @@ function gtag_report_conversion(url) {
   "https://www.lesicilien.it/eleonora-vista-piazza.jpg",
   "https://www.lesicilien.it/eleonora-vista-monte.jpg"
  ],
+ "telephone": "+39-327-375-1480",
  "address": {
   "@type": "PostalAddress",
   "streetAddress": "Centro Storico",
   "addressLocality": "Palermo",
   "addressRegion": "Sicilia",
-  "addressCountry": "IT",
-  "postalCode": "90133"
+  "postalCode": "90133",
+  "addressCountry": "IT"
  },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 38.1157,
+  "longitude": 13.3615
+ },
+ "checkinTime": "15:00",
+ "checkoutTime": "10:00",
+ "numberOfRooms": 2,
+ "occupancy": {
+  "@type": "QuantitativeValue",
+  "maxValue": 4,
+  "value": 4
+ },
+ "petsAllowed": "Auf Anfrage",
+ "amenityFeature": [
+  { "@type": "LocationFeatureSpecification", "name": "Glasfaser-WLAN", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Klimaanlage", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Vollausgestattete Küche", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Altstadt", "value": true },
+  { "@type": "LocationFeatureSpecification", "name": "Concierge-Service", "value": true }
+ ],
  "priceRange": "€€€",
- "starRating": {
-  "@type": "Rating",
-  "ratingValue": "5"
- },
  "offers": {
   "@type": "Offer",
   "priceCurrency": "EUR",
@@ -115,74 +148,18 @@ function gtag_report_conversion(url) {
  "containsPlace": {
   "@type": "Accommodation",
   "additionalType": "EntirePlace",
-  "occupancy": {
-   "@type": "QuantitativeValue",
-   "maxValue": 4,
-   "value": 4
-  },
+  "occupancy": { "@type": "QuantitativeValue", "maxValue": 4, "value": 4 },
   "numberOfBedrooms": 2,
   "amenityFeature": [
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Glasfaser-WLAN",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Klimaanlage",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Vollausgestattete Küche",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Altstadt",
-    "value": true
-   },
-   {
-    "@type": "LocationFeatureSpecification",
-    "name": "Concierge 24/7",
-    "value": true
-   }
+   { "@type": "LocationFeatureSpecification", "name": "Glasfaser-WLAN", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Klimaanlage", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Vollausgestattete Küche", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Altstadt", "value": true },
+   { "@type": "LocationFeatureSpecification", "name": "Concierge-Service", "value": true }
   ],
   "numberOfBathroomsTotal": 2,
   "bed": "2 Betten, davon 1 Schlafsofa"
  },
- "geo": {
-  "@type": "GeoCoordinates",
-  "latitude": 38.1157,
-  "longitude": 13.3615
- },
- "amenityFeature": [
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Glasfaser-WLAN",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Klimaanlage",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Vollausgestattete Küche",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Altstadt",
-   "value": true
-  },
-  {
-   "@type": "LocationFeatureSpecification",
-   "name": "Concierge 24/7",
-   "value": true
-  }
- ],
  "additionalType": "Apartment"
 }</script>
   <script type="application/ld+json">
@@ -193,8 +170,8 @@ function gtag_report_conversion(url) {
       "@type": "SpeakableSpecification",
       "cssSelector": [".hero-title", ".hero-sub", ".booking-bar-title", ".booking-bar-price"]
     },
-    "name": "Eleonora D'Aragona Home Suites – Palermo Altstadt",
-    "description": "Elegante Suite im historischen Zentrum von Palermo. Ab 110 € pro Nacht. Königliche Atmosphäre und Concierge-Service."
+    "name": "Eleonora D'Aragona Home Suites – Luxus-Suiten in Palermo",
+    "description": "Luxus-Suiten in der Altstadt von Palermo mit 2 Zimmern, königlichem Ambiente. Ab 110 € pro Nacht. Direktbuchung bei Le Sicilien."
   }
   </script>
 
@@ -235,13 +212,51 @@ function gtag_report_conversion(url) {
     .section-kicker { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px,3vw,26px); font-weight: 500; line-height: 1.25; }
     .section-text { margin-top: 16px; font-size: 14px; line-height: 1.75; color: rgba(30,30,30,0.78); font-weight: 300; }
+    .section-text + .section-text { margin-top: 12px; }
     .cta-section { margin-top: 48px; padding: 40px 28px; background: linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%); border-radius: var(--radius); text-align: center; color: #fff; }
     .cta-section .section-kicker { color: var(--gold); }
     .cta-section .section-title { color: #fff; margin-top: 6px; }
     .cta-section p { margin: 14px auto 28px; max-width: 480px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.70); font-weight: 300; }
     .btn-book-light { display: inline-block; padding: 16px 38px; background: var(--gold); color: #1a1a1a; border-radius: 999px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
     footer { text-align: center; padding: 28px 20px 16px; font-size: 12px; color: rgba(30,30,30,0.42); }
     @media (max-width: 600px) { .booking-bar { flex-direction: column; align-items: flex-start; } .btn-book { width: 100%; text-align: center; } }
+
+    /* ── RATING ── */
+    .rating-strip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .rating-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; }
+    .rating-score { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; }
+    .rating-count { font-size: 11px; color: var(--muted); }
+
+    /* ── HIGHLIGHTS / FAQ ── */
+    .highlights { margin-top: 22px; display: grid; gap: 10px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .highlight-text { font-size: 13px; line-height: 1.5; }
+
+    /* ── DISTANCES ── */
+    .distances { margin-top: 22px; display: grid; gap: 8px; }
+    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; }
+    .distance-value { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-sm); display: block; cursor: zoom-in; }
+    .gallery-grid .gallery-wide { grid-column: span 2; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-grid img { height: 140px; } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 10, 10, 0.94); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox-overlay.is-open { display: flex; }
+    .lightbox-img { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 4px; user-select: none; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(255,255,255,0.12); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; }
+    @media (max-width: 600px) { .lightbox-prev, .lightbox-next { width: 40px; height: 40px; } }
   </style>
 </head>
 <body>
@@ -252,8 +267,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="https://www.lesicilien.it/" class="nav-brand">Le Sicilien</a>
-      <a href="https://www.lesicilien.it/" class="nav-back">
+      <a href="https://www.lesicilien.it/de/" class="nav-brand">Le Sicilien</a>
+      <a href="https://www.lesicilien.it/de/" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Home
       </a>
@@ -286,26 +301,203 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="feature-card"><div class="feature-icon">❄️</div><div class="feature-label">Klimaanlage</div></div>
       <div class="feature-card"><div class="feature-icon">📶</div><div class="feature-label">Glasfaser-WLAN</div></div>
       <div class="feature-card"><div class="feature-icon">🍳</div><div class="feature-label">Vollausgestattete Küche</div></div>
-      <div class="feature-card"><div class="feature-icon">✨</div><div class="feature-label">Concierge 24/7</div></div>
+      <div class="feature-card"><div class="feature-icon">✨</div><div class="feature-label">Concierge rund um die Uhr</div></div>
     </div>
 
-    <div class="section">
-      <div class="section-kicker">Die Unterkunft</div>
-      <h2 class="section-title">Boutique-Suiten im Herzen Palermos</h2>
-      <p class="section-text">Eleonora D'Aragona Home Suites ist eine Kollektion eleganter Boutique-Suiten, benannt nach Eleonora von Aragón, einer der faszinierendsten Frauen der sizilianischen Geschichte. In der Altstadt Palermos verbinden die Suiten das noble Erbe der Stadt mit raffiniertem, modernem Design.</p>
-      <p class="section-text">Jede Suite wurde bis ins kleinste Detail gestaltet: ausgewählte Möbel, hochwertige Wäsche und moderne Annehmlichkeiten. Kathedrale, Teatro Massimo und Quattro Canti sind zu Fuß erreichbar.</p>
+    <div class="rating-strip">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+      <span class="rating-count">von 5 · zufriedene Gäste</span>
     </div>
+
+    <hr class="divider" />
+
+    <section class="section" aria-labelledby="desc-title">
+      <p class="section-kicker">Die Unterkunft</p>
+      <h2 id="desc-title" class="section-title">Boutique-Suiten im Herzen von Palermo</h2>
+      <p class="section-text">
+        <strong>Eleonora D'Aragona Home Suites</strong> ist eine Sammlung eleganter Suiten, benannt nach Eleonora d'Aragona, einer der faszinierendsten Frauengestalten der sizilianischen Geschichte. In der Altstadt von Palermo gelegen, verbinden die Suiten das adlige Erbe der Stadt mit einem raffinierten, zeitgenössischen Design für einen authentischen und unvergesslichen Aufenthalt.
+      </p>
+      <p class="section-text">
+        Jede Suite wurde bis ins kleinste Detail gestaltet: ausgewählte Möbel, hochwertige Bettwäsche, durchdachte Beleuchtung und aller moderne Komfort für einen wahrhaft königlichen Aufenthalt. Die hellen, einladenden Räume bieten die perfekte Balance zwischen historischem Charme und Funktionalität — ideal für Paare, die ein romantisches Wochenende suchen, und für Familien, die Palermo mit Stil erleben möchten.
+      </p>
+      <p class="section-text">
+        Die Lage im pulsierenden Herzen der Stadt erlaubt es, die wichtigsten Sehenswürdigkeiten zu Fuß zu erreichen: die Kathedrale, das Teatro Massimo, die Quattro Canti und die historischen Märkte von Vucciria und Ballarò.
+      </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="gallery-title">
+      <p class="section-kicker">Fotos</p>
+      <h2 id="gallery-title" class="section-title">Die Räume von Eleonora D'Aragona</h2>
+      <div class="gallery-grid">
+        <picture><source srcset="/eleonora-soggiorno.webp" type="image/webp"><img src="/eleonora-soggiorno.jpg" alt="Wohnzimmer, Eleonora D'Aragona Home Suites" class="gallery-wide" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-rossa.webp" type="image/webp"><img src="/eleonora-camera-rossa.jpg" alt="Zimmer mit roter Wand, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-camera-verde.webp" type="image/webp"><img src="/eleonora-camera-verde.jpg" alt="Zimmer mit grüner Wand, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-cucina.webp" type="image/webp"><img src="/eleonora-cucina.jpg" alt="Küche, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-1.webp" type="image/webp"><img src="/eleonora-bagno-1.jpg" alt="Badezimmer, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-bagno-2.webp" type="image/webp"><img src="/eleonora-bagno-2.jpg" alt="Zweites Badezimmer, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-piazza.webp" type="image/webp"><img src="/eleonora-vista-piazza.jpg" alt="Blick auf den historischen Platz vom Balkon, Eleonora D'Aragona" loading="lazy"></picture>
+        <picture><source srcset="/eleonora-vista-monte.webp" type="image/webp"><img src="/eleonora-vista-monte.jpg" alt="Blick auf den Monte Pellegrino vom Balkon, Eleonora D'Aragona" loading="lazy"></picture>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="highlights-title">
+      <p class="section-kicker">Was Sie erwartet</p>
+      <h2 id="highlights-title" class="section-title">Details und Ausstattung</h2>
+      <div class="highlights" role="list">
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Elegante Suiten mit ausgewählten Möbeln und königlichem Ambiente, inspiriert vom sizilianischen Adel</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Lage in der Altstadt von Palermo, nur wenige Schritte von den wichtigsten Sehenswürdigkeiten</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Hochwertige Bettwäsche, Premium-Matratzen und hochwertige Pflegeprodukte</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Voll ausgestattete Küche oder Küchenzeile für maximale Unabhängigkeit</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Klimaanlage, Hochgeschwindigkeits-Glasfaser-WLAN und Smart-TV in jeder Suite</div></div>
+        <div class="highlight-item" role="listitem"><div class="highlight-dot"></div><div class="highlight-text">Concierge-Service von Le Sicilien: Transfers, Privatkoch, exklusive Erlebnisse</div></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="dist-title">
+      <p class="section-kicker">Lage</p>
+      <h2 id="dist-title" class="section-title">Entfernungen und Verbindungen</h2>
+      <div class="distances">
+        <div class="distance-item"><span>Kathedrale von Palermo</span><span class="distance-value">5 Min. zu Fuß</span></div>
+        <div class="distance-item"><span>Quattro Canti</span><span class="distance-value">7 Min. zu Fuß</span></div>
+        <div class="distance-item"><span>Teatro Massimo</span><span class="distance-value">10 Min. zu Fuß</span></div>
+        <div class="distance-item"><span>Markt Vucciria</span><span class="distance-value">8 Min. zu Fuß</span></div>
+        <div class="distance-item"><span>Markt Ballarò</span><span class="distance-value">10 Min. zu Fuß</span></div>
+        <div class="distance-item"><span>Flughafen Falcone-Borsellino</span><span class="distance-value">35 Min. mit dem Auto</span></div>
+        <div class="distance-item"><span>Strand von Mondello</span><span class="distance-value">25 Min. mit dem Auto</span></div>
+      </div>
+    </section>
 
     <div class="cta-section">
-      <div class="section-kicker">Direktbuchung</div>
-      <h2 class="section-title">Sparen Sie durch direkte Buchung</h2>
-      <p>Keine Provision, bester Preis garantiert, sizilianisches Willkommenspaket inklusive.</p>
-      <a href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?utm_source=seo&utm_medium=stays_page&utm_campaign=eleonora_daragona" class="btn-book-light" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Jetzt buchen</a>
+      <p class="section-kicker">Direktbuchung</p>
+      <h2 class="section-title">Eleonora D'Aragona Home Suites – Königlicher Aufenthalt</h2>
+      <p>Prüfen Sie die Verfügbarkeit und buchen Sie Ihre Luxus-Suite in der Altstadt von Palermo direkt über unser offizielles Portal, ohne Provision.</p>
+      <a
+        href="https://lesicilien.kross.travel/eleonora-d-aragona-home-suites?utm_source=seo&utm_medium=stays_page_cta&utm_campaign=eleonora_daragona"
+        class="btn-book-light"
+        target="_blank" rel="noopener"
+       onclick="return gtag_report_conversion(this.href);">
+        Verfügbarkeit prüfen
+      </a>
+      <a
+        href="https://wa.me/393273751480?text=Hallo%2C%20ich%20m%C3%B6chte%20Eleonora%20D%27Aragona%20Home%20Suites%20buchen.%20K%C3%B6nnen%20Sie%20mir%20bei%20der%20Verf%C3%BCgbarkeit%20helfen%3F"
+        target="_blank" rel="noopener"
+        onclick="gtag('event','whatsapp_click',{event_category:'stays',event_label:'eleonora_daragona'});"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:#fff;padding:14px 28px;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+      >
+        Auf WhatsApp fragen
+      </a>
     </div>
+
+    <section class="section" aria-labelledby="faq-title" style="margin-top:40px;">
+      <p class="section-kicker">Häufig gestellte Fragen</p>
+      <h2 id="faq-title" class="section-title">Eleonora D'Aragona Home Suites – FAQ</h2>
+      <div class="highlights" role="list" style="margin-top:22px;">
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Wo befinden sich die Suiten?</div><div class="highlight-text">In der Altstadt von Palermo, nur wenige Schritte von der Kathedrale, den Quattro Canti und dem Teatro Massimo entfernt — ideal, um die Stadt zu Fuß zu erkunden.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Welche Ausstattung ist enthalten?</div><div class="highlight-text">Glasfaser-WLAN, Klimaanlage, hochwertige Bettwäsche, eine voll ausgestattete Küche, Smart-TV und Zugang zum Concierge-Service von Le Sicilien rund um die Uhr.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Kann ich einen Flughafentransfer buchen?</div><div class="highlight-text">Ja, unser Concierge kann private Flughafentransfers, individuelle Touren, einen Privatkoch und Yachtcharter organisieren.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Wie sind die Check-in- und Check-out-Zeiten?</div><div class="highlight-text">Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr. Auf Anfrage bieten wir flexible Zeiten und Gepäckaufbewahrung.</div></div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:5px;">Eignen sich die Suiten für Familien?</div><div class="highlight-text">Ja, dank der eleganten Räume und der kompletten Ausstattung eignen sie sich perfekt sowohl für Paare als auch für Familien.</div></div></div>
+      </div>
+    </section>
   </div>
 
   <footer>
-    <p>© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/">IT</a> · <a href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/">EN</a> · <a href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/">FR</a> · <a href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/">DE</a></p>
+    <div style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px;">
+      <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
+      <p style="font-size: 0.88rem; opacity: 0.85;">Palermo, Sizilien, Italien</p>
+      <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · E-Mail: lesicilienhouses@gmail.com</p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/eleonora-daragona-home-suites/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top:12px;"><a href="https://www.lesicilien.it/de/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Zurück zur Startseite</a></p>
+    </div>
   </footer>
+
+<script>
+  (function () {
+    var overlay, imgEl, counterEl, items = [], current = 0;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Fotogalerie');
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Schließen">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Vorheriges Foto">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="lightbox-next" aria-label="Nächstes Foto">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<img class="lightbox-img" alt="">' +
+        '<div class="lightbox-counter"></div>';
+      document.body.appendChild(overlay);
+
+      imgEl = overlay.querySelector('.lightbox-img');
+      counterEl = overlay.querySelector('.lightbox-counter');
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', close);
+      overlay.querySelector('.lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+      overlay.querySelector('.lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      var touchStartX = null;
+      overlay.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+    }
+
+    function show(index) {
+      if (!items.length) return;
+      current = (index + items.length) % items.length;
+      var item = items[current];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.gallery-grid img');
+      if (!imgs.length) return;
+      build();
+      imgs.forEach(function (img, i) {
+        items.push({ src: img.currentSrc || img.src, alt: img.alt });
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Vergrößern: ' + (img.alt || 'Foto'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
