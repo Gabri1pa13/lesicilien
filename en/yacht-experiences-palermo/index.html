@@ -204,6 +204,20 @@ function gtag_report_conversion(url) {
     .contact-box { background: #111; color: #fff; border-radius: 16px; padding: 24px; margin: 36px 0; }
     .contact-box h3 { color: #F4E7C7; margin-top: 0; }
     .contact-box a { color: var(--gold); }
+
+    /* ── Guest Reviews ── */
+    .reviews-section { margin: 44px 0; }
+    .reviews-rating { display: flex; align-items: center; gap: 10px; margin: 14px 0 4px; }
+    .reviews-rating .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; }
+    .reviews-rating .score { font-family: "Cinzel", serif; font-weight: 600; }
+    .reviews-rating .count { font-size: .82rem; color: var(--muted); }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
+    .review-card { background: var(--bg); border: 1px solid var(--sand); border-radius: 14px; padding: 20px; }
+    .review-stars { color: var(--gold); font-size: .9rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-card blockquote { margin: 0 0 14px; font-size: .9rem; font-style: italic; color: #444; }
+    .review-author { font-size: .85rem; font-weight: 600; color: var(--ink); }
+    .review-platform { font-size: .78rem; color: var(--muted); }
+
     .cta-grid { margin-top: 16px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
     .cta { display: block; text-decoration: none; background: #202020; color: #fff; padding: 14px 16px; border-radius: 14px; font-weight: 600; }
     .cta:hover { background: var(--gold); color: #111; }
@@ -410,6 +424,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
           </div>
           <a class="btn-gold" href="mailto:lesicilienhouses@gmail.com">Tell us your idea</a>
+        </div>
+      </div>
+
+      <div class="reviews-section" aria-labelledby="reviews-title">
+        <div class="tag" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--gold);font-weight:600;margin-bottom:10px;">Guest Reviews</div>
+        <h2 id="reviews-title">What Our Guests Say</h2>
+        <div class="reviews-rating"><span class="stars">★★★★★</span><span class="score">5.0</span><span class="count">&middot; Recent charter guests</span></div>
+        <div class="review-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>&ldquo;Amazing!! The boat was gorgeous with so much space inside and out. The crew was amazing. Captain Francesco was wonderful and very accommodating. He had a wonderful spread of snacks and drinks available. Igea was our guide and she was very friendly and soooo knowledgeable about Palermo and world history. It was really a joy to spend the afternoon with her and the crew. I would highly recommend this tour to anyone looking for a gorgeous afternoon on the sea.&rdquo;</blockquote>
+            <span class="review-author">Angie &ndash; United States</span> <span class="review-platform">&middot; GetYourGuide</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>&ldquo;Ci siamo imbattuti per caso in questa piccola realt&agrave; apparentemente nuova ma ricca di esperienza che ci ha permesso di viverci una giornata unica e indimenticabile all'insegna del relax. Il capitano Francesco e il suo team ci hanno permesso di goderci il mare di Mondello da un'altra prospettiva, grazie ad un'ottima organizzazione e una piacevole compagnia. Ci sentiamo fortunati ad averli scoperti, torneremo alla prima occasione!&rdquo;</blockquote>
+            <span class="review-author">Riccardo &ndash; Italy</span> <span class="review-platform">&middot; GetYourGuide</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>&ldquo;Absolutes Highlight meiner Reise. Absolut empfehlenswert und sollte man nicht verpassen, habe mich sehr willkommen gef&uuml;hlt und hatte eine tolle Zeit. Danke an die ganze Crew, es war einfach traumhaft.&rdquo;</blockquote>
+            <span class="review-author">Nicole &ndash; Austria</span> <span class="review-platform">&middot; GetYourGuide</span>
+          </div>
         </div>
       </div>
 

@@ -212,6 +212,19 @@ function gtag_report_conversion(url) {
     .contact-box h3 { color: #F4E7C7; margin-top: 0; }
     .contact-box a { color: var(--gold); }
 
+    /* ── Avis clients ── */
+    .reviews-section { margin: 44px 0; }
+    .reviews-rating { display: flex; align-items: center; gap: 10px; margin: 14px 0 4px; }
+    .reviews-rating .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; }
+    .reviews-rating .score { font-family: "Cinzel", serif; font-weight: 600; }
+    .reviews-rating .count { font-size: .82rem; color: var(--muted); }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
+    .review-card { background: var(--bg); border: 1px solid var(--sand); border-radius: 14px; padding: 20px; }
+    .review-stars { color: var(--gold); font-size: .9rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-card blockquote { margin: 0 0 14px; font-size: .9rem; font-style: italic; color: #444; }
+    .review-author { font-size: .85rem; font-weight: 600; color: var(--ink); }
+    .review-platform { font-size: .78rem; color: var(--muted); }
+
     .steps { counter-reset: steps; margin: 26px 0; }
     .step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid #ede8df; align-items: flex-start; }
     .step:last-child { border-bottom: none; }
@@ -367,6 +380,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="step-body">
             <strong>Monter à bord</strong>
             <p>Le jour du charter, le skipper vous accueille au port. Nous avons déjà tout organisé. Vous profitez simplement de la mer.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-section" aria-labelledby="reviews-title">
+        <div class="kicker" style="color:var(--gold);opacity:1;">Avis de Nos Clients</div>
+        <h2 id="reviews-title">Ce Que Disent Nos Clients</h2>
+        <div class="reviews-rating"><span class="stars">★★★★★</span><span class="score">5.0</span><span class="count">&middot; Clients de charters récents</span></div>
+        <div class="review-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>«&nbsp;Amazing!! The boat was gorgeous with so much space inside and out. The crew was amazing. Captain Francesco was wonderful and very accommodating. Igea was our guide and she was very friendly and soooo knowledgeable about Palermo and world history. I would highly recommend this tour to anyone looking for a gorgeous afternoon on the sea.&nbsp;»</blockquote>
+            <span class="review-author">Angie &ndash; États-Unis</span> <span class="review-platform">&middot; GetYourGuide</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>«&nbsp;Ci siamo imbattuti per caso in questa piccola realtà apparentemente nuova ma ricca di esperienza che ci ha permesso di viverci una giornata unica e indimenticabile all'insegna del relax. Il capitano Francesco e il suo team ci hanno permesso di goderci il mare di Mondello da un'altra prospettiva. Ci sentiamo fortunati ad averli scoperti, torneremo alla prima occasione!&nbsp;»</blockquote>
+            <span class="review-author">Riccardo &ndash; Italie</span> <span class="review-platform">&middot; GetYourGuide</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <blockquote>«&nbsp;Absolutes Highlight meiner Reise. Absolut empfehlenswert und sollte man nicht verpassen, habe mich sehr willkommen gefühlt und hatte eine tolle Zeit. Danke an die ganze Crew, es war einfach traumhaft.&nbsp;»</blockquote>
+            <span class="review-author">Nicole &ndash; Autriche</span> <span class="review-platform">&middot; GetYourGuide</span>
           </div>
         </div>
       </div>
