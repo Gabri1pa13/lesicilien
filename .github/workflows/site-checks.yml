@@ -1,0 +1,16 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run link / JSON-LD / HTML sanity checks
+        run: python3 scripts/check_site.py
