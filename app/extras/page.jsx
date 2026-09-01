@@ -180,7 +180,7 @@ const SERVICES = [
 
 // ─── MODAL RICHIESTA ────────────────────────────────────────────────────────
 function RequestModal({ service, onClose, onSubmit }) {
-  const [form, setForm] = useState({ nome: "", email: "", telefono: "", data: "", note: "", persone: "1" });
+  const [form, setForm] = useState({ nome: "", email: "", telefono: "", data: "", note: "", persone: "1", website: "" });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const canSubmit = form.nome && form.email && form.data;
@@ -235,6 +235,12 @@ function RequestModal({ service, onClose, onSubmit }) {
             </div>
             <div style={m.divider} />
             <div style={m.body}>
+              <input
+                type="text" name="website" tabIndex={-1} autoComplete="off"
+                value={form.website} onChange={e => setForm({ ...form, website: e.target.value })}
+                style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+                aria-hidden="true"
+              />
               {fields.map((row, ri) => (
                 <div key={ri} style={m.row}>
                   {row.map(f => (
@@ -268,7 +274,7 @@ function RequestModal({ service, onClose, onSubmit }) {
 
 // ─── MODAL PRENOTAZIONE DIRETTA ─────────────────────────────────────────────
 function DirectBookModal({ service, onClose, onSubmit }) {
-  const [form, setForm] = useState({ nome: "", email: "", telefono: "", data: "" });
+  const [form, setForm] = useState({ nome: "", email: "", telefono: "", data: "", website: "" });
   const [loading, setLoading] = useState(false);
   const canSubmit = form.nome && form.email;
 
@@ -303,6 +309,12 @@ function DirectBookModal({ service, onClose, onSubmit }) {
         </div>
         <div style={m.divider} />
         <div style={m.body}>
+          <input
+            type="text" name="website" tabIndex={-1} autoComplete="off"
+            value={form.website} onChange={e => setForm({ ...form, website: e.target.value })}
+            style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+            aria-hidden="true"
+          />
           <p style={{ fontFamily: "'Jost',sans-serif", fontSize: "13px", fontWeight: "300", color: BRAND.textMuted, marginBottom: "20px", lineHeight: "1.7" }}>
             Inserisci i tuoi dati per completare la prenotazione. Verrai reindirizzato al pagamento Revolut.
           </p>
