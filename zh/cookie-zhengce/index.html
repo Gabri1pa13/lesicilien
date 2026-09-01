@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
+<!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=2"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie 政策 | Le Sicilien</title>
+  <meta name="description" content="Le Sicilien 网站使用的 Cookie 政策：技术性、分析性和营销性 Cookie，以及如何管理您的偏好设置。">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.lesicilien.it/zh/cookie-zhengce/">
+  <link rel="alternate" hreflang="it" href="https://www.lesicilien.it/it/cookie-policy/">
+  <link rel="alternate" hreflang="en" href="https://www.lesicilien.it/en/cookie-policy/">
+  <link rel="alternate" hreflang="es" href="https://www.lesicilien.it/es/politica-de-cookies/">
+  <link rel="alternate" hreflang="de" href="https://www.lesicilien.it/de/cookie-richtlinie/">
+  <link rel="alternate" hreflang="fr" href="https://www.lesicilien.it/fr/politique-de-cookies/">
+  <link rel="alternate" hreflang="pl" href="https://www.lesicilien.it/pl/polityka-cookies/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.lesicilien.it/zh/cookie-zhengce/">
+  <link rel="alternate" hreflang="x-default" href="https://www.lesicilien.it/en/cookie-policy/">
+
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62PCQP1DCW"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-62PCQP1DCW');</script>
+
+  <style>
+    :root { --bg: #F7F4ED; --paper: #FFFFFF; --ink: #181818; --muted: #666; --accent: #BFA05A; --line: rgba(0,0,0,.09); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Montserrat", sans-serif; color: var(--ink); background: radial-gradient(circle at top right, #efe5d4 0%, var(--bg) 55%); line-height: 1.72; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header { padding: 82px 20px 34px; color: #fff; background: linear-gradient(140deg, rgba(0,0,0,.86), rgba(40,31,18,.78)); }
+    .crumbs { font-size: .86rem; opacity: .9; }
+    .crumbs a { color: #fff; text-decoration: none; }
+    .kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; opacity: .82; margin-top: 10px; }
+    h1, h2 { font-family: "Cinzel", serif; line-height: 1.2; letter-spacing: .02em; }
+    h1 { font-size: clamp(1.9rem, 4.8vw, 3rem); margin: 12px 0; }
+    h2 { margin-top: 34px; font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
+    main { padding: 24px 20px 56px; }
+    article { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 22px 46px rgba(0,0,0,.07); padding: clamp(22px, 4vw, 44px); }
+    p, li { margin: 10px 0; }
+    ul { padding-left: 22px; }
+    .updated { font-size: .82rem; color: var(--muted); }
+    .note { margin: 24px 0; padding: 14px 16px; border-left: 4px solid var(--accent); background: #fcf7ef; border-radius: 10px; font-size: .92rem; }
+    .placeholder { background: #fff3e0; border: 1px dashed #d99a2b; border-radius: 8px; padding: 10px 14px; font-size: .86rem; color: #7a4e00; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .86rem; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: .76rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    a { color: #8a6d1f; }
+    .btn-manage { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #181818; color: #fff; border-radius: 999px; font-size: .82rem; text-decoration: none; border: none; cursor: pointer; }
+    .btn-manage:hover { background: var(--accent); color: #111; }
+    footer { margin-top: 30px; background: #171717; color: #f1f1f1; padding: 24px 20px 34px; text-align: center; font-size: .85rem; }
+    footer a { color: #f1f1f1; }
+    @media (max-width: 900px) { header { padding: 74px 16px 28px; } main { padding: 20px 14px 58px; } }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKVQJGXP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <header>
+    <div class="wrap">
+      <div class="crumbs"><a href="/zh/">首页</a> / Cookie 政策</div>
+      <div class="kicker">Le Sicilien</div>
+      <h1>Cookie 政策</h1>
+      <p class="updated">最后更新：2026年9月1日</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap">
+      <p class="placeholder"><strong>草稿——发布前需完成：</strong>下方的 Cookie 清单反映了网站上实际存在的追踪脚本（Google Tag Manager、Google Analytics 4、Google Ads）。每次新增追踪工具时都应重新审核本清单，并在正式发布前由律师进行审查。</p>
+
+      <p>Cookie 是网站发送到用户设备上的一小段文本文件，会被存储在设备中，以便在下次访问同一网站时被重新发送回该网站。<strong>www.lesicilien.it</strong> 使用自有及第三方 Cookie，用于以下所述的目的。</p>
+
+      <h2>1. 技术性 Cookie（始终启用）</h2>
+      <p>网站运行所必需，不需要征得用户同意。</p>
+      <table>
+        <tr><th>名称</th><th>用途</th><th>存续期限</th></tr>
+        <tr><td>ls_cookie_consent</td><td>存储用户在 Cookie 横幅中做出的选择（接受/拒绝）</td><td>12 个月</td></tr>
+      </table>
+
+      <h2>2. 分析性 Cookie（需征得同意）</h2>
+      <p>用于以汇总形式收集有关用户数量及其浏览网站方式的信息。仅在用户通过横幅明确同意后才会安装。</p>
+      <table>
+        <tr><th>名称</th><th>提供方</th><th>用途</th><th>存续期限</th></tr>
+        <tr><td>_ga, _ga_*</td><td>Google Analytics 4</td><td>区分不同用户，用于流量统计分析</td><td>最长 24 个月</td></tr>
+        <tr><td>_gid</td><td>Google Analytics</td><td>区分不同用户</td><td>24 小时</td></tr>
+      </table>
+
+      <h2>3. 营销/转化衡量类 Cookie（需征得同意）</h2>
+      <p>由 Google Ads 用于衡量广告活动的效果，并在同意允许的情况下用于再营销目的。</p>
+      <table>
+        <tr><th>名称</th><th>提供方</th><th>用途</th><th>存续期限</th></tr>
+        <tr><td>_gcl_au, _gcl_aw</td><td>Google Ads</td><td>广告转化效果衡量</td><td>最长 90 天</td></tr>
+      </table>
+
+      <h2>4. 如何管理您的偏好设置</h2>
+      <p>您可以随时通过清除浏览器存储中的 <code>ls_cookie_consent</code> 值来更改您的选择，也可以点击下方按钮重新打开偏好设置横幅：</p>
+      <button class="btn-manage" onclick="try{localStorage.removeItem('ls_cookie_consent');}catch(e){}location.reload();">管理 Cookie 偏好设置</button>
+
+      <p style="margin-top:18px;">您也可以直接在浏览器设置中禁用 Cookie。以下是主流浏览器的相关说明链接：</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/zh-CN/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/zh-cn/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/zh-cn/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <p>有关您的个人数据处理方式的更多信息，请参阅我们的<a href="/zh/yinsi-zhengce/">隐私政策</a>。</p>
+
+      <div class="note">对 Cookie 或您的数据处理有疑问？请通过 <a href="mailto:lesicilienhouses@gmail.com">lesicilienhouses@gmail.com</a> 与我们联系。</div>
+    </article>
+  </main>
+
+  <footer>Le Sicilien &middot; 意大利 巴勒莫，西西里 &middot; <a href="/zh/yinsi-zhengce/">隐私政策</a> &middot; <a href="/zh/tiaokuan/">条款与条件</a> &middot; <a href="/zh/">返回首页</a></footer>
+</body>
+</html>
