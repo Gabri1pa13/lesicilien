@@ -74,6 +74,9 @@ const SVCID_IMG = {
   foto_2h:             P("photo-editing"),
   proposta:            P("marriage-proposal"),
   luna_miele:          P("honeymoon-couple"),
+  proposta_mare:       P("sunset-proposal-boat"),
+  compleanno_mezza:    P("birthday-boat-halfday"),
+  compleanno_intera:   P("birthday-boat-fullday"),
 };
 
 const BRAND = {
@@ -146,6 +149,15 @@ const SERVICES = [
       { id: "whale_giornata",      name: "Giornata Completa in Catamarano · 10h · max 12 pax",        price: "da 3.000€", type: "request" },
       { id: "whale_2giorni",       name: "Luxury 2 Giorni · 39h · max 12 pax",                       price: "da 6.000€", type: "request" },
       { id: "whale_weekly",        name: "Weekly Charter · 7 giorni / 6 notti · max 12 pax",         price: "da 15.000€", type: "request" },
+    ],
+  },
+  {
+    category: "Proposte & Compleanni in Mare", icon: "✦",
+    note: "Pacchetto tutto compreso su catamarano Whale — barca, chef privato a bordo, decorazioni e pernotto. Personalizzabile su richiesta.",
+    items: [
+      { id: "proposta_mare",     name: "Proposta di Matrimonio al Tramonto — Barca, Cena & Pernotto a Bordo", price: "da 3.500€", type: "request" },
+      { id: "compleanno_mezza",  name: "Compleanno in Mare — Mezza Giornata, Chef a Bordo & Pernotto",        price: "da 2.900€", type: "request" },
+      { id: "compleanno_intera", name: "Compleanno in Mare — Giornata Intera, Chef a Bordo & Pernotto",       price: "da 4.200€", type: "request" },
     ],
   },
   {
