@@ -4,7 +4,7 @@
 
 ## Company Overview
 
-Le Sicilien is a luxury vacation rental company based in Palermo, Sicily, Italy. We manage a curated portfolio of five premium properties — historic apartments in Palermo's old town and seafront villas near Mondello beach. Every booking is direct (no OTA intermediaries), and includes complimentary 24/7 concierge support.
+Le Sicilien is a luxury vacation rental company based in Palermo, Sicily, Italy. We manage a curated portfolio of six premium properties — historic apartments in Palermo's old town and seafront villas near Mondello beach. Every booking is direct (no OTA intermediaries), and includes complimentary 24/7 concierge support.
 
 - **Founded:** Palermo, Sicily
 - **Specialty:** Luxury short-term rentals with concierge services
@@ -176,6 +176,40 @@ Large groups, multi-family trips, and anyone wanting a seafront experience with 
 - Mondello Beach: 10 min by car
 - Palermo city centre: 15 km (25 min by car)
 - Falcone-Borsellino Airport (PMO): 20 km (25 min by car)
+
+---
+
+## Property 6: Urban Retreat
+
+- **Type:** Contemporary loft apartment with exposed wood-beam ceilings
+- **Location:** Via dei Tintori, Historic Centre, Palermo 90133, Sicily, Italy
+- **Coordinates:** 38.1157°N, 13.3615°E
+- **Starting price:** €125/night
+- **Bedrooms:** 2 | **Bathrooms:** 2 | **Max guests:** 6
+- **Check-in:** from 15:00 | **Check-out:** by 10:00
+- **Pets:** Not allowed
+- **Parking:** No private parking (ZTL zone); affiliated private garage a few metres from the entrance
+- **URL:** https://www.lesicilien.it/stays/urban-retreat/
+- **Book:** https://lesicilien.kross.travel/urban-retreat
+
+### Highlights
+- Open-plan kitchen, dining and living area with exposed wood-beam ceilings
+- Two double bedrooms, each with the option of an extra single bed
+- Two en-suite marble bathrooms with shower
+- Queen sofa bed in the living room, ideal for larger groups
+- Fibre-optic Wi-Fi, air conditioning, Smart TV in every room
+- 24/7 Le Sicilien concierge
+
+### Best for
+Groups of friends and larger families who want spacious, contemporary interiors right in Palermo's historic centre, within walking distance of the Cathedral and Teatro Massimo.
+
+### Distances
+- Palermo Cathedral: 250 m (3 min walk)
+- Quattro Canti: 300 m (4 min walk)
+- Teatro Massimo: 450 m (6 min walk)
+- Ballarò Market: 400 m (5 min walk)
+- Vucciria Market: 500 m (6 min walk)
+- Falcone-Borsellino Airport (PMO): 32 km (35 min by car)
 
 ---
 
