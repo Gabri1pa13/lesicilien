@@ -25,10 +25,12 @@ create table if not exists requests (
 alter table requests enable row level security;
 
 -- Admin (utenti autenticati) → accesso totale
+drop policy if exists "Admin full access" on requests;
 create policy "Admin full access" on requests
   for all using (auth.role() = 'authenticated');
 
 -- Ospiti → solo inserimento
+drop policy if exists "Guest insert only" on requests;
 create policy "Guest insert only" on requests
   for insert with check (true);
 
@@ -57,9 +59,11 @@ create table if not exists services (
 
 alter table services enable row level security;
 
+drop policy if exists "Admin full access on services" on services;
 create policy "Admin full access on services" on services
   for all using (auth.role() = 'authenticated');
 
+drop policy if exists "Guest read active services" on services;
 create policy "Guest read active services" on services
   for select using (active = true);
 

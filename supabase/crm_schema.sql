@@ -18,9 +18,11 @@ create table if not exists profiles (
 
 alter table profiles enable row level security;
 
+drop policy if exists "Authenticated read profiles" on profiles;
 create policy "Authenticated read profiles" on profiles
   for select using (auth.role() = 'authenticated');
 
+drop policy if exists "Admin manage profiles" on profiles;
 create policy "Admin manage profiles" on profiles
   for all using (auth.role() = 'authenticated');
 
@@ -83,6 +85,7 @@ alter table owners add column if not exists next_follow_up date;
 alter table owners add column if not exists lost_reason text;
 
 alter table owners enable row level security;
+drop policy if exists "Authenticated full access owners" on owners;
 create policy "Authenticated full access owners" on owners
   for all using (auth.role() = 'authenticated');
 
@@ -105,6 +108,7 @@ create table if not exists owner_activities (
 );
 
 alter table owner_activities enable row level security;
+drop policy if exists "Authenticated full access owner_activities" on owner_activities;
 create policy "Authenticated full access owner_activities" on owner_activities
   for all using (auth.role() = 'authenticated');
 
@@ -141,6 +145,7 @@ create table if not exists properties (
 alter table properties add column if not exists slug text;
 
 alter table properties enable row level security;
+drop policy if exists "Authenticated full access properties" on properties;
 create policy "Authenticated full access properties" on properties
   for all using (auth.role() = 'authenticated');
 
@@ -170,6 +175,7 @@ create table if not exists guests (
 );
 
 alter table guests enable row level security;
+drop policy if exists "Authenticated full access guests" on guests;
 create policy "Authenticated full access guests" on guests
   for all using (auth.role() = 'authenticated');
 
@@ -202,6 +208,7 @@ create table if not exists bookings (
 );
 
 alter table bookings enable row level security;
+drop policy if exists "Authenticated full access bookings" on bookings;
 create policy "Authenticated full access bookings" on bookings
   for all using (auth.role() = 'authenticated');
 
@@ -234,6 +241,7 @@ create table if not exists tasks (
 );
 
 alter table tasks enable row level security;
+drop policy if exists "Authenticated full access tasks" on tasks;
 create policy "Authenticated full access tasks" on tasks
   for all using (auth.role() = 'authenticated');
 
@@ -260,6 +268,7 @@ create table if not exists expenses (
 );
 
 alter table expenses enable row level security;
+drop policy if exists "Authenticated full access expenses" on expenses;
 create policy "Authenticated full access expenses" on expenses
   for all using (auth.role() = 'authenticated');
 
@@ -286,6 +295,7 @@ create table if not exists payouts (
 );
 
 alter table payouts enable row level security;
+drop policy if exists "Authenticated full access payouts" on payouts;
 create policy "Authenticated full access payouts" on payouts
   for all using (auth.role() = 'authenticated');
 
