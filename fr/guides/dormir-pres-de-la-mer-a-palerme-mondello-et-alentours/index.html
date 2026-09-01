@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -381,8 +404,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="meta-row">Derniere mise a jour : 22 fevrier 2026</div>
 
       <div class="note" style="margin:1.5rem 0"><strong>Nos hébergements en bord de mer :</strong><br>
-<a href="/stays/mondello/">Villa à Mondello, face à la mer</a><br>
-<a href="/stays/villa-fronte-mare/">Villa avec accès direct à la plage</a>
+<a href="/fr/stays/villa-harmony-relax/">Villa à Mondello, face à la mer</a><br>
+<a href="/fr/stays/tilde-sunset-bay-villa/">Villa avec accès direct à la plage</a>
 </div>
       <div class="note" style="margin:1.5rem 0">
 <p>Vous souhaitez explorer la côte depuis la mer ? Louez notre catamaran avec skipper depuis Palerme — journées en mer au départ de Mondello ou du port. <a href="/fr/location-yacht-palerme/">Découvrez le charter →</a></p>

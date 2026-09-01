@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -368,7 +391,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <td>3</td>
               <td>6</td>
               <td>Garden villa near beach</td>
-              <td><a class="btn-book" href="https://lesicilien.kross.travel/villa-harmony" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a></td>
+              <td><a class="btn-book" href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a></td>
             </tr>
             <tr data-guests="12" data-location="seafront" data-price="320">
               <td><strong>Tilde Sunset Bay</strong></td>
@@ -377,7 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <td>6</td>
               <td>12</td>
               <td>Exclusive waterfront estate</td>
-              <td><a class="btn-book" href="https://lesicilien.kross.travel/tilde-sunset-bay" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a></td>
+              <td><a class="btn-book" href="https://lesicilien.kross.travel/tilde-sunset-bay-villa" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a></td>
             </tr>
             <tr data-guests="6" data-location="centre" data-price="125">
               <td><strong>Urban Retreat</strong></td>
@@ -442,7 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="best-for">Best for: families with children, beach lovers, extended stays</div>
             <div class="prop-card-links">
               <a class="link-details" href="/en/stays/villa-harmony-relax/">Details</a>
-              <a class="link-book" href="https://lesicilien.kross.travel/villa-harmony" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a>
+              <a class="link-book" href="https://lesicilien.kross.travel/villa-harmony-relax-a-mondello" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a>
             </div>
           </div>
         </div>
@@ -455,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="best-for">Best for: large groups, celebrations, luxury retreats, privacy</div>
             <div class="prop-card-links">
               <a class="link-details" href="/en/stays/tilde-sunset-bay-villa/">Details</a>
-              <a class="link-book" href="https://lesicilien.kross.travel/tilde-sunset-bay" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a>
+              <a class="link-book" href="https://lesicilien.kross.travel/tilde-sunset-bay-villa" target="_blank" rel="noopener" onclick="return gtag_report_conversion(this.href);">Book</a>
             </div>
           </div>
         </div>

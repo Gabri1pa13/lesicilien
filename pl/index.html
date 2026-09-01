@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -1462,7 +1485,7 @@ function gtag_report_conversion(url) {
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
-          "name": "WiFi gratuito",
+          "name": "Bezpłatne WiFi",
           "value": true
         },
         {
@@ -1517,7 +1540,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Moncada de Luna Exclusive Stay",
-  "description": "B&B di charme nel centro storico di Palermo. Appartamento di design con 2 camere, affacciato sui palazzi monumentali. Posizione perfetta per visitare Palermo a piedi.",
+  "description": "Urokliwy pensjonat B&B w historycznym centrum Palermo. Apartament z designerskim wnętrzem i 2 sypialniami, z widokiem na zabytkowe pałace. Idealna lokalizacja do zwiedzania Palermo pieszo.",
   "url": "https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay",
   "image": "https://www.lesicilien.it/moncada.jpeg",
   "address": {
@@ -1549,12 +1572,12 @@ function gtag_report_conversion(url) {
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Design contemporaneo",
+      "name": "Nowoczesny design",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Centro storico",
+      "name": "Historyczne centrum",
       "value": true
     }
   ],
@@ -1568,7 +1591,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Fior di Sicilia - Appartamento con Terrazza",
-  "description": "Casa vacanze a Palermo con terrazza privata attrezzata. Appartamento luminoso con 2 camere matrimoniali, cucina moderna e spazio outdoor per colazioni e cene all'aperto.",
+  "description": "Dom wakacyjny w Palermo z w pełni wyposażonym prywatnym tarasem. Jasny apartament z 2 podwójnymi sypialniami, nowoczesną kuchnią i przestrzenią na zewnątrz na śniadania i kolacje pod gołym niebem.",
   "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza",
   "image": "https://www.lesicilien.it/fiordisicilia.jpeg",
   "address": {
@@ -1589,17 +1612,17 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Terrazza privata",
+      "name": "Prywatny taras",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "WiFi gratuito",
+      "name": "Bezpłatne WiFi",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Cucina completa",
+      "name": "W pełni wyposażona kuchnia",
       "value": true
     },
     {
@@ -1618,7 +1641,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Tilde Sunset Bay Villa",
-  "description": "Villa fronte mare sulla costa di Palermo, a 5 minuti dall'aeroporto. Giardino mediterraneo privato, accesso diretto al mare, portico ombreggiato. Ideale per famiglie e gruppi.",
+  "description": "Willa nad samym morzem na wybrzeżu Palermo, 5 minut od lotniska. Prywatny śródziemnomorski ogród, bezpośredni dostęp do morza, zacieniona weranda. Idealna dla rodzin i grup.",
   "url": "https://lesicilien.kross.travel/tilde-sunset-bay-villa",
   "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
   "address": {
@@ -1640,12 +1663,12 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Accesso al mare",
+      "name": "Dostęp do morza",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Giardino privato",
+      "name": "Prywatny ogród",
       "value": true
     },
     {
@@ -1655,12 +1678,12 @@ function gtag_report_conversion(url) {
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Parcheggio privato",
+      "name": "Prywatny parking",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Vicino aeroporto (5 min)",
+      "name": "Blisko lotniska (5 min)",
       "value": true
     }
   ],
@@ -1680,7 +1703,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Villa Harmony - Relax a Mondello",
-  "description": "Villa indipendente a Mondello con giardino privato. Casa vacanze ideale per famiglie, con verande attrezzate e spazi esterni per pranzi e cene. A pochi minuti dalla famosa spiaggia di Mondello.",
+  "description": "Wolnostojąca willa w Mondello z prywatnym ogrodem. Dom wakacyjny idealny dla rodzin, z umeblowanymi werandami i przestrzenią zewnętrzną na obiady i kolacje. Zaledwie kilka minut od słynnej plaży Mondello.",
   "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello",
   "image": "https://www.lesicilien.it/villa-harmony-hero.JPG",
   "address": {
@@ -1702,27 +1725,27 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Giardino privato",
+      "name": "Prywatny ogród",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Veranda attrezzata",
+      "name": "Umeblowana weranda",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "WiFi gratuito",
+      "name": "Bezpłatne WiFi",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Vicino spiaggia Mondello",
+      "name": "Blisko plaży Mondello",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Parcheggio",
+      "name": "Parking",
       "value": true
     }
   ],
@@ -1730,7 +1753,57 @@ function gtag_report_conversion(url) {
 }
 </script>
 
-    <!-- Property 5: Urban Retreat -->
+    <!-- Property 5: Eleonora D'Aragona Home Suites -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Accommodation",
+  "name": "Eleonora D'Aragona Home Suites",
+  "description": "Kolekcja eleganckich apartamentów w historycznym centrum Palermo, noszących imię Eleonory d'Aragona. Wyrafinowany design, wysokiej jakości pościel i królewska atmosfera. Idealne na romantyczny wypad lub stylowy pobyt rodzinny, tuż obok Katedry i Teatro Massimo.",
+  "url": "https://lesicilien.kross.travel/eleonora-d-aragona-home-suites",
+  "image": "https://www.lesicilien.it/eleonoradaragona.jpeg",
+  "address": {
+    "@type": "PostalAddress", "streetAddress": "Via dei Tintori",
+    "addressLocality": "Palermo",
+    "addressRegion": "Sicilia",
+    "postalCode": "90133",
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.1157",
+    "longitude": "13.3615"
+  },
+  "numberOfRooms": 2,
+  "numberOfBedrooms": 2,
+  "petsAllowed": false,
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "WiFi światłowodowe",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Klimatyzacja",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Wyposażona kuchnia",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Historyczne centrum",
+      "value": true
+    }
+  ],
+  "priceRange": "€€€"
+}
+</script>
+
+    <!-- Property 6: Urban Retreat -->
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1794,34 +1867,34 @@ function gtag_report_conversion(url) {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Dove alloggiare a Palermo?",
+          "name": "Gdzie nocować w Palermo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le Sicilien offre case vacanze e B&B nel centro storico di Palermo, ville fronte mare e appartamenti con terrazza. Scegli tra Moncada de Luna nel cuore della città, Fior di Sicilia con terrazza privata, Tilde Sunset Bay Villa sulla costa, Villa Harmony a Mondello vicino alla spiaggia, oppure Urban Retreat, il nuovo loft nel centro storico."
+            "text": "Le Sicilien oferuje domy wakacyjne i pensjonaty B&B w historycznym centrum Palermo, wille nad morzem i apartamenty z tarasem. Wybierz spośród Moncada de Luna w sercu miasta, Fior di Sicilia z prywatnym tarasem, Urban Retreat z widocznymi belkami (idealny dla grup), Tilde Sunset Bay Villa na wybrzeżu, lub Villa Harmony w pobliżu plaży Mondello."
           }
         },
         {
           "@type": "Question",
-          "name": "Qual è il miglior B&B nel centro storico di Palermo?",
+          "name": "Jaki jest najlepszy pensjonat B&B w historycznym centrum Palermo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Moncada de Luna Exclusive Stay è un B&B di charme nel centro storico di Palermo, con design contemporaneo e affacci sui palazzi monumentali. Posizione perfetta per visitare Palermo a piedi, con 2 camere e servizi di alto livello."
+            "text": "Moncada de Luna Exclusive Stay to urokliwy pensjonat B&B w historycznym centrum Palermo, z nowoczesnym wystrojem i widokiem na zabytkowe pałace. Idealna lokalizacja do zwiedzania Palermo pieszo, z 2 sypialniami i usługami najwyższej jakości."
           }
         },
         {
           "@type": "Question",
-          "name": "Ci sono ville fronte mare vicino Palermo?",
+          "name": "Czy w pobliżu Palermo są wille nad morzem?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sì, Tilde Sunset Bay Villa è una villa fronte mare sulla costa palermitana, a soli 5 minuti dall'aeroporto. Offre accesso diretto al mare, giardino mediterraneo privato e spazi ideali per famiglie e gruppi."
+            "text": "Tak, Tilde Sunset Bay Villa to willa nad samym morzem na wybrzeżu Palermo, zaledwie 5 minut od lotniska. Oferuje bezpośredni dostęp do morza, prywatny śródziemnomorski ogród i przestrzenie idealne dla rodzin i grup."
           }
         },
         {
           "@type": "Question",
-          "name": "Dove dormire a Mondello Palermo?",
+          "name": "Gdzie nocować w Mondello, Palermo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Villa Harmony a Mondello è una villa indipendente con giardino privato, a pochi minuti dalla famosa spiaggia di Mondello. Perfetta per chi cerca tranquillità e relax dopo una giornata di mare."
+            "text": "Villa Harmony w pobliżu Mondello to wolnostojąca willa z prywatnym ogrodem, zaledwie kilka minut od słynnej plaży Mondello. Idealna dla tych, którzy szukają spokoju i relaksu po dniu spędzonym nad morzem."
           }
         },
         {
@@ -2536,7 +2609,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Le Sicilien. All rights reserved.</p>
+            <p style="font-size:0.82rem;opacity:0.7;margin-bottom:10px;"><a href="/en/privacy-policy/" style="color:inherit;">Polityka Prywatności</a> &middot; <a href="/en/cookie-policy/" style="color:inherit;">Polityka Cookies</a> &middot; <a href="/en/terms-and-conditions/" style="color:inherit;">Regulamin</a></p>
+            <p>&copy; 2026 Le Sicilien. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 

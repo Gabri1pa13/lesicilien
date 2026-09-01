@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -1462,7 +1485,7 @@ function gtag_report_conversion(url) {
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
-          "name": "WiFi gratuito",
+          "name": "免费WiFi",
           "value": true
         },
         {
@@ -1517,7 +1540,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Moncada de Luna Exclusive Stay",
-  "description": "B&B di charme nel centro storico di Palermo. Appartamento di design con 2 camere, affacciato sui palazzi monumentali. Posizione perfetta per visitare Palermo a piedi.",
+  "description": "位于巴勒莫历史中心的迷人 B&B。设计感十足的公寓拥有 2 间卧室，可俯瞰宏伟宫殿。步行即可游览巴勒莫，地理位置极佳。",
   "url": "https://lesicilien.kross.travel/moncada-de-luna-exclusive-stay",
   "image": "https://www.lesicilien.it/moncada.jpeg",
   "address": {
@@ -1549,12 +1572,12 @@ function gtag_report_conversion(url) {
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Design contemporaneo",
+      "name": "现代设计",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Centro storico",
+      "name": "历史中心",
       "value": true
     }
   ],
@@ -1568,7 +1591,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Fior di Sicilia - Appartamento con Terrazza",
-  "description": "Casa vacanze a Palermo con terrazza privata attrezzata. Appartamento luminoso con 2 camere matrimoniali, cucina moderna e spazio outdoor per colazioni e cene all'aperto.",
+  "description": "位于巴勒莫、配有全套设施私人露台的度假屋。明亮的公寓拥有 2 间双人卧室、现代化厨房，以及可供户外早餐和晚餐的露天空间。",
   "url": "https://lesicilien.kross.travel/fior-di-sicilia-appartamento-con-terrazza",
   "image": "https://www.lesicilien.it/fiordisicilia.jpeg",
   "address": {
@@ -1589,17 +1612,17 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Terrazza privata",
+      "name": "私人露台",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "WiFi gratuito",
+      "name": "免费WiFi",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Cucina completa",
+      "name": "配备齐全的厨房",
       "value": true
     },
     {
@@ -1618,7 +1641,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Tilde Sunset Bay Villa",
-  "description": "Villa fronte mare sulla costa di Palermo, a 5 minuti dall'aeroporto. Giardino mediterraneo privato, accesso diretto al mare, portico ombreggiato. Ideale per famiglie e gruppi.",
+  "description": "位于巴勒莫海岸的海滨别墅，距机场仅 5 分钟车程。拥有私人地中海花园、直达海滩通道及遮荫门廊，非常适合家庭和团体入住。",
   "url": "https://lesicilien.kross.travel/tilde-sunset-bay-villa",
   "image": "https://www.lesicilien.it/tildesunsetbay.jpg",
   "address": {
@@ -1640,12 +1663,12 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Accesso al mare",
+      "name": "直达海滩",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Giardino privato",
+      "name": "私人花园",
       "value": true
     },
     {
@@ -1655,12 +1678,12 @@ function gtag_report_conversion(url) {
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Parcheggio privato",
+      "name": "私人停车位",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Vicino aeroporto (5 min)",
+      "name": "靠近机场（5分钟）",
       "value": true
     }
   ],
@@ -1680,7 +1703,7 @@ function gtag_report_conversion(url) {
   "@context": "https://schema.org",
   "@type": "Accommodation",
   "name": "Villa Harmony - Relax a Mondello",
-  "description": "Villa indipendente a Mondello con giardino privato. Casa vacanze ideale per famiglie, con verande attrezzate e spazi esterni per pranzi e cene. A pochi minuti dalla famosa spiaggia di Mondello.",
+  "description": "位于 Mondello、带私人花园的独栋别墅。这栋度假屋非常适合家庭入住，配有家具齐全的阳台及户外用餐空间。距著名的 Mondello 海滩仅几分钟路程。",
   "url": "https://lesicilien.kross.travel/villa-harmony-relax-a-mondello",
   "image": "https://www.lesicilien.it/villa-harmony-hero.JPG",
   "address": {
@@ -1702,27 +1725,27 @@ function gtag_report_conversion(url) {
   "amenityFeature": [
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Giardino privato",
+      "name": "私人花园",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Veranda attrezzata",
+      "name": "配备阳台",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "WiFi gratuito",
+      "name": "免费WiFi",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Vicino spiaggia Mondello",
+      "name": "靠近Mondello海滩",
       "value": true
     },
     {
       "@type": "LocationFeatureSpecification",
-      "name": "Parcheggio",
+      "name": "停车位",
       "value": true
     }
   ],
@@ -1730,7 +1753,57 @@ function gtag_report_conversion(url) {
 }
 </script>
 
-    <!-- Property 5: Urban Retreat -->
+    <!-- Property 5: Eleonora D'Aragona Home Suites -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Accommodation",
+  "name": "Eleonora D'Aragona Home Suites",
+  "description": "位于巴勒莫历史中心的精致套房系列，以埃莉诺拉·达拉贡纳（Eleonora d'Aragona）命名。设计精致，配备高品质床品，尽显皇室氛围。非常适合浪漫假期或时尚的家庭旅行，距大教堂和马西莫剧院仅几步之遥。",
+  "url": "https://lesicilien.kross.travel/eleonora-d-aragona-home-suites",
+  "image": "https://www.lesicilien.it/eleonoradaragona.jpeg",
+  "address": {
+    "@type": "PostalAddress", "streetAddress": "Via dei Tintori",
+    "addressLocality": "Palermo",
+    "addressRegion": "Sicilia",
+    "postalCode": "90133",
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.1157",
+    "longitude": "13.3615"
+  },
+  "numberOfRooms": 2,
+  "numberOfBedrooms": 2,
+  "petsAllowed": false,
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "光纤Wi-Fi",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "空调",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "配备齐全的厨房",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "历史中心",
+      "value": true
+    }
+  ],
+  "priceRange": "€€€"
+}
+</script>
+
+    <!-- Property 6: Urban Retreat -->
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1788,34 +1861,34 @@ function gtag_report_conversion(url) {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Dove alloggiare a Palermo?",
+          "name": "在巴勒莫住哪里比较好？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le Sicilien offre case vacanze e B&B nel centro storico di Palermo, ville fronte mare e appartamenti con terrazza. Scegli tra Moncada de Luna nel cuore della città, Fior di Sicilia con terrazza privata, Urban Retreat con travi a vista e ideale per gruppi, Tilde Sunset Bay Villa sulla costa, o Villa Harmony a Mondello vicino alla spiaggia."
+            "text": "Le Sicilien 在巴勒莫历史中心提供度假屋和 B&B、海滨别墅以及带露台的公寓。可选择位于市中心的 Moncada de Luna、带私人露台的 Fior di Sicilia、拥有外露木梁、适合团体入住的 Urban Retreat、位于海岸边的 Tilde Sunset Bay Villa，或靠近 Mondello 海滩的 Villa Harmony。"
           }
         },
         {
           "@type": "Question",
-          "name": "Qual è il miglior B&B nel centro storico di Palermo?",
+          "name": "巴勒莫历史中心最好的 B&B 是哪家？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Moncada de Luna Exclusive Stay è un B&B di charme nel centro storico di Palermo, con design contemporaneo e affacci sui palazzi monumentali. Posizione perfetta per visitare Palermo a piedi, con 2 camere e servizi di alto livello."
+            "text": "Moncada de Luna Exclusive Stay 是位于巴勒莫历史中心的一家精致 B&B，拥有现代设计风格，可俯瞰历史宫殿。步行即可游览巴勒莫，拥有 2 间卧室及高品质服务。"
           }
         },
         {
           "@type": "Question",
-          "name": "Ci sono ville fronte mare vicino Palermo?",
+          "name": "巴勒莫附近有海滨别墅吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sì, Tilde Sunset Bay Villa è una villa fronte mare sulla costa palermitana, a soli 5 minuti dall'aeroporto. Offre accesso diretto al mare, giardino mediterraneo privato e spazi ideali per famiglie e gruppi."
+            "text": "是的，Tilde Sunset Bay Villa 是位于巴勒莫海岸的海滨别墅，距机场仅 5 分钟车程。提供直接的海滩通道、私人地中海花园，非常适合家庭和团体入住。"
           }
         },
         {
           "@type": "Question",
-          "name": "Dove dormire a Mondello Palermo?",
+          "name": "在巴勒莫的 Mondello 住哪里比较好？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Villa Harmony a Mondello è una villa indipendente con giardino privato, a pochi minuti dalla famosa spiaggia di Mondello. Perfetta per chi cerca tranquillità e relax dopo una giornata di mare."
+            "text": "Villa Harmony 位于 Mondello 附近，是一栋带私人花园的独栋别墅，距著名的 Mondello 海滩仅几分钟路程。非常适合在海边度过一天后寻求宁静与放松的旅客。"
           }
         },
         {
@@ -2529,7 +2602,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Le Sicilien. All rights reserved.</p>
+            <p style="font-size:0.82rem;opacity:0.7;margin-bottom:10px;"><a href="/en/privacy-policy/" style="color:inherit;">隐私政策</a> &middot; <a href="/en/cookie-policy/" style="color:inherit;">Cookie 政策</a> &middot; <a href="/en/terms-and-conditions/" style="color:inherit;">条款与条件</a></p>
+            <p>&copy; 2026 Le Sicilien. 保留所有权利。</p>
         </div>
     </footer>
 

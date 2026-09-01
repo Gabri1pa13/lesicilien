@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang='it'>
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -110,7 +133,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <section class='section'>
         <h2>Benvenuti a Palermo: il primo scoglio è il trasporto</h2>
         <p>Appena atterrati all'aeroporto Falcone-Borsellino (che per noi palermitani rimane Punta Raisi), la sensazione di calore e l'odore del mare ti colpiscono subito. Ma subito dopo arriva la domanda fatidica: come arrivare dall’aeroporto di Palermo al centro città senza farsi spennare o perdere due ore in attese inutili? La distanza è di circa 35 chilometri, e sebbene sembri poca cosa, il traffico palermitano è un'entità mitologica capace di stravolgere ogni piano.</p>
-        <p>Ci sono quattro modi principali per raggiungere il centro: treno, autobus, taxi (singolo o collettivo) e auto a noleggio. Ognuno ha i suoi pro e i suoi contro. Se hai prenotato un <a href='/stays/palermo-centro/'>appartamento in centro storico</a>, la scelta del mezzo condizionerà il tuo primo impatto con la città. Ecco la verità nuda e cruda su ogni opzione, scritta da chi questo tragitto lo fa da una vita.</p>
+        <p>Ci sono quattro modi principali per raggiungere il centro: treno, autobus, taxi (singolo o collettivo) e auto a noleggio. Ognuno ha i suoi pro e i suoi contro. Se hai prenotato un <a href='/stays/moncada-de-luna-exclusive-stay/'>appartamento in centro storico</a>, la scelta del mezzo condizionerà il tuo primo impatto con la città. Ecco la verità nuda e cruda su ogni opzione, scritta da chi questo tragitto lo fa da una vita.</p>
       </section>
 
       <section class='section'>
@@ -133,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <section class='section'>
         <h2>Auto a noleggio: occhio alla ZTL!</h2>
-        <p>Se hai intenzione di esplorare la Sicilia o di dormire in una delle nostre <a href='/stays/mondello/'>ville a Mondello</a>, l'auto è indispensabile. Le compagnie di noleggio sono tutte collegate all'aeroporto tramite navette gratuite o a pochi passi dal terminal.</p>
+        <p>Se hai intenzione di esplorare la Sicilia o di dormire in una delle nostre <a href='/stays/villa-harmony-relax/'>ville a Mondello</a>, l'auto è indispensabile. Le compagnie di noleggio sono tutte collegate all'aeroporto tramite navette gratuite o a pochi passi dal terminal.</p>
         <p>Ma attenzione: entrare in centro a Palermo con l'auto è un suicidio tattico se non conosci le regole della ZTL (Zona a Traffico Limitato). La ZTL è attiva dal lunedì al venerdì (8:00-20:00) e nel weekend ci sono le notturne. Molte strade del centro storico (via Maqueda, via Vittorio Emanuele) sono completamente pedonali. Prima di noleggiare un'auto, chiedi al tuo host se ha un parcheggio privato o se può inserire la targa nel portale del Comune per evitare multe salatissime che ti arriveranno a casa sei mesi dopo il viaggio.</p>
       </section>
 

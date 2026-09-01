@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -965,7 +988,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p style="font-family: 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase;">Le Sicilien · Luxury Private Estates</p>
       <p style="font-size: 0.88rem; opacity: 0.85;">Via dei Tintori, 90133 Palermo, Sicily, Italy</p>
       <p style="font-size: 0.88rem; opacity: 0.85; margin-top: 6px;">Tel: +39 327 375 1480 · Email: lesicilienhouses@gmail.com</p>
-      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/urban-retreat/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/urban-retreat/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/urban-retreat/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/urban-retreat/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/urban-retreat/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/urban-retreat/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/urban-retreat/" style="text-decoration:underline;">ZH</a></p>
+      <p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;"><a href="/en/privacy-policy/" style="text-decoration:underline;">Privacy Policy</a> &middot; <a href="/en/cookie-policy/" style="text-decoration:underline;">Cookie Policy</a> &middot; <a href="/en/terms-and-conditions/" style="text-decoration:underline;">Terms and Conditions</a></p><p style="margin-top: 18px; font-size: 0.8rem; opacity: 0.6;">© 2026 Le Sicilien · <a href="https://www.lesicilien.it/stays/urban-retreat/" style="text-decoration:underline;">IT</a> · <a href="https://www.lesicilien.it/en/stays/urban-retreat/" style="text-decoration:underline;">EN</a> · <a href="https://www.lesicilien.it/fr/stays/urban-retreat/" style="text-decoration:underline;">FR</a> · <a href="https://www.lesicilien.it/de/stays/urban-retreat/" style="text-decoration:underline;">DE</a> · <a href="https://www.lesicilien.it/es/stays/urban-retreat/" style="text-decoration:underline;">ES</a> · <a href="https://www.lesicilien.it/pl/stays/urban-retreat/" style="text-decoration:underline;">PL</a> · <a href="https://www.lesicilien.it/zh/stays/urban-retreat/" style="text-decoration:underline;">ZH</a></p>
       <p style="margin-top:12px;"><a href="https://www.lesicilien.it/en/" style="color:inherit; opacity:0.70; font-size: 0.85rem;">← Back to home</a></p>
     </div>
   </footer>

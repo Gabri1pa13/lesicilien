@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang='it'>
 <head>
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent','default',{
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('ls_cookie_consent') || 'null');
+    if (c && c.choice === 'accepted') {
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+  } catch(e){}
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,6 +29,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKVQJGXP');</script>
 <!-- End Google Tag Manager -->
+<script defer src="/consent.js?v=1"></script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203147858"></script>
@@ -131,7 +154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <section class='section'>
         <h2>Affitti brevi o attività d'impresa? Il limite dei 4 immobili</h2>
-        <p>A Palermo c'è chi ha preso gusto agli affitti brevi e ha iniziato ad accumulare proprietà. Se arrivi a gestire cinque o più appartamenti, la Cedolare Secca saluta e se ne va. Per legge, diventi un'attività commerciale professionale. Questo comporta l'apertura della Partita IVA, l'iscrizione alla Camera di Commercio e una tassazione molto più complessa (e spesso onerosa). Se sei vicino a questa soglia, fermati e ragiona. Spesso conviene "fermarsi" a quattro immobili gestiti bene in centro storico, magari come le nostre <a href='/stays/palermo-centro/'>case selezionate</a>, piuttosto che aggiungere il quinto e veder evaporare i profitti in contributi INPS e contabilità ordinaria.</p>
+        <p>A Palermo c'è chi ha preso gusto agli affitti brevi e ha iniziato ad accumulare proprietà. Se arrivi a gestire cinque o più appartamenti, la Cedolare Secca saluta e se ne va. Per legge, diventi un'attività commerciale professionale. Questo comporta l'apertura della Partita IVA, l'iscrizione alla Camera di Commercio e una tassazione molto più complessa (e spesso onerosa). Se sei vicino a questa soglia, fermati e ragiona. Spesso conviene "fermarsi" a quattro immobili gestiti bene in centro storico, magari come le nostre <a href='/stays/moncada-de-luna-exclusive-stay/'>case selezionate</a>, piuttosto che aggiungere il quinto e veder evaporare i profitti in contributi INPS e contabilità ordinaria.</p>
       </section>
 
       <section class='section'>
