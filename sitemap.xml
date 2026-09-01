@@ -926,6 +926,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/pl/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/review.html</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -940,6 +946,12 @@
   <url>
     <loc>https://www.lesicilien.it/stays/moncada-de-luna-exclusive-stay/</loc>
     <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1142,6 +1154,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/zh/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/en/blog/</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
@@ -1258,6 +1276,12 @@
   <url>
     <loc>https://www.lesicilien.it/de/stays/moncada-de-luna-exclusive-stay/</loc>
     <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/de/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1454,6 +1478,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.lesicilien.it/en/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lesicilien.it/en/stays/tilde-sunset-bay-villa/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -1480,6 +1510,12 @@
   <url>
     <loc>https://www.lesicilien.it/es/stays/moncada-de-luna-exclusive-stay/</loc>
     <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/es/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1522,6 +1558,12 @@
   <url>
     <loc>https://www.lesicilien.it/fr/stays/moncada-de-luna-exclusive-stay/</loc>
     <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lesicilien.it/fr/stays/urban-retreat/</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
