@@ -148,9 +148,14 @@
   <url>
     <loc>https://www.lesicilien.it/stays/urban-retreat/</loc>
     <image:image>
+      <image:loc>https://www.lesicilien.it/urban-retreat-camera-2.jpg</image:loc>
+      <image:caption>Urban Retreat – Loft contemporaneo nel centro storico di Palermo, seconda camera da letto</image:caption>
+      <image:title>Urban Retreat – Loft contemporaneo nel centro storico di Palermo, seconda camera da letto - Le Sicilien</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://www.lesicilien.it/urban-retreat-cucina.jpg</image:loc>
-      <image:caption>Urban Retreat – Loft contemporaneo con travi a vista nel centro storico di Palermo</image:caption>
-      <image:title>Urban Retreat – Loft contemporaneo con travi a vista nel centro storico di Palermo - Le Sicilien</image:title>
+      <image:caption>Cucina e zona pranzo open space Urban Retreat con travi a vista</image:caption>
+      <image:title>Cucina e zona pranzo open space Urban Retreat con travi a vista - Le Sicilien</image:title>
     </image:image>
     <image:image>
       <image:loc>https://www.lesicilien.it/urban-retreat-camera-1.jpg</image:loc>
@@ -166,11 +171,6 @@
       <image:loc>https://www.lesicilien.it/urban-retreat-camera-1-letto-aggiuntivo.jpg</image:loc>
       <image:caption>Prima camera da letto Urban Retreat con letto singolo aggiuntivo</image:caption>
       <image:title>Prima camera da letto Urban Retreat con letto singolo aggiuntivo - Le Sicilien</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.lesicilien.it/urban-retreat-camera-2.jpg</image:loc>
-      <image:caption>Seconda camera da letto Urban Retreat</image:caption>
-      <image:title>Seconda camera da letto Urban Retreat - Le Sicilien</image:title>
     </image:image>
     <image:image>
       <image:loc>https://www.lesicilien.it/urban-retreat-camera-2-vista.jpg</image:loc>
