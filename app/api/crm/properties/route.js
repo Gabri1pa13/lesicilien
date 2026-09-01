@@ -21,6 +21,7 @@ export async function POST(request) {
     .insert({
       owner_id: body.owner_id || null,
       name: body.name,
+      slug: body.slug || null,
       address: body.address || null,
       city: body.city || "Palermo",
       type: body.type || "villa",

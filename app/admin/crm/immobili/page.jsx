@@ -23,7 +23,7 @@ function PropertyModal({ property, owners, defaultOwnerId, onClose, onSaved }) {
   const isEdit = !!property;
   const [form, setForm] = useState({
     owner_id: property?.owner_id || defaultOwnerId || "",
-    name: property?.name || "", address: property?.address || "", city: property?.city || "Palermo",
+    name: property?.name || "", slug: property?.slug || "", address: property?.address || "", city: property?.city || "Palermo",
     type: property?.type || "villa", bedrooms: property?.bedrooms ?? "", bathrooms: property?.bathrooms ?? "",
     max_guests: property?.max_guests ?? "", base_price: property?.base_price ?? "", cleaning_fee: property?.cleaning_fee ?? "",
     commission_pct: property?.commission_pct ?? "", status: property?.status || "onboarding", notes: property?.notes || "",
@@ -65,6 +65,7 @@ function PropertyModal({ property, owners, defaultOwnerId, onClose, onSaved }) {
         cleaning_fee: form.cleaning_fee ? parseFloat(form.cleaning_fee) : null,
         commission_pct: form.commission_pct ? parseFloat(form.commission_pct) : null,
         photo_url: form.photo_url || null,
+        slug: form.slug.trim() || null,
         ...(isEdit ? { id: property.id } : {}),
       };
       const json = await apiFetch("/api/crm/properties", { method: isEdit ? "PUT" : "POST", body: payload });
@@ -81,6 +82,12 @@ function PropertyModal({ property, owners, defaultOwnerId, onClose, onSaved }) {
         <button style={ui.primaryBtn} onClick={save} disabled={loading}>{loading ? "Salvataggio..." : "✓ Salva"}</button>
       </>}>
       <Field label="Nome immobile *"><input style={ui.input} value={form.name} onChange={e => set("name", e.target.value)} placeholder="es. Villa Harmony" /></Field>
+      <Field label="Slug pagina sito">
+        <input style={ui.input} value={form.slug} onChange={e => set("slug", e.target.value)} placeholder="es. villa-harmony-relax" />
+        <div style={{ fontSize: "10px", color: BRAND.textMuted, marginTop: "4px", fontFamily: "'Jost',sans-serif" }}>
+          Deve corrispondere esattamente allo slug usato in /stays/&lt;slug&gt;/ sul sito e nell'URL di prenotazione Kross. Lascia vuoto se questo immobile non ha ancora una pagina pubblica.
+        </div>
+      </Field>
       <Field label="Foto copertina">
         {form.photo_url ? (
           <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
