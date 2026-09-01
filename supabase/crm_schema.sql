@@ -119,6 +119,7 @@ create table if not exists properties (
   updated_at      timestamptz default now(),
   owner_id        uuid        references owners(id) on delete set null,
   name            text        not null,
+  slug            text,       -- matches the /stays/<slug>/ page and Kross booking URL on the public site, if published
   address         text,
   city            text        default 'Palermo',
   type            text        default 'villa'
@@ -135,12 +136,19 @@ create table if not exists properties (
   notes           text
 );
 
+-- Migration for databases created before the `slug` column existed above.
+-- Safe to re-run: adds the column only if missing.
+alter table properties add column if not exists slug text;
+
 alter table properties enable row level security;
 create policy "Authenticated full access properties" on properties
   for all using (auth.role() = 'authenticated');
 
 create index if not exists properties_owner_idx on properties(owner_id);
 create index if not exists properties_status_idx on properties(status);
+-- Partial unique index: enforces uniqueness only when a slug is actually set,
+-- so existing rows with no slug yet don't collide with each other.
+create unique index if not exists properties_slug_unique_idx on properties(slug) where slug is not null;
 
 drop trigger if exists properties_set_updated_at on properties;
 create trigger properties_set_updated_at before update on properties
