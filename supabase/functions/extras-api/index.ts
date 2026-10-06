@@ -32,16 +32,18 @@ const MAIL_FROM_FALLBACK = "Le Sicilien Concierge <onboarding@resend.dev>";
 
 // Servizi prenotabili e pagabili subito online. Tutti gli altri passano
 // dall'approvazione dell'admin, anche se il browser dice il contrario.
+// (Protezioni, frigo, romantico, pulizie, animali e kit bebè si vendono da
+// Krossbooking: i loro record in `services` sono disattivati.)
+const GIFT_IDS = ["gift_100", "gift_250", "gift_500", "gift_750", "gift_1000"];
 const DIRECT_IDS = new Set([
   "transfer_one", "transfer_ar", "bagagli", "early_checkin", "late_checkin",
   "kit_base", "kit_premium", "biancheria_extra", "ristorante",
-  "viaggia_tranquillo", "smarrimento_chiavi",
-  "pk_frigo_2", "pk_frigo_4", "pk_romantico",
-  "pulizia_app", "pulizia_villa", "animali",
-  "gift_100", "gift_250", "gift_500", "gift_750", "gift_1000",
+  ...GIFT_IDS,
 ]);
+// Servizi senza date di soggiorno né data del servizio.
+const NO_DATES_IDS = new Set(GIFT_IDS);
 // Servizi il cui prezzo è per notte di soggiorno.
-const PER_NIGHT_IDS = new Set(["viaggia_tranquillo"]);
+const PER_NIGHT_IDS = new Set<string>();
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -258,7 +260,9 @@ async function markPaid(supabase: any, requestId: string) {
   await sendMail(r.email, L.paid_subj(r.service_name),
     layout(L.paid_tag, L.paid_title(firstName(r.nome)), p(L.paid_body) + rowsTable(guestRows(r, L)) + voucherBlock(L)));
   await sendMail(ADMIN_NOTIFY_EMAIL, `💳 Pagato: ${r.service_name} — ${r.nome} (${euro(Number(r.amount || 0))})`,
-    adminRequestEmail(r, "Pagamento ricevuto"), true);
+    adminRequestEmail(r, NO_DATES_IDS.has(r.service_id)
+      ? "Gift card pagata — invia la gift card al cliente"
+      : "Pagamento ricevuto"), true);
 }
 
 // ── AZIONI ──────────────────────────────────────────────────────────────────
@@ -282,9 +286,14 @@ async function handleCreate(body: any) {
 
   if (!f.service_id || f.nome.length < 3 || !f.nome.includes(" ")) return json({ ok: false, error: "nome" }, 400);
   if (!EMAIL_RE.test(f.email)) return json({ ok: false, error: "email" }, 400);
-  if (![f.checkin, f.checkout, f.data_servizio].every((d) => DATE_RE.test(d))) return json({ ok: false, error: "date" }, 400);
-  const nights = nightsBetween(f.checkin, f.checkout);
-  if (nights < 1 || nights > 90) return json({ ok: false, error: "date" }, 400);
+  // Le gift card si regalano per un soggiorno futuro: niente date.
+  const isGift = NO_DATES_IDS.has(f.service_id);
+  let nights = 0;
+  if (!isGift) {
+    if (![f.checkin, f.checkout, f.data_servizio].every((d) => DATE_RE.test(d))) return json({ ok: false, error: "date" }, 400);
+    nights = nightsBetween(f.checkin, f.checkout);
+    if (nights < 1 || nights > 90) return json({ ok: false, error: "date" }, 400);
+  }
   if (f.persone < 1 || f.persone > 50) return json({ ok: false, error: "persone" }, 400);
   for (const [k, max] of Object.entries(MAX_LEN)) {
     // deno-lint-ignore no-explicit-any
@@ -319,9 +328,9 @@ async function handleCreate(body: any) {
     nome: f.nome,
     email: f.email,
     telefono: f.telefono || null,
-    checkin: f.checkin,
-    checkout: f.checkout,
-    data_desiderata: f.data_servizio,
+    checkin: isGift ? null : f.checkin,
+    checkout: isGift ? null : f.checkout,
+    data_desiderata: isGift ? null : f.data_servizio,
     orario: f.orario || null,
     persone: f.persone,
     note: f.note || null,
