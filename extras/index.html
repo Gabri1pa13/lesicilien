@@ -301,23 +301,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-const WA = "393273751480";
-const WA_MESSAGES = {}; // service_id → custom wa_message from DB
-const WA_DEFAULT_TEMPLATE = `🛒 *Richiesta Concierge — Le Sicilien*\n\n*Servizio:* {servizio}\n*Prezzo:* {prezzo}\n*Nome:* {nome}\n*Email:* {email}\n*Tel:* {telefono}\n*Data:* {data} ore {orario}\n*Persone:* {persone}\n*Note:* {note}`;
-
-function applyWaTemplate(tmpl, v) {
-  return tmpl
-    .replace(/\{servizio\}/g, v.name   || '')
-    .replace(/\{prezzo\}/g,   v.price  || '')
-    .replace(/\{nome\}/g,     v.nome   || '')
-    .replace(/\{email\}/g,    v.email  || '')
-    .replace(/\{telefono\}/g, v.tel    || '—')
-    .replace(/\{data\}/g,     v.data   || '')
-    .replace(/\{orario\}/g,   v.orario || '')
-    .replace(/\{persone\}/g,  v.persone|| '')
-    .replace(/\{note\}/g,     v.note   || '—');
-}
-const SUMUP_FN  = 'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout';
 const SUMUP_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk';
 const SUPABASE_URL = 'https://amixnhmgxbxuiykqndxi.supabase.co';
 const CAT_MAP = {
@@ -357,6 +340,147 @@ const T = {
   }
 };
 
+/* ── TRADUZIONI: pacchetti, soggiorno & regali, modulo e buono ──────────── */
+const T_EXTRA = {
+  it: {
+    legend_request:'Su richiesta — confermiamo via email con il link di pagamento',
+    cat_packages:'Pacchetti', cat_packages_note:'Su richiesta: verifichiamo la disponibilità e ti inviamo il link di pagamento entro 24 ore.',
+    cat_stay:'Soggiorno & Regali',
+    svc_pk_arrivo:'Arrivo Perfetto — transfer A/R, early check-in & kit benvenuto',
+    svc_pk_partenza:'Partenza Comoda — late checkout, deposito bagagli & transfer',
+    svc_pk_famiglia:'Famiglia Serena — kit bebè, 3h di babysitter & kit giochi',
+    svc_notte_extra:'Notte extra prima o dopo il soggiorno — 10% di sconto',
+    svc_gift:'Gift card Le Sicilien',
+    form_checkin:'Check-in *', form_checkout:'Check-out *', form_service_date:'Data del servizio *', form_orario_opt:'Orario preferito',
+    form_note_gift:'Destinatario & messaggio', form_ph_note_gift:'Nome di chi riceve il regalo e una dedica',
+    gift_info:'Ricevi la gift card via email dopo il pagamento.',
+    err_name:'Inserisci nome e cognome.', err_email:'Inserisci un indirizzo email valido.',
+    err_dates:'Controlla le date: il check-out deve essere dopo il check-in e la data del servizio è obbligatoria.',
+    err_rate:'Troppe richieste in poco tempo. Riprova tra qualche minuto.', err_generic:'Qualcosa è andato storto. Riprova o scrivici su WhatsApp.',
+    sent_text_req:'Verifichiamo la disponibilità e ti inviamo via email il link per pagare in modo sicuro, di solito entro poche ore.',
+    sent_text_fallback:'Il pagamento online non è disponibile in questo momento: ti inviamo noi il link di pagamento via email a breve.',
+    paid_tag:'PAGAMENTO COMPLETATO', paid_title:'Grazie, è tutto confermato!', paid_text:'Ti abbiamo inviato la conferma via email. Il nostro team ti contatterà per gli ultimi dettagli.',
+    voucher_label:'IL TUO REGALO', voucher_text:'10% di sconto sul tuo prossimo soggiorno prenotando su lesicilien.it con il codice:',
+    voucher_copy:'Copia codice', voucher_copied:'Copiato ✓', voucher_book:'Prenota il prossimo soggiorno',
+    paid_pending_title:'Stiamo verificando il pagamento', paid_pending_text:'Se hai completato il pagamento, riceverai a breve la conferma via email con il tuo codice sconto.'
+  },
+  en: {
+    legend_request:'On request — we confirm by email with a payment link',
+    cat_packages:'Packages', cat_packages_note:'On request: we check availability and send you a payment link within 24 hours.',
+    cat_stay:'Stay & Gifts',
+    svc_pk_arrivo:'Perfect Arrival — return transfer, early check-in & welcome kit',
+    svc_pk_partenza:'Easy Departure — late checkout, luggage storage & transfer',
+    svc_pk_famiglia:'Happy Family — baby kit, 3h babysitter & toy kit',
+    svc_notte_extra:'Extra night before or after your stay — 10% off',
+    svc_gift:'Le Sicilien gift card',
+    form_checkin:'Check-in *', form_checkout:'Check-out *', form_service_date:'Service date *', form_orario_opt:'Preferred time',
+    form_note_gift:'Recipient & message', form_ph_note_gift:'Name of the recipient and a personal message',
+    gift_info:'You will receive the gift card by email after payment.',
+    err_name:'Please enter your first and last name.', err_email:'Please enter a valid email address.',
+    err_dates:'Please check the dates: check-out must be after check-in and the service date is required.',
+    err_rate:'Too many requests in a short time. Please try again in a few minutes.', err_generic:'Something went wrong. Please try again or message us on WhatsApp.',
+    sent_text_req:'We will check availability and email you a secure payment link, usually within a few hours.',
+    sent_text_fallback:'Online payment is not available right now: we will email you a payment link shortly.',
+    paid_tag:'PAYMENT COMPLETED', paid_title:'Thank you, everything is confirmed!', paid_text:'We have sent you a confirmation email. Our team will contact you with the final details.',
+    voucher_label:'YOUR GIFT', voucher_text:'10% off your next stay when you book on lesicilien.it with the code:',
+    voucher_copy:'Copy code', voucher_copied:'Copied ✓', voucher_book:'Book your next stay',
+    paid_pending_title:'We are verifying your payment', paid_pending_text:'If you completed the payment, you will shortly receive a confirmation email with your discount code.'
+  },
+  fr: {
+    legend_request:'Sur demande — confirmation par email avec lien de paiement',
+    cat_packages:'Forfaits', cat_packages_note:'Sur demande : nous vérifions la disponibilité et vous envoyons un lien de paiement sous 24 heures.',
+    cat_stay:'Séjour & Cadeaux',
+    svc_pk_arrivo:'Arrivée Parfaite — transfert aller-retour, early check-in & kit de bienvenue',
+    svc_pk_partenza:'Départ Serein — late check-out, consigne bagages & transfert',
+    svc_pk_famiglia:'Famille Sereine — kit bébé, 3h de baby-sitter & kit de jeux',
+    svc_notte_extra:'Nuit supplémentaire avant ou après le séjour — 10% de réduction',
+    svc_gift:'Carte cadeau Le Sicilien',
+    form_checkin:'Arrivée *', form_checkout:'Départ *', form_service_date:'Date du service *', form_orario_opt:'Heure souhaitée',
+    form_note_gift:'Destinataire & message', form_ph_note_gift:'Nom du destinataire et un petit mot',
+    gift_info:'Vous recevrez la carte cadeau par email après le paiement.',
+    err_name:'Veuillez saisir votre prénom et votre nom.', err_email:'Veuillez saisir une adresse email valide.',
+    err_dates:'Vérifiez les dates : le départ doit être après l\'arrivée et la date du service est obligatoire.',
+    err_rate:'Trop de demandes en peu de temps. Réessayez dans quelques minutes.', err_generic:'Une erreur est survenue. Réessayez ou écrivez-nous sur WhatsApp.',
+    sent_text_req:'Nous vérifions la disponibilité et vous envoyons par email un lien de paiement sécurisé, généralement en quelques heures.',
+    sent_text_fallback:'Le paiement en ligne n\'est pas disponible pour le moment : nous vous enverrons un lien de paiement par email.',
+    paid_tag:'PAIEMENT EFFECTUÉ', paid_title:'Merci, tout est confirmé !', paid_text:'Nous vous avons envoyé une confirmation par email. Notre équipe vous contactera pour les derniers détails.',
+    voucher_label:'VOTRE CADEAU', voucher_text:'10% de réduction sur votre prochain séjour en réservant sur lesicilien.it avec le code :',
+    voucher_copy:'Copier le code', voucher_copied:'Copié ✓', voucher_book:'Réserver votre prochain séjour',
+    paid_pending_title:'Nous vérifions votre paiement', paid_pending_text:'Si vous avez effectué le paiement, vous recevrez bientôt un email de confirmation avec votre code de réduction.'
+  },
+  de: {
+    legend_request:'Auf Anfrage — Bestätigung per E-Mail mit Zahlungslink',
+    cat_packages:'Pakete', cat_packages_note:'Auf Anfrage: Wir prüfen die Verfügbarkeit und senden Ihnen innerhalb von 24 Stunden einen Zahlungslink.',
+    cat_stay:'Aufenthalt & Geschenke',
+    svc_pk_arrivo:'Perfekte Ankunft — Hin- und Rücktransfer, Early Check-in & Willkommenspaket',
+    svc_pk_partenza:'Entspannte Abreise — Late Check-out, Gepäckaufbewahrung & Transfer',
+    svc_pk_famiglia:'Glückliche Familie — Baby-Set, 3 Std. Babysitter & Spielzeug-Set',
+    svc_notte_extra:'Zusätzliche Nacht vor oder nach dem Aufenthalt — 10% Rabatt',
+    svc_gift:'Le Sicilien Geschenkkarte',
+    form_checkin:'Anreise *', form_checkout:'Abreise *', form_service_date:'Datum der Leistung *', form_orario_opt:'Gewünschte Uhrzeit',
+    form_note_gift:'Empfänger & Nachricht', form_ph_note_gift:'Name des Empfängers und eine persönliche Widmung',
+    gift_info:'Sie erhalten die Geschenkkarte nach der Zahlung per E-Mail.',
+    err_name:'Bitte Vor- und Nachnamen eingeben.', err_email:'Bitte eine gültige E-Mail-Adresse eingeben.',
+    err_dates:'Bitte Daten prüfen: Die Abreise muss nach der Anreise liegen und das Datum der Leistung ist erforderlich.',
+    err_rate:'Zu viele Anfragen in kurzer Zeit. Bitte in ein paar Minuten erneut versuchen.', err_generic:'Etwas ist schiefgelaufen. Bitte erneut versuchen oder uns per WhatsApp schreiben.',
+    sent_text_req:'Wir prüfen die Verfügbarkeit und senden Ihnen per E-Mail einen sicheren Zahlungslink, meist innerhalb weniger Stunden.',
+    sent_text_fallback:'Online-Zahlung ist derzeit nicht verfügbar: Wir senden Ihnen in Kürze einen Zahlungslink per E-Mail.',
+    paid_tag:'ZAHLUNG ABGESCHLOSSEN', paid_title:'Vielen Dank, alles ist bestätigt!', paid_text:'Wir haben Ihnen eine Bestätigung per E-Mail gesendet. Unser Team kontaktiert Sie für die letzten Details.',
+    voucher_label:'IHR GESCHENK', voucher_text:'10% Rabatt auf Ihren nächsten Aufenthalt bei Buchung auf lesicilien.it mit dem Code:',
+    voucher_copy:'Code kopieren', voucher_copied:'Kopiert ✓', voucher_book:'Nächsten Aufenthalt buchen',
+    paid_pending_title:'Wir prüfen Ihre Zahlung', paid_pending_text:'Wenn Sie die Zahlung abgeschlossen haben, erhalten Sie in Kürze eine Bestätigung per E-Mail mit Ihrem Rabattcode.'
+  },
+  pl: {
+    legend_request:'Na zapytanie — potwierdzamy e-mailem z linkiem do płatności',
+    cat_packages:'Pakiety', cat_packages_note:'Na zapytanie: sprawdzamy dostępność i w ciągu 24 godzin wysyłamy link do płatności.',
+    cat_stay:'Pobyt i prezenty',
+    svc_pk_arrivo:'Idealny przyjazd — transfer w obie strony, wcześniejsze zameldowanie i zestaw powitalny',
+    svc_pk_partenza:'Wygodny wyjazd — późne wymeldowanie, przechowalnia bagażu i transfer',
+    svc_pk_famiglia:'Szczęśliwa rodzina — zestaw dla niemowlęcia, 3 godz. opiekunki i zabawki',
+    svc_notte_extra:'Dodatkowa noc przed lub po pobycie — 10% zniżki',
+    svc_gift:'Karta podarunkowa Le Sicilien',
+    form_checkin:'Zameldowanie *', form_checkout:'Wymeldowanie *', form_service_date:'Data usługi *', form_orario_opt:'Preferowana godzina',
+    form_note_gift:'Odbiorca i wiadomość', form_ph_note_gift:'Imię odbiorcy i krótka dedykacja',
+    gift_info:'Kartę podarunkową otrzymasz e-mailem po płatności.',
+    err_name:'Podaj imię i nazwisko.', err_email:'Podaj prawidłowy adres e-mail.',
+    err_dates:'Sprawdź daty: wymeldowanie musi być po zameldowaniu, a data usługi jest wymagana.',
+    err_rate:'Zbyt wiele zapytań w krótkim czasie. Spróbuj ponownie za kilka minut.', err_generic:'Coś poszło nie tak. Spróbuj ponownie lub napisz do nas na WhatsApp.',
+    sent_text_req:'Sprawdzimy dostępność i wyślemy Ci e-mailem bezpieczny link do płatności, zwykle w ciągu kilku godzin.',
+    sent_text_fallback:'Płatność online jest teraz niedostępna: wkrótce wyślemy Ci link do płatności e-mailem.',
+    paid_tag:'PŁATNOŚĆ ZAKOŃCZONA', paid_title:'Dziękujemy, wszystko potwierdzone!', paid_text:'Wysłaliśmy potwierdzenie e-mailem. Nasz zespół skontaktuje się z Tobą w sprawie szczegółów.',
+    voucher_label:'TWÓJ PREZENT', voucher_text:'10% zniżki na kolejny pobyt przy rezerwacji na lesicilien.it z kodem:',
+    voucher_copy:'Kopiuj kod', voucher_copied:'Skopiowano ✓', voucher_book:'Zarezerwuj kolejny pobyt',
+    paid_pending_title:'Weryfikujemy płatność', paid_pending_text:'Jeśli płatność została zakończona, wkrótce otrzymasz e-mail z potwierdzeniem i kodem rabatowym.'
+  },
+  zh: {
+    legend_request:'按需预订 — 我们将通过电子邮件发送付款链接确认',
+    cat_packages:'套餐', cat_packages_note:'按需预订：我们会确认是否可用，并在24小时内发送付款链接。',
+    cat_stay:'住宿与礼品',
+    svc_pk_arrivo:'完美抵达 — 往返接送、提前入住及欢迎礼包',
+    svc_pk_partenza:'轻松离开 — 延迟退房、行李寄存及送机',
+    svc_pk_famiglia:'幸福家庭 — 婴儿套装、3小时保姆及玩具套装',
+    svc_notte_extra:'入住前或退房后加住一晚 — 9折',
+    svc_gift:'Le Sicilien 礼品卡',
+    form_checkin:'入住日期 *', form_checkout:'退房日期 *', form_service_date:'服务日期 *', form_orario_opt:'首选时间',
+    form_note_gift:'收礼人及留言', form_ph_note_gift:'收礼人姓名及祝福语',
+    gift_info:'付款后您将通过电子邮件收到礼品卡。',
+    err_name:'请输入您的姓名。', err_email:'请输入有效的电子邮件地址。',
+    err_dates:'请检查日期：退房日期须晚于入住日期，且服务日期为必填项。',
+    err_rate:'短时间内请求过多，请几分钟后再试。', err_generic:'出现问题，请重试或通过 WhatsApp 联系我们。',
+    sent_text_req:'我们将确认是否可用，并通过电子邮件发送安全付款链接，通常在几小时内。',
+    sent_text_fallback:'目前无法在线付款：我们将很快通过电子邮件向您发送付款链接。',
+    paid_tag:'付款完成', paid_title:'谢谢，一切已确认！', paid_text:'我们已通过电子邮件发送确认。我们的团队将与您联系确认最后细节。',
+    voucher_label:'您的礼物', voucher_text:'在 lesicilien.it 预订下次住宿可享9折，优惠码：',
+    voucher_copy:'复制优惠码', voucher_copied:'已复制 ✓', voucher_book:'预订下次住宿',
+    paid_pending_title:'正在核实您的付款', paid_pending_text:'如果您已完成付款，将很快收到包含优惠码的确认邮件。'
+  }
+};
+const GIFT_AMOUNTS = [100, 250, 500, 750, 1000];
+Object.keys(T_EXTRA).forEach(lang => {
+  Object.assign(T[lang], T_EXTRA[lang]);
+  GIFT_AMOUNTS.forEach(a => { T[lang]['svc_gift_' + a] = `${T_EXTRA[lang].svc_gift} — ${a}€`; });
+});
+
 /* ── LANGUAGE SETUP ───────────────────────────────────────────────────────── */
 const LANGS = [
   {code:'it', flag:'🇮🇹', label:'IT'},
@@ -391,6 +515,11 @@ const SERVICES_DATA = [
     {id:'transfer_ar', price:'80€', type:'direct'},
     {id:'bagagli', price:'10€', type:'direct'}
   ]},
+  {catKey:'cat_packages', icon:'✦', noteKey:'cat_packages_note', items:[
+    {id:'pk_arrivo', price:'129€', type:'request'},
+    {id:'pk_partenza', price:'109€', type:'request'},
+    {id:'pk_famiglia', price:'99€', type:'request'}
+  ]},
   {catKey:'cat_comfort', icon:'✦', items:[
     {id:'early_checkin', price:'25€', type:'direct'},
     {id:'late_checkin', price:'20€', type:'direct'},
@@ -399,7 +528,6 @@ const SERVICES_DATA = [
     {id:'kit_premium', price:'65€', type:'direct'},
     {id:'frigo_base', price:'40€', type:'request'},
     {id:'frigo_premium', price:'80€', type:'request'},
-    {id:'kit_bebe', price:'30€/soggiorno', type:'request'},
     {id:'biancheria_extra', price:'15€', type:'direct'},
     {id:'cambio_biancheria', price:'20€', type:'request'},
     {id:'lavanderia', price:'20€', type:'request'},
@@ -450,6 +578,10 @@ const SERVICES_DATA = [
     {id:'foto_2h', price:'200€', type:'request'},
     {id:'proposta', price:'350€', type:'request'},
     {id:'luna_miele', price:'450€', type:'request'}
+  ]},
+  {catKey:'cat_stay', icon:'✦', items:[
+    {id:'notte_extra', price:'-10%', type:'request'},
+    ...GIFT_AMOUNTS.map(a => ({id:'gift_' + a, price: a + '€', type:'direct'}))
   ]}
 ];
 
@@ -463,6 +595,8 @@ const CAT_IMG = {
   cat_wellness:    '/../lusso.jpg',
   cat_family:      null,
   cat_moments:     '/../champagne.jpg',
+  cat_packages:    '/../villasulamre.jpg',
+  cat_stay:        null,
 };
 
 function renderLangSwitcher() {
@@ -645,7 +779,6 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
             if (db.description_zh)         item.description_zh = db.description_zh;
             if (db.deposit_amount != null) item.deposit_amount = db.deposit_amount;
             if (db.total_amount   != null) item.total_amount   = db.total_amount;
-            if (db.wa_message)             WA_MESSAGES[item.id] = db.wa_message;
           }
         });
       });
@@ -655,122 +788,72 @@ SERVICES_DATA.forEach(sec => sec.items.forEach(it => { TKEY_TYPE_MAP['svc_' + it
 })();
 
 /* ── MODAL FUNCTIONS ──────────────────────────────────────────────────────── */
+// Tutte le richieste e i pagamenti passano dalla funzione extras-api: il
+// prezzo dei pagamenti online viene letto dal database lato server.
+const EXTRAS_API = SUPABASE_URL + '/functions/v1/extras-api';
+const isGift = id => /^gift_/.test(id);
+let activeService = null;
+
 function directBook(id, name, price, deposit_amount, total_amount, description) {
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
-  const saldo = (deposit_amount != null && total_amount != null) ? (total_amount - deposit_amount) : null;
-  const descHtml = description ? `<p style="font-size:13px;font-weight:300;color:#8A8278;margin:8px 0 0;line-height:1.6;font-family:'Jost',sans-serif">${description}</p>` : '';
-  const priceHtml = (deposit_amount != null && total_amount != null)
-    ? `<div class="modal-price">${t('pay_deposit')}: ${deposit_amount}€</div><p style="font-size:12px;color:#8A8278;margin:4px 0 0;font-family:'Jost',sans-serif">${t('pay_balance')}: ${saldo}€ ${t('pay_at_service')} · ${t('pay_total')}: ${total_amount}€</p>`
-    : `<div class="modal-price">${price}</div>`;
-  content.innerHTML = `
-    <div class="modal-header">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <span class="modal-label">${t('modal_book_tag')}</span>
-      <h3 class="modal-title">${name}</h3>
-      ${descHtml}
-      ${priceHtml}
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_nome')}</label><input class="form-input" type="text" id="f_nome" placeholder="${t('form_ph_nome')}"/></div>
-        <div class="form-group"><label class="form-label">${t('form_email')}</label><input class="form-input" type="email" id="f_email" placeholder="${t('form_ph_email')}"/></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_data')}</label><input class="form-input" type="date" id="f_data"/></div>
-        <div class="form-group"><label class="form-label">${t('form_orario')}</label><input class="form-input" type="time" id="f_orario"/></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_tel')}</label><input class="form-input" type="text" id="f_tel" placeholder="${t('form_ph_tel')}"/></div>
-        <div class="form-group"><label class="form-label">${t('form_persone')}</label><input class="form-input" type="number" id="f_persone" value="1" min="1"/></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-outline" onclick="closeModal()">${t('btn_cancel')}</button>
-      <button class="btn-gold" id="btn-pay-now" onclick="confirmDirectBook('${id}','${name.replace(/'/g,"\\'")}','${price}',${deposit_amount != null ? deposit_amount : 'null'},${total_amount != null ? total_amount : 'null'})">${t('btn_pay')}</button>
-    </div>`;
-  modal.classList.remove('hidden');
-}
-
-async function confirmDirectBook(id, name, price, deposit_amount, total_amount) {
-  const nome = document.getElementById('f_nome').value.trim();
-  const email = document.getElementById('f_email').value.trim();
-  const data = document.getElementById('f_data').value;
-  const orario = document.getElementById('f_orario').value;
-  if (!nome || !email || !data || !orario) { alert(t('form_alert')); return; }
-  const tel = document.getElementById('f_tel').value.trim();
-  const persone = document.getElementById('f_persone').value;
-
-  const btn = document.getElementById('btn-pay-now');
-  btn.textContent = '…'; btn.disabled = true;
-
-  const amount = price.replace(/[^\d.]/g, '');
-  const win = window.open('', '_blank');
-  if (win) win.document.write('<p style="font-family:sans-serif;padding:40px;text-align:center;color:#555">Preparazione pagamento…</p>');
-
-  try {
-    const res = await fetch(SUMUP_FN, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` },
-      body: JSON.stringify({ amount, description: name, reference: `LS-${id}-${Date.now()}` }),
-    });
-    const data2 = await res.json();
-    if (data2.checkout_url) {
-      if (win) win.location.href = data2.checkout_url;
-      else window.open(data2.checkout_url, '_blank');
-    } else {
-      throw new Error(data2.error || 'link non generato');
-    }
-  } catch (e) {
-    const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent(`Vorrei prenotare: ${name} (${price})`)}`;
-    if (win) win.location.href = waUrl;
-    else window.open(waUrl, '_blank');
-  }
-
-  // Save to Supabase + email notification
-  fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUMUP_ANON}` }, body: JSON.stringify({ service_name: name, service_price: price, deposit_amount: deposit_amount != null ? deposit_amount : null, total_amount: total_amount != null ? total_amount : null, nome, email, telefono: tel || '—', data, orario, persone, note: '—' }) }).catch(() => {});
-
-  closeModal();
+  openServiceForm({ id, name, price, deposit_amount, total_amount, description, type: 'direct' });
 }
 
 function openModal(id, name, price, description, deposit_amount, total_amount) {
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
+  openServiceForm({ id, name, price, deposit_amount, total_amount, description, type: 'request' });
+}
+
+function openServiceForm(svc) {
+  activeService = svc;
+  const gift = isGift(svc.id);
+  const { deposit_amount, total_amount, description, price } = svc;
   const saldo = (deposit_amount != null && total_amount != null) ? (total_amount - deposit_amount) : null;
   const descHtml = description ? `<p style="font-size:13px;font-weight:300;color:#8A8278;margin:8px 0 0;line-height:1.6;font-family:'Jost',sans-serif">${description}</p>` : '';
+  const giftHtml = gift ? `<p style="font-size:13px;font-weight:300;color:#8A8278;margin:8px 0 0;line-height:1.6;font-family:'Jost',sans-serif">${t('gift_info')}</p>` : '';
   const priceHtml = (deposit_amount != null && total_amount != null)
     ? `<div class="modal-price">${t('pay_deposit')}: ${deposit_amount}€</div><p style="font-size:12px;color:#8A8278;margin:4px 0 0;font-family:'Jost',sans-serif">${t('pay_balance')}: ${saldo}€ ${t('pay_at_service')} · ${t('pay_total')}: ${total_amount}€</p>`
     : `<div class="modal-price">${price}</div>`;
-  content.innerHTML = `
+  const field = (key, input) => `<div class="form-group"><label class="form-label">${t(key)}</label>${input}</div>`;
+  const stayHtml = gift ? '' : `
+      <div class="form-row">
+        ${field('form_checkin', '<input class="form-input" type="date" id="f_checkin"/>')}
+        ${field('form_checkout', '<input class="form-input" type="date" id="f_checkout"/>')}
+      </div>
+      <div class="form-row">
+        ${field('form_service_date', '<input class="form-input" type="date" id="f_data"/>')}
+        ${field('form_orario_opt', '<input class="form-input" type="time" id="f_orario"/>')}
+      </div>`;
+  const noteKey = gift ? 'form_note_gift' : 'form_note';
+  const notePh = gift ? 'form_ph_note_gift' : 'form_ph_note';
+  document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()">✕</button>
-      <span class="modal-label">${t('modal_req_tag')}</span>
-      <h3 class="modal-title">${name}</h3>
-      ${descHtml}
+      <span class="modal-label">${t(svc.type === 'direct' ? 'modal_book_tag' : 'modal_req_tag')}</span>
+      <h3 class="modal-title">${svc.name}</h3>
+      ${descHtml}${giftHtml}
       ${priceHtml}
     </div>
     <div class="modal-divider"></div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_nome')}</label><input class="form-input" type="text" id="f_nome" placeholder="${t('form_ph_nome')}"/></div>
-        <div class="form-group"><label class="form-label">${t('form_email')}</label><input class="form-input" type="email" id="f_email" placeholder="${t('form_ph_email')}"/></div>
+        ${field('form_nome', `<input class="form-input" type="text" id="f_nome" autocomplete="name" placeholder="${t('form_ph_nome')}"/>`)}
+        ${field('form_email', `<input class="form-input" type="email" id="f_email" autocomplete="email" placeholder="${t('form_ph_email')}"/>`)}
       </div>
       <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_tel')}</label><input class="form-input" type="text" id="f_tel" placeholder="${t('form_ph_tel')}"/></div>
-        <div class="form-group"><label class="form-label">${t('form_data')}</label><input class="form-input" type="date" id="f_data"/></div>
+        ${field('form_tel', `<input class="form-input" type="tel" id="f_tel" autocomplete="tel" placeholder="${t('form_ph_tel')}"/>`)}
+        ${gift ? '' : field('form_persone', '<input class="form-input" type="number" id="f_persone" value="1" min="1" max="50"/>')}
       </div>
+      ${stayHtml}
       <div class="form-row">
-        <div class="form-group"><label class="form-label">${t('form_orario')}</label><input class="form-input" type="time" id="f_orario"/></div>
-        <div class="form-group"><label class="form-label">${t('form_persone')}</label><input class="form-input" type="number" id="f_persone" value="1" min="1"/></div>
-        <div class="form-group"><label class="form-label">${t('form_note')}</label><input class="form-input" type="text" id="f_note" placeholder="${t('form_ph_note')}"/></div>
+        ${field(noteKey, `<textarea class="form-input" id="f_note" rows="2" placeholder="${t(notePh)}"></textarea>`)}
       </div>
+      <input type="text" id="f_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+      <p id="f_error" style="display:none;color:#B3261E;font-size:13px;margin-top:4px"></p>
     </div>
     <div class="modal-footer">
       <button class="btn-outline" onclick="closeModal()">${t('btn_cancel')}</button>
-      <button class="btn-gold" onclick="submitRequest('${id}','${name.replace(/'/g,"\\'")}','${price}',${deposit_amount != null ? deposit_amount : 'null'},${total_amount != null ? total_amount : 'null'})">${t('btn_send')}</button>
+      <button class="btn-gold" id="btn-submit" onclick="submitServiceForm()">${t(svc.type === 'direct' ? 'btn_pay' : 'btn_send')}</button>
     </div>`;
-  modal.classList.remove('hidden');
+  document.getElementById('modal').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
@@ -779,33 +862,127 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-async function submitRequest(id, name, price, deposit_amount, total_amount) {
-  const nome = document.getElementById('f_nome').value.trim();
-  const email = document.getElementById('f_email').value.trim();
-  const data = document.getElementById('f_data').value;
-  const orario = document.getElementById('f_orario').value;
-  if (!nome || !email || !data || !orario) { alert(t('form_alert')); return; }
-  const tel = document.getElementById('f_tel').value.trim();
-  const persone = document.getElementById('f_persone').value;
-  const note = document.getElementById('f_note').value.trim();
-  const tmpl = WA_MESSAGES[id] || WA_DEFAULT_TEMPLATE;
-  const txt = applyWaTemplate(tmpl, { name, price, nome, email, tel, data, orario, persone, note });
-  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`, '_blank');
-  // Save to DB and send email via Edge Function
+function showFormError(key) {
+  const el = document.getElementById('f_error');
+  el.textContent = t(key);
+  el.style.display = 'block';
+}
+
+async function submitServiceForm() {
+  const svc = activeService;
+  const gift = isGift(svc.id);
+  const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  const payload = {
+    action: 'create',
+    service_id: svc.id,
+    lang: currentLang,
+    nome: val('f_nome'),
+    email: val('f_email'),
+    telefono: val('f_tel'),
+    persone: val('f_persone') || '1',
+    note: val('f_note'),
+    website: val('f_website'),
+    checkin: val('f_checkin'),
+    checkout: val('f_checkout'),
+    data_servizio: val('f_data'),
+    orario: val('f_orario'),
+  };
+  if (payload.nome.split(/\s+/).filter(Boolean).length < 2) return showFormError('err_name');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return showFormError('err_email');
+  if (!gift && (!payload.checkin || !payload.checkout || !payload.data_servizio || payload.checkout <= payload.checkin)) return showFormError('err_dates');
+
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true; btn.textContent = '…';
+  document.getElementById('f_error').style.display = 'none';
+
+  let res;
   try {
-    await fetch('https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/notify-booking',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXhuaG1neGJ4dWl5a3FuZHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNDA1MDIsImV4cCI6MjA5MzgxNjUwMn0.6by5dAbIlngQNeKedoHE_3mIr43ALQ7Mk3igtJMYcKk'},body:JSON.stringify({service_name:name,service_price:price,deposit_amount:deposit_amount!=null?deposit_amount:null,total_amount:total_amount!=null?total_amount:null,nome,email,telefono:tel||'—',data,orario,persone,note:note||'—'})});
-  } catch(e) {}
+    const r = await fetch(EXTRAS_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    res = await r.json();
+  } catch (e) { res = { ok: false, error: 'network' }; }
+
+  if (!res.ok) {
+    btn.disabled = false;
+    btn.textContent = t(svc.type === 'direct' ? 'btn_pay' : 'btn_send');
+    const map = { nome: 'err_name', email: 'err_email', date: 'err_dates', rate: 'err_rate' };
+    return showFormError(map[res.error] || 'err_generic');
+  }
+
+  if (res.checkout_url) {
+    // Pagamento SumUp nella stessa scheda: al termine SumUp riporta l'ospite
+    // qui con ?paid=<id>, dove mostriamo la conferma e il buono sconto.
+    window.location.href = res.checkout_url;
+    return;
+  }
+
   document.getElementById('modalContent').innerHTML = `
     <div class="sent-box">
       <div class="sent-check">✓</div>
       <span class="modal-label">${t('sent_tag')}</span>
       <h3 class="sent-title">${t('sent_title')}</h3>
-      <p class="sent-text">${t('sent_text')}</p>
+      <p class="sent-text">${t(res.fallback ? 'sent_text_fallback' : 'sent_text_req')}</p>
       <button class="btn-gold" onclick="closeModal()">${t('btn_close')}</button>
     </div>`;
 }
 
+/* ── RITORNO DAL PAGAMENTO SUMUP ───────────────────────────────────────────── */
+async function checkPaidReturn() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('paid');
+  if (!id) return;
+  history.replaceState(null, '', location.pathname + location.hash);
+
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modalContent');
+  const showPending = () => {
+    content.innerHTML = `
+      <div class="sent-box">
+        <span class="modal-label">…</span>
+        <h3 class="sent-title">${t('paid_pending_title')}</h3>
+        <p class="sent-text">${t('paid_pending_text')}</p>
+        <button class="btn-gold" onclick="closeModal()">${t('btn_close')}</button>
+      </div>`;
+  };
+  showPending();
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Il webhook SumUp può arrivare qualche secondo dopo il redirect: riproviamo.
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      const r = await fetch(EXTRAS_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'status', id }) });
+      const res = await r.json();
+      if (res.ok && res.status === 'paid' && res.voucher) return showVoucher(res.voucher);
+    } catch (e) {}
+    await new Promise(ok => setTimeout(ok, 3000));
+  }
+}
+
+function showVoucher(code) {
+  document.getElementById('modalContent').innerHTML = `
+    <div class="sent-box">
+      <div class="sent-check">✓</div>
+      <span class="modal-label">${t('paid_tag')}</span>
+      <h3 class="sent-title">${t('paid_title')}</h3>
+      <p class="sent-text" style="margin-bottom:24px">${t('paid_text')}</p>
+      <div style="border:1px dashed var(--gold);background:#fff;padding:22px 18px;margin:0 0 24px">
+        <span class="modal-label" style="margin-bottom:10px">${t('voucher_label')}</span>
+        <p style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;margin:0 0 14px">${t('voucher_text')}</p>
+        <p id="voucherCode" style="font-family:'Courier New',monospace;font-size:24px;font-weight:700;letter-spacing:.12em;color:var(--dark);margin:0 0 14px">${code}</p>
+        <button class="btn-outline" id="btn-copy-voucher" onclick="copyVoucher('${code}')">${t('voucher_copy')}</button>
+      </div>
+      <a class="btn-gold" href="https://www.lesicilien.it" style="display:inline-block;text-decoration:none">${t('voucher_book')}</a>
+    </div>`;
+}
+
+function copyVoucher(code) {
+  const done = () => { document.getElementById('btn-copy-voucher').textContent = t('voucher_copied'); };
+  if (navigator.clipboard) navigator.clipboard.writeText(code).then(done).catch(() => {});
+  else done();
+}
+
 document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+checkPaidReturn();
 </script>
 <a href="https://wa.me/393273751480" target="_blank" rel="noreferrer" class="wa-float" aria-label="WhatsApp">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>

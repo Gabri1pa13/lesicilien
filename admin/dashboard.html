@@ -199,7 +199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="toolbar">
     <button class="filter-btn active" onclick="setFilter('all',this)">Tutte</button>
     <button class="filter-btn" onclick="setFilter('pending',this)">In attesa</button>
-    <button class="filter-btn" onclick="setFilter('confirmed',this)">Confermate</button>
+    <button class="filter-btn" onclick="setFilter('confirmed',this)">Attesa pagamento</button>
     <button class="filter-btn" onclick="setFilter('paid',this)">Pagate</button>
     <button class="filter-btn" onclick="setFilter('rejected',this)">Rifiutate</button>
   </div>
@@ -237,19 +237,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="modal-overlay" id="modal-confirm">
   <div class="modal">
     <div class="modal-head">
-      <p class="modal-tag">Conferma prenotazione</p>
-      <p class="modal-title">Invia via WhatsApp</p>
+      <p class="modal-tag">Accetta richiesta</p>
+      <p class="modal-title" id="conf-title">Invia il link di pagamento</p>
     </div>
     <div class="modal-body">
-      <label>Importo da richiedere (&euro;)</label>
+      <div id="conf-summary" class="detail-col" style="margin-bottom:16px"></div>
+      <label>Importo da far pagare (&euro;)</label>
       <input type="number" id="conf-amount" placeholder="es. 250" min="0" step="0.01"/>
-      <label>Nota aggiuntiva (opzionale)</label>
-      <textarea id="conf-note" placeholder="Messaggio extra per il cliente..."></textarea>
-      <p id="conf-status" style="font-size:11px;color:#8A8278;margin-top:-8px;display:none"></p>
+      <label>Nota per l'ospite (opzionale)</label>
+      <textarea id="conf-note" placeholder="Es. l'autista vi aspetterà agli arrivi con un cartello..."></textarea>
+      <p id="conf-status" style="font-size:12px;color:#5A5550;margin-top:-8px;display:none;line-height:1.6"></p>
     </div>
-    <div class="modal-foot">
+    <div class="modal-foot" id="conf-foot">
       <button class="btn-cancel" onclick="closeModal('modal-confirm')">Annulla</button>
-      <button class="btn-send-wa" id="btn-send-wa" onclick="sendConfirmWA()">💬 Apri WhatsApp</button>
+      <button class="btn-primary" id="btn-accept" onclick="acceptRequest()">Accetta e invia email</button>
     </div>
   </div>
 </div>
@@ -262,12 +263,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="modal-title">Motivo del rifiuto</p>
     </div>
     <div class="modal-body">
-      <label>Messaggio al cliente</label>
-      <textarea id="rej-note" style="min-height:100px"></textarea>
+      <label>Nota per l'ospite (opzionale)</label>
+      <textarea id="rej-note" style="min-height:100px" placeholder="Es. possiamo proporvi la stessa esperienza il giorno dopo..."></textarea>
+      <p style="font-size:11px;color:#8A8278;margin-top:-8px">L'ospite riceve un'email cortese con l'invito a scriverci su WhatsApp per un'alternativa.</p>
+      <p id="rej-status" style="font-size:12px;color:#5A5550;margin-top:8px;display:none"></p>
     </div>
     <div class="modal-foot">
       <button class="btn-cancel" onclick="closeModal('modal-reject')">Annulla</button>
-      <button class="btn-send-wa" onclick="sendRejectWA()">&#128172; Apri WhatsApp</button>
+      <button class="btn-primary" id="btn-reject" onclick="rejectRequest()">Rifiuta e invia email</button>
     </div>
   </div>
 </div>
@@ -285,6 +288,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label>Categoria *</label>
       <select id="svc-category">
         <option value="trasporti">Trasporti</option>
+        <option value="pacchetti">Pacchetti</option>
+        <option value="protezione">Protezione</option>
+        <option value="soggiorno">Soggiorno &amp; Regali</option>
         <option value="comfort">Comfort &amp; Suite</option>
         <option value="chef">Chef &amp; Dining</option>
         <option value="esperienze">Esperienze</option>
@@ -447,17 +453,20 @@ function renderRequests() {
 
   tbody.innerHTML = list.map(r => {
     const date = new Date(r.created_at).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
-    const badge = badgeHtml(r.status);
+    const badge = badgeHtml(r);
     const actions = actionsHtml(r);
     const details = [
-      r.data_desiderata ? `<strong>Data</strong>${r.data_desiderata}${r.orario?' ore '+r.orario:''}` : '',
+      r.checkin         ? `<strong>Soggiorno</strong>${fmtDay(r.checkin)} → ${fmtDay(r.checkout)}` : '',
+      r.data_desiderata ? `<strong>Data servizio</strong>${fmtDay(r.data_desiderata)}${r.orario?' ore '+escHtml(r.orario):''}` : '',
       r.persone         ? `<strong>Persone</strong>${r.persone}` : '',
-      r.messaggio       ? `<strong>Note</strong>${r.messaggio.substring(0,60)}${r.messaggio.length>60?'…':''}` : '',
+      r.note            ? `<strong>Note</strong><span style="white-space:pre-wrap">${escHtml(r.note)}</span>` : '',
+      r.lang            ? `<strong>Lingua</strong>${escHtml(r.lang.toUpperCase())}` : '',
     ].filter(Boolean).join(' ');
+    const amount = r.amount != null ? `<br/><small style="color:#1A1814">Importo: <b>€${Number(r.amount).toFixed(2).replace('.00','')}</b></small>` : '';
     return `<tr>
       <td class="detail-col"><strong>Ricevuta</strong>${date}</td>
-      <td class="detail-col"><strong>Nome</strong>${escHtml(r.nome||'')}<br/><small style="color:#8A8278">${escHtml(r.email||'')} ${r.telefono?'· '+escHtml(r.telefono):''}</small></td>
-      <td class="detail-col"><strong>Servizio</strong>${escHtml(r.service_name||r.servizio||'')}<br/><small style="color:#BFA05A">${escHtml(r.service_price||r.prezzo||'')}</small></td>
+      <td class="detail-col"><strong>Nome</strong>${escHtml(r.nome||'')}<br/><small style="color:#8A8278"><a href="mailto:${escHtml(r.email||'')}" style="color:#8A8278">${escHtml(r.email||'')}</a> ${r.telefono?'· '+escHtml(r.telefono):''}</small></td>
+      <td class="detail-col"><strong>Servizio</strong>${escHtml(r.service_name||r.servizio||'')}<br/><small style="color:#BFA05A">${escHtml(r.service_price||r.prezzo||'')}</small>${amount}</td>
       <td class="detail-col">${details}</td>
       <td>${badge}</td>
       <td><div class="actions">${actions}</div></td>
@@ -465,14 +474,19 @@ function renderRequests() {
   }).join('');
 }
 
-function badgeHtml(status) {
+function fmtDay(d) {
+  if (!d) return '—';
+  return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function badgeHtml(r) {
   const map = {
-    pending:   ['badge-pending',  'In attesa'],
-    confirmed: ['badge-confirmed','Confermata'],
+    pending:   ['badge-pending',  'Da approvare'],
+    confirmed: ['badge-confirmed', r.kind === 'direct' ? 'Pagamento avviato' : 'Attesa pagamento'],
     paid:      ['badge-paid',     'Pagata'],
     rejected:  ['badge-rejected', 'Rifiutata'],
   };
-  const [cls, label] = map[status] || ['badge-pending','In attesa'];
+  const [cls, label] = map[r.status] || ['badge-pending','Da approvare'];
   return `<span class="badge ${cls}">${label}</span>`;
 }
 
@@ -480,104 +494,140 @@ function actionsHtml(r) {
   const id = r.id;
   let btns = '';
   if (r.status === 'pending') {
-    btns += `<button class="btn-sm btn-confirm" onclick="openConfirm('${id}')">Conferma</button>`;
+    btns += `<button class="btn-sm btn-confirm" onclick="openConfirm('${id}')">Accetta</button>`;
     btns += `<button class="btn-sm btn-reject"  onclick="openReject('${id}')">Rifiuta</button>`;
   }
   if (r.status === 'confirmed') {
+    if (r.payment_link) btns += `<button class="btn-sm btn-edit" onclick="copyPayLink('${id}', this)">Copia link</button>`;
+    if (r.payment_link && r.telefono) btns += `<button class="btn-sm btn-edit" onclick="sendPayLinkWA('${id}')">WhatsApp</button>`;
     btns += `<button class="btn-sm btn-paid" onclick="markPaid('${id}')">Segna pagata</button>`;
     btns += `<button class="btn-sm btn-reject" onclick="openReject('${id}')">Rifiuta</button>`;
   }
   return btns;
 }
 
+// Le azioni che scrivono all'ospite passano dalla funzione extras-api, che
+// verifica la sessione admin, crea il pagamento SumUp e invia le email.
+const EXTRAS_API = SUPABASE_URL + '/functions/v1/extras-api';
+async function callExtrasApi(body) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.href = '/admin/index.html'; return { ok:false, error:'Sessione scaduta' }; }
+  try {
+    const res = await fetch(EXTRAS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (e) {
+    return { ok:false, error:'Connessione non riuscita' };
+  }
+}
+
+function parseEuro(price) {
+  const m = String(price || '').match(/\d[\d.,]*/);
+  if (!m) return '';
+  let s = m[0];
+  if (/,\d{1,2}$/.test(s)) s = s.replace(/\./g,'').replace(',','.');
+  else s = s.replace(/[.,](?=\d{3}\b)/g,'').replace(',','.');
+  return parseFloat(s) || '';
+}
+
+function waLinkFor(r, text) {
+  const phone = (r.telefono || '').replace(/\D/g,'');
+  return `https://wa.me/${phone || WA_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+function payLinkMessage(r) {
+  const it = (r.lang || 'it') === 'it';
+  const amount = r.amount != null ? `€${Number(r.amount).toFixed(2).replace('.00','')}` : '';
+  return it
+    ? `Gentile ${r.nome},\n\nla sua richiesta per *${r.service_name}* è confermata.\nImporto: *${amount}*\n\n💳 Paga ora in modo sicuro: ${r.payment_link}\n\nLe Sicilien Concierge`
+    : `Dear ${r.nome},\n\nyour request for *${r.service_name}* is confirmed.\nAmount: *${amount}*\n\n💳 Pay securely here: ${r.payment_link}\n\nLe Sicilien Concierge`;
+}
+
 function openConfirm(id) {
   activeRequest = allRequests.find(r => r.id === id);
-  document.getElementById('conf-amount').value = '';
+  const r = activeRequest;
+  document.getElementById('conf-title').textContent = r.service_name || 'Invia il link di pagamento';
+  document.getElementById('conf-summary').innerHTML =
+    `<strong>Ospite</strong>${escHtml(r.nome)} · ${escHtml(r.email)}` +
+    (r.data_desiderata ? `<strong style="margin-top:8px">Data servizio</strong>${fmtDay(r.data_desiderata)}` : '') +
+    `<strong style="margin-top:8px">Prezzo di listino</strong>${escHtml(r.service_price || '—')}`;
+  document.getElementById('conf-amount').value = r.amount != null ? r.amount : parseEuro(r.service_price);
   document.getElementById('conf-note').value   = '';
   document.getElementById('conf-status').style.display = 'none';
+  document.getElementById('conf-foot').innerHTML = `
+    <button class="btn-cancel" onclick="closeModal('modal-confirm')">Annulla</button>
+    <button class="btn-primary" id="btn-accept" onclick="acceptRequest()">Accetta e invia email</button>`;
   openModal('modal-confirm');
 }
 
-async function sendConfirmWA() {
+async function acceptRequest() {
   const r      = activeRequest;
   const amount = document.getElementById('conf-amount').value.trim();
   const note   = document.getElementById('conf-note').value.trim();
-  const phone  = (r.telefono || '').replace(/\D/g,'');
   const status = document.getElementById('conf-status');
-  const btn    = document.getElementById('btn-send-wa');
+  const btn    = document.getElementById('btn-accept');
+  if (!amount || Number(amount) <= 0) { alert('Inserisci l\'importo'); return; }
 
-  if (!amount) { alert('Inserisci l\'importo'); return; }
-
-  btn.textContent = '⧐ Generazione link...';
-  btn.disabled = true;
-  status.textContent = 'Creazione link di pagamento SumUp...';
-  status.style.display = 'block';
-
-  let paylink = '';
-  try {
-    const res = await fetch(
-      'https://amixnhmgxbxuiykqndxi.supabase.co/functions/v1/sumup-checkout',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${SUPABASE_ANON}`,
-        },
-        body: JSON.stringify({
-          amount,
-          description: `${r.service_name||r.servizio} — ${r.nome}`,
-          reference: `LS-${r.id.substring(0,8)}`,
-        }),
-      }
-    );
-    const data = await res.json();
-    if (data.checkout_url) {
-      paylink = data.checkout_url;
-      status.textContent = '✓ Link generato';
-    } else {
-      status.textContent = `Attenzione: ${data.error||'link non generato'}, invio senza link SumUp`;
-    }
-  } catch (e) {
-    status.textContent = 'Attenzione: link SumUp non generato, invio senza';
+  btn.disabled = true; btn.textContent = 'Creazione link SumUp...';
+  const res = await callExtrasApi({ action:'accept', id:r.id, amount, note });
+  if (!res.ok) {
+    btn.disabled = false; btn.textContent = 'Accetta e invia email';
+    status.style.display = 'block';
+    status.innerHTML = `<span style="color:#C62828">Errore: ${escHtml(res.error || 'sconosciuto')}</span>`;
+    return;
   }
-
-  btn.textContent = '💬 Apri WhatsApp';
-  btn.disabled = false;
-
-  let msg = `Gentile ${r.nome},\n\nSiamo lieti di confermare la disponibilità per: *${r.service_name||r.servizio}*.\n\n`;
-  msg += `Importo: *€${amount}*\n`;
-  if (paylink) msg += `\n💳 Paga ora: ${paylink}\n`;
-  msg += `\nIBAN: IT06 M036 6901 6003 0054 7209 879\nCausale: ${r.service_name||r.servizio} — ${r.nome}\n`;
-  if (note) msg += `\n${note}\n`;
-  msg += `\nCordiali saluti,\nLe Sicilien Concierge`;
-
-  await sb.from('requests').update({
-    status: 'confirmed',
-    revolut_link: paylink || null,
-  }).eq('id', r.id);
-
-  const target = phone || WA_NUMBER;
-  window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank');
-  closeModal('modal-confirm');
-  status.style.display = 'none';
   await loadRequests();
+  activeRequest = allRequests.find(x => x.id === r.id) || { ...r, amount, payment_link: res.payment_link };
+  status.style.display = 'block';
+  status.innerHTML = (res.email_sent
+      ? '✓ Email con il link di pagamento inviata all\'ospite.'
+      : `<span style="color:#C62828">⚠ Email non inviata (${escHtml(res.email_error || '')}). Mandagli il link su WhatsApp.</span>`) +
+    `<br/>Link: <a href="${escHtml(res.payment_link)}" target="_blank" style="color:#BFA05A;word-break:break-all">${escHtml(res.payment_link)}</a>`;
+  document.getElementById('conf-foot').innerHTML = `
+    <button class="btn-cancel" onclick="closeModal('modal-confirm')">Chiudi</button>
+    <button class="btn-send-wa" onclick="sendPayLinkWA('${r.id}')">💬 Invia anche su WhatsApp</button>`;
+}
+
+function sendPayLinkWA(id) {
+  const r = allRequests.find(x => x.id === id) || activeRequest;
+  window.open(waLinkFor(r, payLinkMessage(r)), '_blank');
+}
+
+async function copyPayLink(id, btn) {
+  const r = allRequests.find(x => x.id === id);
+  try { await navigator.clipboard.writeText(r.payment_link); btn.textContent = 'Copiato ✓'; }
+  catch (e) { prompt('Copia il link:', r.payment_link); }
 }
 
 function openReject(id) {
   activeRequest = allRequests.find(r => r.id === id);
-  document.getElementById('rej-note').value =
-    `Gentile ${activeRequest.nome},\n\npurtroppo non siamo in grado di soddisfare la sua richiesta per: *${activeRequest.service_name||activeRequest.servizio}*.\n\nLe chiediamo scusa per l'inconveniente. Rimaniamo a disposizione per qualsiasi altra esigenza.\n\nCordiali saluti,\nLe Sicilien Concierge`;
+  document.getElementById('rej-note').value = '';
+  document.getElementById('rej-status').style.display = 'none';
+  const btn = document.getElementById('btn-reject');
+  btn.disabled = false; btn.textContent = 'Rifiuta e invia email';
   openModal('modal-reject');
 }
 
-async function sendRejectWA() {
-  const r     = activeRequest;
-  const note  = document.getElementById('rej-note').value.trim();
-  const phone = (r.telefono || '').replace(/\D/g,'');
-  await sb.from('requests').update({ status: 'rejected' }).eq('id', r.id);
-  const target = phone || WA_NUMBER;
-  window.open(`https://wa.me/${target}?text=${encodeURIComponent(note)}`, '_blank');
-  closeModal('modal-reject');
+async function rejectRequest() {
+  const r      = activeRequest;
+  const note   = document.getElementById('rej-note').value.trim();
+  const status = document.getElementById('rej-status');
+  const btn    = document.getElementById('btn-reject');
+  btn.disabled = true; btn.textContent = 'Invio...';
+  const res = await callExtrasApi({ action:'reject', id:r.id, note });
+  status.style.display = 'block';
+  if (!res.ok) {
+    btn.disabled = false; btn.textContent = 'Rifiuta e invia email';
+    status.innerHTML = `<span style="color:#C62828">Errore: ${escHtml(res.error || 'sconosciuto')}</span>`;
+    return;
+  }
+  status.innerHTML = res.email_sent
+    ? '✓ Richiesta rifiutata, email inviata all\'ospite.'
+    : `<span style="color:#C62828">⚠ Richiesta rifiutata ma email non inviata (${escHtml(res.email_error || '')}).</span>`;
+  btn.textContent = '✓ Fatto';
   await loadRequests();
 }
 
@@ -589,6 +639,9 @@ async function markPaid(id) {
 
 const CATEGORIES = [
   { key:'trasporti',   label:'Trasporti' },
+  { key:'pacchetti',   label:'Pacchetti' },
+  { key:'protezione',  label:'Protezione (venduti su Kross)' },
+  { key:'soggiorno',   label:'Soggiorno & Regali' },
   { key:'comfort',     label:'Comfort & Suite' },
   { key:'chef',        label:'Chef & Dining' },
   { key:'esperienze',  label:'Esperienze' },
